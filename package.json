@@ -1,0 +1,7 @@
+{
+  "name": "school ai render backend",
+  "version": "1.0.0",
+  "scripts": {
+    "start": "node node.js"
+  }
+}
