@@ -54,7 +54,7 @@ const server = http.createServer((req, res) => {
 
 				method: 'POST',
 				headers: {
-					'Authorization': `Bearer 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`,
+             'Authorization': `Bearer ${process.env.OPENROUTER_API_KEY}`,
 					'Content-Type': 'application/json'
 				},
 				body: JSON.stringify({
