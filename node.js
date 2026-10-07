@@ -50,6 +50,7 @@ const server = http.createServer((req, res) => {
 					content: userMessage
 				}
 			];
+			console.log(process.env.OPENROUTER_API_KEY)
 			const orRes = await fetch('https://openrouter.ai/api/v1/chat/completions', {
 
 				method: 'POST',
