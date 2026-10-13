@@ -1,0 +1,2715 @@
+﻿<!doctype html>
+<html>
+  <head>
+    <!-- Externe Stylesheet-Datei fÃ¼r das gesamte Layout -->
+    <link rel="stylesheet" href="style.css" />
+    <!-- p5.js (minifiziert) fÃ¼r die Code-Preview -->
+    <script src="min.js"></script>
+    <!-- Zeichensatz fÃ¼r Umlaute und Sonderzeichen -->
+    <meta charset="UTF-8" />
+    <!-- Titel im Browser-Tab -->
+    <title>App für Informatik</title>
+    <style></style>
+  </head>
+  <body>
+    <button
+      class="floating-coin-icon"
+      type="button"
+      title="Notiz Öffnen"
+      onclick="printCurrentLevel()"
+    >
+      T
+    </button>
+    <!-- Modal: Notizfeld fÃ¼r $ Button -->
+    <div
+      id="coin-modal"
+      class="coin-modal-overlay"
+      onclick="if (event.target === this) closeCoinModal();"
+    >
+      <div class="coin-modal-box">
+        <h3 class="coin-modal-title">Arbeitsauftrag</h3>
+        <button
+          class="coin-modal-close"
+          type="button"
+          onclick="closeCoinModal()"
+        >
+          ✖
+        </button>
+        <textarea
+          id="coin-modal-text"
+          class="coin-modal-textarea"
+          placeholder="Notizen hier eingeben..."
+        ></textarea>
+      </div>
+    </div>
+    <script src="levelcodecache.js"></script>
+    <script src="levelsolutionscache.js"></script>
+    <!-- Audio-Erweiterung fÃ¼r p5.js -->
+    <script src="minSounds.js"></script>
+    <!-- Hauptlogik der Anwendung -->
+    <script src="script.js"></script>
+    <!-- p5.js Bibliothek fÃ¼r Canvas/Rendering -->
+
+    <!-- Ãœbersicht: Einstieg mit den 3 Hauptmodulen -->
+    <section class="page" id="overview">
+      <!-- Schnellaktion zur Formularseite -->
+      <div class="top-actions">
+        <a class="action-btn" href="#level-erstellen">Level erstellen</a>
+      </div>
+      <!-- Mindmap-Container der Startseite -->
+      <svg viewBox="0 0 700 510">
+        <!-- Zeile 1: Modul 1â€“5 -->
+        <a href="#modul1" class="overview-module">
+          <circle class="circle difficulty-easy" cx="70" cy="90" r="50" />
+          <text class="label overview-title" x="70" y="78">Modul 1</text>
+          <text class="label overview-sub" x="70" y="96">
+            Farben und Formen
+          </text>
+          <text class="label overview-sub" x="70" y="112">statisch</text>
+          <text class="module-tooltip" x="70" y="20">
+            Tool teached: Parameter
+          </text>
+        </a>
+        <a href="#modul2" class="overview-module">
+          <circle class="circle difficulty-easy" cx="210" cy="90" r="50" />
+          <text class="label overview-title" x="210" y="78">Modul 2</text>
+          <text class="label overview-sub" x="210" y="96">
+            Farben und Formen
+          </text>
+          <text class="label overview-sub" x="210" y="112">Animationen</text>
+          <text class="module-tooltip" x="210" y="20">
+            Tool teached: Variablen
+          </text>
+        </a>
+        <a href="#modul3" class="overview-module">
+          <circle class="circle difficulty-easy" cx="350" cy="90" r="50" />
+          <text class="label overview-title" x="350" y="78">Modul 3</text>
+          <text class="label overview-sub" x="350" y="96">
+            Farben und Formen
+          </text>
+          <text class="label overview-sub" x="350" y="112">
+            mit Bedingungen
+          </text>
+          <text class="module-tooltip" x="350" y="20">
+            Tool teached: If statements
+          </text>
+        </a>
+        <!--
+        <a href="#modul4">
+          <circle class="circle difficulty-easy" cx="490" cy="90" r="50" />
+          <text class="label" x="490" y="83">Modul 4</text>
+          <text class="label" x="490" y="100">Kommt bald</text>
+        </a>
+        <a href="#modul5">
+          <circle class="circle difficulty-easy" cx="630" cy="90" r="50" />
+          <text class="label" x="630" y="83">Modul 5</text>
+          <text class="label" x="630" y="100">Kommt bald</text>
+        </a>
+        <a href="#modul6">
+          <circle class="circle difficulty-medium" cx="70" cy="260" r="50" />
+          <text class="label" x="70" y="253">Modul 6</text>
+          <text class="label" x="70" y="270">Kommt bald</text>
+        </a>
+        <a href="#modul7">
+          <circle class="circle difficulty-medium" cx="210" cy="260" r="50" />
+          <text class="label" x="210" y="253">Modul 7</text>
+          <text class="label" x="210" y="270">Kommt bald</text>
+        </a>
+        <a href="#modul8">
+          <circle class="circle difficulty-medium" cx="350" cy="260" r="50" />
+          <text class="label" x="350" y="253">Modul 8</text>
+          <text class="label" x="350" y="270">Kommt bald</text>
+        </a>
+        <a href="#modul9">
+          <circle class="circle difficulty-medium" cx="490" cy="260" r="50" />
+          <text class="label" x="490" y="253">Modul 9</text>
+          <text class="label" x="490" y="270">Kommt bald</text>
+        </a>
+        <a href="#modul10">
+          <circle class="circle difficulty-medium" cx="630" cy="260" r="50" />
+          <text class="label" x="630" y="253">Modul 10</text>
+          <text class="label" x="630" y="270">Kommt bald</text>
+        </a>
+        <a href="#modul11">
+          <circle class="circle difficulty-hard" cx="70" cy="430" r="50" />
+          <text class="label" x="70" y="423">Modul 11</text>
+          <text class="label" x="70" y="440">Kommt bald</text>
+        </a>
+        <a href="#modul12">
+          <circle class="circle difficulty-hard" cx="210" cy="430" r="50" />
+          <text class="label" x="210" y="423">Modul 12</text>
+          <text class="label" x="210" y="440">Kommt bald</text>
+        </a>
+        <a href="#modul13">
+          <circle class="circle difficulty-hard" cx="350" cy="430" r="50" />
+          <text class="label" x="350" y="423">Modul 13</text>
+          <text class="label" x="350" y="440">Kommt bald</text>
+        </a>
+        <a href="#modul14">
+          <circle class="circle difficulty-hard" cx="490" cy="430" r="50" />
+          <text class="label" x="490" y="423">Modul 14</text>
+          <text class="label" x="490" y="440">Kommt bald</text>
+        </a>
+        <a href="#modul15">
+          <circle class="circle difficulty-hard" cx="630" cy="430" r="50" />
+          <text class="label" x="630" y="423">Modul 15</text>
+          <text class="label" x="630" y="440">Kommt bald</text>
+        </a>
+         -->
+      </svg>
+    </section>
+
+    <!-- Mindmap: modul1 -->
+    <section class="page" id="modul1">
+      <!-- Navigation zurÃ¼ck zur Ãœbersicht -->
+
+      <!-- Mindmap fÃ¼r Modul 1 -->
+      <svg viewBox="0 0 700 500">
+        <!-- Linien vom Modul-Zentrum zu den Themen -->
+        <line class="line" x1="350" y1="250" x2="350" y2="80" />
+        <line class="line" x1="350" y1="250" x2="512" y2="152" />
+        <line class="line" x1="350" y1="250" x2="450" y2="412" />
+        <line class="line" x1="350" y1="250" x2="250" y2="412" />
+        <line class="line" x1="350" y1="250" x2="188" y2="152" />
+
+        <!-- Zentrum des Moduls -->
+        <a
+          href="#overview"
+          class="module-center-link"
+          aria-label="Zur Übersicht"
+        >
+          \r\n
+          <circle class="circle-center" cx="350" cy="250" r="60" />
+          \r\n
+          <text class="label" x="350" y="238">Modul 1</text>
+          \r\n
+          <text class="label" x="350" y="255">Farben und Formen</text>
+          \r\n
+          <text class="label" x="350" y="270">statisch</text>
+          \r\n
+        </a>
+
+        <!-- 5 Hauptthemen von Modul 1 -->
+        <a href="#modul1" onclick="toggleMiniTheme('m1t1')">
+          <circle class="circle-sub" cx="350" cy="80" r="45" />
+          <text class="label" x="350" y="80">Thema 1</text>
+        </a>
+        <a href="#modul1" onclick="toggleMiniTheme('m1t2')">
+          <circle class="circle-sub" cx="512" cy="152" r="45" />
+          <text class="label" x="512" y="152">Thema 2</text>
+        </a>
+        <a href="#modul1" onclick="toggleMiniTheme('m1t3')">
+          <circle class="circle-sub" cx="450" cy="412" r="45" />
+          <text class="label" x="450" y="412">Thema 3</text>
+        </a>
+        <a href="#modul1" onclick="toggleMiniTheme('m1t4')">
+          <circle class="circle-sub" cx="250" cy="412" r="45" />
+          <text class="label" x="250" y="412">Thema 4</text>
+        </a>
+        <a href="#modul1" onclick="toggleMiniTheme('m1t5')">
+          <circle class="circle-sub" cx="188" cy="152" r="45" />
+          <text class="label" x="188" y="152">Thema 5</text>
+        </a>
+
+        <!-- Mini-Themen von Modul 1 (fÃ¼hren zu Codeansichten) -->
+        <a href="#codeui" onclick="toggleMiniTheme('m1t1_1')">
+          <g class="mini-group" id="m1t1_1">
+            <line class="mini-line" x1="350" y1="80" x2="350" y2="26" />
+            <circle class="circle-mini" cx="350" cy="26" r="24" />
+            <text class="label" x="350" y="26">Mini 1</text>
+          </g>
+        </a>
+        <a href="#codeui" onclick="toggleMiniTheme('m1t1_2')">
+          <g class="mini-group" id="m1t1_2">
+            <line class="mini-line" x1="350" y1="80" x2="305" y2="110" />
+            <circle class="circle-mini" cx="305" cy="110" r="24" />
+            <text class="label" x="305" y="110">Mini 2</text>
+          </g>
+        </a>
+        <a href="#codeui" onclick="toggleMiniTheme('m1t1_3')">
+          <g class="mini-group" id="m1t1_3">
+            <line class="mini-line" x1="350" y1="80" x2="395" y2="110" />
+            <circle class="circle-mini" cx="395" cy="110" r="24" />
+            <text class="label" x="395" y="110">Mini 3</text>
+          </g>
+        </a>
+        <a href="#codeui" onclick="toggleMiniTheme('m1t2_1')">
+          <g class="mini-group" id="m1t2_1">
+            <line class="mini-line" x1="512" y1="152" x2="580" y2="120" />
+            <circle class="circle-mini" cx="580" cy="120" r="24" />
+            <text class="label" x="580" y="120">Mini 1</text>
+          </g>
+        </a>
+        <a href="#codeui" onclick="toggleMiniTheme('m1t2_2')">
+          <g class="mini-group" id="m1t2_2">
+            <line class="mini-line" x1="512" y1="152" x2="580" y2="184" />
+            <circle class="circle-mini" cx="580" cy="184" r="24" />
+            <text class="label" x="580" y="184">Mini 2</text>
+          </g>
+        </a>
+        <a href="#codeui" onclick="toggleMiniTheme('m1t2_3')">
+          <g class="mini-group" id="m1t2_3">
+            <line class="mini-line" x1="512" y1="152" x2="512" y2="220" />
+            <circle class="circle-mini" cx="512" cy="220" r="24" />
+            <text class="label" x="512" y="220">Mini 3</text>
+          </g>
+        </a>
+        <a href="#codeui" onclick="toggleMiniTheme('m1t3_1')">
+          <g class="mini-group" id="m1t3_1">
+            <line class="mini-line" x1="450" y1="412" x2="390" y2="450" />
+            <circle class="circle-mini" cx="390" cy="450" r="24" />
+            <text class="label" x="390" y="450">Mini 1</text>
+          </g>
+        </a>
+        <a href="#codeui" onclick="toggleMiniTheme('m1t3_2')">
+          <g class="mini-group" id="m1t3_2">
+            <line class="mini-line" x1="450" y1="412" x2="510" y2="450" />
+            <circle class="circle-mini" cx="510" cy="450" r="24" />
+            <text class="label" x="510" y="450">Mini 2</text>
+          </g>
+        </a>
+        <a href="#codeui" onclick="toggleMiniTheme('m1t3_3')">
+          <g class="mini-group" id="m1t3_3">
+            <line class="mini-line" x1="450" y1="412" x2="450" y2="340" />
+            <circle class="circle-mini" cx="450" cy="340" r="24" />
+            <text class="label" x="450" y="340">Mini 3</text>
+          </g>
+        </a>
+        <a href="#codeui" onclick="toggleMiniTheme('m1t4_1')">
+          <g class="mini-group" id="m1t4_1">
+            <line class="mini-line" x1="250" y1="412" x2="190" y2="450" />
+            <circle class="circle-mini" cx="190" cy="450" r="24" />
+            <text class="label" x="190" y="450">Mini 1</text>
+          </g>
+        </a>
+        <a href="#codeui" onclick="toggleMiniTheme('m1t4_2')">
+          <g class="mini-group" id="m1t4_2">
+            <line class="mini-line" x1="250" y1="412" x2="310" y2="450" />
+            <circle class="circle-mini" cx="310" cy="450" r="24" />
+            <text class="label" x="310" y="450">Mini 2</text>
+          </g>
+        </a>
+        <a href="#codeui" onclick="toggleMiniTheme('m1t4_3')">
+          <g class="mini-group" id="m1t4_3">
+            <line class="mini-line" x1="250" y1="412" x2="250" y2="340" />
+            <circle class="circle-mini" cx="250" cy="340" r="24" />
+            <text class="label" x="250" y="340">Mini 3</text>
+          </g>
+        </a>
+        <a href="#codeui" onclick="toggleMiniTheme('m1t5_1')">
+          <g class="mini-group" id="m1t5_1">
+            <line class="mini-line" x1="188" y1="152" x2="120" y2="120" />
+            <circle class="circle-mini" cx="120" cy="120" r="24" />
+            <text class="label" x="120" y="120">Mini 1</text>
+          </g>
+        </a>
+        <a href="#codeui" onclick="toggleMiniTheme('m1t5_2')">
+          <g class="mini-group" id="m1t5_2">
+            <line class="mini-line" x1="188" y1="152" x2="120" y2="184" />
+            <circle class="circle-mini" cx="120" cy="184" r="24" />
+            <text class="label" x="120" y="184">Mini 2</text>
+          </g>
+        </a>
+        <a href="#codeui" onclick="toggleMiniTheme('m1t5_3')">
+          <g class="mini-group" id="m1t5_3">
+            <line class="mini-line" x1="188" y1="152" x2="188" y2="220" />
+            <circle class="circle-mini" cx="188" cy="220" r="24" />
+            <text class="label" x="188" y="220">Mini 3</text>
+          </g>
+        </a>
+      </svg>
+    </section>
+
+    <!-- Mindmap: modul2 -->
+    <section class="page" id="modul2">
+      <!-- Navigation zurück zur Übersicht -->
+
+      <!-- Mindmap für Modul 2 -->
+      <svg viewBox="0 0 700 500">
+        <!-- Linien vom Modul-Zentrum zu den Themen -->
+        <line class="line" x1="350" y1="250" x2="350" y2="80" />
+        <line class="line" x1="350" y1="250" x2="512" y2="152" />
+        <line class="line" x1="350" y1="250" x2="450" y2="412" />
+        <line class="line" x1="350" y1="250" x2="250" y2="412" />
+        <line class="line" x1="350" y1="250" x2="188" y2="152" />
+
+        <!-- Zentrum des Moduls -->
+        <a
+          href="#overview"
+          class="module-center-link"
+          aria-label="Zur Übersicht"
+        >
+          \r\n
+          <circle class="circle-center" cx="350" cy="250" r="60" />
+          \r\n
+          <text class="label" x="350" y="238">Modul 2</text>
+          \r\n
+          <text class="label" x="350" y="255">Farben und Formen</text>
+          \r\n
+          <text class="label" x="350" y="270">Animationen</text>
+          \r\n
+        </a>
+
+        <!-- 5 Hauptthemen von Modul 2 -->
+        <a href="#modul2" onclick="toggleMiniTheme('m2t1')">
+          <circle class="circle-sub" cx="350" cy="80" r="45" />
+          <text class="label" x="350" y="80">Thema 1</text>
+        </a>
+        <a href="#modul2" onclick="toggleMiniTheme('m2t2')">
+          <circle class="circle-sub" cx="512" cy="152" r="45" />
+          <text class="label" x="512" y="152">Thema 2</text>
+        </a>
+        <a href="#modul2" onclick="toggleMiniTheme('m2t3')">
+          <circle class="circle-sub" cx="450" cy="412" r="45" />
+          <text class="label" x="450" y="412">Thema 3</text>
+        </a>
+        <a href="#modul2" onclick="toggleMiniTheme('m2t4')">
+          <circle class="circle-sub" cx="250" cy="412" r="45" />
+          <text class="label" x="250" y="412">Thema 4</text>
+        </a>
+        <a href="#modul2" onclick="toggleMiniTheme('m2t5')">
+          <circle class="circle-sub" cx="188" cy="152" r="45" />
+          <text class="label" x="188" y="152">Thema 5</text>
+        </a>
+
+        <!-- Mini-Themen von Modul 2 (fÃ¼hren zu Codeansichten) -->
+        <a href="#codeui" onclick="toggleMiniTheme('m2t1_1')">
+          <g class="mini-group" id="m2t1_1">
+            <line class="mini-line" x1="350" y1="80" x2="350" y2="26" />
+            <circle class="circle-mini" cx="350" cy="26" r="24" />
+            <text class="label" x="350" y="26">Mini 1</text>
+          </g>
+        </a>
+        <a href="#codeui" onclick="toggleMiniTheme('m2t1_2')">
+          <g class="mini-group" id="m2t1_2">
+            <line class="mini-line" x1="350" y1="80" x2="305" y2="110" />
+            <circle class="circle-mini" cx="305" cy="110" r="24" />
+            <text class="label" x="305" y="110">Mini 2</text>
+          </g>
+        </a>
+        <a href="#codeui" onclick="toggleMiniTheme('m2t1_3')">
+          <g class="mini-group" id="m2t1_3">
+            <line class="mini-line" x1="350" y1="80" x2="395" y2="110" />
+            <circle class="circle-mini" cx="395" cy="110" r="24" />
+            <text class="label" x="395" y="110">Mini 3</text>
+          </g>
+        </a>
+        <a href="#codeui" onclick="toggleMiniTheme('m2t2_1')">
+          <g class="mini-group" id="m2t2_1">
+            <line class="mini-line" x1="512" y1="152" x2="580" y2="120" />
+            <circle class="circle-mini" cx="580" cy="120" r="24" />
+            <text class="label" x="580" y="120">Mini 1</text>
+          </g>
+        </a>
+        <a href="#codeui" onclick="toggleMiniTheme('m2t2_2')">
+          <g class="mini-group" id="m2t2_2">
+            <line class="mini-line" x1="512" y1="152" x2="580" y2="184" />
+            <circle class="circle-mini" cx="580" cy="184" r="24" />
+            <text class="label" x="580" y="184">Mini 2</text>
+          </g>
+        </a>
+        <a href="#codeui" onclick="toggleMiniTheme('m2t2_3')">
+          <g class="mini-group" id="m2t2_3">
+            <line class="mini-line" x1="512" y1="152" x2="512" y2="220" />
+            <circle class="circle-mini" cx="512" cy="220" r="24" />
+            <text class="label" x="512" y="220">Mini 3</text>
+          </g>
+        </a>
+        <a href="#codeui" onclick="toggleMiniTheme('m2t3_1')">
+          <g class="mini-group" id="m2t3_1">
+            <line class="mini-line" x1="450" y1="412" x2="390" y2="450" />
+            <circle class="circle-mini" cx="390" cy="450" r="24" />
+            <text class="label" x="390" y="450">Mini 1</text>
+          </g>
+        </a>
+        <a href="#codeui" onclick="toggleMiniTheme('m2t3_2')">
+          <g class="mini-group" id="m2t3_2">
+            <line class="mini-line" x1="450" y1="412" x2="510" y2="450" />
+            <circle class="circle-mini" cx="510" cy="450" r="24" />
+            <text class="label" x="510" y="450">Mini 2</text>
+          </g>
+        </a>
+        <a href="#codeui" onclick="toggleMiniTheme('m2t3_3')">
+          <g class="mini-group" id="m2t3_3">
+            <line class="mini-line" x1="450" y1="412" x2="450" y2="340" />
+            <circle class="circle-mini" cx="450" cy="340" r="24" />
+            <text class="label" x="450" y="340">Mini 3</text>
+          </g>
+        </a>
+        <a href="#codeui" onclick="toggleMiniTheme('m2t4_1')">
+          <g class="mini-group" id="m2t4_1">
+            <line class="mini-line" x1="250" y1="412" x2="190" y2="450" />
+            <circle class="circle-mini" cx="190" cy="450" r="24" />
+            <text class="label" x="190" y="450">Mini 1</text>
+          </g>
+        </a>
+        <a href="#codeui" onclick="toggleMiniTheme('m2t4_2')">
+          <g class="mini-group" id="m2t4_2">
+            <line class="mini-line" x1="250" y1="412" x2="310" y2="450" />
+            <circle class="circle-mini" cx="310" cy="450" r="24" />
+            <text class="label" x="310" y="450">Mini 2</text>
+          </g>
+        </a>
+        <a href="#codeui" onclick="toggleMiniTheme('m2t4_3')">
+          <g class="mini-group" id="m2t4_3">
+            <line class="mini-line" x1="250" y1="412" x2="250" y2="340" />
+            <circle class="circle-mini" cx="250" cy="340" r="24" />
+            <text class="label" x="250" y="340">Mini 3</text>
+          </g>
+        </a>
+        <a href="#codeui" onclick="toggleMiniTheme('m2t5_1')">
+          <g class="mini-group" id="m2t5_1">
+            <line class="mini-line" x1="188" y1="152" x2="120" y2="120" />
+            <circle class="circle-mini" cx="120" cy="120" r="24" />
+            <text class="label" x="120" y="120">Mini 1</text>
+          </g>
+        </a>
+        <a href="#codeui" onclick="toggleMiniTheme('m2t5_2')">
+          <g class="mini-group" id="m2t5_2">
+            <line class="mini-line" x1="188" y1="152" x2="120" y2="184" />
+            <circle class="circle-mini" cx="120" cy="184" r="24" />
+            <text class="label" x="120" y="184">Mini 2</text>
+          </g>
+        </a>
+        <a href="#codeui" onclick="toggleMiniTheme('m2t5_3')">
+          <g class="mini-group" id="m2t5_3">
+            <line class="mini-line" x1="188" y1="152" x2="188" y2="220" />
+            <circle class="circle-mini" cx="188" cy="220" r="24" />
+            <text class="label" x="188" y="220">Mini 3</text>
+          </g>
+        </a>
+      </svg>
+    </section>
+
+    <!-- Mindmap: modul3 -->
+    <section class="page" id="modul3">
+      <!-- Navigation zurück zur Übersicht -->
+
+      <!-- Mindmap für Modul 3 -->
+      <svg viewBox="0 0 700 500">
+        <!-- Linien vom Modul-Zentrum zu den Themen -->
+        <line class="line" x1="350" y1="250" x2="350" y2="80" />
+        <line class="line" x1="350" y1="250" x2="512" y2="152" />
+        <line class="line" x1="350" y1="250" x2="450" y2="412" />
+        <line class="line" x1="350" y1="250" x2="250" y2="412" />
+        <line class="line" x1="350" y1="250" x2="188" y2="152" />
+
+        <!-- Zentrum des Moduls -->
+        <a
+          href="#overview"
+          class="module-center-link"
+          aria-label="Zur Übersicht"
+        >
+          \r\n
+          <circle class="circle-center" cx="350" cy="250" r="60" />
+          \r\n
+          <text class="label" x="350" y="238">Modul 3</text>
+          \r\n
+          <text class="label" x="350" y="255">Farben und Formen</text>
+          \r\n
+          <text class="label" x="350" y="270">mit Bedingungen</text>
+          \r\n
+        </a>
+
+        <!-- 5 Hauptthemen von Modul 3 -->
+        <a href="#modul3" onclick="toggleMiniTheme('m3t1')">
+          <circle class="circle-sub" cx="350" cy="80" r="45" />
+          <text class="label" x="350" y="80">Thema 1</text>
+        </a>
+        <a href="#modul3" onclick="toggleMiniTheme('m3t2')">
+          <circle class="circle-sub" cx="512" cy="152" r="45" />
+          <text class="label" x="512" y="152">Thema 2</text>
+        </a>
+        <a href="#modul3" onclick="toggleMiniTheme('m3t3')">
+          <circle class="circle-sub" cx="450" cy="412" r="45" />
+          <text class="label" x="450" y="412">Thema 3</text>
+        </a>
+        <a href="#modul3" onclick="toggleMiniTheme('m3t4')">
+          <circle class="circle-sub" cx="250" cy="412" r="45" />
+          <text class="label" x="250" y="412">Thema 4</text>
+        </a>
+        <a href="#modul3" onclick="toggleMiniTheme('m3t5')">
+          <circle class="circle-sub" cx="188" cy="152" r="45" />
+          <text class="label" x="188" y="152">Thema 5</text>
+        </a>
+        <!-- Mini-Themen von Modul 3 (fÃ¼hren zu Codeansichten) -->
+        <a href="#codeui" onclick="toggleMiniTheme('m3t1_1')">
+          <g class="mini-group" id="m3t1_1">
+            <line class="mini-line" x1="350" y1="80" x2="350" y2="26" />
+            <circle class="circle-mini" cx="350" cy="26" r="24" />
+            <text class="label" x="350" y="26">Mini 1</text>
+          </g>
+        </a>
+        <a href="#codeui" onclick="toggleMiniTheme('m3t1_2')">
+          <g class="mini-group" id="m3t1_2">
+            <line class="mini-line" x1="350" y1="80" x2="305" y2="110" />
+            <circle class="circle-mini" cx="305" cy="110" r="24" />
+            <text class="label" x="305" y="110">Mini 2</text>
+          </g>
+        </a>
+        <a href="#codeui" onclick="toggleMiniTheme('m3t1_3')">
+          <g class="mini-group" id="m3t1_3">
+            <line class="mini-line" x1="350" y1="80" x2="395" y2="110" />
+            <circle class="circle-mini" cx="395" cy="110" r="24" />
+            <text class="label" x="395" y="110">Mini 3</text>
+          </g>
+        </a>
+        <a href="#codeui" onclick="toggleMiniTheme('m3t2_1')">
+          <g class="mini-group" id="m3t2_1">
+            <line class="mini-line" x1="512" y1="152" x2="580" y2="120" />
+            <circle class="circle-mini" cx="580" cy="120" r="24" />
+            <text class="label" x="580" y="120">Mini 1</text>
+          </g>
+        </a>
+        <a href="#codeui" onclick="toggleMiniTheme('m3t2_2')">
+          <g class="mini-group" id="m3t2_2">
+            <line class="mini-line" x1="512" y1="152" x2="580" y2="184" />
+            <circle class="circle-mini" cx="580" cy="184" r="24" />
+            <text class="label" x="580" y="184">Mini 2</text>
+          </g>
+        </a>
+        <a href="#codeui" onclick="toggleMiniTheme('m3t2_3')">
+          <g class="mini-group" id="m3t2_3">
+            <line class="mini-line" x1="512" y1="152" x2="512" y2="220" />
+            <circle class="circle-mini" cx="512" cy="220" r="24" />
+            <text class="label" x="512" y="220">Mini 3</text>
+          </g>
+        </a>
+        <a href="#codeui" onclick="toggleMiniTheme('m3t3_1')">
+          <g class="mini-group" id="m3t3_1">
+            <line class="mini-line" x1="450" y1="412" x2="390" y2="450" />
+            <circle class="circle-mini" cx="390" cy="450" r="24" />
+            <text class="label" x="390" y="450">Mini 1</text>
+          </g>
+        </a>
+        <a href="#codeui" onclick="toggleMiniTheme('m3t3_2')">
+          <g class="mini-group" id="m3t3_2">
+            <line class="mini-line" x1="450" y1="412" x2="510" y2="450" />
+            <circle class="circle-mini" cx="510" cy="450" r="24" />
+            <text class="label" x="510" y="450">Mini 2</text>
+          </g>
+        </a>
+        <a href="#codeui" onclick="toggleMiniTheme('m3t3_3')">
+          <g class="mini-group" id="m3t3_3">
+            <line class="mini-line" x1="450" y1="412" x2="450" y2="340" />
+            <circle class="circle-mini" cx="450" cy="340" r="24" />
+            <text class="label" x="450" y="340">Mini 3</text>
+          </g>
+        </a>
+        <a href="#codeui" onclick="toggleMiniTheme('m3t4_1')">
+          <g class="mini-group" id="m3t4_1">
+            <line class="mini-line" x1="250" y1="412" x2="190" y2="450" />
+            <circle class="circle-mini" cx="190" cy="450" r="24" />
+            <text class="label" x="190" y="450">Mini 1</text>
+          </g>
+        </a>
+        <a href="#codeui" onclick="toggleMiniTheme('m3t4_2')">
+          <g class="mini-group" id="m3t4_2">
+            <line class="mini-line" x1="250" y1="412" x2="310" y2="450" />
+            <circle class="circle-mini" cx="310" cy="450" r="24" />
+            <text class="label" x="310" y="450">Mini 2</text>
+          </g>
+        </a>
+        <a href="#codeui" onclick="toggleMiniTheme('m3t4_3')">
+          <g class="mini-group" id="m3t4_3">
+            <line class="mini-line" x1="250" y1="412" x2="250" y2="340" />
+            <circle class="circle-mini" cx="250" cy="340" r="24" />
+            <text class="label" x="250" y="340">Mini 3</text>
+          </g>
+        </a>
+        <a href="#codeui" onclick="toggleMiniTheme('m3t5_1')">
+          <g class="mini-group" id="m3t5_1">
+            <line class="mini-line" x1="188" y1="152" x2="120" y2="120" />
+            <circle class="circle-mini" cx="120" cy="120" r="24" />
+            <text class="label" x="120" y="120">Mini 1</text>
+          </g>
+        </a>
+        <a href="#codeui" onclick="toggleMiniTheme('m3t5_2')">
+          <g class="mini-group" id="m3t5_2">
+            <line class="mini-line" x1="188" y1="152" x2="120" y2="184" />
+            <circle class="circle-mini" cx="120" cy="184" r="24" />
+            <text class="label" x="120" y="184">Mini 2</text>
+          </g>
+        </a>
+        <a href="#codeui" onclick="toggleMiniTheme('m3t5_3')">
+          <g class="mini-group" id="m3t5_3">
+            <line class="mini-line" x1="188" y1="152" x2="188" y2="220" />
+            <circle class="circle-mini" cx="188" cy="220" r="24" />
+            <text class="label" x="188" y="220">Mini 3</text>
+          </g>
+        </a>
+      </svg>
+    </section>
+
+    <!-- Seite: CodeUI -->
+    <section class="page" id="codeui">
+      <p id="status"></p>
+      <div id="ausgabe"></div>
+      <div class="level-nav-row page-level-nav">
+        <button
+          type="button"
+          class="level-nav-btn level-prev-btn"
+          onclick="prevLevel()"
+          aria-label="Vorheriges Level"
+          title="Vorheriges Level"
+        >
+          Prev Level
+        </button>
+        <button
+          type="button"
+          class="level-nav-btn level-next-btn"
+          onclick="nextLevel()"
+          title="Naechstes Level"
+        >
+          Next Level
+        </button>
+      </div>
+      <!-- 3-Spalten Layout: Editor, Vorschau, Konsole -->
+      <div class="layout">
+        <!-- Code-Eingabe -->
+        <section class="panel editor-panel">
+          <div class="editor-shell">
+            <!-- Hohe, schmale Ellipse mit temporaeren Platzhalter-Icons -->
+            <div class="tool-ellipse" aria-label="Temporare Icons">
+              <pre id="output"></pre>
+              <button
+                type="button"
+                class="tool-icon"
+                title="Icon 1"
+                onclick="toggleKiPanel()"
+              >
+                KI
+              </button>
+              <a
+                class="tool-icon p5-help-button"
+                title="p5 Referenz"
+                href="https://p5js.org/reference/"
+                target="_blank"
+                rel="noopener noreferrer"
+                >P5</a
+              >
+              <div class="p5-hover-hint" role="note">
+                p5 library: Such dort was du brauchst.
+                <a
+                  href="https://p5js.org/reference/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  >Zur p5 Referenz</a
+                >
+              </div>
+              <details class="it-help-wrap">
+                <summary class="tool-icon it-help-button" title="IT Hilfe">
+                  IT
+                </summary>
+                <div class="it-help-panel" role="note">
+                  <textarea
+                    class="it-help-text"
+                    rows="7"
+                    spellcheck="false"
+                    placeholder="IT-Tipp: Schreibe hier kurze Hinweise oder Merksaetze..."
+                  ></textarea>
+                </div>
+              </details>
+              <button type="button" class="tool-icon" title="Icon 4">+</button>
+              <button type="button" class="tool-icon" title="Icon 5">?</button>
+            </div>
+            <section class="ki-panel" aria-label="KI-Chat">
+              <input
+                type="text"
+                id="eingabe"
+                placeholder="Schreibe eine Nachricht..."
+              />
+              <textarea
+                id="outputKI"
+                rows="10"
+                cols="50"
+                spellcheck="false"
+                readonly
+              ></textarea>
+              <div id="status"></div>
+              <button onclick="senden()">Senden</button>
+            </section>
+            <!-- Eigene Spalte fÃ¼r Zeilennummern -->
+            <div id="lineNumbers" class="line-numbers" aria-hidden="true"></div>
+            <!-- Code-Editor fÃ¼r p5.js Beispiele -->
+            <textarea id="code" rows="10" cols="50" spellcheck="false">
+function setup() {
+  createCanvas(800, 800);
+}
+function draw() {
+  background(220);
+}
+</textarea
+            >
+          </div>
+
+          <!-- Aktions-Buttons: Run und Vorschau nebeneinander, je halbe Breite -->
+          <div style="display: flex; gap: 6px">
+            <button onclick="run()" style="flex: 1">Run</button>
+            <button onclick="preview()" style="flex: 1">Vorschau</button>
+          </div>
+
+          <!-- Lösungs-Rubrik unterhalb des Editors -->
+          <div class="solution-section">
+            <button
+              type="button"
+              class="solution-toggle"
+              onclick="toggleSolution()"
+            >
+              Lösung anzeigen
+            </button>
+            <div id="solutionContent" class="solution-content" hidden>
+              <textarea
+                id="solutionCode"
+                class="solution-textarea"
+                readonly
+                spellcheck="false"
+              ></textarea>
+            </div>
+          </div>
+        </section>
+
+        <!-- Live-Ausgabe des Codes -->
+        <section class="panel preview-panel">
+          <iframe id="preview"></iframe>
+        </section>
+        <!-- Konsolenmeldungen/Fehlerausgabe -->
+        <section class="panel console-panel">
+          <div class="console-title">Console</div>
+          <div id="consoleOutput"></div>
+        </section>
+      </div>
+    </section>
+
+    <!-- Seite: Ownlevel -->
+    <section class="page" id="codeuiOwnlevel">
+      <p id="status"></p>
+      <div id="ausgabe"></div>
+      <div class="level-nav-row page-level-nav">
+        <button
+          type="button"
+          class="level-nav-btn level-prev-btn"
+          onclick="prevLevel()"
+          aria-label="Vorheriges Level"
+          title="Vorheriges Level"
+        >
+          Prev Level
+        </button>
+        <button
+          type="button"
+          class="level-nav-btn level-next-btn"
+          onclick="nextLevel()"
+          title="Naechstes Level"
+        >
+          Next Level
+        </button>
+      </div>
+      <!-- 3-Spalten Layout: Editor, Vorschau, Konsole -->
+      <div class="layout">
+        <!-- Code-Eingabe -->
+        <section class="panel editor-panel">
+          <div class="editor-shell">
+            <!-- Hohe, schmale Ellipse mit temporaeren Platzhalter-Icons -->
+            <div class="tool-ellipse" aria-label="Temporare Icons">
+              <pre id="output"></pre>
+              <button
+                type="button"
+                class="tool-icon"
+                title="Icon 1"
+                onclick="toggleKiPanel()"
+              >
+                KI
+              </button>
+              <a
+                class="tool-icon p5-help-button"
+                title="p5 Referenz"
+                href="https://p5js.org/reference/"
+                target="_blank"
+                rel="noopener noreferrer"
+                >P5</a
+              >
+              <div class="p5-hover-hint" role="note">
+                p5 library: Such dort was du brauchst.
+                <a
+                  href="https://p5js.org/reference/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  >Zur p5 Referenz</a
+                >
+              </div>
+              <details class="it-help-wrap">
+                <summary class="tool-icon it-help-button" title="IT Hilfe">
+                  IT
+                </summary>
+                <div class="it-help-panel" role="note">
+                  <textarea
+                    class="it-help-text"
+                    rows="7"
+                    spellcheck="false"
+                    placeholder="IT-Tipp: Schreibe hier kurze Hinweise oder Merksaetze..."
+                  ></textarea>
+                </div>
+              </details>
+              <button type="button" class="tool-icon" title="Icon 4">+</button>
+              <button type="button" class="tool-icon" title="Icon 5">?</button>
+            </div>
+            <section class="ki-panel" aria-label="KI-Chat">
+              <input
+                type="text"
+                id="eingabe"
+                placeholder="Schreibe eine Nachricht..."
+              />
+              <textarea
+                id="outputKI"
+                rows="10"
+                cols="50"
+                spellcheck="false"
+                readonly
+              ></textarea>
+              <div id="status"></div>
+              <button onclick="senden()">Senden</button>
+            </section>
+            <!-- Eigene Spalte fÃ¼r Zeilennummern -->
+            <div id="lineNumbers" class="line-numbers" aria-hidden="true"></div>
+            <!-- Code-Editor fÃ¼r p5.js Beispiele -->
+            <textarea id="code" rows="10" cols="50" spellcheck="false">
+function setup() {
+  createCanvas(800, 800);
+}
+function draw() {
+  background(220);
+}
+</textarea
+            >
+          </div>
+
+          <!-- Aktions-Buttons: Run und Vorschau nebeneinander, je halbe Breite -->
+          <div style="display: flex; gap: 6px">
+            <button onclick="run()" style="flex: 1">Run</button>
+          </div>
+        </section>
+
+        <!-- Live-Ausgabe des Codes -->
+        <section class="panel preview-panel">
+          <iframe id="preview"></iframe>
+        </section>
+        <!-- Konsolenmeldungen/Fehlerausgabe -->
+        <section class="panel console-panel">
+          <div class="console-title">Console</div>
+          <div id="consoleOutput"></div>
+        </section>
+      </div>
+    </section>
+    <!-- Seite: Level erstellen -->
+    <section class="page" id="level-erstellen">
+      <!-- ZurÃ¼ck zur Ãœbersicht -->
+
+      <!-- Karte mit Formular zum Bearbeiten der Level-Daten -->
+      <div class="level-card">
+        <h2>Level erstellen</h2>
+        <!-- Formular zur NamensÃ¤nderung und Level-Erstellung -->
+        <a href="#codeui" onclick="toggleMiniTheme('m8t5_3')"></a>
+        <form
+          class="level-form"
+          onsubmit="
+            event.preventDefault();
+            window.location.hash = 'codeui';
+          "
+        >
+          <button class="action-btn" type="submit">Level erstellen</button>
+        </form>
+        <!-- Hilfetext unter dem Formular -->
+        <p class="hint">
+          Erstellt ein eigenes Level und Ã¶ffnet direkt die eigene Codeansicht.
+        </p>
+      </div>
+    </section>
+    <!-- Mindmap: modul4 -->
+    <section class="page" id="modul4">
+      <svg viewBox="0 0 700 500">
+        <line class="line" x1="350" y1="250" x2="350" y2="80" />
+        <line class="line" x1="350" y1="250" x2="512" y2="152" />
+        <line class="line" x1="350" y1="250" x2="450" y2="412" />
+        <line class="line" x1="350" y1="250" x2="250" y2="412" />
+        <line class="line" x1="350" y1="250" x2="188" y2="152" />
+        <a
+          href="#overview"
+          class="module-center-link"
+          aria-label="Zur Übersicht"
+        >
+          \r\n
+          <circle class="circle-center" cx="350" cy="250" r="60" />
+          \r\n
+          <text class="label" x="350" y="243">Modul</text>
+          \r\n
+          <text class="label" x="350" y="258">4</text>
+          \r\n
+        </a>
+        <a href="#modul4" onclick="toggleMiniTheme('m4t1')">
+          <circle class="circle-sub" cx="350" cy="80" r="45" />
+          <text class="label" x="350" y="80">Thema 1</text>
+        </a>
+        <a href="#modul4" onclick="toggleMiniTheme('m4t2')">
+          <circle class="circle-sub" cx="512" cy="152" r="45" />
+          <text class="label" x="512" y="152">Thema 2</text>
+        </a>
+        <a href="#modul4" onclick="toggleMiniTheme('m4t3')">
+          <circle class="circle-sub" cx="450" cy="412" r="45" />
+          <text class="label" x="450" y="412">Thema 3</text>
+        </a>
+        <a href="#modul4" onclick="toggleMiniTheme('m4t4')">
+          <circle class="circle-sub" cx="250" cy="412" r="45" />
+          <text class="label" x="250" y="412">Thema 4</text>
+        </a>
+        <a href="#modul4" onclick="toggleMiniTheme('m4t5')">
+          <circle class="circle-sub" cx="188" cy="152" r="45" />
+          <text class="label" x="188" y="152">Thema 5</text>
+        </a>
+        <a href="#codeui" onclick="toggleMiniTheme('m4t1_1')">
+          <g class="mini-group" id="m4t1_1">
+            <line class="mini-line" x1="350" y1="80" x2="350" y2="26" />
+            <circle class="circle-mini" cx="350" cy="26" r="24" />
+            <text class="label" x="350" y="26">Mini 1</text>
+          </g>
+        </a>
+        <a href="#codeui" onclick="toggleMiniTheme('m4t1_2')">
+          <g class="mini-group" id="m4t1_2">
+            <line class="mini-line" x1="350" y1="80" x2="305" y2="110" />
+            <circle class="circle-mini" cx="305" cy="110" r="24" />
+            <text class="label" x="305" y="110">Mini 2</text>
+          </g>
+        </a>
+        <a href="#codeui" onclick="toggleMiniTheme('m4t1_3')">
+          <g class="mini-group" id="m4t1_3">
+            <line class="mini-line" x1="350" y1="80" x2="395" y2="110" />
+            <circle class="circle-mini" cx="395" cy="110" r="24" />
+            <text class="label" x="395" y="110">Mini 3</text>
+          </g>
+        </a>
+        <a href="#codeui" onclick="toggleMiniTheme('m4t2_1')">
+          <g class="mini-group" id="m4t2_1">
+            <line class="mini-line" x1="512" y1="152" x2="580" y2="120" />
+            <circle class="circle-mini" cx="580" cy="120" r="24" />
+            <text class="label" x="580" y="120">Mini 1</text>
+          </g>
+        </a>
+        <a href="#codeui" onclick="toggleMiniTheme('m4t2_2')">
+          <g class="mini-group" id="m4t2_2">
+            <line class="mini-line" x1="512" y1="152" x2="580" y2="184" />
+            <circle class="circle-mini" cx="580" cy="184" r="24" />
+            <text class="label" x="580" y="184">Mini 2</text>
+          </g>
+        </a>
+        <a href="#codeui" onclick="toggleMiniTheme('m4t2_3')">
+          <g class="mini-group" id="m4t2_3">
+            <line class="mini-line" x1="512" y1="152" x2="512" y2="220" />
+            <circle class="circle-mini" cx="512" cy="220" r="24" />
+            <text class="label" x="512" y="220">Mini 3</text>
+          </g>
+        </a>
+        <a href="#codeui" onclick="toggleMiniTheme('m4t3_1')">
+          <g class="mini-group" id="m4t3_1">
+            <line class="mini-line" x1="450" y1="412" x2="390" y2="450" />
+            <circle class="circle-mini" cx="390" cy="450" r="24" />
+            <text class="label" x="390" y="450">Mini 1</text>
+          </g>
+        </a>
+        <a href="#codeui" onclick="toggleMiniTheme('m4t3_2')">
+          <g class="mini-group" id="m4t3_2">
+            <line class="mini-line" x1="450" y1="412" x2="510" y2="450" />
+            <circle class="circle-mini" cx="510" cy="450" r="24" />
+            <text class="label" x="510" y="450">Mini 2</text>
+          </g>
+        </a>
+        <a href="#codeui" onclick="toggleMiniTheme('m4t3_3')">
+          <g class="mini-group" id="m4t3_3">
+            <line class="mini-line" x1="450" y1="412" x2="450" y2="340" />
+            <circle class="circle-mini" cx="450" cy="340" r="24" />
+            <text class="label" x="450" y="340">Mini 3</text>
+          </g>
+        </a>
+        <a href="#codeui" onclick="toggleMiniTheme('m4t4_1')">
+          <g class="mini-group" id="m4t4_1">
+            <line class="mini-line" x1="250" y1="412" x2="190" y2="450" />
+            <circle class="circle-mini" cx="190" cy="450" r="24" />
+            <text class="label" x="190" y="450">Mini 1</text>
+          </g>
+        </a>
+        <a href="#codeui" onclick="toggleMiniTheme('m4t4_2')">
+          <g class="mini-group" id="m4t4_2">
+            <line class="mini-line" x1="250" y1="412" x2="310" y2="450" />
+            <circle class="circle-mini" cx="310" cy="450" r="24" />
+            <text class="label" x="310" y="450">Mini 2</text>
+          </g>
+        </a>
+        <a href="#codeui" onclick="toggleMiniTheme('m4t4_3')">
+          <g class="mini-group" id="m4t4_3">
+            <line class="mini-line" x1="250" y1="412" x2="250" y2="340" />
+            <circle class="circle-mini" cx="250" cy="340" r="24" />
+            <text class="label" x="250" y="340">Mini 3</text>
+          </g>
+        </a>
+        <a href="#codeui" onclick="toggleMiniTheme('m4t5_1')">
+          <g class="mini-group" id="m4t5_1">
+            <line class="mini-line" x1="188" y1="152" x2="120" y2="120" />
+            <circle class="circle-mini" cx="120" cy="120" r="24" />
+            <text class="label" x="120" y="120">Mini 1</text>
+          </g>
+        </a>
+        <a href="#codeui" onclick="toggleMiniTheme('m4t5_2')">
+          <g class="mini-group" id="m4t5_2">
+            <line class="mini-line" x1="188" y1="152" x2="120" y2="184" />
+            <circle class="circle-mini" cx="120" cy="184" r="24" />
+            <text class="label" x="120" y="184">Mini 2</text>
+          </g>
+        </a>
+        <a href="#codeui" onclick="toggleMiniTheme('m4t5_3')">
+          <g class="mini-group" id="m4t5_3">
+            <line class="mini-line" x1="188" y1="152" x2="188" y2="220" />
+            <circle class="circle-mini" cx="188" cy="220" r="24" />
+            <text class="label" x="188" y="220">Mini 3</text>
+          </g>
+        </a>
+      </svg>
+    </section>
+
+    <!-- Mindmap: modul5 -->
+    <section class="page" id="modul5">
+      <svg viewBox="0 0 700 500">
+        <line class="line" x1="350" y1="250" x2="350" y2="80" />
+        <line class="line" x1="350" y1="250" x2="512" y2="152" />
+        <line class="line" x1="350" y1="250" x2="450" y2="412" />
+        <line class="line" x1="350" y1="250" x2="250" y2="412" />
+        <line class="line" x1="350" y1="250" x2="188" y2="152" />
+        <a
+          href="#overview"
+          class="module-center-link"
+          aria-label="Zur Übersicht"
+        >
+          \r\n
+          <circle class="circle-center" cx="350" cy="250" r="60" />
+          \r\n
+          <text class="label" x="350" y="243">Modul</text>
+          \r\n
+          <text class="label" x="350" y="258">5</text>
+          \r\n
+        </a>
+        <a href="#modul5" onclick="toggleMiniTheme('m5t1')">
+          <circle class="circle-sub" cx="350" cy="80" r="45" />
+          <text class="label" x="350" y="80">Thema 1</text>
+        </a>
+        <a href="#modul5" onclick="toggleMiniTheme('m5t2')">
+          <circle class="circle-sub" cx="512" cy="152" r="45" />
+          <text class="label" x="512" y="152">Thema 2</text>
+        </a>
+        <a href="#modul5" onclick="toggleMiniTheme('m5t3')">
+          <circle class="circle-sub" cx="450" cy="412" r="45" />
+          <text class="label" x="450" y="412">Thema 3</text>
+        </a>
+        <a href="#modul5" onclick="toggleMiniTheme('m5t4')">
+          <circle class="circle-sub" cx="250" cy="412" r="45" />
+          <text class="label" x="250" y="412">Thema 4</text>
+        </a>
+        <a href="#modul5" onclick="toggleMiniTheme('m5t5')">
+          <circle class="circle-sub" cx="188" cy="152" r="45" />
+          <text class="label" x="188" y="152">Thema 5</text>
+        </a>
+        <a href="#codeui" onclick="toggleMiniTheme('m5t1_1')">
+          <g class="mini-group" id="m5t1_1">
+            <line class="mini-line" x1="350" y1="80" x2="350" y2="26" />
+            <circle class="circle-mini" cx="350" cy="26" r="24" />
+            <text class="label" x="350" y="26">Mini 1</text>
+          </g>
+        </a>
+        <a href="#codeui" onclick="toggleMiniTheme('m5t1_2')">
+          <g class="mini-group" id="m5t1_2">
+            <line class="mini-line" x1="350" y1="80" x2="305" y2="110" />
+            <circle class="circle-mini" cx="305" cy="110" r="24" />
+            <text class="label" x="305" y="110">Mini 2</text>
+          </g>
+        </a>
+        <a href="#codeui" onclick="toggleMiniTheme('m5t1_3')">
+          <g class="mini-group" id="m5t1_3">
+            <line class="mini-line" x1="350" y1="80" x2="395" y2="110" />
+            <circle class="circle-mini" cx="395" cy="110" r="24" />
+            <text class="label" x="395" y="110">Mini 3</text>
+          </g>
+        </a>
+        <a href="#codeui" onclick="toggleMiniTheme('m5t2_1')">
+          <g class="mini-group" id="m5t2_1">
+            <line class="mini-line" x1="512" y1="152" x2="580" y2="120" />
+            <circle class="circle-mini" cx="580" cy="120" r="24" />
+            <text class="label" x="580" y="120">Mini 1</text>
+          </g>
+        </a>
+        <a href="#codeui" onclick="toggleMiniTheme('m5t2_2')">
+          <g class="mini-group" id="m5t2_2">
+            <line class="mini-line" x1="512" y1="152" x2="580" y2="184" />
+            <circle class="circle-mini" cx="580" cy="184" r="24" />
+            <text class="label" x="580" y="184">Mini 2</text>
+          </g>
+        </a>
+        <a href="#codeui" onclick="toggleMiniTheme('m5t2_3')">
+          <g class="mini-group" id="m5t2_3">
+            <line class="mini-line" x1="512" y1="152" x2="512" y2="220" />
+            <circle class="circle-mini" cx="512" cy="220" r="24" />
+            <text class="label" x="512" y="220">Mini 3</text>
+          </g>
+        </a>
+        <a href="#codeui" onclick="toggleMiniTheme('m5t3_1')">
+          <g class="mini-group" id="m5t3_1">
+            <line class="mini-line" x1="450" y1="412" x2="390" y2="450" />
+            <circle class="circle-mini" cx="390" cy="450" r="24" />
+            <text class="label" x="390" y="450">Mini 1</text>
+          </g>
+        </a>
+        <a href="#codeui" onclick="toggleMiniTheme('m5t3_2')">
+          <g class="mini-group" id="m5t3_2">
+            <line class="mini-line" x1="450" y1="412" x2="510" y2="450" />
+            <circle class="circle-mini" cx="510" cy="450" r="24" />
+            <text class="label" x="510" y="450">Mini 2</text>
+          </g>
+        </a>
+        <a href="#codeui" onclick="toggleMiniTheme('m5t3_3')">
+          <g class="mini-group" id="m5t3_3">
+            <line class="mini-line" x1="450" y1="412" x2="450" y2="340" />
+            <circle class="circle-mini" cx="450" cy="340" r="24" />
+            <text class="label" x="450" y="340">Mini 3</text>
+          </g>
+        </a>
+        <a href="#codeui" onclick="toggleMiniTheme('m5t4_1')">
+          <g class="mini-group" id="m5t4_1">
+            <line class="mini-line" x1="250" y1="412" x2="190" y2="450" />
+            <circle class="circle-mini" cx="190" cy="450" r="24" />
+            <text class="label" x="190" y="450">Mini 1</text>
+          </g>
+        </a>
+        <a href="#codeui" onclick="toggleMiniTheme('m5t4_2')">
+          <g class="mini-group" id="m5t4_2">
+            <line class="mini-line" x1="250" y1="412" x2="310" y2="450" />
+            <circle class="circle-mini" cx="310" cy="450" r="24" />
+            <text class="label" x="310" y="450">Mini 2</text>
+          </g>
+        </a>
+        <a href="#codeui" onclick="toggleMiniTheme('m5t4_3')">
+          <g class="mini-group" id="m5t4_3">
+            <line class="mini-line" x1="250" y1="412" x2="250" y2="340" />
+            <circle class="circle-mini" cx="250" cy="340" r="24" />
+            <text class="label" x="250" y="340">Mini 3</text>
+          </g>
+        </a>
+        <a href="#codeui" onclick="toggleMiniTheme('m5t5_1')">
+          <g class="mini-group" id="m5t5_1">
+            <line class="mini-line" x1="188" y1="152" x2="120" y2="120" />
+            <circle class="circle-mini" cx="120" cy="120" r="24" />
+            <text class="label" x="120" y="120">Mini 1</text>
+          </g>
+        </a>
+        <a href="#codeui" onclick="toggleMiniTheme('m5t5_2')">
+          <g class="mini-group" id="m5t5_2">
+            <line class="mini-line" x1="188" y1="152" x2="120" y2="184" />
+            <circle class="circle-mini" cx="120" cy="184" r="24" />
+            <text class="label" x="120" y="184">Mini 2</text>
+          </g>
+        </a>
+        <a href="#codeui" onclick="toggleMiniTheme('m5t5_3')">
+          <g class="mini-group" id="m5t5_3">
+            <line class="mini-line" x1="188" y1="152" x2="188" y2="220" />
+            <circle class="circle-mini" cx="188" cy="220" r="24" />
+            <text class="label" x="188" y="220">Mini 3</text>
+          </g>
+        </a>
+      </svg>
+    </section>
+
+    <!-- Mindmap: modul6 -->
+    <section class="page" id="modul6">
+      <svg viewBox="0 0 700 500">
+        <line class="line" x1="350" y1="250" x2="350" y2="80" />
+        <line class="line" x1="350" y1="250" x2="512" y2="152" />
+        <line class="line" x1="350" y1="250" x2="450" y2="412" />
+        <line class="line" x1="350" y1="250" x2="250" y2="412" />
+        <line class="line" x1="350" y1="250" x2="188" y2="152" />
+        <a
+          href="#overview"
+          class="module-center-link"
+          aria-label="Zur Übersicht"
+        >
+          \r\n
+          <circle class="circle-center" cx="350" cy="250" r="60" />
+          \r\n
+          <text class="label" x="350" y="243">Modul</text>
+          \r\n
+          <text class="label" x="350" y="258">6</text>
+          \r\n
+        </a>
+        <a href="#modul6" onclick="toggleMiniTheme('m6t1')">
+          <circle class="circle-sub" cx="350" cy="80" r="45" />
+          <text class="label" x="350" y="80">Thema 1</text>
+        </a>
+        <a href="#modul6" onclick="toggleMiniTheme('m6t2')">
+          <circle class="circle-sub" cx="512" cy="152" r="45" />
+          <text class="label" x="512" y="152">Thema 2</text>
+        </a>
+        <a href="#modul6" onclick="toggleMiniTheme('m6t3')">
+          <circle class="circle-sub" cx="450" cy="412" r="45" />
+          <text class="label" x="450" y="412">Thema 3</text>
+        </a>
+        <a href="#modul6" onclick="toggleMiniTheme('m6t4')">
+          <circle class="circle-sub" cx="250" cy="412" r="45" />
+          <text class="label" x="250" y="412">Thema 4</text>
+        </a>
+        <a href="#modul6" onclick="toggleMiniTheme('m6t5')">
+          <circle class="circle-sub" cx="188" cy="152" r="45" />
+          <text class="label" x="188" y="152">Thema 5</text>
+        </a>
+        <a href="#codeui" onclick="toggleMiniTheme('m6t1_1')">
+          <g class="mini-group" id="m6t1_1">
+            <line class="mini-line" x1="350" y1="80" x2="350" y2="26" />
+            <circle class="circle-mini" cx="350" cy="26" r="24" />
+            <text class="label" x="350" y="26">Mini 1</text>
+          </g>
+        </a>
+        <a href="#codeui" onclick="toggleMiniTheme('m6t1_2')">
+          <g class="mini-group" id="m6t1_2">
+            <line class="mini-line" x1="350" y1="80" x2="305" y2="110" />
+            <circle class="circle-mini" cx="305" cy="110" r="24" />
+            <text class="label" x="305" y="110">Mini 2</text>
+          </g>
+        </a>
+        <a href="#codeui" onclick="toggleMiniTheme('m6t1_3')">
+          <g class="mini-group" id="m6t1_3">
+            <line class="mini-line" x1="350" y1="80" x2="395" y2="110" />
+            <circle class="circle-mini" cx="395" cy="110" r="24" />
+            <text class="label" x="395" y="110">Mini 3</text>
+          </g>
+        </a>
+        <a href="#codeui" onclick="toggleMiniTheme('m6t2_1')">
+          <g class="mini-group" id="m6t2_1">
+            <line class="mini-line" x1="512" y1="152" x2="580" y2="120" />
+            <circle class="circle-mini" cx="580" cy="120" r="24" />
+            <text class="label" x="580" y="120">Mini 1</text>
+          </g>
+        </a>
+        <a href="#codeui" onclick="toggleMiniTheme('m6t2_2')">
+          <g class="mini-group" id="m6t2_2">
+            <line class="mini-line" x1="512" y1="152" x2="580" y2="184" />
+            <circle class="circle-mini" cx="580" cy="184" r="24" />
+            <text class="label" x="580" y="184">Mini 2</text>
+          </g>
+        </a>
+        <a href="#codeui" onclick="toggleMiniTheme('m6t2_3')">
+          <g class="mini-group" id="m6t2_3">
+            <line class="mini-line" x1="512" y1="152" x2="512" y2="220" />
+            <circle class="circle-mini" cx="512" cy="220" r="24" />
+            <text class="label" x="512" y="220">Mini 3</text>
+          </g>
+        </a>
+        <a href="#codeui" onclick="toggleMiniTheme('m6t3_1')">
+          <g class="mini-group" id="m6t3_1">
+            <line class="mini-line" x1="450" y1="412" x2="390" y2="450" />
+            <circle class="circle-mini" cx="390" cy="450" r="24" />
+            <text class="label" x="390" y="450">Mini 1</text>
+          </g>
+        </a>
+        <a href="#codeui" onclick="toggleMiniTheme('m6t3_2')">
+          <g class="mini-group" id="m6t3_2">
+            <line class="mini-line" x1="450" y1="412" x2="510" y2="450" />
+            <circle class="circle-mini" cx="510" cy="450" r="24" />
+            <text class="label" x="510" y="450">Mini 2</text>
+          </g>
+        </a>
+        <a href="#codeui" onclick="toggleMiniTheme('m6t3_3')">
+          <g class="mini-group" id="m6t3_3">
+            <line class="mini-line" x1="450" y1="412" x2="450" y2="340" />
+            <circle class="circle-mini" cx="450" cy="340" r="24" />
+            <text class="label" x="450" y="340">Mini 3</text>
+          </g>
+        </a>
+        <a href="#codeui" onclick="toggleMiniTheme('m6t4_1')">
+          <g class="mini-group" id="m6t4_1">
+            <line class="mini-line" x1="250" y1="412" x2="190" y2="450" />
+            <circle class="circle-mini" cx="190" cy="450" r="24" />
+            <text class="label" x="190" y="450">Mini 1</text>
+          </g>
+        </a>
+        <a href="#codeui" onclick="toggleMiniTheme('m6t4_2')">
+          <g class="mini-group" id="m6t4_2">
+            <line class="mini-line" x1="250" y1="412" x2="310" y2="450" />
+            <circle class="circle-mini" cx="310" cy="450" r="24" />
+            <text class="label" x="310" y="450">Mini 2</text>
+          </g>
+        </a>
+        <a href="#codeui" onclick="toggleMiniTheme('m6t4_3')">
+          <g class="mini-group" id="m6t4_3">
+            <line class="mini-line" x1="250" y1="412" x2="250" y2="340" />
+            <circle class="circle-mini" cx="250" cy="340" r="24" />
+            <text class="label" x="250" y="340">Mini 3</text>
+          </g>
+        </a>
+        <a href="#codeui" onclick="toggleMiniTheme('m6t5_1')">
+          <g class="mini-group" id="m6t5_1">
+            <line class="mini-line" x1="188" y1="152" x2="120" y2="120" />
+            <circle class="circle-mini" cx="120" cy="120" r="24" />
+            <text class="label" x="120" y="120">Mini 1</text>
+          </g>
+        </a>
+        <a href="#codeui" onclick="toggleMiniTheme('m6t5_2')">
+          <g class="mini-group" id="m6t5_2">
+            <line class="mini-line" x1="188" y1="152" x2="120" y2="184" />
+            <circle class="circle-mini" cx="120" cy="184" r="24" />
+            <text class="label" x="120" y="184">Mini 2</text>
+          </g>
+        </a>
+        <a href="#codeui" onclick="toggleMiniTheme('m6t5_3')">
+          <g class="mini-group" id="m6t5_3">
+            <line class="mini-line" x1="188" y1="152" x2="188" y2="220" />
+            <circle class="circle-mini" cx="188" cy="220" r="24" />
+            <text class="label" x="188" y="220">Mini 3</text>
+          </g>
+        </a>
+      </svg>
+    </section>
+
+    <!-- Mindmap: modul7 -->
+    <section class="page" id="modul7">
+      <svg viewBox="0 0 700 500">
+        <line class="line" x1="350" y1="250" x2="350" y2="80" />
+        <line class="line" x1="350" y1="250" x2="512" y2="152" />
+        <line class="line" x1="350" y1="250" x2="450" y2="412" />
+        <line class="line" x1="350" y1="250" x2="250" y2="412" />
+        <line class="line" x1="350" y1="250" x2="188" y2="152" />
+        <a
+          href="#overview"
+          class="module-center-link"
+          aria-label="Zur Übersicht"
+        >
+          \r\n
+          <circle class="circle-center" cx="350" cy="250" r="60" />
+          \r\n
+          <text class="label" x="350" y="243">Modul</text>
+          \r\n
+          <text class="label" x="350" y="258">7</text>
+          \r\n
+        </a>
+        <a href="#modul7" onclick="toggleMiniTheme('m7t1')">
+          <circle class="circle-sub" cx="350" cy="80" r="45" />
+          <text class="label" x="350" y="80">Thema 1</text>
+        </a>
+        <a href="#modul7" onclick="toggleMiniTheme('m7t2')">
+          <circle class="circle-sub" cx="512" cy="152" r="45" />
+          <text class="label" x="512" y="152">Thema 2</text>
+        </a>
+        <a href="#modul7" onclick="toggleMiniTheme('m7t3')">
+          <circle class="circle-sub" cx="450" cy="412" r="45" />
+          <text class="label" x="450" y="412">Thema 3</text>
+        </a>
+        <a href="#modul7" onclick="toggleMiniTheme('m7t4')">
+          <circle class="circle-sub" cx="250" cy="412" r="45" />
+          <text class="label" x="250" y="412">Thema 4</text>
+        </a>
+        <a href="#modul7" onclick="toggleMiniTheme('m7t5')">
+          <circle class="circle-sub" cx="188" cy="152" r="45" />
+          <text class="label" x="188" y="152">Thema 5</text>
+        </a>
+        <a href="#codeui" onclick="toggleMiniTheme('m7t1_1')">
+          <g class="mini-group" id="m7t1_1">
+            <line class="mini-line" x1="350" y1="80" x2="350" y2="26" />
+            <circle class="circle-mini" cx="350" cy="26" r="24" />
+            <text class="label" x="350" y="26">Mini 1</text>
+          </g>
+        </a>
+        <a href="#codeui" onclick="toggleMiniTheme('m7t1_2')">
+          <g class="mini-group" id="m7t1_2">
+            <line class="mini-line" x1="350" y1="80" x2="305" y2="110" />
+            <circle class="circle-mini" cx="305" cy="110" r="24" />
+            <text class="label" x="305" y="110">Mini 2</text>
+          </g>
+        </a>
+        <a href="#codeui" onclick="toggleMiniTheme('m7t1_3')">
+          <g class="mini-group" id="m7t1_3">
+            <line class="mini-line" x1="350" y1="80" x2="395" y2="110" />
+            <circle class="circle-mini" cx="395" cy="110" r="24" />
+            <text class="label" x="395" y="110">Mini 3</text>
+          </g>
+        </a>
+        <a href="#codeui" onclick="toggleMiniTheme('m7t2_1')">
+          <g class="mini-group" id="m7t2_1">
+            <line class="mini-line" x1="512" y1="152" x2="580" y2="120" />
+            <circle class="circle-mini" cx="580" cy="120" r="24" />
+            <text class="label" x="580" y="120">Mini 1</text>
+          </g>
+        </a>
+        <a href="#codeui" onclick="toggleMiniTheme('m7t2_2')">
+          <g class="mini-group" id="m7t2_2">
+            <line class="mini-line" x1="512" y1="152" x2="580" y2="184" />
+            <circle class="circle-mini" cx="580" cy="184" r="24" />
+            <text class="label" x="580" y="184">Mini 2</text>
+          </g>
+        </a>
+        <a href="#codeui" onclick="toggleMiniTheme('m7t2_3')">
+          <g class="mini-group" id="m7t2_3">
+            <line class="mini-line" x1="512" y1="152" x2="512" y2="220" />
+            <circle class="circle-mini" cx="512" cy="220" r="24" />
+            <text class="label" x="512" y="220">Mini 3</text>
+          </g>
+        </a>
+        <a href="#codeui" onclick="toggleMiniTheme('m7t3_1')">
+          <g class="mini-group" id="m7t3_1">
+            <line class="mini-line" x1="450" y1="412" x2="390" y2="450" />
+            <circle class="circle-mini" cx="390" cy="450" r="24" />
+            <text class="label" x="390" y="450">Mini 1</text>
+          </g>
+        </a>
+        <a href="#codeui" onclick="toggleMiniTheme('m7t3_2')">
+          <g class="mini-group" id="m7t3_2">
+            <line class="mini-line" x1="450" y1="412" x2="510" y2="450" />
+            <circle class="circle-mini" cx="510" cy="450" r="24" />
+            <text class="label" x="510" y="450">Mini 2</text>
+          </g>
+        </a>
+        <a href="#codeui" onclick="toggleMiniTheme('m7t3_3')">
+          <g class="mini-group" id="m7t3_3">
+            <line class="mini-line" x1="450" y1="412" x2="450" y2="340" />
+            <circle class="circle-mini" cx="450" cy="340" r="24" />
+            <text class="label" x="450" y="340">Mini 3</text>
+          </g>
+        </a>
+        <a href="#codeui" onclick="toggleMiniTheme('m7t4_1')">
+          <g class="mini-group" id="m7t4_1">
+            <line class="mini-line" x1="250" y1="412" x2="190" y2="450" />
+            <circle class="circle-mini" cx="190" cy="450" r="24" />
+            <text class="label" x="190" y="450">Mini 1</text>
+          </g>
+        </a>
+        <a href="#codeui" onclick="toggleMiniTheme('m7t4_2')">
+          <g class="mini-group" id="m7t4_2">
+            <line class="mini-line" x1="250" y1="412" x2="310" y2="450" />
+            <circle class="circle-mini" cx="310" cy="450" r="24" />
+            <text class="label" x="310" y="450">Mini 2</text>
+          </g>
+        </a>
+        <a href="#codeui" onclick="toggleMiniTheme('m7t4_3')">
+          <g class="mini-group" id="m7t4_3">
+            <line class="mini-line" x1="250" y1="412" x2="250" y2="340" />
+            <circle class="circle-mini" cx="250" cy="340" r="24" />
+            <text class="label" x="250" y="340">Mini 3</text>
+          </g>
+        </a>
+        <a href="#codeui" onclick="toggleMiniTheme('m7t5_1')">
+          <g class="mini-group" id="m7t5_1">
+            <line class="mini-line" x1="188" y1="152" x2="120" y2="120" />
+            <circle class="circle-mini" cx="120" cy="120" r="24" />
+            <text class="label" x="120" y="120">Mini 1</text>
+          </g>
+        </a>
+        <a href="#codeui" onclick="toggleMiniTheme('m7t5_2')">
+          <g class="mini-group" id="m7t5_2">
+            <line class="mini-line" x1="188" y1="152" x2="120" y2="184" />
+            <circle class="circle-mini" cx="120" cy="184" r="24" />
+            <text class="label" x="120" y="184">Mini 2</text>
+          </g>
+        </a>
+        <a href="#codeui" onclick="toggleMiniTheme('m7t5_3')">
+          <g class="mini-group" id="m7t5_3">
+            <line class="mini-line" x1="188" y1="152" x2="188" y2="220" />
+            <circle class="circle-mini" cx="188" cy="220" r="24" />
+            <text class="label" x="188" y="220">Mini 3</text>
+          </g>
+        </a>
+      </svg>
+    </section>
+
+    <!-- Mindmap: modul8 -->
+    <section class="page" id="modul8">
+      <svg viewBox="0 0 700 500">
+        <line class="line" x1="350" y1="250" x2="350" y2="80" />
+        <line class="line" x1="350" y1="250" x2="512" y2="152" />
+        <line class="line" x1="350" y1="250" x2="450" y2="412" />
+        <line class="line" x1="350" y1="250" x2="250" y2="412" />
+        <line class="line" x1="350" y1="250" x2="188" y2="152" />
+        <a
+          href="#overview"
+          class="module-center-link"
+          aria-label="Zur Übersicht"
+        >
+          \r\n
+          <circle class="circle-center" cx="350" cy="250" r="60" />
+          \r\n
+          <text class="label" x="350" y="243">Modul</text>
+          \r\n
+          <text class="label" x="350" y="258">8</text>
+          \r\n
+        </a>
+        <a href="#modul8" onclick="toggleMiniTheme('m8t1')">
+          <circle class="circle-sub" cx="350" cy="80" r="45" />
+          <text class="label" x="350" y="80">Thema 1</text>
+        </a>
+        <a href="#modul8" onclick="toggleMiniTheme('m8t2')">
+          <circle class="circle-sub" cx="512" cy="152" r="45" />
+          <text class="label" x="512" y="152">Thema 2</text>
+        </a>
+        <a href="#modul8" onclick="toggleMiniTheme('m8t3')">
+          <circle class="circle-sub" cx="450" cy="412" r="45" />
+          <text class="label" x="450" y="412">Thema 3</text>
+        </a>
+        <a href="#modul8" onclick="toggleMiniTheme('m8t4')">
+          <circle class="circle-sub" cx="250" cy="412" r="45" />
+          <text class="label" x="250" y="412">Thema 4</text>
+        </a>
+        <a href="#modul8" onclick="toggleMiniTheme('m8t5')">
+          <circle class="circle-sub" cx="188" cy="152" r="45" />
+          <text class="label" x="188" y="152">Thema 5</text>
+        </a>
+        <a href="#codeui" onclick="toggleMiniTheme('m8t1_1')">
+          <g class="mini-group" id="m8t1_1">
+            <line class="mini-line" x1="350" y1="80" x2="350" y2="26" />
+            <circle class="circle-mini" cx="350" cy="26" r="24" />
+            <text class="label" x="350" y="26">Mini 1</text>
+          </g>
+        </a>
+        <a href="#codeui" onclick="toggleMiniTheme('m8t1_2')">
+          <g class="mini-group" id="m8t1_2">
+            <line class="mini-line" x1="350" y1="80" x2="305" y2="110" />
+            <circle class="circle-mini" cx="305" cy="110" r="24" />
+            <text class="label" x="305" y="110">Mini 2</text>
+          </g>
+        </a>
+        <a href="#codeui" onclick="toggleMiniTheme('m8t1_3')">
+          <g class="mini-group" id="m8t1_3">
+            <line class="mini-line" x1="350" y1="80" x2="395" y2="110" />
+            <circle class="circle-mini" cx="395" cy="110" r="24" />
+            <text class="label" x="395" y="110">Mini 3</text>
+          </g>
+        </a>
+        <a href="#codeui" onclick="toggleMiniTheme('m8t2_1')">
+          <g class="mini-group" id="m8t2_1">
+            <line class="mini-line" x1="512" y1="152" x2="580" y2="120" />
+            <circle class="circle-mini" cx="580" cy="120" r="24" />
+            <text class="label" x="580" y="120">Mini 1</text>
+          </g>
+        </a>
+        <a href="#codeui" onclick="toggleMiniTheme('m8t2_2')">
+          <g class="mini-group" id="m8t2_2">
+            <line class="mini-line" x1="512" y1="152" x2="580" y2="184" />
+            <circle class="circle-mini" cx="580" cy="184" r="24" />
+            <text class="label" x="580" y="184">Mini 2</text>
+          </g>
+        </a>
+        <a href="#codeui" onclick="toggleMiniTheme('m8t2_3')">
+          <g class="mini-group" id="m8t2_3">
+            <line class="mini-line" x1="512" y1="152" x2="512" y2="220" />
+            <circle class="circle-mini" cx="512" cy="220" r="24" />
+            <text class="label" x="512" y="220">Mini 3</text>
+          </g>
+        </a>
+        <a href="#codeui" onclick="toggleMiniTheme('m8t3_1')">
+          <g class="mini-group" id="m8t3_1">
+            <line class="mini-line" x1="450" y1="412" x2="390" y2="450" />
+            <circle class="circle-mini" cx="390" cy="450" r="24" />
+            <text class="label" x="390" y="450">Mini 1</text>
+          </g>
+        </a>
+        <a href="#codeui" onclick="toggleMiniTheme('m8t3_2')">
+          <g class="mini-group" id="m8t3_2">
+            <line class="mini-line" x1="450" y1="412" x2="510" y2="450" />
+            <circle class="circle-mini" cx="510" cy="450" r="24" />
+            <text class="label" x="510" y="450">Mini 2</text>
+          </g>
+        </a>
+        <a href="#codeui" onclick="toggleMiniTheme('m8t3_3')">
+          <g class="mini-group" id="m8t3_3">
+            <line class="mini-line" x1="450" y1="412" x2="450" y2="340" />
+            <circle class="circle-mini" cx="450" cy="340" r="24" />
+            <text class="label" x="450" y="340">Mini 3</text>
+          </g>
+        </a>
+        <a href="#codeui" onclick="toggleMiniTheme('m8t4_1')">
+          <g class="mini-group" id="m8t4_1">
+            <line class="mini-line" x1="250" y1="412" x2="190" y2="450" />
+            <circle class="circle-mini" cx="190" cy="450" r="24" />
+            <text class="label" x="190" y="450">Mini 1</text>
+          </g>
+        </a>
+        <a href="#codeui" onclick="toggleMiniTheme('m8t4_2')">
+          <g class="mini-group" id="m8t4_2">
+            <line class="mini-line" x1="250" y1="412" x2="310" y2="450" />
+            <circle class="circle-mini" cx="310" cy="450" r="24" />
+            <text class="label" x="310" y="450">Mini 2</text>
+          </g>
+        </a>
+        <a href="#codeui" onclick="toggleMiniTheme('m8t4_3')">
+          <g class="mini-group" id="m8t4_3">
+            <line class="mini-line" x1="250" y1="412" x2="250" y2="340" />
+            <circle class="circle-mini" cx="250" cy="340" r="24" />
+            <text class="label" x="250" y="340">Mini 3</text>
+          </g>
+        </a>
+        <a href="#codeui" onclick="toggleMiniTheme('m8t5_1')">
+          <g class="mini-group" id="m8t5_1">
+            <line class="mini-line" x1="188" y1="152" x2="120" y2="120" />
+            <circle class="circle-mini" cx="120" cy="120" r="24" />
+            <text class="label" x="120" y="120">Mini 1</text>
+          </g>
+        </a>
+        <a href="#codeui" onclick="toggleMiniTheme('m8t5_2')">
+          <g class="mini-group" id="m8t5_2">
+            <line class="mini-line" x1="188" y1="152" x2="120" y2="184" />
+            <circle class="circle-mini" cx="120" cy="184" r="24" />
+            <text class="label" x="120" y="184">Mini 2</text>
+          </g>
+        </a>
+        <a href="#codeui" onclick="toggleMiniTheme('m8t5_3')">
+          <g class="mini-group" id="m8t5_3">
+            <line class="mini-line" x1="188" y1="152" x2="188" y2="220" />
+            <circle class="circle-mini" cx="188" cy="220" r="24" />
+            <text class="label" x="188" y="220">Mini 3</text>
+          </g>
+        </a>
+      </svg>
+    </section>
+
+    <!-- Mindmap: modul9 -->
+    <section class="page" id="modul9">
+      <svg viewBox="0 0 700 500">
+        <line class="line" x1="350" y1="250" x2="350" y2="80" />
+        <line class="line" x1="350" y1="250" x2="512" y2="152" />
+        <line class="line" x1="350" y1="250" x2="450" y2="412" />
+        <line class="line" x1="350" y1="250" x2="250" y2="412" />
+        <line class="line" x1="350" y1="250" x2="188" y2="152" />
+        <a
+          href="#overview"
+          class="module-center-link"
+          aria-label="Zur Übersicht"
+        >
+          \r\n
+          <circle class="circle-center" cx="350" cy="250" r="60" />
+          \r\n
+          <text class="label" x="350" y="243">Modul</text>
+          \r\n
+          <text class="label" x="350" y="258">9</text>
+          \r\n
+        </a>
+        <a href="#modul9" onclick="toggleMiniTheme('m9t1')">
+          <circle class="circle-sub" cx="350" cy="80" r="45" />
+          <text class="label" x="350" y="80">Thema 1</text>
+        </a>
+        <a href="#modul9" onclick="toggleMiniTheme('m9t2')">
+          <circle class="circle-sub" cx="512" cy="152" r="45" />
+          <text class="label" x="512" y="152">Thema 2</text>
+        </a>
+        <a href="#modul9" onclick="toggleMiniTheme('m9t3')">
+          <circle class="circle-sub" cx="450" cy="412" r="45" />
+          <text class="label" x="450" y="412">Thema 3</text>
+        </a>
+        <a href="#modul9" onclick="toggleMiniTheme('m9t4')">
+          <circle class="circle-sub" cx="250" cy="412" r="45" />
+          <text class="label" x="250" y="412">Thema 4</text>
+        </a>
+        <a href="#modul9" onclick="toggleMiniTheme('m9t5')">
+          <circle class="circle-sub" cx="188" cy="152" r="45" />
+          <text class="label" x="188" y="152">Thema 5</text>
+        </a>
+        <a href="#codeui" onclick="toggleMiniTheme('m9t1_1')">
+          <g class="mini-group" id="m9t1_1">
+            <line class="mini-line" x1="350" y1="80" x2="350" y2="26" />
+            <circle class="circle-mini" cx="350" cy="26" r="24" />
+            <text class="label" x="350" y="26">Mini 1</text>
+          </g>
+        </a>
+        <a href="#codeui" onclick="toggleMiniTheme('m9t1_2')">
+          <g class="mini-group" id="m9t1_2">
+            <line class="mini-line" x1="350" y1="80" x2="305" y2="110" />
+            <circle class="circle-mini" cx="305" cy="110" r="24" />
+            <text class="label" x="305" y="110">Mini 2</text>
+          </g>
+        </a>
+        <a href="#codeui" onclick="toggleMiniTheme('m9t1_3')">
+          <g class="mini-group" id="m9t1_3">
+            <line class="mini-line" x1="350" y1="80" x2="395" y2="110" />
+            <circle class="circle-mini" cx="395" cy="110" r="24" />
+            <text class="label" x="395" y="110">Mini 3</text>
+          </g>
+        </a>
+        <a href="#codeui" onclick="toggleMiniTheme('m9t2_1')">
+          <g class="mini-group" id="m9t2_1">
+            <line class="mini-line" x1="512" y1="152" x2="580" y2="120" />
+            <circle class="circle-mini" cx="580" cy="120" r="24" />
+            <text class="label" x="580" y="120">Mini 1</text>
+          </g>
+        </a>
+        <a href="#codeui" onclick="toggleMiniTheme('m9t2_2')">
+          <g class="mini-group" id="m9t2_2">
+            <line class="mini-line" x1="512" y1="152" x2="580" y2="184" />
+            <circle class="circle-mini" cx="580" cy="184" r="24" />
+            <text class="label" x="580" y="184">Mini 2</text>
+          </g>
+        </a>
+        <a href="#codeui" onclick="toggleMiniTheme('m9t2_3')">
+          <g class="mini-group" id="m9t2_3">
+            <line class="mini-line" x1="512" y1="152" x2="512" y2="220" />
+            <circle class="circle-mini" cx="512" cy="220" r="24" />
+            <text class="label" x="512" y="220">Mini 3</text>
+          </g>
+        </a>
+        <a href="#codeui" onclick="toggleMiniTheme('m9t3_1')">
+          <g class="mini-group" id="m9t3_1">
+            <line class="mini-line" x1="450" y1="412" x2="390" y2="450" />
+            <circle class="circle-mini" cx="390" cy="450" r="24" />
+            <text class="label" x="390" y="450">Mini 1</text>
+          </g>
+        </a>
+        <a href="#codeui" onclick="toggleMiniTheme('m9t3_2')">
+          <g class="mini-group" id="m9t3_2">
+            <line class="mini-line" x1="450" y1="412" x2="510" y2="450" />
+            <circle class="circle-mini" cx="510" cy="450" r="24" />
+            <text class="label" x="510" y="450">Mini 2</text>
+          </g>
+        </a>
+        <a href="#codeui" onclick="toggleMiniTheme('m9t3_3')">
+          <g class="mini-group" id="m9t3_3">
+            <line class="mini-line" x1="450" y1="412" x2="450" y2="340" />
+            <circle class="circle-mini" cx="450" cy="340" r="24" />
+            <text class="label" x="450" y="340">Mini 3</text>
+          </g>
+        </a>
+        <a href="#codeui" onclick="toggleMiniTheme('m9t4_1')">
+          <g class="mini-group" id="m9t4_1">
+            <line class="mini-line" x1="250" y1="412" x2="190" y2="450" />
+            <circle class="circle-mini" cx="190" cy="450" r="24" />
+            <text class="label" x="190" y="450">Mini 1</text>
+          </g>
+        </a>
+        <a href="#codeui" onclick="toggleMiniTheme('m9t4_2')">
+          <g class="mini-group" id="m9t4_2">
+            <line class="mini-line" x1="250" y1="412" x2="310" y2="450" />
+            <circle class="circle-mini" cx="310" cy="450" r="24" />
+            <text class="label" x="310" y="450">Mini 2</text>
+          </g>
+        </a>
+        <a href="#codeui" onclick="toggleMiniTheme('m9t4_3')">
+          <g class="mini-group" id="m9t4_3">
+            <line class="mini-line" x1="250" y1="412" x2="250" y2="340" />
+            <circle class="circle-mini" cx="250" cy="340" r="24" />
+            <text class="label" x="250" y="340">Mini 3</text>
+          </g>
+        </a>
+        <a href="#codeui" onclick="toggleMiniTheme('m9t5_1')">
+          <g class="mini-group" id="m9t5_1">
+            <line class="mini-line" x1="188" y1="152" x2="120" y2="120" />
+            <circle class="circle-mini" cx="120" cy="120" r="24" />
+            <text class="label" x="120" y="120">Mini 1</text>
+          </g>
+        </a>
+        <a href="#codeui" onclick="toggleMiniTheme('m9t5_2')">
+          <g class="mini-group" id="m9t5_2">
+            <line class="mini-line" x1="188" y1="152" x2="120" y2="184" />
+            <circle class="circle-mini" cx="120" cy="184" r="24" />
+            <text class="label" x="120" y="184">Mini 2</text>
+          </g>
+        </a>
+        <a href="#codeui" onclick="toggleMiniTheme('m9t5_3')">
+          <g class="mini-group" id="m9t5_3">
+            <line class="mini-line" x1="188" y1="152" x2="188" y2="220" />
+            <circle class="circle-mini" cx="188" cy="220" r="24" />
+            <text class="label" x="188" y="220">Mini 3</text>
+          </g>
+        </a>
+      </svg>
+    </section>
+
+    <!-- Mindmap: modul10 -->
+    <section class="page" id="modul10">
+      <svg viewBox="0 0 700 500">
+        <line class="line" x1="350" y1="250" x2="350" y2="80" />
+        <line class="line" x1="350" y1="250" x2="512" y2="152" />
+        <line class="line" x1="350" y1="250" x2="450" y2="412" />
+        <line class="line" x1="350" y1="250" x2="250" y2="412" />
+        <line class="line" x1="350" y1="250" x2="188" y2="152" />
+        <a
+          href="#overview"
+          class="module-center-link"
+          aria-label="Zur Übersicht"
+        >
+          \r\n
+          <circle class="circle-center" cx="350" cy="250" r="60" />
+          \r\n
+          <text class="label" x="350" y="243">Modul</text>
+          \r\n
+          <text class="label" x="350" y="258">10</text>
+          \r\n
+        </a>
+        <a href="#modul10" onclick="toggleMiniTheme('m10t1')">
+          <circle class="circle-sub" cx="350" cy="80" r="45" />
+          <text class="label" x="350" y="80">Thema 1</text>
+        </a>
+        <a href="#modul10" onclick="toggleMiniTheme('m10t2')">
+          <circle class="circle-sub" cx="512" cy="152" r="45" />
+          <text class="label" x="512" y="152">Thema 2</text>
+        </a>
+        <a href="#modul10" onclick="toggleMiniTheme('m10t3')">
+          <circle class="circle-sub" cx="450" cy="412" r="45" />
+          <text class="label" x="450" y="412">Thema 3</text>
+        </a>
+        <a href="#modul10" onclick="toggleMiniTheme('m10t4')">
+          <circle class="circle-sub" cx="250" cy="412" r="45" />
+          <text class="label" x="250" y="412">Thema 4</text>
+        </a>
+        <a href="#modul10" onclick="toggleMiniTheme('m10t5')">
+          <circle class="circle-sub" cx="188" cy="152" r="45" />
+          <text class="label" x="188" y="152">Thema 5</text>
+        </a>
+        <a href="#codeui" onclick="toggleMiniTheme('m10t1_1')">
+          <g class="mini-group" id="m10t1_1">
+            <line class="mini-line" x1="350" y1="80" x2="350" y2="26" />
+            <circle class="circle-mini" cx="350" cy="26" r="24" />
+            <text class="label" x="350" y="26">Mini 1</text>
+          </g>
+        </a>
+        <a href="#codeui" onclick="toggleMiniTheme('m10t1_2')">
+          <g class="mini-group" id="m10t1_2">
+            <line class="mini-line" x1="350" y1="80" x2="305" y2="110" />
+            <circle class="circle-mini" cx="305" cy="110" r="24" />
+            <text class="label" x="305" y="110">Mini 2</text>
+          </g>
+        </a>
+        <a href="#codeui" onclick="toggleMiniTheme('m10t1_3')">
+          <g class="mini-group" id="m10t1_3">
+            <line class="mini-line" x1="350" y1="80" x2="395" y2="110" />
+            <circle class="circle-mini" cx="395" cy="110" r="24" />
+            <text class="label" x="395" y="110">Mini 3</text>
+          </g>
+        </a>
+        <a href="#codeui" onclick="toggleMiniTheme('m10t2_1')">
+          <g class="mini-group" id="m10t2_1">
+            <line class="mini-line" x1="512" y1="152" x2="580" y2="120" />
+            <circle class="circle-mini" cx="580" cy="120" r="24" />
+            <text class="label" x="580" y="120">Mini 1</text>
+          </g>
+        </a>
+        <a href="#codeui" onclick="toggleMiniTheme('m10t2_2')">
+          <g class="mini-group" id="m10t2_2">
+            <line class="mini-line" x1="512" y1="152" x2="580" y2="184" />
+            <circle class="circle-mini" cx="580" cy="184" r="24" />
+            <text class="label" x="580" y="184">Mini 2</text>
+          </g>
+        </a>
+        <a href="#codeui" onclick="toggleMiniTheme('m10t2_3')">
+          <g class="mini-group" id="m10t2_3">
+            <line class="mini-line" x1="512" y1="152" x2="512" y2="220" />
+            <circle class="circle-mini" cx="512" cy="220" r="24" />
+            <text class="label" x="512" y="220">Mini 3</text>
+          </g>
+        </a>
+        <a href="#codeui" onclick="toggleMiniTheme('m10t3_1')">
+          <g class="mini-group" id="m10t3_1">
+            <line class="mini-line" x1="450" y1="412" x2="390" y2="450" />
+            <circle class="circle-mini" cx="390" cy="450" r="24" />
+            <text class="label" x="390" y="450">Mini 1</text>
+          </g>
+        </a>
+        <a href="#codeui" onclick="toggleMiniTheme('m10t3_2')">
+          <g class="mini-group" id="m10t3_2">
+            <line class="mini-line" x1="450" y1="412" x2="510" y2="450" />
+            <circle class="circle-mini" cx="510" cy="450" r="24" />
+            <text class="label" x="510" y="450">Mini 2</text>
+          </g>
+        </a>
+        <a href="#codeui" onclick="toggleMiniTheme('m10t3_3')">
+          <g class="mini-group" id="m10t3_3">
+            <line class="mini-line" x1="450" y1="412" x2="450" y2="340" />
+            <circle class="circle-mini" cx="450" cy="340" r="24" />
+            <text class="label" x="450" y="340">Mini 3</text>
+          </g>
+        </a>
+        <a href="#codeui" onclick="toggleMiniTheme('m10t4_1')">
+          <g class="mini-group" id="m10t4_1">
+            <line class="mini-line" x1="250" y1="412" x2="190" y2="450" />
+            <circle class="circle-mini" cx="190" cy="450" r="24" />
+            <text class="label" x="190" y="450">Mini 1</text>
+          </g>
+        </a>
+        <a href="#codeui" onclick="toggleMiniTheme('m10t4_2')">
+          <g class="mini-group" id="m10t4_2">
+            <line class="mini-line" x1="250" y1="412" x2="310" y2="450" />
+            <circle class="circle-mini" cx="310" cy="450" r="24" />
+            <text class="label" x="310" y="450">Mini 2</text>
+          </g>
+        </a>
+        <a href="#codeui" onclick="toggleMiniTheme('m10t4_3')">
+          <g class="mini-group" id="m10t4_3">
+            <line class="mini-line" x1="250" y1="412" x2="250" y2="340" />
+            <circle class="circle-mini" cx="250" cy="340" r="24" />
+            <text class="label" x="250" y="340">Mini 3</text>
+          </g>
+        </a>
+        <a href="#codeui" onclick="toggleMiniTheme('m10t5_1')">
+          <g class="mini-group" id="m10t5_1">
+            <line class="mini-line" x1="188" y1="152" x2="120" y2="120" />
+            <circle class="circle-mini" cx="120" cy="120" r="24" />
+            <text class="label" x="120" y="120">Mini 1</text>
+          </g>
+        </a>
+        <a href="#codeui" onclick="toggleMiniTheme('m10t5_2')">
+          <g class="mini-group" id="m10t5_2">
+            <line class="mini-line" x1="188" y1="152" x2="120" y2="184" />
+            <circle class="circle-mini" cx="120" cy="184" r="24" />
+            <text class="label" x="120" y="184">Mini 2</text>
+          </g>
+        </a>
+        <a href="#codeui" onclick="toggleMiniTheme('m10t5_3')">
+          <g class="mini-group" id="m10t5_3">
+            <line class="mini-line" x1="188" y1="152" x2="188" y2="220" />
+            <circle class="circle-mini" cx="188" cy="220" r="24" />
+            <text class="label" x="188" y="220">Mini 3</text>
+          </g>
+        </a>
+      </svg>
+    </section>
+
+    <!-- Mindmap: modul11 -->
+    <section class="page" id="modul11">
+      <svg viewBox="0 0 700 500">
+        <line class="line" x1="350" y1="250" x2="350" y2="80" />
+        <line class="line" x1="350" y1="250" x2="512" y2="152" />
+        <line class="line" x1="350" y1="250" x2="450" y2="412" />
+        <line class="line" x1="350" y1="250" x2="250" y2="412" />
+        <line class="line" x1="350" y1="250" x2="188" y2="152" />
+        <a
+          href="#overview"
+          class="module-center-link"
+          aria-label="Zur Übersicht"
+        >
+          \r\n
+          <circle class="circle-center" cx="350" cy="250" r="60" />
+          \r\n
+          <text class="label" x="350" y="243">Modul</text>
+          \r\n
+          <text class="label" x="350" y="258">11</text>
+          \r\n
+        </a>
+        <a href="#modul11" onclick="toggleMiniTheme('m11t1')">
+          <circle class="circle-sub" cx="350" cy="80" r="45" />
+          <text class="label" x="350" y="80">Thema 1</text>
+        </a>
+        <a href="#modul11" onclick="toggleMiniTheme('m11t2')">
+          <circle class="circle-sub" cx="512" cy="152" r="45" />
+          <text class="label" x="512" y="152">Thema 2</text>
+        </a>
+        <a href="#modul11" onclick="toggleMiniTheme('m11t3')">
+          <circle class="circle-sub" cx="450" cy="412" r="45" />
+          <text class="label" x="450" y="412">Thema 3</text>
+        </a>
+        <a href="#modul11" onclick="toggleMiniTheme('m11t4')">
+          <circle class="circle-sub" cx="250" cy="412" r="45" />
+          <text class="label" x="250" y="412">Thema 4</text>
+        </a>
+        <a href="#modul11" onclick="toggleMiniTheme('m11t5')">
+          <circle class="circle-sub" cx="188" cy="152" r="45" />
+          <text class="label" x="188" y="152">Thema 5</text>
+        </a>
+        <a href="#codeui" onclick="toggleMiniTheme('m11t1_1')">
+          <g class="mini-group" id="m11t1_1">
+            <line class="mini-line" x1="350" y1="80" x2="350" y2="26" />
+            <circle class="circle-mini" cx="350" cy="26" r="24" />
+            <text class="label" x="350" y="26">Mini 1</text>
+          </g>
+        </a>
+        <a href="#codeui" onclick="toggleMiniTheme('m11t1_2')">
+          <g class="mini-group" id="m11t1_2">
+            <line class="mini-line" x1="350" y1="80" x2="305" y2="110" />
+            <circle class="circle-mini" cx="305" cy="110" r="24" />
+            <text class="label" x="305" y="110">Mini 2</text>
+          </g>
+        </a>
+        <a href="#codeui" onclick="toggleMiniTheme('m11t1_3')">
+          <g class="mini-group" id="m11t1_3">
+            <line class="mini-line" x1="350" y1="80" x2="395" y2="110" />
+            <circle class="circle-mini" cx="395" cy="110" r="24" />
+            <text class="label" x="395" y="110">Mini 3</text>
+          </g>
+        </a>
+        <a href="#codeui" onclick="toggleMiniTheme('m11t2_1')">
+          <g class="mini-group" id="m11t2_1">
+            <line class="mini-line" x1="512" y1="152" x2="580" y2="120" />
+            <circle class="circle-mini" cx="580" cy="120" r="24" />
+            <text class="label" x="580" y="120">Mini 1</text>
+          </g>
+        </a>
+        <a href="#codeui" onclick="toggleMiniTheme('m11t2_2')">
+          <g class="mini-group" id="m11t2_2">
+            <line class="mini-line" x1="512" y1="152" x2="580" y2="184" />
+            <circle class="circle-mini" cx="580" cy="184" r="24" />
+            <text class="label" x="580" y="184">Mini 2</text>
+          </g>
+        </a>
+        <a href="#codeui" onclick="toggleMiniTheme('m11t2_3')">
+          <g class="mini-group" id="m11t2_3">
+            <line class="mini-line" x1="512" y1="152" x2="512" y2="220" />
+            <circle class="circle-mini" cx="512" cy="220" r="24" />
+            <text class="label" x="512" y="220">Mini 3</text>
+          </g>
+        </a>
+        <a href="#codeui" onclick="toggleMiniTheme('m11t3_1')">
+          <g class="mini-group" id="m11t3_1">
+            <line class="mini-line" x1="450" y1="412" x2="390" y2="450" />
+            <circle class="circle-mini" cx="390" cy="450" r="24" />
+            <text class="label" x="390" y="450">Mini 1</text>
+          </g>
+        </a>
+        <a href="#codeui" onclick="toggleMiniTheme('m11t3_2')">
+          <g class="mini-group" id="m11t3_2">
+            <line class="mini-line" x1="450" y1="412" x2="510" y2="450" />
+            <circle class="circle-mini" cx="510" cy="450" r="24" />
+            <text class="label" x="510" y="450">Mini 2</text>
+          </g>
+        </a>
+        <a href="#codeui" onclick="toggleMiniTheme('m11t3_3')">
+          <g class="mini-group" id="m11t3_3">
+            <line class="mini-line" x1="450" y1="412" x2="450" y2="340" />
+            <circle class="circle-mini" cx="450" cy="340" r="24" />
+            <text class="label" x="450" y="340">Mini 3</text>
+          </g>
+        </a>
+        <a href="#codeui" onclick="toggleMiniTheme('m11t4_1')">
+          <g class="mini-group" id="m11t4_1">
+            <line class="mini-line" x1="250" y1="412" x2="190" y2="450" />
+            <circle class="circle-mini" cx="190" cy="450" r="24" />
+            <text class="label" x="190" y="450">Mini 1</text>
+          </g>
+        </a>
+        <a href="#codeui" onclick="toggleMiniTheme('m11t4_2')">
+          <g class="mini-group" id="m11t4_2">
+            <line class="mini-line" x1="250" y1="412" x2="310" y2="450" />
+            <circle class="circle-mini" cx="310" cy="450" r="24" />
+            <text class="label" x="310" y="450">Mini 2</text>
+          </g>
+        </a>
+        <a href="#codeui" onclick="toggleMiniTheme('m11t4_3')">
+          <g class="mini-group" id="m11t4_3">
+            <line class="mini-line" x1="250" y1="412" x2="250" y2="340" />
+            <circle class="circle-mini" cx="250" cy="340" r="24" />
+            <text class="label" x="250" y="340">Mini 3</text>
+          </g>
+        </a>
+        <a href="#codeui" onclick="toggleMiniTheme('m11t5_1')">
+          <g class="mini-group" id="m11t5_1">
+            <line class="mini-line" x1="188" y1="152" x2="120" y2="120" />
+            <circle class="circle-mini" cx="120" cy="120" r="24" />
+            <text class="label" x="120" y="120">Mini 1</text>
+          </g>
+        </a>
+        <a href="#codeui" onclick="toggleMiniTheme('m11t5_2')">
+          <g class="mini-group" id="m11t5_2">
+            <line class="mini-line" x1="188" y1="152" x2="120" y2="184" />
+            <circle class="circle-mini" cx="120" cy="184" r="24" />
+            <text class="label" x="120" y="184">Mini 2</text>
+          </g>
+        </a>
+        <a href="#codeui" onclick="toggleMiniTheme('m11t5_3')">
+          <g class="mini-group" id="m11t5_3">
+            <line class="mini-line" x1="188" y1="152" x2="188" y2="220" />
+            <circle class="circle-mini" cx="188" cy="220" r="24" />
+            <text class="label" x="188" y="220">Mini 3</text>
+          </g>
+        </a>
+      </svg>
+    </section>
+
+    <!-- Mindmap: modul12 -->
+    <section class="page" id="modul12">
+      <svg viewBox="0 0 700 500">
+        <line class="line" x1="350" y1="250" x2="350" y2="80" />
+        <line class="line" x1="350" y1="250" x2="512" y2="152" />
+        <line class="line" x1="350" y1="250" x2="450" y2="412" />
+        <line class="line" x1="350" y1="250" x2="250" y2="412" />
+        <line class="line" x1="350" y1="250" x2="188" y2="152" />
+        <a
+          href="#overview"
+          class="module-center-link"
+          aria-label="Zur Übersicht"
+        >
+          \r\n
+          <circle class="circle-center" cx="350" cy="250" r="60" />
+          \r\n
+          <text class="label" x="350" y="243">Modul</text>
+          \r\n
+          <text class="label" x="350" y="258">12</text>
+          \r\n
+        </a>
+        <a href="#modul12" onclick="toggleMiniTheme('m12t1')">
+          <circle class="circle-sub" cx="350" cy="80" r="45" />
+          <text class="label" x="350" y="80">Thema 1</text>
+        </a>
+        <a href="#modul12" onclick="toggleMiniTheme('m12t2')">
+          <circle class="circle-sub" cx="512" cy="152" r="45" />
+          <text class="label" x="512" y="152">Thema 2</text>
+        </a>
+        <a href="#modul12" onclick="toggleMiniTheme('m12t3')">
+          <circle class="circle-sub" cx="450" cy="412" r="45" />
+          <text class="label" x="450" y="412">Thema 3</text>
+        </a>
+        <a href="#modul12" onclick="toggleMiniTheme('m12t4')">
+          <circle class="circle-sub" cx="250" cy="412" r="45" />
+          <text class="label" x="250" y="412">Thema 4</text>
+        </a>
+        <a href="#modul12" onclick="toggleMiniTheme('m12t5')">
+          <circle class="circle-sub" cx="188" cy="152" r="45" />
+          <text class="label" x="188" y="152">Thema 5</text>
+        </a>
+        <a href="#codeui" onclick="toggleMiniTheme('m12t1_1')">
+          <g class="mini-group" id="m12t1_1">
+            <line class="mini-line" x1="350" y1="80" x2="350" y2="26" />
+            <circle class="circle-mini" cx="350" cy="26" r="24" />
+            <text class="label" x="350" y="26">Mini 1</text>
+          </g>
+        </a>
+        <a href="#codeui" onclick="toggleMiniTheme('m12t1_2')">
+          <g class="mini-group" id="m12t1_2">
+            <line class="mini-line" x1="350" y1="80" x2="305" y2="110" />
+            <circle class="circle-mini" cx="305" cy="110" r="24" />
+            <text class="label" x="305" y="110">Mini 2</text>
+          </g>
+        </a>
+        <a href="#codeui" onclick="toggleMiniTheme('m12t1_3')">
+          <g class="mini-group" id="m12t1_3">
+            <line class="mini-line" x1="350" y1="80" x2="395" y2="110" />
+            <circle class="circle-mini" cx="395" cy="110" r="24" />
+            <text class="label" x="395" y="110">Mini 3</text>
+          </g>
+        </a>
+        <a href="#codeui" onclick="toggleMiniTheme('m12t2_1')">
+          <g class="mini-group" id="m12t2_1">
+            <line class="mini-line" x1="512" y1="152" x2="580" y2="120" />
+            <circle class="circle-mini" cx="580" cy="120" r="24" />
+            <text class="label" x="580" y="120">Mini 1</text>
+          </g>
+        </a>
+        <a href="#codeui" onclick="toggleMiniTheme('m12t2_2')">
+          <g class="mini-group" id="m12t2_2">
+            <line class="mini-line" x1="512" y1="152" x2="580" y2="184" />
+            <circle class="circle-mini" cx="580" cy="184" r="24" />
+            <text class="label" x="580" y="184">Mini 2</text>
+          </g>
+        </a>
+        <a href="#codeui" onclick="toggleMiniTheme('m12t2_3')">
+          <g class="mini-group" id="m12t2_3">
+            <line class="mini-line" x1="512" y1="152" x2="512" y2="220" />
+            <circle class="circle-mini" cx="512" cy="220" r="24" />
+            <text class="label" x="512" y="220">Mini 3</text>
+          </g>
+        </a>
+        <a href="#codeui" onclick="toggleMiniTheme('m12t3_1')">
+          <g class="mini-group" id="m12t3_1">
+            <line class="mini-line" x1="450" y1="412" x2="390" y2="450" />
+            <circle class="circle-mini" cx="390" cy="450" r="24" />
+            <text class="label" x="390" y="450">Mini 1</text>
+          </g>
+        </a>
+        <a href="#codeui" onclick="toggleMiniTheme('m12t3_2')">
+          <g class="mini-group" id="m12t3_2">
+            <line class="mini-line" x1="450" y1="412" x2="510" y2="450" />
+            <circle class="circle-mini" cx="510" cy="450" r="24" />
+            <text class="label" x="510" y="450">Mini 2</text>
+          </g>
+        </a>
+        <a href="#codeui" onclick="toggleMiniTheme('m12t3_3')">
+          <g class="mini-group" id="m12t3_3">
+            <line class="mini-line" x1="450" y1="412" x2="450" y2="340" />
+            <circle class="circle-mini" cx="450" cy="340" r="24" />
+            <text class="label" x="450" y="340">Mini 3</text>
+          </g>
+        </a>
+        <a href="#codeui" onclick="toggleMiniTheme('m12t4_1')">
+          <g class="mini-group" id="m12t4_1">
+            <line class="mini-line" x1="250" y1="412" x2="190" y2="450" />
+            <circle class="circle-mini" cx="190" cy="450" r="24" />
+            <text class="label" x="190" y="450">Mini 1</text>
+          </g>
+        </a>
+        <a href="#codeui" onclick="toggleMiniTheme('m12t4_2')">
+          <g class="mini-group" id="m12t4_2">
+            <line class="mini-line" x1="250" y1="412" x2="310" y2="450" />
+            <circle class="circle-mini" cx="310" cy="450" r="24" />
+            <text class="label" x="310" y="450">Mini 2</text>
+          </g>
+        </a>
+        <a href="#codeui" onclick="toggleMiniTheme('m12t4_3')">
+          <g class="mini-group" id="m12t4_3">
+            <line class="mini-line" x1="250" y1="412" x2="250" y2="340" />
+            <circle class="circle-mini" cx="250" cy="340" r="24" />
+            <text class="label" x="250" y="340">Mini 3</text>
+          </g>
+        </a>
+        <a href="#codeui" onclick="toggleMiniTheme('m12t5_1')">
+          <g class="mini-group" id="m12t5_1">
+            <line class="mini-line" x1="188" y1="152" x2="120" y2="120" />
+            <circle class="circle-mini" cx="120" cy="120" r="24" />
+            <text class="label" x="120" y="120">Mini 1</text>
+          </g>
+        </a>
+        <a href="#codeui" onclick="toggleMiniTheme('m12t5_2')">
+          <g class="mini-group" id="m12t5_2">
+            <line class="mini-line" x1="188" y1="152" x2="120" y2="184" />
+            <circle class="circle-mini" cx="120" cy="184" r="24" />
+            <text class="label" x="120" y="184">Mini 2</text>
+          </g>
+        </a>
+        <a href="#codeui" onclick="toggleMiniTheme('m12t5_3')">
+          <g class="mini-group" id="m12t5_3">
+            <line class="mini-line" x1="188" y1="152" x2="188" y2="220" />
+            <circle class="circle-mini" cx="188" cy="220" r="24" />
+            <text class="label" x="188" y="220">Mini 3</text>
+          </g>
+        </a>
+      </svg>
+    </section>
+
+    <!-- Mindmap: modul13 -->
+    <section class="page" id="modul13">
+      <svg viewBox="0 0 700 500">
+        <line class="line" x1="350" y1="250" x2="350" y2="80" />
+        <line class="line" x1="350" y1="250" x2="512" y2="152" />
+        <line class="line" x1="350" y1="250" x2="450" y2="412" />
+        <line class="line" x1="350" y1="250" x2="250" y2="412" />
+        <line class="line" x1="350" y1="250" x2="188" y2="152" />
+        <a
+          href="#overview"
+          class="module-center-link"
+          aria-label="Zur Übersicht"
+        >
+          \r\n
+          <circle class="circle-center" cx="350" cy="250" r="60" />
+          \r\n
+          <text class="label" x="350" y="243">Modul</text>
+          \r\n
+          <text class="label" x="350" y="258">13</text>
+          \r\n
+        </a>
+        <a href="#modul13" onclick="toggleMiniTheme('m13t1')">
+          <circle class="circle-sub" cx="350" cy="80" r="45" />
+          <text class="label" x="350" y="80">Thema 1</text>
+        </a>
+        <a href="#modul13" onclick="toggleMiniTheme('m13t2')">
+          <circle class="circle-sub" cx="512" cy="152" r="45" />
+          <text class="label" x="512" y="152">Thema 2</text>
+        </a>
+        <a href="#modul13" onclick="toggleMiniTheme('m13t3')">
+          <circle class="circle-sub" cx="450" cy="412" r="45" />
+          <text class="label" x="450" y="412">Thema 3</text>
+        </a>
+        <a href="#modul13" onclick="toggleMiniTheme('m13t4')">
+          <circle class="circle-sub" cx="250" cy="412" r="45" />
+          <text class="label" x="250" y="412">Thema 4</text>
+        </a>
+        <a href="#modul13" onclick="toggleMiniTheme('m13t5')">
+          <circle class="circle-sub" cx="188" cy="152" r="45" />
+          <text class="label" x="188" y="152">Thema 5</text>
+        </a>
+        <a href="#codeui" onclick="toggleMiniTheme('m13t1_1')">
+          <g class="mini-group" id="m13t1_1">
+            <line class="mini-line" x1="350" y1="80" x2="350" y2="26" />
+            <circle class="circle-mini" cx="350" cy="26" r="24" />
+            <text class="label" x="350" y="26">Mini 1</text>
+          </g>
+        </a>
+        <a href="#codeui" onclick="toggleMiniTheme('m13t1_2')">
+          <g class="mini-group" id="m13t1_2">
+            <line class="mini-line" x1="350" y1="80" x2="305" y2="110" />
+            <circle class="circle-mini" cx="305" cy="110" r="24" />
+            <text class="label" x="305" y="110">Mini 2</text>
+          </g>
+        </a>
+        <a href="#codeui" onclick="toggleMiniTheme('m13t1_3')">
+          <g class="mini-group" id="m13t1_3">
+            <line class="mini-line" x1="350" y1="80" x2="395" y2="110" />
+            <circle class="circle-mini" cx="395" cy="110" r="24" />
+            <text class="label" x="395" y="110">Mini 3</text>
+          </g>
+        </a>
+        <a href="#codeui" onclick="toggleMiniTheme('m13t2_1')">
+          <g class="mini-group" id="m13t2_1">
+            <line class="mini-line" x1="512" y1="152" x2="580" y2="120" />
+            <circle class="circle-mini" cx="580" cy="120" r="24" />
+            <text class="label" x="580" y="120">Mini 1</text>
+          </g>
+        </a>
+        <a href="#codeui" onclick="toggleMiniTheme('m13t2_2')">
+          <g class="mini-group" id="m13t2_2">
+            <line class="mini-line" x1="512" y1="152" x2="580" y2="184" />
+            <circle class="circle-mini" cx="580" cy="184" r="24" />
+            <text class="label" x="580" y="184">Mini 2</text>
+          </g>
+        </a>
+        <a href="#codeui" onclick="toggleMiniTheme('m13t2_3')">
+          <g class="mini-group" id="m13t2_3">
+            <line class="mini-line" x1="512" y1="152" x2="512" y2="220" />
+            <circle class="circle-mini" cx="512" cy="220" r="24" />
+            <text class="label" x="512" y="220">Mini 3</text>
+          </g>
+        </a>
+        <a href="#codeui" onclick="toggleMiniTheme('m13t3_1')">
+          <g class="mini-group" id="m13t3_1">
+            <line class="mini-line" x1="450" y1="412" x2="390" y2="450" />
+            <circle class="circle-mini" cx="390" cy="450" r="24" />
+            <text class="label" x="390" y="450">Mini 1</text>
+          </g>
+        </a>
+        <a href="#codeui" onclick="toggleMiniTheme('m13t3_2')">
+          <g class="mini-group" id="m13t3_2">
+            <line class="mini-line" x1="450" y1="412" x2="510" y2="450" />
+            <circle class="circle-mini" cx="510" cy="450" r="24" />
+            <text class="label" x="510" y="450">Mini 2</text>
+          </g>
+        </a>
+        <a href="#codeui" onclick="toggleMiniTheme('m13t3_3')">
+          <g class="mini-group" id="m13t3_3">
+            <line class="mini-line" x1="450" y1="412" x2="450" y2="340" />
+            <circle class="circle-mini" cx="450" cy="340" r="24" />
+            <text class="label" x="450" y="340">Mini 3</text>
+          </g>
+        </a>
+        <a href="#codeui" onclick="toggleMiniTheme('m13t4_1')">
+          <g class="mini-group" id="m13t4_1">
+            <line class="mini-line" x1="250" y1="412" x2="190" y2="450" />
+            <circle class="circle-mini" cx="190" cy="450" r="24" />
+            <text class="label" x="190" y="450">Mini 1</text>
+          </g>
+        </a>
+        <a href="#codeui" onclick="toggleMiniTheme('m13t4_2')">
+          <g class="mini-group" id="m13t4_2">
+            <line class="mini-line" x1="250" y1="412" x2="310" y2="450" />
+            <circle class="circle-mini" cx="310" cy="450" r="24" />
+            <text class="label" x="310" y="450">Mini 2</text>
+          </g>
+        </a>
+        <a href="#codeui" onclick="toggleMiniTheme('m13t4_3')">
+          <g class="mini-group" id="m13t4_3">
+            <line class="mini-line" x1="250" y1="412" x2="250" y2="340" />
+            <circle class="circle-mini" cx="250" cy="340" r="24" />
+            <text class="label" x="250" y="340">Mini 3</text>
+          </g>
+        </a>
+        <a href="#codeui" onclick="toggleMiniTheme('m13t5_1')">
+          <g class="mini-group" id="m13t5_1">
+            <line class="mini-line" x1="188" y1="152" x2="120" y2="120" />
+            <circle class="circle-mini" cx="120" cy="120" r="24" />
+            <text class="label" x="120" y="120">Mini 1</text>
+          </g>
+        </a>
+        <a href="#codeui" onclick="toggleMiniTheme('m13t5_2')">
+          <g class="mini-group" id="m13t5_2">
+            <line class="mini-line" x1="188" y1="152" x2="120" y2="184" />
+            <circle class="circle-mini" cx="120" cy="184" r="24" />
+            <text class="label" x="120" y="184">Mini 2</text>
+          </g>
+        </a>
+        <a href="#codeui" onclick="toggleMiniTheme('m13t5_3')">
+          <g class="mini-group" id="m13t5_3">
+            <line class="mini-line" x1="188" y1="152" x2="188" y2="220" />
+            <circle class="circle-mini" cx="188" cy="220" r="24" />
+            <text class="label" x="188" y="220">Mini 3</text>
+          </g>
+        </a>
+      </svg>
+    </section>
+
+    <!-- Mindmap: modul14 -->
+    <section class="page" id="modul14">
+      <svg viewBox="0 0 700 500">
+        <line class="line" x1="350" y1="250" x2="350" y2="80" />
+        <line class="line" x1="350" y1="250" x2="512" y2="152" />
+        <line class="line" x1="350" y1="250" x2="450" y2="412" />
+        <line class="line" x1="350" y1="250" x2="250" y2="412" />
+        <line class="line" x1="350" y1="250" x2="188" y2="152" />
+        <a
+          href="#overview"
+          class="module-center-link"
+          aria-label="Zur Übersicht"
+        >
+          \r\n
+          <circle class="circle-center" cx="350" cy="250" r="60" />
+          \r\n
+          <text class="label" x="350" y="243">Modul</text>
+          \r\n
+          <text class="label" x="350" y="258">14</text>
+          \r\n
+        </a>
+        <a href="#modul14" onclick="toggleMiniTheme('m14t1')">
+          <circle class="circle-sub" cx="350" cy="80" r="45" />
+          <text class="label" x="350" y="80">Thema 1</text>
+        </a>
+        <a href="#modul14" onclick="toggleMiniTheme('m14t2')">
+          <circle class="circle-sub" cx="512" cy="152" r="45" />
+          <text class="label" x="512" y="152">Thema 2</text>
+        </a>
+        <a href="#modul14" onclick="toggleMiniTheme('m14t3')">
+          <circle class="circle-sub" cx="450" cy="412" r="45" />
+          <text class="label" x="450" y="412">Thema 3</text>
+        </a>
+        <a href="#modul14" onclick="toggleMiniTheme('m14t4')">
+          <circle class="circle-sub" cx="250" cy="412" r="45" />
+          <text class="label" x="250" y="412">Thema 4</text>
+        </a>
+        <a href="#modul14" onclick="toggleMiniTheme('m14t5')">
+          <circle class="circle-sub" cx="188" cy="152" r="45" />
+          <text class="label" x="188" y="152">Thema 5</text>
+        </a>
+        <a href="#codeui" onclick="toggleMiniTheme('m14t1_1')">
+          <g class="mini-group" id="m14t1_1">
+            <line class="mini-line" x1="350" y1="80" x2="350" y2="26" />
+            <circle class="circle-mini" cx="350" cy="26" r="24" />
+            <text class="label" x="350" y="26">Mini 1</text>
+          </g>
+        </a>
+        <a href="#codeui" onclick="toggleMiniTheme('m14t1_2')">
+          <g class="mini-group" id="m14t1_2">
+            <line class="mini-line" x1="350" y1="80" x2="305" y2="110" />
+            <circle class="circle-mini" cx="305" cy="110" r="24" />
+            <text class="label" x="305" y="110">Mini 2</text>
+          </g>
+        </a>
+        <a href="#codeui" onclick="toggleMiniTheme('m14t1_3')">
+          <g class="mini-group" id="m14t1_3">
+            <line class="mini-line" x1="350" y1="80" x2="395" y2="110" />
+            <circle class="circle-mini" cx="395" cy="110" r="24" />
+            <text class="label" x="395" y="110">Mini 3</text>
+          </g>
+        </a>
+        <a href="#codeui" onclick="toggleMiniTheme('m14t2_1')">
+          <g class="mini-group" id="m14t2_1">
+            <line class="mini-line" x1="512" y1="152" x2="580" y2="120" />
+            <circle class="circle-mini" cx="580" cy="120" r="24" />
+            <text class="label" x="580" y="120">Mini 1</text>
+          </g>
+        </a>
+        <a href="#codeui" onclick="toggleMiniTheme('m14t2_2')">
+          <g class="mini-group" id="m14t2_2">
+            <line class="mini-line" x1="512" y1="152" x2="580" y2="184" />
+            <circle class="circle-mini" cx="580" cy="184" r="24" />
+            <text class="label" x="580" y="184">Mini 2</text>
+          </g>
+        </a>
+        <a href="#codeui" onclick="toggleMiniTheme('m14t2_3')">
+          <g class="mini-group" id="m14t2_3">
+            <line class="mini-line" x1="512" y1="152" x2="512" y2="220" />
+            <circle class="circle-mini" cx="512" cy="220" r="24" />
+            <text class="label" x="512" y="220">Mini 3</text>
+          </g>
+        </a>
+        <a href="#codeui" onclick="toggleMiniTheme('m14t3_1')">
+          <g class="mini-group" id="m14t3_1">
+            <line class="mini-line" x1="450" y1="412" x2="390" y2="450" />
+            <circle class="circle-mini" cx="390" cy="450" r="24" />
+            <text class="label" x="390" y="450">Mini 1</text>
+          </g>
+        </a>
+        <a href="#codeui" onclick="toggleMiniTheme('m14t3_2')">
+          <g class="mini-group" id="m14t3_2">
+            <line class="mini-line" x1="450" y1="412" x2="510" y2="450" />
+            <circle class="circle-mini" cx="510" cy="450" r="24" />
+            <text class="label" x="510" y="450">Mini 2</text>
+          </g>
+        </a>
+        <a href="#codeui" onclick="toggleMiniTheme('m14t3_3')">
+          <g class="mini-group" id="m14t3_3">
+            <line class="mini-line" x1="450" y1="412" x2="450" y2="340" />
+            <circle class="circle-mini" cx="450" cy="340" r="24" />
+            <text class="label" x="450" y="340">Mini 3</text>
+          </g>
+        </a>
+        <a href="#codeui" onclick="toggleMiniTheme('m14t4_1')">
+          <g class="mini-group" id="m14t4_1">
+            <line class="mini-line" x1="250" y1="412" x2="190" y2="450" />
+            <circle class="circle-mini" cx="190" cy="450" r="24" />
+            <text class="label" x="190" y="450">Mini 1</text>
+          </g>
+        </a>
+        <a href="#codeui" onclick="toggleMiniTheme('m14t4_2')">
+          <g class="mini-group" id="m14t4_2">
+            <line class="mini-line" x1="250" y1="412" x2="310" y2="450" />
+            <circle class="circle-mini" cx="310" cy="450" r="24" />
+            <text class="label" x="310" y="450">Mini 2</text>
+          </g>
+        </a>
+        <a href="#codeui" onclick="toggleMiniTheme('m14t4_3')">
+          <g class="mini-group" id="m14t4_3">
+            <line class="mini-line" x1="250" y1="412" x2="250" y2="340" />
+            <circle class="circle-mini" cx="250" cy="340" r="24" />
+            <text class="label" x="250" y="340">Mini 3</text>
+          </g>
+        </a>
+        <a href="#codeui" onclick="toggleMiniTheme('m14t5_1')">
+          <g class="mini-group" id="m14t5_1">
+            <line class="mini-line" x1="188" y1="152" x2="120" y2="120" />
+            <circle class="circle-mini" cx="120" cy="120" r="24" />
+            <text class="label" x="120" y="120">Mini 1</text>
+          </g>
+        </a>
+        <a href="#codeui" onclick="toggleMiniTheme('m14t5_2')">
+          <g class="mini-group" id="m14t5_2">
+            <line class="mini-line" x1="188" y1="152" x2="120" y2="184" />
+            <circle class="circle-mini" cx="120" cy="184" r="24" />
+            <text class="label" x="120" y="184">Mini 2</text>
+          </g>
+        </a>
+        <a href="#codeui" onclick="toggleMiniTheme('m14t5_3')">
+          <g class="mini-group" id="m14t5_3">
+            <line class="mini-line" x1="188" y1="152" x2="188" y2="220" />
+            <circle class="circle-mini" cx="188" cy="220" r="24" />
+            <text class="label" x="188" y="220">Mini 3</text>
+          </g>
+        </a>
+      </svg>
+    </section>
+
+    <!-- Mindmap: modul15 -->
+    <section class="page" id="modul15">
+      <svg viewBox="0 0 700 500">
+        <line class="line" x1="350" y1="250" x2="350" y2="80" />
+        <line class="line" x1="350" y1="250" x2="512" y2="152" />
+        <line class="line" x1="350" y1="250" x2="450" y2="412" />
+        <line class="line" x1="350" y1="250" x2="250" y2="412" />
+        <line class="line" x1="350" y1="250" x2="188" y2="152" />
+        <a
+          href="#overview"
+          class="module-center-link"
+          aria-label="Zur Übersicht"
+        >
+          \r\n
+          <circle class="circle-center" cx="350" cy="250" r="60" />
+          \r\n
+          <text class="label" x="350" y="243">Modul</text>
+          \r\n
+          <text class="label" x="350" y="258">15</text>
+          \r\n
+        </a>
+        <a href="#modul15" onclick="toggleMiniTheme('m15t1')">
+          <circle class="circle-sub" cx="350" cy="80" r="45" />
+          <text class="label" x="350" y="80">Thema 1</text>
+        </a>
+        <a href="#modul15" onclick="toggleMiniTheme('m15t2')">
+          <circle class="circle-sub" cx="512" cy="152" r="45" />
+          <text class="label" x="512" y="152">Thema 2</text>
+        </a>
+        <a href="#modul15" onclick="toggleMiniTheme('m15t3')">
+          <circle class="circle-sub" cx="450" cy="412" r="45" />
+          <text class="label" x="450" y="412">Thema 3</text>
+        </a>
+        <a href="#modul15" onclick="toggleMiniTheme('m15t4')">
+          <circle class="circle-sub" cx="250" cy="412" r="45" />
+          <text class="label" x="250" y="412">Thema 4</text>
+        </a>
+        <a href="#modul15" onclick="toggleMiniTheme('m15t5')">
+          <circle class="circle-sub" cx="188" cy="152" r="45" />
+          <text class="label" x="188" y="152">Thema 5</text>
+        </a>
+        <a href="#codeui" onclick="toggleMiniTheme('m15t1_1')">
+          <g class="mini-group" id="m15t1_1">
+            <line class="mini-line" x1="350" y1="80" x2="350" y2="26" />
+            <circle class="circle-mini" cx="350" cy="26" r="24" />
+            <text class="label" x="350" y="26">Mini 1</text>
+          </g>
+        </a>
+        <a href="#codeui" onclick="toggleMiniTheme('m15t1_2')">
+          <g class="mini-group" id="m15t1_2">
+            <line class="mini-line" x1="350" y1="80" x2="305" y2="110" />
+            <circle class="circle-mini" cx="305" cy="110" r="24" />
+            <text class="label" x="305" y="110">Mini 2</text>
+          </g>
+        </a>
+        <a href="#codeui" onclick="toggleMiniTheme('m15t1_3')">
+          <g class="mini-group" id="m15t1_3">
+            <line class="mini-line" x1="350" y1="80" x2="395" y2="110" />
+            <circle class="circle-mini" cx="395" cy="110" r="24" />
+            <text class="label" x="395" y="110">Mini 3</text>
+          </g>
+        </a>
+        <a href="#codeui" onclick="toggleMiniTheme('m15t2_1')">
+          <g class="mini-group" id="m15t2_1">
+            <line class="mini-line" x1="512" y1="152" x2="580" y2="120" />
+            <circle class="circle-mini" cx="580" cy="120" r="24" />
+            <text class="label" x="580" y="120">Mini 1</text>
+          </g>
+        </a>
+        <a href="#codeui" onclick="toggleMiniTheme('m15t2_2')">
+          <g class="mini-group" id="m15t2_2">
+            <line class="mini-line" x1="512" y1="152" x2="580" y2="184" />
+            <circle class="circle-mini" cx="580" cy="184" r="24" />
+            <text class="label" x="580" y="184">Mini 2</text>
+          </g>
+        </a>
+        <a href="#codeui" onclick="toggleMiniTheme('m15t2_3')">
+          <g class="mini-group" id="m15t2_3">
+            <line class="mini-line" x1="512" y1="152" x2="512" y2="220" />
+            <circle class="circle-mini" cx="512" cy="220" r="24" />
+            <text class="label" x="512" y="220">Mini 3</text>
+          </g>
+        </a>
+        <a href="#codeui" onclick="toggleMiniTheme('m15t3_1')">
+          <g class="mini-group" id="m15t3_1">
+            <line class="mini-line" x1="450" y1="412" x2="390" y2="450" />
+            <circle class="circle-mini" cx="390" cy="450" r="24" />
+            <text class="label" x="390" y="450">Mini 1</text>
+          </g>
+        </a>
+        <a href="#codeui" onclick="toggleMiniTheme('m15t3_2')">
+          <g class="mini-group" id="m15t3_2">
+            <line class="mini-line" x1="450" y1="412" x2="510" y2="450" />
+            <circle class="circle-mini" cx="510" cy="450" r="24" />
+            <text class="label" x="510" y="450">Mini 2</text>
+          </g>
+        </a>
+        <a href="#codeui" onclick="toggleMiniTheme('m15t3_3')">
+          <g class="mini-group" id="m15t3_3">
+            <line class="mini-line" x1="450" y1="412" x2="450" y2="340" />
+            <circle class="circle-mini" cx="450" cy="340" r="24" />
+            <text class="label" x="450" y="340">Mini 3</text>
+          </g>
+        </a>
+        <a href="#codeui" onclick="toggleMiniTheme('m15t4_1')">
+          <g class="mini-group" id="m15t4_1">
+            <line class="mini-line" x1="250" y1="412" x2="190" y2="450" />
+            <circle class="circle-mini" cx="190" cy="450" r="24" />
+            <text class="label" x="190" y="450">Mini 1</text>
+          </g>
+        </a>
+        <a href="#codeui" onclick="toggleMiniTheme('m15t4_2')">
+          <g class="mini-group" id="m15t4_2">
+            <line class="mini-line" x1="250" y1="412" x2="310" y2="450" />
+            <circle class="circle-mini" cx="310" cy="450" r="24" />
+            <text class="label" x="310" y="450">Mini 2</text>
+          </g>
+        </a>
+        <a href="#codeui" onclick="toggleMiniTheme('m15t4_3')">
+          <g class="mini-group" id="m15t4_3">
+            <line class="mini-line" x1="250" y1="412" x2="250" y2="340" />
+            <circle class="circle-mini" cx="250" cy="340" r="24" />
+            <text class="label" x="250" y="340">Mini 3</text>
+          </g>
+        </a>
+        <a href="#codeui" onclick="toggleMiniTheme('m15t5_1')">
+          <g class="mini-group" id="m15t5_1">
+            <line class="mini-line" x1="188" y1="152" x2="120" y2="120" />
+            <circle class="circle-mini" cx="120" cy="120" r="24" />
+            <text class="label" x="120" y="120">Mini 1</text>
+          </g>
+        </a>
+        <a href="#codeui" onclick="toggleMiniTheme('m15t5_2')">
+          <g class="mini-group" id="m15t5_2">
+            <line class="mini-line" x1="188" y1="152" x2="120" y2="184" />
+            <circle class="circle-mini" cx="120" cy="184" r="24" />
+            <text class="label" x="120" y="184">Mini 2</text>
+          </g>
+        </a>
+        <a href="#codeui" onclick="toggleMiniTheme('m15t5_3')">
+          <g class="mini-group" id="m15t5_3">
+            <line class="mini-line" x1="188" y1="152" x2="188" y2="220" />
+            <circle class="circle-mini" cx="188" cy="220" r="24" />
+            <text class="label" x="188" y="220">Mini 3</text>
+          </g>
+        </a>
+      </svg>
+    </section>
+  </body>
+</html>
