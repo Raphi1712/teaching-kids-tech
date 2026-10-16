@@ -987,6 +987,14 @@ body {
   color: #ffffff;
 }
 
+.level-back-btn {
+  background: #4a5a73;
+}
+
+.level-back-btn:hover {
+  background: #36445a;
+}
+
 .level-prev-btn {
   background: #d94242;
   clip-path: polygon(16% 0, 100% 0, 100% 100%, 16% 100%, 0 50%);

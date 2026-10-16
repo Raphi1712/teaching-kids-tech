@@ -38,6 +38,23 @@ function toggleMiniTheme(themeId) {
   loadEditorForCurrentLevel();
 }
 
+// Zurueck von der CodeUI zur Modul-Seite des aktuellen Levels (mit offenem Thema)
+function backToModule() {
+  const match = (currentLevel || "").match(/^(m(\d+)t\d+)_\d+$/i);
+  if (!match) {
+    window.location.hash = "overview";
+    return;
+  }
+
+  for (let i = 1; i <= 3; i++) {
+    const group = document.getElementById(`${match[1]}_${i}`);
+    if (group) {
+      group.style.display = 'inline';
+    }
+  }
+  window.location.hash = `modul${match[2]}`;
+}
+
 function getLevelFromUrl() {
   const fromSearch = new URLSearchParams(window.location.search).get("level");
   if (fromSearch) {
