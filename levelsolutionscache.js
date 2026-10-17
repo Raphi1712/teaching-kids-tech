@@ -34,75 +34,6 @@ function draw() {
   createCanvas(800, 800);
 }
 function draw() {
-  background(230, 245, 255);
-  fill(255, 220, 0);
-  circle(120, 120, 90);
-  fill(255, 255, 255);
-  ellipse(300, 140, 140, 70);
-  ellipse(360, 140, 120, 65);
-  fill(80, 180, 90);
-  rect(0, 620, 800, 180);
-  fill(220, 80, 60);
-  rect(120, 460, 150, 160);
-  fill(150, 90, 40);
-  triangle(100, 460, 195, 390, 290, 460);
-  }
-`,
-  "m1t2_2": `function setup() {
-  createCanvas(800, 800);
-}
-function draw() {
-  background(180, 225, 255);
-  fill(90, 180, 90);
-  rect(0, 590, 800, 210);
-  fill(255, 210, 0);
-  circle(700, 120, 110);
-  fill(205, 70, 55);
-  rect(280, 370, 260, 220);
-  fill(145, 80, 35);
-  triangle(250, 370, 410, 250, 570, 370);
-  fill(100, 65, 35);
-  rect(390, 470, 70, 120);
-  fill(190, 235, 255);
-  rect(320, 430, 55, 55);
-  rect(445, 430, 55, 55);
-  fill(235, 235, 235);
-  rect(590, 350, 70, 240);
-  fill(180, 180, 180);
-  ellipse(625, 350, 70, 30);
-  }
-`,
-  "m1t2_3": `function setup() {
-  createCanvas(800, 800);
-}
-function draw() {
-  background(165, 220, 255);
-  fill(85, 175, 90);
-  rect(0, 580, 800, 220);
-  fill(255, 215, 0);
-  circle(90, 95, 85);
-  fill(255, 255, 255);
-  ellipse(210, 120, 110, 58);
-  ellipse(260, 120, 95, 54);
-  fill(210, 70, 55);
-  rect(260, 390, 300, 200);
-  fill(150, 85, 35);
-  triangle(230, 390, 410, 255, 590, 390);
-  fill(120, 70, 30);
-  rect(385, 485, 70, 105);
-  fill(235, 245, 255);
-  rect(305, 440, 55, 55);
-  rect(460, 440, 55, 55);
-  fill(210, 190, 155);
-  rect(610, 430, 130, 160);
-  fill(235, 235, 235);
-  ellipse(675, 430, 130, 35);
-  }
-`,
-  "m1t3_1": `function setup() {
-  createCanvas(800, 800);
-}
-function draw() {
   background(245);
   fill(255, 0, 0);
   rect(90, 250, 180, 300);
@@ -112,31 +43,26 @@ function draw() {
   rect(530, 250, 180, 300);
   }
 `,
-  "m1t3_2": `function setup() {
+  "m1t2_2": `function setup() {
   createCanvas(800, 800);
 }
 function draw() {
-  background(180, 225, 255);
-  fill(90, 180, 90);
-  rect(0, 590, 800, 210);
-  fill(255, 210, 0);
-  circle(700, 120, 110);
-  fill(205, 70, 55);
-  rect(280, 370, 260, 220);
-  fill(145, 80, 35);
-  triangle(250, 370, 410, 250, 570, 370);
-  fill(100, 65, 35);
-  rect(390, 470, 70, 120);
-  fill(190, 235, 255);
-  rect(320, 430, 55, 55);
-  rect(445, 430, 55, 55);
-  fill(235, 235, 235);
-  rect(590, 350, 70, 240);
-  fill(180, 180, 180);
-  ellipse(625, 350, 70, 30);
+  background(40);
+  fill(255, 255, 0);
+  ellipse(200, 280, 200, 200);
+  fill(255, 0, 255);
+  ellipse(400, 280, 200, 200);
+  fill(0, 255, 255);
+  ellipse(600, 280, 200, 200);
+  fill(255, 150, 0);
+  ellipse(200, 520, 200, 200);
+  fill(140, 70, 200);
+  ellipse(400, 520, 200, 200);
+  fill(255, 255, 255);
+  ellipse(600, 520, 200, 200);
   }
 `,
-  "m1t3_3": `function setup() {
+  "m1t2_3": `function setup() {
   createCanvas(800, 800);
 }
 function draw() {
@@ -153,188 +79,223 @@ function draw() {
   rect(390, 460, 20, 35);
   }
 `,
-  "m1t4_1": `let blumeX = 220;
-function setup() {
+  "m1t3_1": `function setup() {
   createCanvas(800, 800);
 }
 function draw() {
-  background(160, 210, 255);
-  fill(85, 175, 90);
-  rect(0, 590, 800, 210);
-  fill(70, 150, 60);
-  rect(blumeX - 10, 420, 20, 170);
-  fill(255, 120, 170);
-  circle(blumeX - 55, 470, 70);
-  circle(blumeX + 55, 470, 70);
-  circle(blumeX, 415, 70);
-  circle(blumeX, 525, 70);
+  background(230, 245, 255);
   fill(255, 220, 0);
-  circle(blumeX, 470, 80);
-}
-`,
-  "m1t4_2": `
-  let blumeX = 260;
-let blumeY = 500;
-function setup() {
-  createCanvas(800, 800);
-}
-function draw() {
-  background(170, 225, 255);
-  fill(90, 180, 90);
-  rect(0, 590, 800, 210);
-  fill(70, 145, 65);
-  rect(blumeX - 10, blumeY - 120, 20, 210);
-  fill(255, 130, 180);
-  circle(blumeX - 50, blumeY - 35, 70);
-  circle(blumeX + 50, blumeY - 35, 70);
-  circle(blumeX, blumeY - 90, 70);
-  circle(blumeX, blumeY + 20, 70);
-  fill(255, 220, 0);
-  circle(blumeX, blumeY - 35, 82);
-  fill(250, 210, 0);
-  ellipse(blumeX + 250, blumeY - 180, 120, 70);
-  fill(40, 30, 20);
-  ellipse(blumeX + 220, blumeY - 180, 10, 10);
-  ellipse(blumeX + 280, blumeY - 180, 10, 10);
-  }
-`,
-  "m1t4_3": `let blumeX = 290;
-let blumeY = 520;
-let blumeGroesse = 90;
-let bieneX = 560;
-let bieneY = 290;
-function setup() {
-  createCanvas(800, 800);
-}
-function draw() {
-  background(150, 215, 255);
-  fill(90, 180, 90);
-  rect(0, 590, 800, 210);
-  fill(70, 145, 65);
-  rect(blumeX - 10, blumeY - 130, 20, 220);
-  fill(255, 120, 170);
-  circle(blumeX - blumeGroesse * 0.6, blumeY - 35, blumeGroesse);
-  circle(blumeX + blumeGroesse * 0.6, blumeY - 35, blumeGroesse);
-  circle(blumeX, blumeY - blumeGroesse, blumeGroesse);
-  circle(blumeX, blumeY + 30, blumeGroesse);
-  fill(255, 220, 0);
-  circle(blumeX, blumeY - 35, blumeGroesse);
-  fill(250, 210, 0);
-  ellipse(bieneX, bieneY, 150, 80);
+  ellipse(120, 120, 90, 90);
   fill(255, 255, 255);
-  ellipse(bieneX - 25, bieneY - 45, 48, 28);
-  ellipse(bieneX + 25, bieneY - 45, 48, 28);
-  fill(45, 30, 20);
-  rect(bieneX - 25, bieneY - 40, 12, 80);
-  rect(bieneX + 13, bieneY - 40, 12, 80);
-  ellipse(bieneX + 48, bieneY - 10, 18, 18);
+  ellipse(300, 140, 140, 70);
+  ellipse(360, 140, 120, 65);
+  fill(80, 180, 90);
+  rect(0, 620, 800, 180);
+  fill(220, 80, 60);
+  rect(120, 460, 150, 160);
+  fill(150, 90, 40);
+  triangle(100, 460, 195, 390, 290, 460);
   }
+`,
+  "m1t3_2": `function setup() {
+  createCanvas(800, 800);
+}
+function draw() {
+  background(180, 225, 255);
+  fill(90, 180, 90);
+  rect(0, 590, 800, 210);
+  fill(255, 210, 0);
+  ellipse(700, 120, 110, 110);
+  fill(205, 70, 55);
+  rect(280, 370, 260, 220);
+  fill(145, 80, 35);
+  triangle(250, 370, 410, 250, 570, 370);
+  fill(100, 65, 35);
+  rect(390, 470, 70, 120);
+  fill(190, 235, 255);
+  rect(320, 430, 55, 55);
+  rect(445, 430, 55, 55);
+  }
+`,
+  "m1t3_3": `function setup() {
+  createCanvas(800, 800);
+}
+function draw() {
+  background(165, 220, 255);
+  fill(85, 175, 90);
+  rect(0, 580, 800, 220);
+  fill(255, 215, 0);
+  ellipse(90, 95, 85, 85);
+  fill(255, 255, 255);
+  ellipse(210, 120, 110, 58);
+  ellipse(260, 120, 95, 54);
+  fill(210, 70, 55);
+  rect(260, 390, 300, 200);
+  fill(150, 85, 35);
+  triangle(230, 390, 410, 255, 590, 390);
+  fill(120, 70, 30);
+  rect(385, 485, 70, 105);
+  fill(235, 245, 255);
+  rect(305, 440, 55, 55);
+  rect(460, 440, 55, 55);
+  fill(240, 200, 90);
+  rect(600, 470, 140, 120);
+  fill(120, 60, 140);
+  triangle(585, 470, 670, 400, 755, 470);
+  fill(120, 70, 30);
+  rect(650, 525, 40, 65);
+  }
+`,
+  "m1t4_1": `let x = 300;
+function setup() {
+  createCanvas(800, 800);
+}
+function draw() {
+  background(40, 60, 110);
+  fill(240, 245, 255);
+  rect(0, 600, 800, 200);
+  ellipse(x, 520, 220, 220);
+  ellipse(x, 360, 160, 160);
+  ellipse(x, 240, 110, 110);
+  fill(20, 20, 20);
+  ellipse(x - 20, 225, 12, 12);
+  ellipse(x + 20, 225, 12, 12);
+  fill(255, 140, 0);
+  triangle(x, 240, x, 252, x + 45, 246);
+}
+`,
+  "m1t4_2": `let x = 400;
+let y = 520;
+function setup() {
+  createCanvas(800, 800);
+}
+function draw() {
+  background(40, 60, 110);
+  fill(250, 245, 200);
+  ellipse(660, 120, 90, 90);
+  fill(240, 245, 255);
+  rect(0, 600, 800, 200);
+  ellipse(x, y, 220, 220);
+  ellipse(x, y - 160, 160, 160);
+  ellipse(x, y - 280, 110, 110);
+  fill(20, 20, 20);
+  ellipse(x - 20, y - 295, 12, 12);
+  ellipse(x + 20, y - 295, 12, 12);
+  ellipse(x, y - 180, 14, 14);
+  ellipse(x, y - 140, 14, 14);
+  rect(x - 45, y - 345, 90, 15);
+  rect(x - 30, y - 400, 60, 55);
+  fill(255, 140, 0);
+  triangle(x, y - 280, x, y - 268, x + 45, y - 274);
+}
+`,
+  "m1t4_3": `let x = 400;
+let y = 540;
+let groesse = 200;
+function setup() {
+  createCanvas(800, 800);
+}
+function draw() {
+  background(40, 60, 110);
+  fill(250, 245, 200);
+  ellipse(660, 120, 90, 90);
+  fill(240, 245, 255);
+  rect(0, 600, 800, 200);
+  ellipse(x, y, groesse, groesse);
+  ellipse(x, y - groesse * 0.75, groesse * 0.75, groesse * 0.75);
+  ellipse(x, y - groesse * 1.3, groesse * 0.5, groesse * 0.5);
+  fill(220, 40, 40);
+  rect(x - groesse * 0.3, y - groesse * 1.1, groesse * 0.6, groesse * 0.1);
+  fill(20, 20, 20);
+  ellipse(x - groesse * 0.1, y - groesse * 1.35, groesse * 0.06, groesse * 0.06);
+  ellipse(x + groesse * 0.1, y - groesse * 1.35, groesse * 0.06, groesse * 0.06);
+  fill(255, 140, 0);
+  triangle(x, y - groesse * 1.3, x, y - groesse * 1.25, x + groesse * 0.2, y - groesse * 1.275);
+}
 `,
   "m1t5_1": `function setup() {
   createCanvas(800, 800);
 }
 function draw() {
-  background(175, 225, 255);
+  background(255, 230, 150);
   noStroke();
-  fill(85, 175, 90);
-  rect(0, 580, 800, 220);
-  fill(70, 145, 65);
-  rect(200, 430, 20, 160);
-  rect(390, 440, 20, 150);
-  rect(590, 425, 20, 165);
-  fill(255, 130, 180);
-  circle(210, 410, 80);
-  circle(210, 470, 80);
-  circle(170, 440, 80);
-  circle(250, 440, 80);
-  fill(255, 220, 0);
-  circle(210, 440, 85);
-  fill(255, 160, 190);
-  circle(400, 420, 70);
-  circle(400, 470, 70);
-  circle(360, 445, 70);
-  circle(440, 445, 70);
-  fill(255, 215, 0);
-  circle(400, 445, 78);
-  fill(255, 110, 160);
-  triangle(560, 470, 650, 320, 740, 470);
-  fill(255, 205, 0);
-  rect(620, 470, 60, 100);
-  }
+  fill(255, 205, 160);
+  ellipse(400, 400, 420, 420);
+  fill(255, 255, 255);
+  ellipse(320, 350, 90, 60);
+  ellipse(480, 350, 90, 60);
+  fill(60, 120, 200);
+  ellipse(320, 350, 40, 40);
+  ellipse(480, 350, 40, 40);
+  fill(20, 20, 20);
+  ellipse(320, 350, 18, 18);
+  ellipse(480, 350, 18, 18);
+}
 `,
   "m1t5_2": `function setup() {
   createCanvas(800, 800);
 }
 function draw() {
-  background(165, 220, 255);
+  background(255, 230, 150);
   noStroke();
-  fill(85, 175, 90);
-  rect(0, 570, 800, 230);
-  fill(230, 120, 70);
-  rect(120, 360, 220, 210);
-  fill(150, 85, 35);
-  triangle(90, 360, 230, 260, 370, 360);
-  fill(95, 55, 30);
-  rect(205, 470, 55, 100);
-  fill(255, 210, 0);
-  circle(680, 120, 110);
-  fill(250, 205, 0);
-  ellipse(500, 290, 130, 72);
+  fill(255, 205, 160);
+  ellipse(190, 400, 90, 90);
+  ellipse(610, 400, 90, 90);
+  ellipse(400, 400, 420, 420);
   fill(255, 255, 255);
-  ellipse(470, 245, 50, 28);
-  ellipse(530, 245, 50, 28);
-  fill(45, 30, 20);
-  rect(485, 255, 10, 70);
-  rect(505, 255, 10, 70);
-  rect(525, 255, 10, 70);
-  fill(255, 115, 165);
-  circle(600, 430, 78);
-  circle(600, 490, 78);
-  circle(560, 460, 78);
-  circle(640, 460, 78);
-  fill(255, 220, 0);
-  circle(600, 460, 85);
-  }
+  ellipse(320, 350, 90, 60);
+  ellipse(480, 350, 90, 60);
+  fill(60, 120, 200);
+  ellipse(320, 350, 40, 40);
+  ellipse(480, 350, 40, 40);
+  fill(20, 20, 20);
+  ellipse(320, 350, 18, 18);
+  ellipse(480, 350, 18, 18);
+  fill(255, 150, 160);
+  ellipse(290, 460, 60, 60);
+  ellipse(510, 460, 60, 60);
+  fill(240, 160, 120);
+  triangle(400, 380, 375, 450, 425, 450);
+  fill(200, 40, 60);
+  ellipse(400, 520, 150, 50);
+}
 `,
-  "m1t5_3": `let mx = 400;
-let my = 430;
+  "m1t5_3": `let x = 400;
+let y = 430;
 function setup() {
-  createCanvas(900, 900);
+  createCanvas(800, 800);
 }
 function draw() {
-  background(165, 220, 255);
+  background(120, 200, 255);
   noStroke();
-  fill(85, 175, 90);
-  rect(0, 620, 900, 280);
-  fill(70, 145, 65);
-  rect(220, 470, 24, 170);
-  rect(460, 490, 24, 150);
-  rect(680, 455, 24, 185);
-  fill(255, 130, 180);
-  circle(232, 450, 96);
-  circle(232, 515, 96);
-  circle(182, 482, 96);
-  circle(282, 482, 96);
-  fill(255, 220, 0);
-  circle(232, 482, 98);
-  fill(255, 155, 190);
-  circle(472, 470, 88);
-  circle(472, 530, 88);
-  circle(428, 500, 88);
-  circle(516, 500, 88);
-  fill(255, 220, 0);
-  circle(472, 500, 90);
-  fill(250, 205, 0);
-  ellipse(mx + 160, my - 120, 150, 86);
+  fill(90, 180, 95);
+  rect(0, 700, 800, 100);
+  fill(120, 70, 30);
+  ellipse(x, y - 120, 400, 240);
+  fill(255, 205, 160);
+  ellipse(x - 200, y, 80, 80);
+  ellipse(x + 200, y, 80, 80);
+  ellipse(x, y, 400, 400);
   fill(255, 255, 255);
-  ellipse(mx + 130, my - 168, 52, 30);
-  ellipse(mx + 190, my - 168, 52, 30);
-  fill(45, 30, 20);
-  rect(mx + 142, my - 162, 12, 84);
-  rect(mx + 174, my - 162, 12, 84);
-  ellipse(mx + 218, my - 130, 18, 18);
+  ellipse(x - 80, y - 50, 90, 60);
+  ellipse(x + 80, y - 50, 90, 60);
+  fill(40, 160, 90);
+  ellipse(x - 80, y - 50, 40, 40);
+  ellipse(x + 80, y - 50, 40, 40);
   fill(20, 20, 20);
-  circle(mx + 212, my - 134, 6);
+  ellipse(x - 80, y - 50, 18, 18);
+  ellipse(x + 80, y - 50, 18, 18);
+  fill(255, 150, 160);
+  ellipse(x - 110, y + 60, 60, 60);
+  ellipse(x + 110, y + 60, 60, 60);
+  fill(240, 160, 120);
+  triangle(x, y - 20, x - 25, y + 50, x + 25, y + 50);
+  fill(200, 40, 60);
+  ellipse(x, y + 120, 160, 50);
+  fill(255, 80, 120);
+  triangle(x - 90, y - 210, x, y - 370, x + 90, y - 210);
+  fill(255, 230, 0);
+  ellipse(x, y - 370, 40, 40);
 }
 `,
   // === MODUL 2 ===
@@ -348,7 +309,7 @@ function draw() {
   fill(80, 170, 90);
   rect(0, 560, 800, 240);
   fill(255, 210, 0);
-  circle(x, 250, 90);
+  ellipse(x, 250, 90, 90);
   x = x + 2;
 }
 `,
@@ -366,10 +327,10 @@ function draw() {
   ellipse(cloudX + 110, 170, 120, 70);
   fill(90, 180, 95);
   rect(0, 600, 800, 200);
-  cloudX = (cloudX + speed) % 980;
+  cloudX = cloudX + speed;
 }
 `,
-  "m2t1_3": `let balloonY = 0;
+  "m2t1_3": `let balloonY = 800;
 let speedY = 2.5;
 function setup() {
   createCanvas(800, 800);
@@ -386,98 +347,65 @@ function draw() {
   noStroke();
   fill(170, 110, 60);
   rect(405, balloonY + 95, 50, 35);
-  balloonY = (balloonY + speedY) % 980;
+  balloonY = balloonY - speedY;
 }
 `,
-  "m2t2_1": `let fishX = 0;
-let wavePhase = 0;
-function setup() {
+  "m2t2_1": `function setup() {
   createCanvas(800, 800);
-}
-function draw() {
-  background(30, 120, 200);
-  fill(20, 80, 150);
-  rect(0, 520, 800, 280);
-  let fishY = 400 + sin(wavePhase) * 120;
-  fill(255, 170, 60);
-  ellipse(fishX, fishY, 120, 70);
-  triangle(fishX - 65, fishY, fishX - 120, fishY - 35, fishX - 120, fishY + 35);
-  fill(30, 30, 40);
-  circle(fishX + 35, fishY - 8, 10);
-  fishX = (fishX + 4) % 940;
-  wavePhase = wavePhase + 0.06;
-}
-`,
-  "m2t2_2": `let bee1X = 0;
-let bee2X = 800;
-let bee1Speed = 3;
-let bee2Speed = 2;
-function setup() {
-  createCanvas(800, 800);
-}
-function draw() {
-  background(170, 225, 255);
+  background(30, 30, 50);
   noStroke();
-  fill(90, 180, 95);
-  rect(0, 590, 800, 210);
-  fill(70, 150, 65);
-  rect(390, 430, 20, 160);
-  fill(255, 130, 180);
-  circle(400, 390, 95);
-  circle(400, 460, 95);
-  circle(350, 425, 95);
-  circle(450, 425, 95);
-  fill(255, 220, 0);
-  circle(400, 425, 100);
-  fill(250, 210, 0);
-  ellipse(bee1X, 300, 120, 65);
-  ellipse(bee2X, 430, 120, 65);
-  fill(255, 255, 255);
-  ellipse(bee1X - 20, 265, 40, 24);
-  ellipse(bee1X + 20, 265, 40, 24);
-  ellipse(bee2X - 20, 395, 40, 24);
-  ellipse(bee2X + 20, 395, 40, 24);
-  fill(40, 30, 20);
-  rect(bee1X - 15, 268, 10, 64);
-  rect(bee1X + 5, 268, 10, 64);
-  rect(bee2X - 15, 398, 10, 64);
-  rect(bee2X + 5, 398, 10, 64);
-  bee1X = (bee1X + bee1Speed) % 920;
-  bee2X = (bee2X - bee2Speed + 920) % 920;
-}
-`,
-  "m2t2_3": `let angle = 0;
-let wingPhase = 0;
-function setup() {
-  createCanvas(800, 800);
 }
 function draw() {
-  background(165, 220, 255);
+  let rot = random(0, 255);
+  let gruen = random(0, 255);
+  let blau = random(0, 255);
+  fill(rot, gruen, blau);
+  ellipse(random(800), random(800), random(10, 40), random(10, 40));
+}
+`,
+  "m2t2_2": `let x1;
+let y1;
+let x2;
+let y2;
+let x3;
+let y3;
+function setup() {
+  createCanvas(800, 800);
+  background(20, 20, 40);
   noStroke();
-  fill(90, 180, 95);
-  rect(0, 585, 800, 215);
-  fill(70, 145, 65);
-  rect(390, 420, 20, 165);
-  fill(255, 120, 170);
-  circle(400, 385, 95);
-  circle(400, 455, 95);
-  circle(350, 420, 95);
-  circle(450, 420, 95);
-  fill(255, 220, 0);
-  circle(400, 420, 100);
-  let beeX = 400 + cos(angle) * 220;
-  let beeY = 380 + sin(angle) * 130;
-  let wingOffset = sin(wingPhase) * 12;
-  fill(250, 210, 0);
-  ellipse(beeX, beeY, 120, 65);
-  fill(255, 255, 255);
-  ellipse(beeX - 20, beeY - 36 - wingOffset, 40, 24);
-  ellipse(beeX + 20, beeY - 36 + wingOffset, 40, 24);
-  fill(40, 30, 20);
-  rect(beeX - 15, beeY - 30, 10, 64);
-  rect(beeX + 5, beeY - 30, 10, 64);
-  angle = angle + 0.03;
-  wingPhase = wingPhase + 0.45;
+  x1 = random(100, 700);
+  y1 = random(100, 700);
+  x2 = random(100, 700);
+  y2 = random(100, 700);
+  x3 = random(100, 700);
+  y3 = random(100, 700);
+}
+function draw() {
+  fill(255, 80, 80);
+  ellipse(x1, y1, 30, 30);
+  fill(80, 255, 120);
+  ellipse(x2, y2, 30, 30);
+  fill(80, 160, 255);
+  ellipse(x3, y3, 30, 30);
+  x1 = x1 + 3;
+  y1 = y1 + 3;
+  x2 = x2 - 3;
+  y2 = y2 + 3;
+  x3 = x3 + 3;
+  y3 = y3 - 3;
+}
+`,
+  "m2t2_3": `function setup() {
+  createCanvas(800, 800);
+  background(255);
+  noStroke();
+}
+function draw() {
+  let rot = random(0, 255);
+  let gruen = random(0, 255);
+  let blau = random(0, 255);
+  fill(rot, gruen, blau);
+  ellipse(mouseX + random(-30, 30), mouseY + random(-30, 30), random(10, 50), random(10, 50));
 }
 `,
   "m2t3_1": `let x = 0;
@@ -494,295 +422,324 @@ function draw() {
   x = x + 3;
 }
 `,
-  "m2t3_2": `let x = 0;
-let speed = 4;
+  "m2t3_2": `let fish1X = 0;
+let fish2X = 800;
 function setup() {
   createCanvas(800, 800);
+  noStroke();
+}
+function draw() {
+  background(40, 130, 210);
+  fill(20, 80, 150);
+  rect(0, 600, 800, 200);
+  fill(255, 170, 60);
+  ellipse(fish1X, 300, 110, 68);
+  triangle(fish1X - 55, 300, fish1X - 105, 265, fish1X - 105, 335);
+  fill(255, 90, 150);
+  ellipse(fish2X, 480, 110, 68);
+  triangle(fish2X + 55, 480, fish2X + 105, 445, fish2X + 105, 515);
+  fill(20, 20, 30);
+  ellipse(fish1X + 30, 290, 10, 10);
+  ellipse(fish2X - 30, 470, 10, 10);
+  fill(200, 235, 255);
+  let blase = random(5, 20);
+  ellipse(random(800), random(600), blase, blase);
+  fish1X = fish1X + 3;
+  fish2X = fish2X - 2;
+}
+`,
+  "m2t3_3": `let x1 = -60;
+let x2 = -60;
+let x3 = -60;
+let y1;
+let y2;
+let y3;
+let speed1;
+let speed2;
+let speed3;
+let rot1;
+let gruen1;
+let blau1;
+let rot2;
+let gruen2;
+let blau2;
+let rot3;
+let gruen3;
+let blau3;
+function setup() {
+  createCanvas(800, 800);
+  noStroke();
+  y1 = random(100, 550);
+  y2 = random(100, 550);
+  y3 = random(100, 550);
+  speed1 = random(1, 6);
+  speed2 = random(1, 6);
+  speed3 = random(1, 6);
+  rot1 = random(0, 255);
+  gruen1 = random(0, 255);
+  blau1 = random(0, 255);
+  rot2 = random(0, 255);
+  gruen2 = random(0, 255);
+  blau2 = random(0, 255);
+  rot3 = random(0, 255);
+  gruen3 = random(0, 255);
+  blau3 = random(0, 255);
+}
+function draw() {
+  background(40, 130, 210);
+  fill(20, 80, 150);
+  rect(0, 600, 800, 200);
+  fill(rot1, gruen1, blau1);
+  ellipse(x1, y1, 110, 68);
+  triangle(x1 - 55, y1, x1 - 105, y1 - 35, x1 - 105, y1 + 35);
+  fill(rot2, gruen2, blau2);
+  ellipse(x2, y2, 110, 68);
+  triangle(x2 - 55, y2, x2 - 105, y2 - 35, x2 - 105, y2 + 35);
+  fill(rot3, gruen3, blau3);
+  ellipse(x3, y3, 110, 68);
+  triangle(x3 - 55, y3, x3 - 105, y3 - 35, x3 - 105, y3 + 35);
+  fill(200, 235, 255);
+  let blase = random(5, 20);
+  ellipse(random(800), random(600), blase, blase);
+  x1 = x1 + speed1;
+  x2 = x2 + speed2;
+  x3 = x3 + speed3;
+}
+`,
+  "m2t4_1": `function setup() {
+  createCanvas(800, 800);
+  noStroke();
+  frameRate(10);
 }
 function draw() {
   background(170, 225, 255);
-  fill(85, 175, 90);
-  rect(0, 590, 800, 210);
-  fill(250, 210, 0);
-  ellipse(x, 340, 120, 65);
-  fill(255, 255, 255);
-  ellipse(x - 20, 305, 40, 24);
-  ellipse(x + 20, 305, 40, 24);
-  fill(40, 30, 20);
-  rect(x - 15, 308, 10, 64);
-  rect(x + 5, 308, 10, 64);
-  x = x + speed;
-  if (x > 860) {
-    x = -60;
-  }
-}
-`,
-  "m2t3_3": `let beeX = 400;
-let speed = 5;
-function setup() {
-  createCanvas(800, 800);
-}
-function draw() {
-  background(165, 220, 255);
-  fill(90, 180, 95);
-  rect(0, 590, 800, 210);
-  fill(250, 210, 0);
-  ellipse(beeX, 360, 120, 65);
-  fill(255, 255, 255);
-  ellipse(beeX - 20, 325, 40, 24);
-  ellipse(beeX + 20, 325, 40, 24);
-  fill(40, 30, 20);
-  rect(beeX - 15, 328, 10, 64);
-  rect(beeX + 5, 328, 10, 64);
-  beeX = beeX + speed;
-  if (beeX > 760 || beeX < 40) {
-    speed = -speed;
-  }
-}
-`,
-  "m2t4_1": `let phase = 0;
-function setup() {
-  createCanvas(800, 800);
-}
-function draw() {
-  background(170, 225, 255);
-  noStroke();
-  fill(90, 180, 95);
-  rect(0, 600, 800, 200);
-  let flower1X = 220 + sin(phase) * 30;
-  let flower2X = 420 + sin(phase + 1.5) * 35;
-  let flower3X = 620 + sin(phase + 3) * 25;
-  fill(70, 145, 65);
-  rect(flower1X - 10, 440, 20, 160);
-  rect(flower2X - 10, 430, 20, 170);
-  rect(flower3X - 10, 450, 20, 150);
-  fill(255, 130, 180);
-  circle(flower1X, 430, 90);
-  circle(flower1X - 45, 470, 90);
-  circle(flower1X + 45, 470, 90);
-  fill(255, 220, 0);
-  circle(flower1X, 470, 95);
-  fill(255, 155, 190);
-  circle(flower2X, 420, 90);
-  circle(flower2X - 45, 460, 90);
-  circle(flower2X + 45, 460, 90);
-  fill(255, 220, 0);
-  circle(flower2X, 460, 95);
-  fill(255, 115, 165);
-  circle(flower3X, 440, 90);
-  circle(flower3X - 45, 480, 90);
-  circle(flower3X + 45, 480, 90);
-  fill(255, 220, 0);
-  circle(flower3X, 480, 95);
-  phase = phase + 0.04;
-}
-`,
-  "m2t4_2": `let angle = 0;
-let wingPhase = 0;
-function setup() {
-  createCanvas(800, 800);
-}
-function draw() {
-  background(165, 220, 255);
-  noStroke();
   fill(90, 180, 95);
   rect(0, 600, 800, 200);
   fill(70, 145, 65);
+  rect(210, 430, 20, 170);
   rect(390, 430, 20, 170);
-  fill(255, 125, 175);
-  circle(400, 390, 100);
-  circle(400, 470, 100);
-  circle(345, 430, 100);
-  circle(455, 430, 100);
-  fill(255, 220, 0);
-  circle(400, 430, 105);
-  let beeX = 400 + cos(angle) * 200;
-  let beeY = 330 + sin(angle) * 120;
-  let wing = sin(wingPhase) * 14;
-  fill(250, 210, 0);
-  ellipse(beeX, beeY, 120, 65);
-  fill(255, 255, 255);
-  ellipse(beeX - 20, beeY - 35 - wing, 40, 24);
-  ellipse(beeX + 20, beeY - 35 + wing, 40, 24);
-  fill(40, 30, 20);
-  rect(beeX - 15, beeY - 30, 10, 64);
-  rect(beeX + 5, beeY - 30, 10, 64);
-  angle = angle + 0.04;
-  wingPhase = wingPhase + 0.5;
-}
-`,
-  "m2t4_3": `let cloud1X = 0;
-let cloud2X = 260;
-let cloud3X = 520;
-let t = 0;
-function setup() {
-  createCanvas(800, 800);
-}
-function draw() {
-  background(165, 220, 255);
-  noStroke();
-  fill(255, 255, 255);
-  ellipse(cloud1X, 150, 120, 70);
-  ellipse(cloud1X + 55, 130, 95, 60);
-  ellipse(cloud2X, 210, 120, 70);
-  ellipse(cloud2X + 55, 190, 95, 60);
-  ellipse(cloud3X, 140, 120, 70);
-  ellipse(cloud3X + 55, 120, 95, 60);
-  fill(90, 180, 95);
-  rect(0, 600, 800, 200);
-  let beeX = 400 + sin(t) * 260;
-  let beeY = 330 + sin(t * 2) * 80;
-  fill(250, 210, 0);
-  ellipse(beeX, beeY, 120, 65);
-  fill(255, 255, 255);
-  ellipse(beeX - 20, beeY - 35, 40, 24);
-  ellipse(beeX + 20, beeY - 35, 40, 24);
-  fill(40, 30, 20);
-  rect(beeX - 15, beeY - 30, 10, 64);
-  rect(beeX + 5, beeY - 30, 10, 64);
-  cloud1X = (cloud1X + 1.5) % 960;
-  cloud2X = (cloud2X + 1) % 960;
-  cloud3X = (cloud3X + 1.8) % 960;
-  t = t + 0.03;
-}
-`,
-  "m2t5_1": `let beeX = 400;
-let beeY = 400;
-function setup() {
-  createCanvas(800, 800);
-}
-function draw() {
-  background(165, 220, 255);
-  noStroke();
-  fill(90, 180, 95);
-  rect(0, 600, 800, 200);
-  fill(70, 145, 65);
-  rect(390, 430, 20, 170);
-  fill(255, 120, 170);
-  circle(400, 390, 100);
-  circle(400, 470, 100);
-  circle(345, 430, 100);
-  circle(455, 430, 100);
-  fill(255, 220, 0);
-  circle(400, 430, 105);
-  beeX = lerp(beeX, mouseX, 0.08);
-  beeY = lerp(beeY, mouseY, 0.08);
-  fill(250, 210, 0);
-  ellipse(beeX, beeY, 120, 65);
-  fill(255, 255, 255);
-  ellipse(beeX - 20, beeY - 35, 40, 24);
-  ellipse(beeX + 20, beeY - 35, 40, 24);
-  fill(40, 30, 20);
-  rect(beeX - 15, beeY - 30, 10, 64);
-  rect(beeX + 5, beeY - 30, 10, 64);
-}
-`,
-  "m2t5_2": `let beeX = 400;
-let beeY = 400;
-let oldX = 400;
-let oldY = 400;
-let nektar = 0;
-function setup() {
-  createCanvas(800, 800);
-}
-function draw() {
-  background(165, 220, 255);
-  noStroke();
-  fill(90, 180, 95);
-  rect(0, 600, 800, 200);
-  fill(70, 145, 65);
-  rect(230, 440, 20, 160);
-  rect(560, 455, 20, 145);
+  rect(570, 430, 20, 170);
+  let groesse1 = random(10, 70);
+  let groesse2 = random(10, 70);
+  let groesse3 = random(10, 70);
   fill(255, 130, 180);
-  circle(240, 430, 90);
-  circle(240, 490, 90);
-  circle(195, 460, 90);
-  circle(285, 460, 90);
+  ellipse(220, 430, groesse1 * 2, groesse1 * 2);
+  fill(255, 160, 60);
+  ellipse(400, 430, groesse2 * 2, groesse2 * 2);
+  fill(170, 110, 255);
+  ellipse(580, 430, groesse3 * 2, groesse3 * 2);
   fill(255, 220, 0);
-  circle(240, 460, 95);
-  fill(255, 115, 165);
-  circle(570, 445, 90);
-  circle(570, 505, 90);
-  circle(525, 475, 90);
-  circle(615, 475, 90);
-  fill(255, 220, 0);
-  circle(570, 475, 95);
-  beeX = lerp(beeX, mouseX, 0.1);
-  beeY = lerp(beeY, mouseY, 0.1);
-  let schritt = dist(beeX, beeY, oldX, oldY);
-  nektar = nektar + schritt * 0.05;
-  oldX = beeX;
-  oldY = beeY;
-  fill(250, 210, 0);
-  ellipse(beeX, beeY, 120, 65);
-  fill(255, 255, 255);
-  ellipse(beeX - 20, beeY - 35, 40, 24);
-  ellipse(beeX + 20, beeY - 35, 40, 24);
-  fill(40, 30, 20);
-  rect(beeX - 15, beeY - 30, 10, 64);
-  rect(beeX + 5, beeY - 30, 10, 64);
-  fill(25, 25, 40);
-  textSize(32);
-  text("Nektar: " + int(nektar), 30, 45);
+  ellipse(220, 430, groesse1, groesse1);
+  ellipse(400, 430, groesse2, groesse2);
+  ellipse(580, 430, groesse3, groesse3);
 }
 `,
-  "m2t5_3": `let beeX = 400;
-let beeY = 400;
-let nektar = 0;
-let zeit = 0;
-function setup() {
+  "m2t4_2": `function setup() {
   createCanvas(800, 800);
+  noStroke();
+  frameRate(10);
 }
 function draw() {
-  background(165, 220, 255);
+  background(20, 20, 40);
+  let hoehe1 = random(10, 70);
+  let hoehe2 = random(10, 70);
+  let hoehe3 = random(10, 70);
+  let hoehe4 = random(10, 70);
+  let hoehe5 = random(10, 70);
+  fill(255, 80, 80);
+  rect(100, 650 - hoehe1 * 8, 100, hoehe1 * 8);
+  fill(255, 180, 60);
+  rect(225, 650 - hoehe2 * 8, 100, hoehe2 * 8);
+  fill(255, 240, 80);
+  rect(350, 650 - hoehe3 * 8, 100, hoehe3 * 8);
+  fill(80, 220, 120);
+  rect(475, 650 - hoehe4 * 8, 100, hoehe4 * 8);
+  fill(80, 160, 255);
+  rect(600, 650 - hoehe5 * 8, 100, hoehe5 * 8);
+}
+`,
+  "m2t4_3": `function setup() {
+  createCanvas(800, 800);
   noStroke();
-  fill(90, 180, 95);
-  rect(0, 600, 800, 200);
-  let flower1Y = 570 + sin(frameCount * 0.05) * 12;
-  let flower2Y = 575 + sin(frameCount * 0.05 + 1.7) * 12;
-  let flower3Y = 565 + sin(frameCount * 0.05 + 3.4) * 12;
-  fill(70, 145, 65);
-  rect(160, flower1Y - 120, 20, 160);
-  rect(390, flower2Y - 120, 20, 160);
-  rect(620, flower3Y - 120, 20, 160);
-  fill(255, 120, 170);
-  circle(170, flower1Y - 130, 88);
-  circle(170, flower1Y - 70, 88);
-  circle(126, flower1Y - 100, 88);
-  circle(214, flower1Y - 100, 88);
-  fill(255, 220, 0);
-  circle(170, flower1Y - 100, 92);
-  fill(255, 150, 190);
-  circle(400, flower2Y - 130, 88);
-  circle(400, flower2Y - 70, 88);
-  circle(356, flower2Y - 100, 88);
-  circle(444, flower2Y - 100, 88);
-  fill(255, 220, 0);
-  circle(400, flower2Y - 100, 92);
-  fill(255, 100, 160);
-  circle(630, flower3Y - 130, 88);
-  circle(630, flower3Y - 70, 88);
-  circle(586, flower3Y - 100, 88);
-  circle(674, flower3Y - 100, 88);
-  fill(255, 220, 0);
-  circle(630, flower3Y - 100, 92);
-  beeX = lerp(beeX, mouseX, 0.1);
-  beeY = lerp(beeY, mouseY, 0.1);
-  let schritt = dist(beeX, beeY, pmouseX, pmouseY);
-  nektar = nektar + schritt * 0.04;
-  zeit = zeit + 1 / 60;
-  fill(250, 210, 0);
-  ellipse(beeX, beeY, 120, 65);
+  frameRate(5);
+}
+function draw() {
+  let wolkeX = random(80, 580);
+  background(110, 130, 160);
+  fill(90, 160, 95);
+  rect(0, 650, 800, 150);
+  fill(70, 120, 255);
+  rect(wolkeX + random(-60, 200), random(200, 650), 4, random(10, 70));
+  rect(wolkeX + random(-60, 200), random(200, 650), 4, random(10, 70));
+  rect(wolkeX + random(-60, 200), random(200, 650), 4, random(10, 70));
+  rect(wolkeX + random(-60, 200), random(200, 650), 4, random(10, 70));
+  rect(wolkeX + random(-60, 200), random(200, 650), 4, random(10, 70));
+  fill(230, 230, 235);
+  ellipse(wolkeX, 150, 160, 90);
+  ellipse(wolkeX + 70, 125, 130, 80);
+  ellipse(wolkeX + 140, 150, 160, 90);
+}
+`,
+  "m2t5_1": `let x = 400;
+let y = 400;
+let speedX;
+let speedY;
+let rot;
+let gruen;
+let blau;
+function setup() {
+  createCanvas(800, 800);
+  noStroke();
+  speedX = random(-3, 3);
+  speedY = random(-3, 3);
+  rot = random(0, 255);
+  gruen = random(0, 255);
+  blau = random(0, 255);
+}
+function draw() {
+  background(20, 20, 40);
+  fill(rot, gruen, blau);
+  ellipse(x, y, 60, 60);
+  x = x + speedX;
+  y = y + speedY;
+}
+`,
+  "m2t5_2": `let x1 = 400;
+let y1 = 400;
+let x2 = 400;
+let y2 = 400;
+let x3 = 400;
+let y3 = 400;
+let sx1;
+let sy1;
+let sx2;
+let sy2;
+let sx3;
+let sy3;
+let rot1;
+let gruen1;
+let blau1;
+let rot2;
+let gruen2;
+let blau2;
+let rot3;
+let gruen3;
+let blau3;
+function setup() {
+  createCanvas(800, 800);
+  background(20, 20, 40);
+  noStroke();
+  sx1 = random(-5, 5);
+  sy1 = random(-5, 5);
+  sx2 = random(-5, 5);
+  sy2 = random(-5, 5);
+  sx3 = random(-5, 5);
+  sy3 = random(-5, 5);
+  rot1 = random(0, 255);
+  gruen1 = random(0, 255);
+  blau1 = random(0, 255);
+  rot2 = random(0, 255);
+  gruen2 = random(0, 255);
+  blau2 = random(0, 255);
+  rot3 = random(0, 255);
+  gruen3 = random(0, 255);
+  blau3 = random(0, 255);
+}
+function draw() {
+  fill(rot1, gruen1, blau1);
+  ellipse(x1, y1, 40, 40);
+  fill(rot2, gruen2, blau2);
+  ellipse(x2, y2, 40, 40);
+  fill(rot3, gruen3, blau3);
+  ellipse(x3, y3, 40, 40);
+  x1 = x1 + sx1;
+  y1 = y1 + sy1;
+  x2 = x2 + sx2;
+  y2 = y2 + sy2;
+  x3 = x3 + sx3;
+  y3 = y3 + sy3;
+}
+`,
+  "m2t5_3": `let x1;
+let y1;
+let x2;
+let y2;
+let x3;
+let y3;
+let sx1;
+let sy1;
+let sx2;
+let sy2;
+let sx3;
+let sy3;
+let rot1;
+let gruen1;
+let blau1;
+let rot2;
+let gruen2;
+let blau2;
+let rot3;
+let gruen3;
+let blau3;
+let groesse1;
+let groesse2;
+let groesse3;
+function setup() {
+  createCanvas(800, 800);
+  background(20, 20, 40);
+  noStroke();
   fill(255, 255, 255);
-  ellipse(beeX - 20, beeY - 35, 40, 24);
-  ellipse(beeX + 20, beeY - 35, 40, 24);
-  fill(40, 30, 20);
-  rect(beeX - 15, beeY - 30, 10, 64);
-  rect(beeX + 5, beeY - 30, 10, 64);
-  fill(25, 25, 40);
-  textSize(32);
-  text("Nektar: " + int(nektar), 30, 45);
-  text("Zeit: " + nf(zeit, 1, 1) + "s", 30, 82);
+  textSize(28);
+  text("Klicke irgendwo hin!", 20, 40);
+  neueKreise(400, 400);
+}
+function neueKreise(startX, startY) {
+  x1 = startX;
+  y1 = startY;
+  x2 = startX;
+  y2 = startY;
+  x3 = startX;
+  y3 = startY;
+  sx1 = random(-6, 6);
+  sy1 = random(-6, 6);
+  sx2 = random(-6, 6);
+  sy2 = random(-6, 6);
+  sx3 = random(-6, 6);
+  sy3 = random(-6, 6);
+  rot1 = random(0, 255);
+  gruen1 = random(0, 255);
+  blau1 = random(0, 255);
+  rot2 = random(0, 255);
+  gruen2 = random(0, 255);
+  blau2 = random(0, 255);
+  rot3 = random(0, 255);
+  gruen3 = random(0, 255);
+  blau3 = random(0, 255);
+  groesse1 = random(20, 70);
+  groesse2 = random(20, 70);
+  groesse3 = random(20, 70);
+}
+function mousePressed() {
+  neueKreise(mouseX, mouseY);
+}
+function draw() {
+  fill(rot1, gruen1, blau1);
+  ellipse(x1, y1, groesse1, groesse1);
+  fill(rot2, gruen2, blau2);
+  ellipse(x2, y2, groesse2, groesse2);
+  fill(rot3, gruen3, blau3);
+  ellipse(x3, y3, groesse3, groesse3);
+  let rot = random(0, 255);
+  let gruen = random(0, 255);
+  let blau = random(0, 255);
+  fill(rot, gruen, blau);
+  ellipse(random(800), random(800), random(3, 10), random(3, 10));
+  x1 = x1 + sx1;
+  y1 = y1 + sy1;
+  x2 = x2 + sx2;
+  y2 = y2 + sy2;
+  x3 = x3 + sx3;
+  y3 = y3 + sy3;
 }
 `,
   // === MODUL 3 ===
