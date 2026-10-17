@@ -41,80 +41,80 @@
   "m1t2_1": ` 
   =============================================
   Modul:          1
-  Thema:          2 - Formen: ellipse()
-  Level:          1
-  Boss-Level:     Nein
-  Lernziel:       Du lernst die vier Parameter von ellipse() genau kennen.
-                  ellipse(x, y, breite, hoehe)
-                  x und y sind die Mitte. Breite und Hoehe bestimmen die Groesse.
-  Arbeitsauftrag:  Rekreire, was du in der Vorschau siehst. Spiele danach mit Zahlen, Farben oder Formen herum und beobachte, was passiert, wenn du etwas veränderst.
-  Benoetiges Vorwissen: Level m1t1 (createCanvas, background, fill, ellipse)
-  =============================================
- 
-`,
-  "m1t2_2": ` 
-  =============================================
-  Modul:          1
-  Thema:          2 - Formen: mehrere Ellipsen
-  Level:          2
-  Boss-Level:     Nein
-  Lernziel:       Du lernst, mehrere Ellipsen hintereinander zu zeichnen.
-                  Jedes fill() gilt nur fuer die naechste Form!
-  Arbeitsauftrag:  Rekreire, was du in der Vorschau siehst. Spiele danach mit Zahlen, Farben oder Formen herum und beobachte, was passiert, wenn du etwas veränderst.
-  Benoetiges Vorwissen: Level m1t2_1 (fill, ellipse)
-  =============================================
- 
-`,
-  "m1t2_3": ` 
-  =============================================
-  Modul:          1
-  Thema:          2 - Formen: circle()
-  Level:          3
-  Boss-Level:     Nein
-  Lernziel:       Du lernst circle() kennen - eine einfachere Version von ellipse().
-                  circle(x, y, durchmesser) braucht nur 3 Parameter!
-  Arbeitsauftrag:  Rekreire, was du in der Vorschau siehst. Spiele danach mit Zahlen, Farben oder Formen herum und beobachte, was passiert, wenn du etwas veränderst.
-  Benoetiges Vorwissen: Level m1t2_1, m1t2_2 (fill, ellipse)
-  =============================================
- 
-`,
-  "m1t3_1": ` 
-  =============================================
-  Modul:          1
-  Thema:          3 - Farben: RGB-Grundfarben
+  Thema:          2 - Farben: RGB-Grundfarben
   Level:          1
   Boss-Level:     Nein
   Lernziel:       Du lernst das RGB-Farbsystem kennen.
                   R = Rot, G = Gruen, B = Blau
                   Jeder Wert geht von 0 (aus) bis 255 (voll an).
   Arbeitsauftrag:  Rekreire, was du in der Vorschau siehst. Spiele danach mit Zahlen, Farben oder Formen herum und beobachte, was passiert, wenn du etwas veränderst.
-  Benoetiges Vorwissen: Level m1t2 (fill, circle, ellipse)
+  Benoetiges Vorwissen: Level m1t1 (createCanvas, background, fill, rect)
+  =============================================
+ 
+`,
+  "m1t2_2": ` 
+  =============================================
+  Modul:          1
+  Thema:          2 - Farben: Mischfarben
+  Level:          2
+  Boss-Level:     Nein
+  Lernziel:       Du lernst Farben zu mischen!
+                  Rot + Gruen = Gelb, Rot + Blau = Lila, Gruen + Blau = Tuerkis.
+                  Alle drei voll an = Weiss.
+  Arbeitsauftrag:  Rekreire, was du in der Vorschau siehst. Spiele danach mit Zahlen, Farben oder Formen herum und beobachte, was passiert, wenn du etwas veränderst.
+  Benoetiges Vorwissen: Level m1t2_1 (RGB-Grundfarben, ellipse)
+  =============================================
+ 
+`,
+  "m1t2_3": ` 
+  =============================================
+  Modul:          1
+  Thema:          2 - Farben: RGB-Werte pruefen
+  Level:          3
+  Boss-Level:     Nein
+  Lernziel:       RGB-Werte muessen IMMER zwischen 0 und 255 liegen!
+                  fill(300, 500, 100) ist falsch - 300 und 500 sind zu gross.
+  Arbeitsauftrag:  Rekreire, was du in der Vorschau siehst. Spiele danach mit Zahlen, Farben oder Formen herum und beobachte, was passiert, wenn du etwas veränderst.
+  Benoetiges Vorwissen: Level m1t2_1, m1t2_2 (RGB, Mischfarben)
+  =============================================
+ 
+`,
+  "m1t3_1": ` 
+  =============================================
+  Modul:          1
+  Thema:          3 - Haeuser: das erste Haus
+  Level:          1
+  Boss-Level:     Nein
+  Lernziel:       Du baust ein Haus aus einfachen Formen:
+                  rect() fuer die Wand, triangle() fuer das Dach.
+                  triangle(x1, y1, x2, y2, x3, y3) braucht drei Eckpunkte.
+  Arbeitsauftrag:  Rekreire, was du in der Vorschau siehst. Spiele danach mit Zahlen, Farben oder Formen herum und beobachte, was passiert, wenn du etwas veränderst.
+  Benoetiges Vorwissen: Level m1t2 (RGB-Farben, rect, ellipse)
   =============================================
  
 `,
   "m1t3_2": ` 
   =============================================
   Modul:          1
-  Thema:          3 - Farben: Mischfarben
+  Thema:          3 - Haeuser: Tuer und Fenster
   Level:          2
   Boss-Level:     Nein
-  Lernziel:       Du lernst Farben zu mischen!
-                  Rot + Gruen = Gelb, Rot + Blau = Lila, Gruen + Blau = Tuerkis.
+  Lernziel:       Die Reihenfolge zaehlt: Was spaeter gezeichnet wird, liegt oben.
+                  Tuer und Fenster kommen deshalb NACH der Wand.
   Arbeitsauftrag:  Rekreire, was du in der Vorschau siehst. Spiele danach mit Zahlen, Farben oder Formen herum und beobachte, was passiert, wenn du etwas veränderst.
-  Benoetiges Vorwissen: Level m1t3_1 (RGB-Grundfarben)
+  Benoetiges Vorwissen: Level m1t3_1 (rect, triangle)
   =============================================
  
 `,
   "m1t3_3": ` 
   =============================================
   Modul:          1
-  Thema:          3 - Farben: RGB-Werte pruefen
+  Thema:          3 - Haeuser: zwei Haeuser
   Level:          3
   Boss-Level:     Nein
-  Lernziel:       RGB-Werte muessen IMMER zwischen 0 und 255 liegen!
-                  fill(300, 500, 100) ist falsch - 300 und 500 sind zu gross.
+  Lernziel:       Eine ganze Szene bauen: zwei Haeuser, Sonne und Wolke.
   Arbeitsauftrag:  Rekreire, was du in der Vorschau siehst. Spiele danach mit Zahlen, Farben oder Formen herum und beobachte, was passiert, wenn du etwas veränderst.
-  Benoetiges Vorwissen: Level m1t3_1, m1t3_2 (RGB, Mischfarben)
+  Benoetiges Vorwissen: Level m1t3_1, m1t3_2 (Haus, Tuer, Fenster)
   =============================================
  
 `,
@@ -127,7 +127,7 @@
   Lernziel:       let x = 400; bedeutet: "Nenne die Zahl 400 ab jetzt x."
                   Dann kannst du x ueberall verwenden.
   Arbeitsauftrag:  Rekreire, was du in der Vorschau siehst. Spiele danach mit Zahlen, Farben oder Formen herum und beobachte, was passiert, wenn du etwas veränderst.
-  Benoetiges Vorwissen: Level m1t3 (fill mit RGB, circle)
+  Benoetiges Vorwissen: Thema 1-3 (fill mit RGB, ellipse, rect)
   =============================================
  
 `,
@@ -138,6 +138,7 @@
   Level:          2
   Boss-Level:     Nein
   Lernziel:       Du lernst zwei Variablen gleichzeitig zu benutzen.
+                  Aendere x oder y - der ganze Schneemann wandert mit!
   Arbeitsauftrag:  Rekreire, was du in der Vorschau siehst. Spiele danach mit Zahlen, Farben oder Formen herum und beobachte, was passiert, wenn du etwas veränderst.
   Benoetiges Vorwissen: Level m1t4_1 (erste Variable)
   =============================================
@@ -149,7 +150,8 @@
   Thema:          4 - Variablen: Position und Groesse
   Level:          3
   Boss-Level:     Nein
-  Lernziel:       Variablen auch fuer die Groesse von Formen benutzen.
+  Lernziel:       Variablen auch fuer die Groesse benutzen: groesse * 0.5 ist halb so gross.
+                  Aendere groesse - der ganze Schneemann waechst oder schrumpft!
   Arbeitsauftrag:  Rekreire, was du in der Vorschau siehst. Spiele danach mit Zahlen, Farben oder Formen herum und beobachte, was passiert, wenn du etwas veränderst.
   Benoetiges Vorwissen: Level m1t4_1, m1t4_2 (Variablen)
   =============================================
@@ -173,7 +175,7 @@
   Thema:          5 - Gesicht (Boss-Vorstufe 2)
   Level:          2
   Boss-Level:     Nein
-  Lernziel:       Gesicht erweitern: Nase, Mund und Wangen hinzufuegen.
+  Lernziel:       Gesicht erweitern: Ohren, Nase, Mund und Wangen hinzufuegen.
   Arbeitsauftrag:  Rekreire, was du in der Vorschau siehst. Spiele danach mit Zahlen, Farben oder Formen herum und beobachte, was passiert, wenn du etwas veränderst.
   Benoetiges Vorwissen: Level m1t5_1 (Kopf + Augen)
   =============================================
@@ -182,10 +184,11 @@
   "m1t5_3": ` 
   =============================================
   Modul:          1
-  Thema:          5
+  Thema:          5 - Gesicht
   Level:          3 - BOSS-LEVEL
   Boss-Level:     JA
-  Lernziel:       Alles aus Modul 1 kombinieren: fill(), RGB, ellipse(), circle(), Variablen.
+  Lernziel:       Alles aus Modul 1 kombinieren: fill(), RGB, ellipse(),
+                  triangle(), Variablen. Das ganze Gesicht haengt an x und y!
   Arbeitsauftrag:  Rekreire, was du in der Vorschau siehst. Spiele danach mit Zahlen, Farben oder Formen herum und beobachte, was passiert, wenn du etwas veränderst.
   Benoetiges Vorwissen: Alles aus Modul 1
   =============================================
@@ -194,12 +197,11 @@
   "m2t1_1": ` 
   =============================================
   Modul:          2
-  Thema:          1 - Das if-Statement
+  Thema:          1 - Bewegung: x = x + 2
   Level:          1
   Boss-Level:     Nein
-  Lernziel:       if (Bedingung) { Anweisungen }
-                  Wenn die Bedingung wahr ist, werden die Anweisungen ausgefuehrt.
-                  mouseX ist die aktuelle x-Position der Maus.
+  Lernziel:       x = x + 2 bedeutet: "Addiere 2 zu x dazu."
+                  draw() laeuft immer wieder - deshalb bewegt sich die Sonne!
   Arbeitsauftrag:  Rekreire, was du in der Vorschau siehst. Spiele danach mit Zahlen, Farben oder Formen herum und beobachte, was passiert, wenn du etwas veränderst.
   Benoetiges Vorwissen: Alles aus Modul 1
   =============================================
@@ -208,179 +210,186 @@
   "m2t1_2": ` 
   =============================================
   Modul:          2
-  Thema:          1 - if: verschiedene Bedingungen
+  Thema:          1 - Bewegung: Geschwindigkeit als Variable
   Level:          2
   Boss-Level:     Nein
-  Lernziel:       mouseY ist die y-Position der Maus (0 = oben, 800 = unten).
-                  > heisst "groesser als", < heisst "kleiner als".
+  Lernziel:       speed speichert, wie schnell sich etwas bewegt.
+                  cloudX = cloudX + speed; - aendere speed und schau was passiert!
   Arbeitsauftrag:  Rekreire, was du in der Vorschau siehst. Spiele danach mit Zahlen, Farben oder Formen herum und beobachte, was passiert, wenn du etwas veränderst.
-  Benoetiges Vorwissen: Level m2t1_1 (if, mouseX)
+  Benoetiges Vorwissen: Level m2t1_1 (Bewegung)
   =============================================
  
 `,
   "m2t1_3": ` 
   =============================================
   Modul:          2
-  Thema:          1 - if / else
+  Thema:          1 - Bewegung: nach oben
   Level:          3
   Boss-Level:     Nein
-  Lernziel:       else bedeutet: "Wenn die Bedingung NICHT stimmt, mache das stattdessen."
-                  if und else: Immer genau einer der Wege wird genommen!
+  Lernziel:       y wird nach unten groesser. Mit y = y - speed bewegt sich
+                  der Ballon nach OBEN.
   Arbeitsauftrag:  Rekreire, was du in der Vorschau siehst. Spiele danach mit Zahlen, Farben oder Formen herum und beobachte, was passiert, wenn du etwas veränderst.
-  Benoetiges Vorwissen: Level m2t1_1, m2t1_2 (if)
+  Benoetiges Vorwissen: Level m2t1_1, m2t1_2 (Bewegung, speed)
   =============================================
  
 `,
   "m2t2_1": ` 
   =============================================
   Modul:          2
-  Thema:          2 - mouseIsPressed
+  Thema:          2 - Zufall: random()
   Level:          1
   Boss-Level:     Nein
-  Lernziel:       mouseIsPressed ist true, wenn du die Maus gedrueckt haelst.
+  Lernziel:       random(800) gibt jedes Mal eine andere Zahl zwischen 0 und 800.
+                  rot = random(0, 255) - so bekommt jedes Konfetti eine neue Farbe!
+                  background() steht in setup(), damit die Punkte liegen bleiben.
   Arbeitsauftrag:  Rekreire, was du in der Vorschau siehst. Spiele danach mit Zahlen, Farben oder Formen herum und beobachte, was passiert, wenn du etwas veränderst.
-  Benoetiges Vorwissen: Level m2t1 (if, else)
+  Benoetiges Vorwissen: Thema 1 (Bewegung)
   =============================================
  
 `,
   "m2t2_2": ` 
   =============================================
   Modul:          2
-  Thema:          2 - else if
+  Thema:          2 - Zufall: diagonale Bewegung
   Level:          2
   Boss-Level:     Nein
-  Lernziel:       else if: mehr als zwei Moeglichkeiten pruefen.
-                  Nur der erste zutreffende Block wird ausgefuehrt!
+  Lernziel:       Jeder Punkt startet an einer zufaelligen Stelle (in setup()).
+                  x und y gleichzeitig aendern = diagonale Bewegung.
   Arbeitsauftrag:  Rekreire, was du in der Vorschau siehst. Spiele danach mit Zahlen, Farben oder Formen herum und beobachte, was passiert, wenn du etwas veränderst.
-  Benoetiges Vorwissen: Level m2t2_1 (mouseIsPressed)
+  Benoetiges Vorwissen: Level m2t2_1 (random)
   =============================================
  
 `,
   "m2t2_3": ` 
   =============================================
   Modul:          2
-  Thema:          2 - Kombination: if + else if + mouseIsPressed
+  Thema:          2 - Zufall: malen mit mouseX und mouseY
   Level:          3
   Boss-Level:     Nein
-  Lernziel:       Mehrere Bedingungen zusammen ergeben spannende Interaktionen!
-  Arbeitsauftrag:  Rekreire, was du in der Vorschau siehst. Spiele danach mit Zahlen, Farben oder Formen herum und beobachte, was passiert, wenn du etwas veränderst.
-  Benoetiges Vorwissen: Level m2t2_1, m2t2_2
+  Lernziel:       mouseX und mouseY sind die Position der Maus.
+                  Mit random() dazu wird daraus eine bunte Spruehdose!
+  Arbeitsauftrag:  Bewege die Maus ueber die Zeichenflaeche. Rekreire, was du in der Vorschau siehst, und probiere danach eigene Farben und Groessen aus.
+  Benoetiges Vorwissen: Level m2t2_1, m2t2_2 (random)
   =============================================
  
 `,
   "m2t3_1": ` 
   =============================================
   Modul:          2
-  Thema:          3 - Animation: Bewegung mit Variablen
+  Thema:          3 - Fische: ein Fisch schwimmt
   Level:          1
   Boss-Level:     Nein
-  Lernziel:       x = x + 3 bedeutet: "Addiere 3 zu x dazu."
-                  Da draw() immer laeuft, bewegt sich der Kreis!
+  Lernziel:       Alle Teile des Fisches haengen an x.
+                  x = x + 3 - und der ganze Fisch schwimmt los!
   Arbeitsauftrag:  Rekreire, was du in der Vorschau siehst. Spiele danach mit Zahlen, Farben oder Formen herum und beobachte, was passiert, wenn du etwas veränderst.
-  Benoetiges Vorwissen: Level m2t2 (if/else, mouseIsPressed)
+  Benoetiges Vorwissen: Thema 1 und 2 (Bewegung, random)
   =============================================
  
 `,
   "m2t3_2": ` 
   =============================================
   Modul:          2
-  Thema:          3 - Animation: Grenze mit if
+  Thema:          3 - Fische: hin und her
   Level:          2
   Boss-Level:     Nein
-  Lernziel:       Wenn der Kreis den Rand erreicht, wird x auf 0 zurueckgesetzt.
+  Lernziel:       Plus = nach rechts, Minus = nach links.
+                  Zwei Fische schwimmen aneinander vorbei, dazu zufaellige Blasen.
   Arbeitsauftrag:  Rekreire, was du in der Vorschau siehst. Spiele danach mit Zahlen, Farben oder Formen herum und beobachte, was passiert, wenn du etwas veränderst.
-  Benoetiges Vorwissen: Level m2t3_1 (Bewegung)
+  Benoetiges Vorwissen: Level m2t3_1 (Fisch)
   =============================================
  
 `,
   "m2t3_3": ` 
   =============================================
   Modul:          2
-  Thema:          3 - Animation: Bouncing Ball
+  Thema:          3 - Fische: Zufalls-Schwarm
   Level:          3
   Boss-Level:     Nein
-  Lernziel:       speed = -speed dreht die Richtung um!
-                  Positiv = rechts, Negativ = links.
+  Lernziel:       Hoehe, Geschwindigkeit und Farbe jedes Fisches sind zufaellig.
+                  rot1, gruen1, blau1 speichern die Farbe vom ersten Fisch.
+                  Jedes Mal Run druecken = ein neuer Schwarm!
   Arbeitsauftrag:  Rekreire, was du in der Vorschau siehst. Spiele danach mit Zahlen, Farben oder Formen herum und beobachte, was passiert, wenn du etwas veränderst.
-  Benoetiges Vorwissen: Level m2t3_1, m2t3_2 (Bewegung, Grenze)
+  Benoetiges Vorwissen: Level m2t3_1, m2t3_2 (Fische)
   =============================================
  
 `,
   "m2t4_1": ` 
   =============================================
   Modul:          2
-  Thema:          4 - Logik: && (UND)
+  Thema:          4 - Zufalls-Groessen: pulsierende Blumen
   Level:          1
   Boss-Level:     Nein
-  Lernziel:       A && B ist nur true, wenn BEIDE Bedingungen gleichzeitig stimmen!
-                  mouseX > 200 && mouseX < 600 = Maus ist zwischen 200 und 600.
+  Lernziel:       random(10, 70) gibt eine Zahl zwischen 10 und 70.
+                  Als Groesse benutzt, wackeln die Blumen wild hin und her.
+                  frameRate(10) macht draw() langsamer: 10 Bilder pro Sekunde.
   Arbeitsauftrag:  Rekreire, was du in der Vorschau siehst. Spiele danach mit Zahlen, Farben oder Formen herum und beobachte, was passiert, wenn du etwas veränderst.
-  Benoetiges Vorwissen: Level m2t3 (Animation)
+  Benoetiges Vorwissen: Thema 2 (random)
   =============================================
  
 `,
   "m2t4_2": ` 
   =============================================
   Modul:          2
-  Thema:          4 - Logik: || (ODER)
+  Thema:          4 - Zufalls-Groessen: Musik-Balken
   Level:          2
   Boss-Level:     Nein
-  Lernziel:       A || B ist true, wenn MINDESTENS EINE Bedingung stimmt.
-                  mouseX < 100 || mouseX > 700 = Maus ganz links ODER rechts.
+  Lernziel:       Jeder Balken bekommt eine zufaellige Hoehe (10 bis 70, mal 8).
+                  So huepfen die Balken wie bei einer Musik-Anzeige!
   Arbeitsauftrag:  Rekreire, was du in der Vorschau siehst. Spiele danach mit Zahlen, Farben oder Formen herum und beobachte, was passiert, wenn du etwas veränderst.
-  Benoetiges Vorwissen: Level m2t4_1 (&&)
+  Benoetiges Vorwissen: Level m2t4_1 (random(10, 70), frameRate)
   =============================================
  
 `,
   "m2t4_3": ` 
   =============================================
   Modul:          2
-  Thema:          4 - Logik: ! (NICHT)
+  Thema:          4 - Zufalls-Groessen: Regenwolke
   Level:          3
   Boss-Level:     Nein
-  Lernziel:       !Bedingung kehrt das Ergebnis um: true wird false, false wird true.
-                  !mouseIsPressed = "Maus wird NICHT gedrueckt."
+  Lernziel:       Die Wolke springt zu zufaelligen x-Stellen und bleibt oben.
+                  Die Regentropfen darunter sind zufaellig
+                  verteilt und zufaellig lang (10 bis 70).
   Arbeitsauftrag:  Rekreire, was du in der Vorschau siehst. Spiele danach mit Zahlen, Farben oder Formen herum und beobachte, was passiert, wenn du etwas veränderst.
-  Benoetiges Vorwissen: Level m2t4_1, m2t4_2 (&&, ||)
+  Benoetiges Vorwissen: Level m2t4_1, m2t4_2 (random, frameRate)
   =============================================
  
 `,
   "m2t5_1": ` 
   =============================================
   Modul:          2
-  Thema:          5 - Interaktion (Boss-Vorstufe 1)
+  Thema:          5 - Kreis-Chaos (Boss-Vorstufe 1)
   Level:          1
   Boss-Level:     Nein
-  Lernziel:       mousePressed() wird EINMALIG aufgerufen, wenn geklickt wird.
-                  mouseReleased() wird EINMALIG aufgerufen, wenn losgelassen wird.
+  Lernziel:       Ein Kreis bekommt in setup() eine zufaellige Richtung
+                  (speedX, speedY) und eine zufaellige Farbe - und fliegt los.
   Arbeitsauftrag:  Rekreire, was du in der Vorschau siehst. Spiele danach mit Zahlen, Farben oder Formen herum und beobachte, was passiert, wenn du etwas veränderst.
-  Benoetiges Vorwissen: Level m2t4 (&&, ||, !)
+  Benoetiges Vorwissen: Thema 1-4
   =============================================
  
 `,
   "m2t5_2": ` 
   =============================================
   Modul:          2
-  Thema:          5 - Interaktion (Boss-Vorstufe 2)
+  Thema:          5 - Kreis-Chaos (Boss-Vorstufe 2)
   Level:          2
   Boss-Level:     Nein
-  Lernziel:       Animation und Interaktion kombinieren.
-                  Der Ball bewegt sich automatisch - die Maus pausiert ihn!
+  Lernziel:       Drei Kreise fliegen in zufaellige Richtungen.
+                  Ohne background() in draw() malen sie bunte Spuren.
   Arbeitsauftrag:  Rekreire, was du in der Vorschau siehst. Spiele danach mit Zahlen, Farben oder Formen herum und beobachte, was passiert, wenn du etwas veränderst.
-  Benoetiges Vorwissen: Level m2t5_1, m2t3_3 (Bouncing Ball)
+  Benoetiges Vorwissen: Level m2t5_1 (ein Kreis-Chaos)
   =============================================
  
 `,
   "m2t5_3": ` 
   =============================================
   Modul:          2
-  Thema:          5
+  Thema:          5 - Kreis-Chaos
   Level:          3 - BOSS-LEVEL
   Boss-Level:     JA
-  Lernziel:       Alles aus Modul 2 kombinieren: if, else if, &&, ||, !,
-                  mouseIsPressed, mousePressed(), mouseReleased().
-  Arbeitsauftrag:
-                   Rekreire, was du in der Vorschau siehst. Spiele danach mit Zahlen, Farben oder Formen herum und beobachte, was passiert, wenn du etwas veränderst.
+  Lernziel:       Alles aus Modul 2 kombinieren: Bewegung, random(), Farb-Variablen,
+                  mouseX und mouseY. mousePressed() wird bei jedem Klick
+                  aufgerufen - dort starten neue Kreise an der Maus.
+  Arbeitsauftrag:  Klicke auf die Zeichenflaeche. Rekreire, was du in der Vorschau siehst, und mach daraus dein eigenes Chaos-Bild.
   Benoetiges Vorwissen: Alles aus Modul 2
   =============================================
  
