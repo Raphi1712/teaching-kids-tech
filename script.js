@@ -369,6 +369,7 @@ async function testBackend(textValue) {
   console.log("Antwort vom Server:", data.reply);
   if (outputEl) {
     outputEl.value += "\nBot: " + data.reply;
+    outputEl.scrollTop = outputEl.scrollHeight;
   }
 }
 function senden() {
@@ -381,7 +382,7 @@ function senden() {
     return;
   }
 
-  const ausgabe = document.getElementById("output");
+  const ausgabe = document.getElementById("outputKI");
 
   ausgabe.value += (ausgabe.value ? "\n" : "") + "Du: " + nachricht;
 console.log("Nachricht an Backend gesendet:", nachricht);
