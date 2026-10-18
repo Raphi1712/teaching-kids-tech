@@ -212,20 +212,21 @@ function extractTaskText(taskSource) {
     return "";
   }
 
-  const match = taskSource.match(/Arbeitsauftrag:\s*([\s\S]*?)\s*Benoetiges Vorwissen:/i);
-  if (match && match[1]) {
-    return match[1]
-      .replace(/^\s*[-*]\s*/gm, '')
-      .replace(/\s+\n/g, '\n')
-      .replace(/\n\s+/g, '\n')
-      .replace(/\s{2,}/g, ' ')
-      .trim();
-  }
-
-  return taskSource
-    .replace(/^\/\*[\s\S]*?\*\/\s*/m, '')
-    .replace(/\s+/g, ' ')
-    .trim();
+  // Ganzen Level-Eintrag zeigen (Thema, Lernziel, Arbeitsauftrag, ...), ohne =====-Linien.
+  // Umgebrochene Zeilen werden an die Zeile mit ihrer Ueberschrift angehaengt.
+  const lines = [];
+  taskSource.split("\n").forEach((rawLine) => {
+    const line = rawLine.trim().replace(/\s+/g, " ");
+    if (!line || /^=+$/.test(line)) {
+      return;
+    }
+    if (/^(Modul|Thema|Level|Boss-Level|Lernziel|Arbeitsauftrag|Benoetiges Vorwissen):/.test(line) || lines.length === 0) {
+      lines.push(line);
+    } else {
+      lines[lines.length - 1] += " " + line;
+    }
+  });
+  return lines.join("\n");
 }
 
 function loadCodeTaskForCurrentLevel() {
