@@ -262,12 +262,21 @@ function loadSolutionForCurrentLevel() {
   return solution
 }
 
+// Code, der eingegeben werden muss, um die Loesung zu sehen
+const LOESUNG_CODE = "1234";
+
 // Loesung anzeigen / verstecken (wird vom HTML-Button aufgerufen)
 function toggleSolution() {
   const content = document.getElementById("solutionContent");
   if (!content) return;
   const isHidden = content.hasAttribute("hidden");
   if (isHidden) {
+    const eingabe = prompt("Code eingeben, um die Lösung zu sehen:");
+    if (eingabe === null) return;
+    if (eingabe.trim() !== LOESUNG_CODE) {
+      alert("Falscher Code.");
+      return;
+    }
     loadSolutionForCurrentLevel();
     content.removeAttribute("hidden");
   } else {
