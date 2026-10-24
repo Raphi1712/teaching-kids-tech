@@ -397,12 +397,12 @@
   "m3t1_1": ` 
   =============================================
   Modul:          3
-  Thema:          1 - Neue Formen: rect()
+  Thema:          1 - if mit der Maus: mouseX
   Level:          1
   Boss-Level:     Nein
-  Lernziel:       rect(x, y, breite, hoehe) zeichnet ein Rechteck.
-                  ACHTUNG: x und y sind die LINKE OBERE ECKE (nicht die Mitte)!
-  Arbeitsauftrag:  Rekreire, was du in der Vorschau siehst. Spiele danach mit Zahlen, Farben oder Formen herum und beobachte, was passiert, wenn du etwas veränderst.
+  Lernziel:       if (Bedingung) { ... } - der Code in den Klammern laeuft nur,
+                  wenn die Bedingung stimmt. mouseX > 400 = Maus ist rechts.
+  Arbeitsauftrag:  Rekreire, was du in der Vorschau siehst. Bewege die Maus nach links und rechts und beobachte, was passiert.
   Benoetiges Vorwissen: Alles aus Modul 1 und 2
   =============================================
  
@@ -410,85 +410,90 @@
   "m3t1_2": ` 
   =============================================
   Modul:          3
-  Thema:          1 - Neue Formen: line()
+  Thema:          1 - if mit der Maus: mouseY
   Level:          2
   Boss-Level:     Nein
-  Lernziel:       line(x1, y1, x2, y2) zeichnet eine Linie von Punkt 1 zu Punkt 2.
-  Arbeitsauftrag:  Rekreire, was du in der Vorschau siehst. Spiele danach mit Zahlen, Farben oder Formen herum und beobachte, was passiert, wenn du etwas veränderst.
-  Benoetiges Vorwissen: Level m3t1_1 (rect)
+  Lernziel:       mouseY ist die Hoehe der Maus (0 = oben, 800 = unten).
+                  In einem if koennen mehrere Befehle stehen: Hintergrund UND Farbe.
+  Arbeitsauftrag:  Rekreire, was du in der Vorschau siehst. Bewege die Maus nach oben und unten und beobachte, was passiert.
+  Benoetiges Vorwissen: Level m3t1_1 (if, mouseX)
   =============================================
  
 `,
   "m3t1_3": ` 
   =============================================
   Modul:          3
-  Thema:          1 - rect() + line() kombiniert: Haus
+  Thema:          1 - if / else: linke und rechte Seite
   Level:          3
   Boss-Level:     Nein
-  Lernziel:       rect() und line() kombinieren um ein Haus zu bauen.
-  Arbeitsauftrag:  Rekreire, was du in der Vorschau siehst. Spiele danach mit Zahlen, Farben oder Formen herum und beobachte, was passiert, wenn du etwas veränderst.
-  Benoetiges Vorwissen: Level m3t1_1 (rect), m3t1_2 (line)
+  Lernziel:       else bedeutet: "Wenn die Bedingung NICHT stimmt, mache das hier."
+                  Es wird immer genau einer der beiden Wege genommen.
+  Arbeitsauftrag:  Rekreire, was du in der Vorschau siehst. Bewege die Maus von links nach rechts.
+  Benoetiges Vorwissen: Level m3t1_1, m3t1_2 (if, mouseX, mouseY)
   =============================================
  
 `,
   "m3t2_1": ` 
   =============================================
   Modul:          3
-  Thema:          2 - Neue Formen: triangle()
+  Thema:          2 - Klick: mouseIsPressed
   Level:          1
   Boss-Level:     Nein
-  Lernziel:       triangle(x1,y1, x2,y2, x3,y3) zeichnet ein Dreieck.
-  Arbeitsauftrag:  Rekreire, was du in der Vorschau siehst. Spiele danach mit Zahlen, Farben oder Formen herum und beobachte, was passiert, wenn du etwas veränderst.
-  Benoetiges Vorwissen: Level m3t1 (rect, line)
+  Lernziel:       mouseIsPressed ist true, solange die Maustaste gedrueckt ist.
+                  if (mouseIsPressed) { ... } else { ... }
+  Arbeitsauftrag:  Rekreire, was du in der Vorschau siehst. Halte die Maustaste gedrueckt und lass sie wieder los.
+  Benoetiges Vorwissen: Thema 1 (if, else)
   =============================================
  
 `,
   "m3t2_2": ` 
   =============================================
   Modul:          3
-  Thema:          2 - stroke() + strokeWeight()
+  Thema:          2 - else if: vier Zonen
   Level:          2
   Boss-Level:     Nein
-  Lernziel:       stroke(R,G,B) = Konturfarbe. strokeWeight(n) = Linienstaerke.
-                  noStroke() entfernt die Kontur komplett.
-  Arbeitsauftrag:  Rekreire, was du in der Vorschau siehst. Spiele danach mit Zahlen, Farben oder Formen herum und beobachte, was passiert, wenn du etwas veränderst.
-  Benoetiges Vorwissen: Level m3t2_1 (triangle)
+  Lernziel:       else if prueft mehr als zwei Moeglichkeiten.
+                  Nur der ERSTE Block, der stimmt, wird ausgefuehrt!
+  Arbeitsauftrag:  Rekreire, was du in der Vorschau siehst. Fahre mit der Maus langsam von links nach rechts durch alle vier Zonen.
+  Benoetiges Vorwissen: Level m3t2_1 (mouseIsPressed, else)
   =============================================
  
 `,
   "m3t2_3": ` 
   =============================================
   Modul:          3
-  Thema:          2 - triangle + stroke + fill: Berglandschaft
+  Thema:          2 - && (UND): Klick und Seite kombiniert
   Level:          3
   Boss-Level:     Nein
-  Lernziel:       triangle(), stroke(), strokeWeight() und fill() kombinieren.
-  Arbeitsauftrag:  Rekreire, was du in der Vorschau siehst. Spiele danach mit Zahlen, Farben oder Formen herum und beobachte, was passiert, wenn du etwas veränderst.
-  Benoetiges Vorwissen: Level m3t2_1 (triangle), m3t2_2 (stroke)
+  Lernziel:       A && B stimmt nur, wenn BEIDE Bedingungen stimmen.
+                  mouseIsPressed && mouseX < 400 = Klick auf der linken Seite.
+  Arbeitsauftrag:  Rekreire, was du in der Vorschau siehst. Probiere alle vier Faelle aus: links/rechts, mit und ohne Klick.
+  Benoetiges Vorwissen: Level m3t2_1, m3t2_2 (mouseIsPressed, else if)
   =============================================
  
 `,
   "m3t3_1": ` 
   =============================================
   Modul:          3
-  Thema:          3 - random()
+  Thema:          3 - Zufall: bunte Kreise
   Level:          1
   Boss-Level:     Nein
-  Lernziel:       random(min, max) gibt jedes Mal eine zufaellige Zahl zurueck.
-  Arbeitsauftrag:  Rekreire, was du in der Vorschau siehst. Spiele danach mit Zahlen, Farben oder Formen herum und beobachte, was passiert, wenn du etwas veränderst.
-  Benoetiges Vorwissen: Level m3t2 (triangle, stroke)
+  Lernziel:       Position, Groesse und Farbe kommen aus random().
+                  background() steht in setup(), damit die Kreise liegen bleiben.
+  Arbeitsauftrag:  Rekreire, was du in der Vorschau siehst. Spiele danach mit den Zahlen in random() herum.
+  Benoetiges Vorwissen: Thema 1 und 2, random() aus Modul 2
   =============================================
  
 `,
   "m3t3_2": ` 
   =============================================
   Modul:          3
-  Thema:          3 - text() und textSize()
+  Thema:          3 - Klick: die Blume springt
   Level:          2
   Boss-Level:     Nein
-  Lernziel:       text(inhalt, x, y) schreibt Text. textSize(n) = Schriftgroesse.
-                  fill() gilt auch fuer Text!
-  Arbeitsauftrag:  Rekreire, was du in der Vorschau siehst. Spiele danach mit Zahlen, Farben oder Formen herum und beobachte, was passiert, wenn du etwas veränderst.
+  Lernziel:       mousePressed() wird bei jedem Klick EINMAL aufgerufen.
+                  Dort bekommt die Blume eine neue zufaellige Position.
+  Arbeitsauftrag:  Rekreire, was du in der Vorschau siehst. Klicke auf die Zeichenflaeche.
   Benoetiges Vorwissen: Level m3t3_1 (random)
   =============================================
  
@@ -496,13 +501,13 @@
   "m3t3_3": ` 
   =============================================
   Modul:          3
-  Thema:          3 - nfc() und Zahlenformatierung
+  Thema:          3 - Treffer: Blumen fangen
   Level:          3
   Boss-Level:     Nein
-  Lernziel:       nfc(zahl, stellen) formatiert Zahlen mit Tausendertrennzeichen.
-                  nfc(12345, 0) ergibt "12,345".
-  Arbeitsauftrag:  Rekreire, was du in der Vorschau siehst. Spiele danach mit Zahlen, Farben oder Formen herum und beobachte, was passiert, wenn du etwas veränderst.
-  Benoetiges Vorwissen: Level m3t3_1, m3t3_2 (random, text)
+  Lernziel:       dist() misst den Abstand zwischen Maus und Blume.
+                  Ist er klein genug, gibt es einen Punkt - sonst einen Punkt Abzug.
+  Arbeitsauftrag:  Rekreire, was du in der Vorschau siehst. Klicke die Blume so oft wie moeglich an.
+  Benoetiges Vorwissen: Level m3t3_1, m3t3_2 (random, mousePressed)
   =============================================
  
 `,
@@ -514,7 +519,7 @@
   Boss-Level:     Nein
   Lernziel:       dist(x1, y1, x2, y2) berechnet den Abstand zwischen zwei Punkten.
   Arbeitsauftrag:  Rekreire, was du in der Vorschau siehst. Spiele danach mit Zahlen, Farben oder Formen herum und beobachte, was passiert, wenn du etwas veränderst.
-  Benoetiges Vorwissen: Level m3t3 (random, text, nfc)
+  Benoetiges Vorwissen: Level m3t3 (random, mousePressed, dist)
   =============================================
  
 `,
@@ -573,8 +578,8 @@
   Thema:          5
   Level:          3 - BOSS-LEVEL
   Boss-Level:     JA
-  Lernziel:       Alles aus Modul 3 kombinieren: rect, line, triangle, stroke,
-                  random, text, nfc, dist. Ergebnis: ein vollstaendiges Klickspiel!
+  Lernziel:       Alles aus Modul 3 kombinieren: if, else if, &&, mousePressed(),
+                  random() und dist(). Ergebnis: ein vollstaendiges Klickspiel!
   Arbeitsauftrag:  Rekreire, was du in der Vorschau siehst. Spiele danach mit Zahlen, Farben oder Formen herum und beobachte, was passiert, wenn du etwas veränderst.
   Benoetiges Vorwissen: Alles aus Modul 3
   =============================================
