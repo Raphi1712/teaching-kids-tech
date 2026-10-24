@@ -173,6 +173,7 @@ function getDefaultCodeForLevel(levelId) {
 function loadEditorForCurrentLevel() {
   const editor = document.getElementById("code");
   loadCodeTaskForCurrentLevel();
+  loadItHelpForCurrentLevel();
   if (!editor) {
     return;
   }
@@ -185,6 +186,44 @@ function loadEditorForCurrentLevel() {
   if (solutionContent) {
     solutionContent.setAttribute("hidden", "");
   }
+}
+
+// IT-Hilfe (technicalexplanation.js) fuer das aktuelle Level ins IT-Fenster schreiben.
+// Jede Zeile "Ueberschrift: Text" wird zu Ueberschrift + Absatz, Code wird hervorgehoben.
+function loadItHelpForCurrentLevel() {
+  const match = (currentLevel || "").match(/^m(\d+)t(\d+)_(\d+)$/i);
+  const text = match ? technicalExplanation[`${match[1]}.${match[2]}.${match[3]}`] : null;
+
+  document.querySelectorAll(".it-help-content").forEach((box) => {
+    box.textContent = "";
+    if (!text) {
+      box.textContent = "Für dieses Level gibt es noch keine IT-Hilfe.";
+      return;
+    }
+    text.trim().split("\n").forEach((rawLine) => {
+      const line = rawLine.trim();
+      if (!line) {
+        return;
+      }
+      const parts = line.match(/^([^:]+):\s*(.*)$/);
+      if (parts) {
+        const heading = document.createElement("h4");
+        heading.textContent = parts[1];
+        box.appendChild(heading);
+      }
+      const paragraph = document.createElement("p");
+      const body = parts ? parts[2] : line;
+      body.split(/([A-Za-z]+\([^()]*\);?|let \w+ = [^;]+;)/).forEach((piece, i) => {
+        if (!piece) {
+          return;
+        }
+        const node = document.createElement(i % 2 === 1 ? "code" : "span");
+        node.textContent = piece;
+        paragraph.appendChild(node);
+      });
+      box.appendChild(paragraph);
+    });
+  });
 }
 
 function saveEditorForCurrentLevel() {
