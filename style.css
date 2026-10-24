@@ -295,6 +295,9 @@ svg {
 .mini-group:target {
   display: inline;
 }
+.mini-group .label {
+  font-size: 10px;
+}
 
 .label {
   fill: white;
