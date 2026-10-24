@@ -263,6 +263,7 @@ function loadSolutionForCurrentLevel() {
 }
 
 // Code, der eingegeben werden muss, um die Loesung zu sehen
+//wenn ddu das über devtools efunden hast gg viel lernen kannst du hier dann eh nicht mehr 
 const LOESUNG_CODE = "1234";
 
 // Loesung anzeigen / verstecken (wird vom HTML-Button aufgerufen)
@@ -274,7 +275,7 @@ function toggleSolution() {
     const eingabe = prompt("Code eingeben, um die Lösung zu sehen:");
     if (eingabe === null) return;
     if (eingabe.trim() !== LOESUNG_CODE) {
-      alert("Falscher Code.");
+      alert("Falscher Code lol.");
       return;
     }
     loadSolutionForCurrentLevel();
