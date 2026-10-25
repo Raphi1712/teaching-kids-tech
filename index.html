@@ -46,6 +46,7 @@
 
     <!-- Ãœbersicht: Einstieg mit den 3 Hauptmodulen -->
     <section class="page" id="overview">
+      <p class="step-hint">Schritt 1 von 4: Wähle ein Modul aus.</p>
       <!-- Schnellaktion zur Formularseite -->
       <div class="top-actions">
         <!-- <a class="action-btn" href="#level-erstellen">Level erstellen</a> -->
@@ -155,6 +156,7 @@
 
     <!-- Mindmap: modul1 -->
     <section class="page" id="modul1">
+      <p class="step-hint">Schritt 2: Klicke auf ein Thema. Schritt 3: Wähle eines der Level 1–3, die daneben erscheinen.</p>
       <!-- Navigation zurÃ¼ck zur Ãœbersicht -->
 
       <!-- Mindmap fÃ¼r Modul 1 -->
@@ -317,6 +319,7 @@
 
     <!-- Mindmap: modul2 -->
     <section class="page" id="modul2">
+      <p class="step-hint">Schritt 2: Klicke auf ein Thema. Schritt 3: Wähle eines der Level 1–3, die daneben erscheinen.</p>
       <!-- Navigation zurück zur Übersicht -->
 
       <!-- Mindmap für Modul 2 -->
@@ -479,6 +482,7 @@
 
     <!-- Mindmap: modul3 -->
     <section class="page" id="modul3">
+      <p class="step-hint">Schritt 2: Klicke auf ein Thema. Schritt 3: Wähle eines der Level 1–3, die daneben erscheinen.</p>
       <!-- Navigation zurück zur Übersicht -->
 
       <!-- Mindmap für Modul 3 -->
@@ -640,6 +644,7 @@
 
     <!-- Seite: CodeUI -->
     <section class="page" id="codeui">
+      <p class="step-hint">Schritt 4: Lies den Arbeitsauftrag (&gt;-), schreibe deinen Code und drücke Run.</p>
       <div id="ausgabe"></div>
       <div class="level-nav-row page-level-nav">
         <button
@@ -672,6 +677,7 @@
       <div class="layout">
         <!-- Code-Eingabe -->
         <section class="panel editor-panel">
+          <div class="panel-title">Dein Code</div>
           <div class="editor-shell">
             <!-- Hohe, schmale Ellipse mit temporaeren Platzhalter-Icons -->
             <div class="tool-ellipse" aria-label="Temporare Icons">
@@ -702,7 +708,7 @@
                 >
               </div>
               <details class="it-help-wrap">
-                <summary class="tool-icon it-help-button" title="IT Hilfe">
+                <summary class="tool-icon it-help-button" title="IT-Hilfe: Erklärung zum Level">
                   IT
                 </summary>
                 <div class="it-help-panel" role="note">
@@ -710,7 +716,7 @@
                 </div>
               </details>
               <button type="button" class="tool-icon" title="Arbeitsauftrag" onclick="printCurrentLevel()">&gt;-</button>
-              <button type="button" class="tool-icon" title="Icon 5">?</button>
+              <button type="button" class="tool-icon" title="Hilfe (kommt bald)">?</button>
             </div>
             <section class="ki-panel" aria-label="KI-Chat">
               <input
@@ -744,8 +750,8 @@ function draw() {
 
           <!-- Aktions-Buttons: Run und Vorschau nebeneinander, je halbe Breite -->
           <div style="display: flex; gap: 6px">
-            <button onclick="run()" style="flex: 1">Run</button>
-            <button onclick="preview()" style="flex: 1">Vorschau</button>
+            <button onclick="run()" style="flex: 1" title="Deinen Code ausführen">Run</button>
+            <button onclick="preview()" style="flex: 1" title="Zeigt, wie das Ergebnis aussehen soll">Vorschau</button>
           </div>
 
           <!-- Lösungs-Rubrik unterhalb des Editors -->
@@ -754,6 +760,7 @@ function draw() {
               type="button"
               class="solution-toggle"
               onclick="toggleSolution()"
+              title="Lösung anzeigen (Code nötig)"
             >
               Lösung anzeigen
             </button>
@@ -770,11 +777,12 @@ function draw() {
 
         <!-- Live-Ausgabe des Codes -->
         <section class="panel preview-panel">
+          <div class="panel-title">Ergebnis (Run = dein Code, Vorschau = Ziel)</div>
           <iframe id="preview"></iframe>
         </section>
         <!-- Konsolenmeldungen/Fehlerausgabe -->
         <section class="panel console-panel">
-          <div class="console-title">Console</div>
+          <div class="console-title">Konsole (Ausgaben von console.log)</div>
           <div id="consoleOutput"></div>
         </section>
       </div>
@@ -836,7 +844,7 @@ function draw() {
                 >
               </div>
               <details class="it-help-wrap">
-                <summary class="tool-icon it-help-button" title="IT Hilfe">
+                <summary class="tool-icon it-help-button" title="IT-Hilfe: Erklärung zum Level">
                   IT
                 </summary>
                 <div class="it-help-panel" role="note">
@@ -844,7 +852,7 @@ function draw() {
                 </div>
               </details>
               <button type="button" class="tool-icon" title="Arbeitsauftrag" onclick="printCurrentLevel()">&gt;-</button>
-              <button type="button" class="tool-icon" title="Icon 5">?</button>
+              <button type="button" class="tool-icon" title="Hilfe (kommt bald)">?</button>
             </div>
             <section class="ki-panel" aria-label="KI-Chat">
               <input
@@ -919,6 +927,7 @@ function draw() {
     </section>
     <!-- Mindmap: modul4 -->
     <section class="page" id="modul4">
+      <p class="step-hint">Schritt 2: Klicke auf ein Thema. Schritt 3: Wähle eines der Level 1–3, die daneben erscheinen.</p>
       <svg viewBox="0 0 700 500">
         <line class="line" x1="350" y1="250" x2="350" y2="80" />
         <line class="line" x1="350" y1="250" x2="512" y2="152" />
@@ -1069,6 +1078,7 @@ function draw() {
 
     <!-- Mindmap: modul5 -->
     <section class="page" id="modul5">
+      <p class="step-hint">Schritt 2: Klicke auf ein Thema. Schritt 3: Wähle eines der Level 1–3, die daneben erscheinen.</p>
       <svg viewBox="0 0 700 500">
         <line class="line" x1="350" y1="250" x2="350" y2="80" />
         <line class="line" x1="350" y1="250" x2="512" y2="152" />
@@ -1219,6 +1229,7 @@ function draw() {
 
     <!-- Mindmap: modul6 -->
     <section class="page" id="modul6">
+      <p class="step-hint">Schritt 2: Klicke auf ein Thema. Schritt 3: Wähle eines der Level 1–3, die daneben erscheinen.</p>
       <svg viewBox="0 0 700 500">
         <line class="line" x1="350" y1="250" x2="350" y2="80" />
         <line class="line" x1="350" y1="250" x2="512" y2="152" />
@@ -1369,6 +1380,7 @@ function draw() {
 
     <!-- Mindmap: modul7 -->
     <section class="page" id="modul7">
+      <p class="step-hint">Schritt 2: Klicke auf ein Thema. Schritt 3: Wähle eines der Level 1–3, die daneben erscheinen.</p>
       <svg viewBox="0 0 700 500">
         <line class="line" x1="350" y1="250" x2="350" y2="80" />
         <line class="line" x1="350" y1="250" x2="512" y2="152" />
@@ -1519,6 +1531,7 @@ function draw() {
 
     <!-- Mindmap: modul8 -->
     <section class="page" id="modul8">
+      <p class="step-hint">Schritt 2: Klicke auf ein Thema. Schritt 3: Wähle eines der Level 1–3, die daneben erscheinen.</p>
       <svg viewBox="0 0 700 500">
         <line class="line" x1="350" y1="250" x2="350" y2="80" />
         <line class="line" x1="350" y1="250" x2="512" y2="152" />
@@ -1669,6 +1682,7 @@ function draw() {
 
     <!-- Mindmap: modul9 -->
     <section class="page" id="modul9">
+      <p class="step-hint">Schritt 2: Klicke auf ein Thema. Schritt 3: Wähle eines der Level 1–3, die daneben erscheinen.</p>
       <svg viewBox="0 0 700 500">
         <line class="line" x1="350" y1="250" x2="350" y2="80" />
         <line class="line" x1="350" y1="250" x2="512" y2="152" />
@@ -1819,6 +1833,7 @@ function draw() {
 
     <!-- Mindmap: modul10 -->
     <section class="page" id="modul10">
+      <p class="step-hint">Schritt 2: Klicke auf ein Thema. Schritt 3: Wähle eines der Level 1–3, die daneben erscheinen.</p>
       <svg viewBox="0 0 700 500">
         <line class="line" x1="350" y1="250" x2="350" y2="80" />
         <line class="line" x1="350" y1="250" x2="512" y2="152" />
@@ -1969,6 +1984,7 @@ function draw() {
 
     <!-- Mindmap: modul11 -->
     <section class="page" id="modul11">
+      <p class="step-hint">Schritt 2: Klicke auf ein Thema. Schritt 3: Wähle eines der Level 1–3, die daneben erscheinen.</p>
       <svg viewBox="0 0 700 500">
         <line class="line" x1="350" y1="250" x2="350" y2="80" />
         <line class="line" x1="350" y1="250" x2="512" y2="152" />
@@ -2119,6 +2135,7 @@ function draw() {
 
     <!-- Mindmap: modul12 -->
     <section class="page" id="modul12">
+      <p class="step-hint">Schritt 2: Klicke auf ein Thema. Schritt 3: Wähle eines der Level 1–3, die daneben erscheinen.</p>
       <svg viewBox="0 0 700 500">
         <line class="line" x1="350" y1="250" x2="350" y2="80" />
         <line class="line" x1="350" y1="250" x2="512" y2="152" />
@@ -2269,6 +2286,7 @@ function draw() {
 
     <!-- Mindmap: modul13 -->
     <section class="page" id="modul13">
+      <p class="step-hint">Schritt 2: Klicke auf ein Thema. Schritt 3: Wähle eines der Level 1–3, die daneben erscheinen.</p>
       <svg viewBox="0 0 700 500">
         <line class="line" x1="350" y1="250" x2="350" y2="80" />
         <line class="line" x1="350" y1="250" x2="512" y2="152" />
@@ -2419,6 +2437,7 @@ function draw() {
 
     <!-- Mindmap: modul14 -->
     <section class="page" id="modul14">
+      <p class="step-hint">Schritt 2: Klicke auf ein Thema. Schritt 3: Wähle eines der Level 1–3, die daneben erscheinen.</p>
       <svg viewBox="0 0 700 500">
         <line class="line" x1="350" y1="250" x2="350" y2="80" />
         <line class="line" x1="350" y1="250" x2="512" y2="152" />
@@ -2569,6 +2588,7 @@ function draw() {
 
     <!-- Mindmap: modul15 -->
     <section class="page" id="modul15">
+      <p class="step-hint">Schritt 2: Klicke auf ein Thema. Schritt 3: Wähle eines der Level 1–3, die daneben erscheinen.</p>
       <svg viewBox="0 0 700 500">
         <line class="line" x1="350" y1="250" x2="350" y2="80" />
         <line class="line" x1="350" y1="250" x2="512" y2="152" />
