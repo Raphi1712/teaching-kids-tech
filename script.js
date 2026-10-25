@@ -36,6 +36,11 @@ function toggleMiniTheme(themeId) {
   }
 
   loadEditorForCurrentLevel();
+
+  // Beim Oeffnen eines Mini-Levels (z. B. m1t2_3) den Arbeitsauftrag automatisch zeigen
+  if (/_\d+$/.test(themeId)) {
+    printCurrentLevel();
+  }
 }
 
 // Zurueck von der CodeUI zur Modul-Seite des aktuellen Levels (mit offenem Thema)
@@ -131,7 +136,7 @@ function stepLevel(offset) {
   window.currentLevel = currentLevel;
 
   loadEditorForCurrentLevel();
-  loadCodeTaskForCurrentLevel();
+  printCurrentLevel();
   loadSolutionForCurrentLevel();
   preview();
 }
@@ -339,6 +344,9 @@ window.addEventListener("DOMContentLoaded", function () {
   updateCurrentLevel();
   loadEditorForCurrentLevel();
   loadCodeTaskForCurrentLevel();
+  if (currentLevel && window.location.hash === "#codeui") {
+    printCurrentLevel();
+  }
 
   const editor = document.getElementById("code");
   if (editor) {
