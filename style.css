@@ -5,30 +5,6 @@
   --module-default-stroke: #2d7a4a;
 }
 
-.floating-coin-icon {
-  position: fixed;
-  top: 14px;
-  right: 14px;
-  width: 77px;
-  height: 77px;
-  border-radius: 23px;
-  border: 2px solid #3f4d63;
-  background: #eef3fb;
-  color: #2a3444;
-  font-size: 41px;
-  font-weight: 700;
-  line-height: 73px;
-  text-align: center;
-  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.18);
-  z-index: 99999;
-  cursor: pointer;
-  display: none;
-}
-
-body:has(#codeui:target) .floating-coin-icon {
-  display: block;
-}
-
 .coin-modal-overlay {
   display: none;
   position: fixed;
