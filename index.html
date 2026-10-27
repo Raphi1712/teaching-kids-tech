@@ -10,9 +10,16 @@
     <!-- Titel im Browser-Tab -->
     <title>App für Informatik</title>
     <style></style>
+    <!-- Gespeichertes Design (hell/dunkel) sofort anwenden, damit nichts aufblitzt -->
+    <script>
+      if (localStorage.getItem("theme") === "light") {
+        document.documentElement.classList.add("light");
+      }
+    </script>
     <!-- IDE pull test succes -->
   </head>
   <body>
+    <button type="button" class="theme-toggle" onclick="toggleTheme()" title="Zwischen hellem und dunklem Design wechseln">☀ Hell</button>
     <!-- Modal: Notizfeld für $ Button -->
     <div
       id="coin-modal"

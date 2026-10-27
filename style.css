@@ -1245,3 +1245,73 @@ body:has(#codeuiOwnlevel:target) .bottom-bar {
   margin: 5px 0;
   border-radius: 5px;
 }
+
+/* ===== Helles Design (alte Farben), aktiv wenn <html class="light"> =====
+   Umschalten ueber den Hell/Dunkel-Knopf oben rechts (toggleTheme in script.js). */
+html.light { color-scheme: light; }
+html.light body { background: #f6f7fb; color: #000; }
+html.light .coin-modal-box { background: #f7fbff; border: 1px solid #d7e8ff; box-shadow: 0 10px 30px rgba(26, 76, 140, 0.18); }
+html.light .coin-modal-title { color: #1d4f8d; }
+html.light .coin-modal-close { color: #555; }
+html.light .coin-modal-textarea { border: 1px solid #b9d4f8; color: #1b4d8f; background: #ffffff; box-shadow: inset 0 1px 4px rgba(51, 102, 170, 0.08); }
+html.light .coin-modal-textarea:focus { border-color: #3f7ecf; box-shadow: 0 0 0 3px rgba(63, 126, 207, 0.12); }
+html.light .overview-title,
+html.light .overview-sub { fill: #000000; }
+html.light .module-tooltip { fill: #000000; }
+html.light .level-card { background: white; }
+html.light .level-card h2 { color: #1f3550; }
+html.light .level-form label { color: #27405f; }
+html.light .level-form input,
+html.light .level-form textarea { border: 1px solid #b8c5d3; }
+html.light .hint { color: #4d657f; }
+html.light .panel { background: #ffffff; border: 1px solid #e3e5ee; box-shadow: 0 10px 20px rgba(0, 0, 0, 0.06); }
+html.light .level-task-panel { border: 1px solid #dfe9ff; background: #f3f8ff; color: #1d4f8d; }
+html.light .level-task-panel.is-empty { color: #60738a; }
+html.light .editor-shell { border: 1px solid #cfd4e6; background: #ffffff; }
+html.light .editor-shell > .tool-ellipse { border: 1px solid #cfd4e6; background: linear-gradient(180deg, #f8fbff, #edf2fb); }
+html.light .tool-icon { border: 1px solid #b8c5d8; background: #ffffff; color: #33516f; }
+html.light .tool-icon:hover { background: #f3f8ff; }
+html.light .p5-hover-hint { border: 1px solid #c8d8ee; background: #ffffff; color: #2a4867; }
+html.light .p5-hover-hint a { color: #1f64b5; }
+html.light .it-help-wrap[open] .it-help-button { background: #f3f8ff; }
+html.light .it-help-panel { border: 1px solid #c8d8ee; background: #ffffff; }
+html.light .it-help-content { color: #2a4867; }
+html.light .it-help-content h4 { color: #1d3a5f; }
+html.light .it-help-content code { background: #eef4fc; color: #12355e; }
+html.light .line-numbers { background: #f1f3fa; border-right: 1px solid #d9deec; color: #7e879f; }
+html.light #code { background: #ffffff; color: #000; }
+:where(html.light) button { background: linear-gradient(135deg, #ff5f6d, #ff7e2d); }
+html.light #preview { border: 2px solid #222; background: #fff; }
+html.light .bottom-bar { background: #ffffff; border-top: 1px solid #e3e5ee; }
+html.light .ki-panel { border: 2px solid #9fb5d8; background: rgba(246, 251, 255, 0.98); }
+html.light .ki-panel input,
+html.light .ki-panel textarea { border: 1px solid #c5d4ec; background: #ffffff; color: #000; }
+html.light .ki-panel #status { color: #2f4464; }
+html.light .step-hint { color: #2f4464; }
+html.light .panel-title { color: #4a5a73; }
+html.light .solution-toggle { color: #27405f; background: linear-gradient(135deg, #e8f4fd, #d0e8f7); border: 1px solid #b8cfe8; }
+html.light .solution-toggle:hover { background: linear-gradient(135deg, #d4ecfa, #b8daf5); }
+html.light .solution-content { border: 1px solid #b8cfe8; }
+html.light .solution-textarea { background: #f7fbff; color: #27405f; }
+html.light .nachricht { background-color: #f0f0f0; }
+
+/* Hell/Dunkel-Knopf oben rechts */
+.theme-toggle {
+  position: fixed;
+  top: 12px;
+  right: 12px;
+  z-index: 1000;
+  margin: 0;
+  padding: 8px 14px;
+  font-size: 14px;
+  border: 1px solid #4a525e;
+  border-radius: 999px;
+  background: #3a414c;
+  color: #e6e9ee;
+  box-shadow: none;
+}
+html.light .theme-toggle {
+  border-color: #b8c5d8;
+  background: #ffffff;
+  color: #33516f;
+}

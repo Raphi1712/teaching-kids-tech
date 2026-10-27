@@ -361,6 +361,22 @@ function preview() {
   runCommon("code", "preview", "consoleOutput", levelSolutionCache[currentLevel]);
 }
 
+// Zwischen dunklem (Standard) und hellem Design wechseln; Auswahl wird gespeichert
+function updateThemeButton() {
+  const isLight = document.documentElement.classList.contains("light");
+  document.querySelectorAll(".theme-toggle").forEach((button) => {
+    button.textContent = isLight ? "🌙 Dunkel" : "☀ Hell";
+  });
+}
+
+function toggleTheme() {
+  const isLight = document.documentElement.classList.toggle("light");
+  localStorage.setItem("theme", isLight ? "light" : "dark");
+  updateThemeButton();
+}
+
+window.addEventListener("DOMContentLoaded", updateThemeButton);
+
 // IT-Hilfe und KI-Chat schliessen, wenn man ausserhalb klickt (z. B. auf Run oder in den Code)
 document.addEventListener("click", function (event) {
   document.querySelectorAll(".it-help-wrap[open]").forEach((wrap) => {
