@@ -338,6 +338,39 @@ function buildCodePrefix(consoleId) {
     out.innerHTML += '<div>> ' + message + '</div>';
     oldLog.apply(console, arguments);
   };
+
+  // Fehler im Code rot in der Konsole anzeigen (jeden Fehler nur einmal, auch wenn draw() ihn wiederholt)
+  const shownErrors = new Set();
+  const errorNames = {
+    SyntaxError: "Tippfehler im Code (z. B. Klammer, Komma oder Semikolon)",
+    ReferenceError: "Unbekannter Name (Tippfehler oder Variable nicht erstellt?)",
+    TypeError: "Falsche Verwendung (z. B. etwas aufgerufen, das keine Funktion ist)",
+  };
+  function showError(error, message, filename, lineno) {
+    const stackLine = error && error.stack && error.stack.match(/about:srcdoc:(\\d+)/);
+    let line = stackLine ? Number(stackLine[1]) : lineno;
+    const fromUserCode = stackLine || !filename || filename === "about:srcdoc";
+    line = fromUserCode && line ? line - window.__lineOffset : 0;
+    const name = (error && error.name) || (String(message).match(/(\\w+Error)/) || [])[1];
+    const text = (line > 0 ? "Fehler in Zeile " + line : "Fehler") + ": " +
+      (errorNames[name] ? errorNames[name] + " - " : "") +
+      String(message).replace(/^Uncaught /, "");
+    if (shownErrors.has(text)) return;
+    shownErrors.add(text);
+    const out = window.parent.document.getElementById("${consoleId}");
+    const entry = window.parent.document.createElement("div");
+    entry.className = "console-entry-error";
+    entry.textContent = "❌ " + text;
+    out.appendChild(entry);
+  }
+  window.addEventListener("error", function (event) {
+    showError(event.error, event.message, event.filename, event.lineno);
+  });
+  // p5 startet setup() asynchron: Fehler dort kommen als "unhandledrejection"
+  window.addEventListener("unhandledrejection", function (event) {
+    const error = event.reason;
+    showError(error, error && error.name ? error.name + ": " + error.message : error, "", 0);
+  });
 })();`;
 }
 window.addEventListener("DOMContentLoaded", function () {
@@ -411,15 +444,21 @@ function runCommon(codeId, previewId, consoleId, codeOverride = null) {
   consoleElement.innerHTML = "";
   const codePrefix = buildCodePrefix(consoleId);
 
-  frame.srcdoc = `
+  // Eigener <script> fuer den Schueler-Code, damit ein Tippfehler darin die Fehleranzeige nicht verhindert.
+  // __lineOffset = Zeilen vor dem Code, damit die Fehler-Zeile zur Zeile im Editor passt.
+  const beforeCode = `
     <html>
     <head>
       <script src="min.js"><\/script>
-    </head>
-    <body>
       <script>
    ${codePrefix}
-   ${code}
+      <\/script>
+    </head>
+    <body>
+      <script>window.__lineOffset = LINE_OFFSET;<\/script><script>
+`;
+  const lineOffset = beforeCode.split("\n").length - 1;
+  frame.srcdoc = beforeCode.replace("LINE_OFFSET", lineOffset) + `${code}
       <\/script>
     </body>
     </html>

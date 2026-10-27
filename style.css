@@ -1080,6 +1080,10 @@ body {
   color: var(--console-text);
 }
 
+.console-entry-error {
+  color: #ff6b6b;
+}
+
 .token-keyword {
   color: var(--token-keyword);
   font-weight: 700;
