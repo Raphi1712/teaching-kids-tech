@@ -1,4 +1,22 @@
 let technicalExplanation = {
+  "1.1.1": `
+Werkzeuge: In diesem Auftrag verwenden wir Funktionen und Methoden.
+Verwendung: Eine Zeichenfläche erstellst du so: createCanvas(<Breite>, <Höhe>);. Beispiel: createCanvas(800, 800);. Mit background(<Rot>, <Grün>, <Blau>); färbst du den Hintergrund. Beispiel: background(250, 0, 0); erzeugt Rot.
+Zusammenspiel: Beim Start erstellt setup() einmal eine 800 × 800 Pixel große Zeichenfläche. Danach wird draw() fortlaufend wiederholt. Dabei färbt background(250, 0, 0); die ganze Zeichenfläche rot.
+Wichtige Tipps: setup() läuft nur einmal am Anfang, draw() immer wieder. Jeder Befehl endet mit einem Semikolon. Die drei Werte in background() stehen für Rot, Grün und Blau und gehen jeweils von 0 bis 255. Achte darauf, dass jede geöffnete Klammer { auch wieder mit } geschlossen wird.
+`,
+  "1.1.2": `
+Werkzeuge: In diesem Auftrag verwenden wir Funktionen und Methoden.
+Verwendung: Mit nur einem Wert in background(<Helligkeit>); färbst du den Hintergrund grau. Beispiel: background(80); ergibt Dunkelgrau. Eine Ellipse schreibst du so: ellipse(<x-Position>, <y-Position>, <Breite>, <Höhe>);. Beispiel: ellipse(400, 400, 250, 250);. Mit fill(<Rot>, <Grün>, <Blau>); legst du vorher ihre Farbe fest.
+Zusammenspiel: Beim Start erstellt setup() einmal eine 800 × 800 Pixel große Zeichenfläche. Danach wird draw() fortlaufend wiederholt. Zuerst färbt background(80); den Hintergrund dunkelgrau. Dann legt fill(255, 220, 0); die Farbe Gelb fest und ellipse(400, 400, 250, 250); zeichnet einen gelben Kreis in die Mitte.
+Wichtige Tipps: Bei nur einem Wert in background() gilt: 0 ist Schwarz, 255 ist Weiß. Die Mitte der Zeichenfläche liegt bei x = 400 und y = 400. fill() muss vor der Ellipse stehen, damit sie die gewünschte Farbe erhält. Sind Breite und Höhe gleich, entsteht ein Kreis.
+`,
+  "1.1.3": `
+Werkzeuge: In diesem Auftrag verwenden wir Funktionen und Methoden.
+Verwendung: Einen Kreis schreibst du so: circle(<x-Position>, <y-Position>, <Durchmesser>);. Ein Rechteck erstellst du mit rect(<x>, <y>, <Breite>, <Höhe>);. Text schreibst du mit text("<Text>", <x>, <y>); und die Schriftgröße legst du vorher mit textSize(<Größe>); fest. Beispiel: textSize(64);.
+Zusammenspiel: Beim Start erstellt setup() einmal eine 800 × 800 Pixel große Zeichenfläche. Danach wird draw() fortlaufend wiederholt. Zuerst färbt background(180, 220, 255); den Hintergrund hellblau. Anschließend zeichnet das Programm eine gelbe Sonne, eine orange Bodenfläche und den dunklen Text „Hallo, p5!“.
+Wichtige Tipps: Bei rect() geben die ersten beiden Werte die linke obere Ecke an. Bei text() muss der Text in Anführungszeichen stehen. textSize() muss vor text() stehen. fill() bestimmt auch die Farbe des Textes, deshalb steht vor dem Text ein dunkles fill(40, 40, 60);.
+`,
   "1.2.1": `
 Werkzeuge: In diesem Auftrag verwenden wir Funktionen und Methoden.
 Verwendung: Ein Rechteck schreibst du so: rect(<x-Position>, <y-Position>, <Breite>, <Höhe>);. Beispiel: rect(90, 250, 180, 300);. Mit fill(<Rot>, <Grün>, <Blau>); legst du vorher seine Farbe fest. Beispiel: fill(255, 0, 0); erzeugt Rot.

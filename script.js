@@ -361,6 +361,20 @@ function preview() {
   runCommon("code", "preview", "consoleOutput", levelSolutionCache[currentLevel]);
 }
 
+// IT-Hilfe und KI-Chat schliessen, wenn man ausserhalb klickt (z. B. auf Run oder in den Code)
+document.addEventListener("click", function (event) {
+  document.querySelectorAll(".it-help-wrap[open]").forEach((wrap) => {
+    if (!wrap.contains(event.target)) {
+      wrap.open = false;
+    }
+  });
+  document.querySelectorAll(".ki-panel.is-open").forEach((panel) => {
+    if (!panel.contains(event.target) && !event.target.closest('[onclick="toggleKiPanel()"]')) {
+      panel.classList.remove("is-open");
+    }
+  });
+});
+
 function toggleKiPanel() {
   const panel = document.querySelector(".ki-panel");
   if (!panel) {
