@@ -6,73 +6,6 @@
   --module-default-stroke: #2d7a4a;
 }
 
-.coin-modal-overlay {
-  display: none;
-  position: fixed;
-  inset: 0;
-  background: rgba(0, 0, 0, 0.45);
-  z-index: 999999;
-  justify-content: center;
-  align-items: center;
-}
-
-.coin-modal-box {
-  background: #2a2f37;
-  border: 1px solid #3d444f;
-  border-radius: 18px;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
-  padding: 20px 22px 18px;
-  width: min(760px, 90vw);
-  max-width: 90vw;
-  position: relative;
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
-}
-
-.coin-modal-title {
-  margin: 0 0 6px 0;
-  font-size: 18px;
-  font-weight: 700;
-  font-family: "Segoe UI", Tahoma, Arial, sans-serif;
-  color: #7fd39f;
-  letter-spacing: 0.02em;
-}
-
-.coin-modal-close {
-  position: absolute;
-  top: 10px;
-  right: 12px;
-  background: none;
-  border: none;
-  font-size: 18px;
-  cursor: pointer;
-  color: #b8c0cb;
-}
-
-.coin-modal-textarea {
-  width: 100%;
-  min-height: 440px;
-  height: 440px;
-  resize: vertical;
-  border: 1px solid #4a525e;
-  border-radius: 12px;
-  padding: 18px 18px;
-  font-size: 16px;
-  line-height: 1.8;
-  font-family: "Segoe UI", Tahoma, Arial, sans-serif;
-  color: #e6e9ee;
-  background: #23272e;
-  box-sizing: border-box;
-  outline: none;
-  box-shadow: inset 0 1px 4px rgba(0, 0, 0, 0.3);
-}
-
-.coin-modal-textarea:focus {
-  border-color: #2f9e5b;
-  box-shadow: 0 0 0 3px rgba(47, 158, 91, 0.25);
-}
-
 body {
   margin: 0;
   background: #1f2329;
@@ -659,18 +592,18 @@ body {
   justify-content: space-evenly;
   gap: 0;
   box-sizing: border-box;
-  padding: 10px 8px;
+  padding: 10px 5px;
   transform: none;
 }
 
 .tool-icon {
-  width: 38px;
-  height: 38px;
+  width: 46px;
+  height: 46px;
   border-radius: 50%;
   border: 1px solid #4a525e;
   background: #3a414c;
   color: #e6e9ee;
-  font-size: 19px;
+  font-size: 21px;
   font-weight: 700;
   margin-top: 0;
   padding: 0;
@@ -690,75 +623,23 @@ body {
   box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
 }
 
-.p5-help-button {
-  position: relative;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  text-decoration: none;
-}
-
-.p5-hover-hint {
-  position: absolute;
-  left: 66px;
-  top: 26px;
-  z-index: 12;
-  width: 220px;
-  padding: 8px 10px;
-  border: 1px solid #4a525e;
-  border-radius: 8px;
-  background: #2a2f37;
-  color: #d7dce3;
-  font-size: 12px;
-  line-height: 1.4;
-  box-shadow: 0 8px 18px rgba(0, 0, 0, 0.14);
-  opacity: 0;
-  pointer-events: none;
-  transform: translateY(4px);
-  transition: opacity 0.16s ease, transform 0.16s ease;
-}
-
-.p5-hover-hint a {
-  color: #8fc2ff;
-  font-weight: 600;
-  text-decoration: underline;
-}
-
-.p5-help-button:hover + .p5-hover-hint,
-.p5-hover-hint:hover {
-  opacity: 1;
-  pointer-events: auto;
-  transform: translateY(0);
-}
-
-.it-help-button {
-  list-style: none;
-  position: relative;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.it-help-button::-webkit-details-marker {
-  display: none;
-}
-
-.it-help-wrap[open] .it-help-button {
+/* Fenster neben der Werkzeugleiste (Arbeitsauftrag, KI, P5, IT): alle gleich gross und gleich gestaltet */
+.tool-icon.is-open {
   background: #46505d;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.12);
+  box-shadow: 0 0 0 2px #2f9e5b;
 }
 
-/* Fuellt den Editor rechts neben der Werkzeugleiste (wie das KI-Fenster).
-   Positioniert relativ zur .tool-ellipse, Breite ueber die Breite von .editor-shell (cqw). */
-.it-help-panel {
+.tool-panel {
+  display: none;
   position: absolute;
-  left: 64px;
-  top: 0;
-  bottom: 0;
+  left: 72px;
+  top: 8px;
+  bottom: 8px;
+  right: 8px;
   z-index: 12;
-  width: calc(100cqw - 8px);
-  overflow-y: auto;
-  padding: 16px 20px;
+  flex-direction: column;
+  gap: 10px;
+  padding: 14px 20px 16px;
   border: 1px solid #4a525e;
   border-radius: 10px;
   background: #2a2f37;
@@ -766,28 +647,75 @@ body {
   box-sizing: border-box;
 }
 
-.it-help-content {
+.tool-panel.is-open {
+  display: flex;
+}
+
+.tool-panel-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+.tool-panel-title {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  font-size: 18px;
+  color: #7fd39f;
+}
+
+.tool-panel-close {
+  flex: 0 0 auto;
+  width: 34px;
+  height: 34px;
+  margin: 0;
+  padding: 0;
+  border: 1px solid #4a525e;
+  border-radius: 50%;
+  background: #3a414c;
+  color: #e6e9ee;
+  font-size: 15px;
+  line-height: 1;
+  box-shadow: none;
+}
+
+.tool-panel-close:hover {
+  transform: none;
+  filter: none;
+  background: #46505d;
+}
+
+.tool-panel-content {
+  flex: 1;
+  min-height: 0;
+  overflow-y: auto;
   font-family: Arial, sans-serif;
   font-size: 16px;
   line-height: 1.6;
   color: #d7dce3;
 }
 
-.it-help-content h4 {
+.tool-panel-content h4 {
   margin: 14px 0 4px;
   font-size: 17px;
   color: #7fd39f;
 }
 
-.it-help-content h4:first-child {
+.tool-panel-content h4:first-child {
   margin-top: 0;
 }
 
-.it-help-content p {
+.tool-panel-content p {
   margin: 0;
 }
 
-.it-help-content code {
+.tool-panel-content .task-meta {
+  margin-bottom: 4px;
+  font-weight: 700;
+}
+
+.tool-panel-content code {
   padding: 1px 5px;
   border-radius: 4px;
   background: #1f2329;
@@ -796,8 +724,15 @@ body {
   color: #a8e6c1;
 }
 
-.it-help-wrap:not([open]) .it-help-panel {
-  display: none;
+.p5-reference-link {
+  display: inline-block;
+  margin-top: 14px;
+  padding: 10px 16px;
+  border-radius: 8px;
+  background: linear-gradient(135deg, #2f9e5b, #23864a);
+  color: #ffffff;
+  font-weight: 700;
+  text-decoration: none;
 }
 
 .line-numbers {
@@ -913,28 +848,6 @@ body {
   gap: 10px;
 }
 
-.ki-panel {
-  display: none;
-  position: absolute;
-  left: 72px;
-  top: 8px;
-  z-index: 9;
-  width: min(440px, calc(100% - 84px));
-  height: calc(100% - 16px);
-  padding: 12px;
-  box-sizing: border-box;
-  border: 2px solid #4a525e;
-  border-radius: 10px;
-  background: rgba(42, 47, 55, 0.98);
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.18);
-  flex-direction: column;
-  gap: 10px;
-}
-
-.ki-panel.is-open {
-  display: flex;
-}
-
 .ki-panel input,
 .ki-panel textarea {
   width: 100%;
@@ -944,28 +857,36 @@ body {
   box-sizing: border-box;
   background: #23272e;
   color: #e6e9ee;
-  font-size: 14px;
+  font-size: 16px;
+  line-height: 1.6;
   font-family: Arial, sans-serif;
 }
 
 .ki-panel textarea {
   flex: 1;
-  min-height: 120px;
-  resize: vertical;
+  min-height: 0;
+  resize: none;
 }
 
 .ki-panel #status {
-  min-height: 20px;
-  font-size: 13px;
+  font-size: 14px;
   color: #b8c0cb;
 }
 
-.ki-panel button {
+.ki-panel #status:empty {
+  display: none;
+}
+
+.ki-input-row {
+  display: flex;
+  gap: 8px;
+}
+
+.ki-input-row button {
   margin-top: 0;
   padding: 10px 16px;
   font-size: 16px;
   border-radius: 8px;
-  align-self: flex-end;
 }
 
 .level-nav-row {
@@ -1224,9 +1145,8 @@ body {
     font-size: 17px;
   }
 
-  .ki-panel {
-    left: 60px;
-    width: calc(100% - 68px);
+  .tool-panel {
+    left: 62px;
   }
 }
 body:not(:has(#codeui:target)):not(:has(#codeuiOwnlevel:target)) .layout,
@@ -1251,14 +1171,9 @@ body:has(#codeuiOwnlevel:target) .bottom-bar {
 }
 
 /* ===== Helles Design (alte Farben), aktiv wenn <html class="light"> =====
-   Umschalten ueber den Hell/Dunkel-Knopf oben rechts (toggleTheme in script.js). */
+   Umschalten ueber die Einstellungen (Zahnrad oben rechts, setTheme in script.js). */
 html.light { color-scheme: light; }
 html.light body { background: #f6f7fb; color: #000; }
-html.light .coin-modal-box { background: #f7fbff; border: 1px solid #d7e8ff; box-shadow: 0 10px 30px rgba(26, 76, 140, 0.18); }
-html.light .coin-modal-title { color: #1d4f8d; }
-html.light .coin-modal-close { color: #555; }
-html.light .coin-modal-textarea { border: 1px solid #b9d4f8; color: #1b4d8f; background: #ffffff; box-shadow: inset 0 1px 4px rgba(51, 102, 170, 0.08); }
-html.light .coin-modal-textarea:focus { border-color: #3f7ecf; box-shadow: 0 0 0 3px rgba(63, 126, 207, 0.12); }
 html.light .overview-title,
 html.light .overview-sub { fill: #000000; }
 html.light .module-tooltip { fill: #000000; }
@@ -1275,19 +1190,18 @@ html.light .editor-shell { border: 1px solid #cfd4e6; background: #ffffff; }
 html.light .editor-shell > .tool-ellipse { border: 1px solid #cfd4e6; background: linear-gradient(180deg, #f8fbff, #edf2fb); }
 html.light .tool-icon { border: 1px solid #b8c5d8; background: #ffffff; color: #33516f; }
 html.light .tool-icon:hover { background: #f3f8ff; }
-html.light .p5-hover-hint { border: 1px solid #c8d8ee; background: #ffffff; color: #2a4867; }
-html.light .p5-hover-hint a { color: #1f64b5; }
-html.light .it-help-wrap[open] .it-help-button { background: #f3f8ff; }
-html.light .it-help-panel { border: 1px solid #c8d8ee; background: #ffffff; }
-html.light .it-help-content { color: #2a4867; }
-html.light .it-help-content h4 { color: #1d3a5f; }
-html.light .it-help-content code { background: #eef4fc; color: #12355e; }
+html.light .tool-panel-content { color: #2a4867; }
+html.light .tool-panel-content h4 { color: #1d3a5f; }
+html.light .tool-panel-content code { background: #eef4fc; color: #12355e; }
 html.light .line-numbers { background: #f1f3fa; border-right: 1px solid #d9deec; color: #7e879f; }
 html.light #code { background: #ffffff; color: #000; }
 :where(html.light) button { background: linear-gradient(135deg, #ff5f6d, #ff7e2d); }
 html.light #preview { border: 2px solid #222; background: #fff; }
 html.light .bottom-bar { background: #ffffff; border-top: 1px solid #e3e5ee; }
-html.light .ki-panel { border: 2px solid #9fb5d8; background: rgba(246, 251, 255, 0.98); }
+html.light .tool-panel { border: 1px solid #c8d8ee; background: #ffffff; }
+html.light .tool-panel-title { color: #1d3a5f; }
+html.light .tool-panel-close { border-color: #b8c5d8; background: #ffffff; color: #33516f; }
+html.light .tool-icon.is-open { background: #f3f8ff; box-shadow: 0 0 0 2px #3f7ecf; }
 html.light .ki-panel input,
 html.light .ki-panel textarea { border: 1px solid #c5d4ec; background: #ffffff; color: #000; }
 html.light .ki-panel #status { color: #2f4464; }
@@ -1299,23 +1213,82 @@ html.light .solution-content { border: 1px solid #b8cfe8; }
 html.light .solution-textarea { background: #f7fbff; color: #27405f; }
 html.light .nachricht { background-color: #f0f0f0; }
 
-/* Hell/Dunkel-Knopf oben rechts */
-.theme-toggle {
+/* Einstellungen: Zahnrad oben rechts mit Menue fuer Sprache und Design */
+.settings {
   position: fixed;
   top: 12px;
   right: 12px;
   z-index: 1000;
+}
+
+.settings-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
   margin: 0;
-  padding: 8px 14px;
-  font-size: 14px;
+  padding: 0;
   border: 1px solid #4a525e;
-  border-radius: 999px;
+  border-radius: 50%;
   background: #3a414c;
   color: #e6e9ee;
   box-shadow: none;
 }
-html.light .theme-toggle {
+
+.settings-menu {
+  position: absolute;
+  top: 52px;
+  right: 0;
+  width: 230px;
+  padding: 12px 14px 14px;
+  border: 1px solid #4a525e;
+  border-radius: 12px;
+  background: #2a2f37;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+}
+
+.settings-menu[hidden] {
+  display: none;
+}
+
+.settings-label {
+  margin: 4px 0 6px;
+  font-size: 14px;
+  font-weight: 700;
+  color: #7fd39f;
+}
+
+.settings-options {
+  display: flex;
+  gap: 6px;
+  margin-bottom: 8px;
+}
+
+.settings-option {
+  flex: 1;
+  margin: 0;
+  padding: 8px 6px;
+  font-size: 14px;
+  border: 1px solid #4a525e;
+  border-radius: 8px;
+  background: #3a414c;
+  color: #e6e9ee;
+  box-shadow: none;
+}
+
+.settings-option.is-active {
+  border-color: #2f9e5b;
+  background: #2f9e5b;
+  color: #ffffff;
+}
+
+html.light .settings-button,
+html.light .settings-option {
   border-color: #b8c5d8;
   background: #ffffff;
   color: #33516f;
 }
+html.light .settings-menu { border-color: #c8d8ee; background: #ffffff; box-shadow: 0 10px 30px rgba(26, 76, 140, 0.18); }
+html.light .settings-label { color: #1d4f8d; }
+html.light .settings-option.is-active { border-color: #3f7ecf; background: #3f7ecf; color: #ffffff; }

@@ -270,3 +270,277 @@ Zusammenspiel: Beim Start erstellt setup() einmal eine 800 × 800 Pixel große Z
 Wichtige Tipps: || bedeutet „oder“, >= „größer oder gleich“. v1X = -v1X kehrt die horizontale Richtung um; bei der y-Geschwindigkeit funktioniert es genauso. Durchmesser 70 ergibt Trefferradius 35; genau 35 Pixel zählen nicht. max(0, punkte - 6) verhindert negative Punkte, nfc(punkte, 0) zeigt sie ohne Nachkommastellen. return verhindert nach Spielende weitere Bewegung und Klickauswertung, beendet aber nicht die Wiederholung von draw(). Treffen beide Ziele gleichzeitig, zählt der Klick einmal und beide werden versetzt. Die zusätzlichen Zeichen nach der letzten Funktionsklammer gehören nicht zum eigenständigen Sketch und müssen dort entfernt werden.
 `,
 };
+
+// Englische IT-Hilfe (Sprache "English" in den Einstellungen)
+const technicalExplanationEn = {
+  "1.1.1": `
+Tools: In this task we use functions and methods.
+Usage: You create a canvas like this: createCanvas(<width>, <height>);. Example: createCanvas(800, 800);. With background(<red>, <green>, <blue>); you color the background. Example: background(250, 0, 0); makes red.
+How it works together: At the start, setup() creates an 800 × 800 pixel canvas once. After that, draw() is repeated over and over. Each time, background(250, 0, 0); colors the whole canvas red.
+Important tips: setup() runs only once at the start, draw() runs again and again. Every command ends with a semicolon. The three values in background() stand for red, green and blue, and each one goes from 0 to 255. Make sure that every opening bracket { is closed again with }.
+`,
+  "1.1.2": `
+Tools: In this task we use functions and methods.
+Usage: With only one value in background(<brightness>); you color the background gray. Example: background(80); makes dark gray. You write an ellipse like this: ellipse(<x-position>, <y-position>, <width>, <height>);. Example: ellipse(400, 400, 250, 250);. With fill(<red>, <green>, <blue>); you set its color first.
+How it works together: At the start, setup() creates an 800 × 800 pixel canvas once. After that, draw() is repeated over and over. First, background(80); colors the background dark gray. Then fill(255, 220, 0); sets the color to yellow and ellipse(400, 400, 250, 250); draws a yellow circle in the middle.
+Important tips: With only one value in background(), 0 is black and 255 is white. The middle of the canvas is at x = 400 and y = 400. fill() must come before the ellipse so that it gets the color you want. If the width and height are the same, you get a circle.
+`,
+  "1.1.3": `
+Tools: In this task we use functions and methods.
+Usage: You write a circle like this: circle(<x-position>, <y-position>, <diameter>);. You create a rectangle with rect(<x>, <y>, <width>, <height>);. You write text with text("<text>", <x>, <y>); and you set the font size first with textSize(<size>);. Example: textSize(64);.
+How it works together: At the start, setup() creates an 800 × 800 pixel canvas once. After that, draw() is repeated over and over. First, background(180, 220, 255); colors the background light blue. Then the program draws a yellow sun, an orange ground and the dark text "Hallo, p5!" ("Hello, p5!").
+Important tips: In rect() the first two values give the top left corner. In text() the text must be in quotation marks. textSize() must come before text(). fill() also sets the color of the text, so there is a dark fill(40, 40, 60); before the text.
+`,
+  "1.2.1": `
+Tools: In this task we use functions and methods.
+Usage: You write a rectangle like this: rect(<x-position>, <y-position>, <width>, <height>);. Example: rect(90, 250, 180, 300);. With fill(<red>, <green>, <blue>); you set its color first. Example: fill(255, 0, 0); makes red.
+How it works together: At the start, setup() creates an 800 × 800 pixel canvas once. After that, draw() is repeated over and over. First, background(245); colors the background light gray. Then the program draws a red, a green and a blue rectangle next to each other.
+Important tips: In rect() the first two values set the x- and y-position. The last two values set the width and height. fill() must come before each rectangle so that it gets the color you want. Different x-positions place the rectangles next to each other.
+`,
+  "1.2.2": `
+Tools: In this task we use functions and methods.
+Usage: You write an ellipse like this: ellipse(<x-position>, <y-position>, <width>, <height>);. Example: ellipse(200, 280, 200, 200);. With fill(<red>, <green>, <blue>); you set its color first. Example: fill(255, 255, 0); makes yellow.
+How it works together: At the start, setup() creates an 800 × 800 pixel canvas once. After that, draw() is repeated over and over. First, background(40); colors the background dark gray. Then the program draws six round ellipses in different colors in two rows.
+Important tips: In ellipse() the first two values set the x- and y-position. The last two values set the width and height. If the width and height are the same, you get a circle. fill() must come before each ellipse so that it gets the color you want.
+`,
+  "1.2.3": `
+Tools: In this task we use functions and methods.
+Usage: You write a triangle like this: triangle(<x1>, <y1>, <x2>, <y2>, <x3>, <y3>);. Example: triangle(90, 560, 280, 260, 470, 560);. The three x- and y-values set the corner points. You create rectangles with rect(<x>, <y>, <width>, <height>);.
+How it works together: At the start, setup() creates an 800 × 800 pixel canvas once. After that, draw() is repeated over and over. First, background(20, 20, 40); colors the background dark blue. Then the program draws a green ground, two mountains in different colors and an orange house with a light door.
+Important tips: In triangle() you set the shape with three corner points. Each corner point has an x- and a y-position. fill() must come before each shape so that it gets the color you want. The methods run from top to bottom, so shapes drawn later appear in front of shapes drawn earlier.
+`,
+  "1.3.1": `
+Tools: In this task we use functions and methods.
+Usage: You write an ellipse like this: ellipse(<x-position>, <y-position>, <width>, <height>);. Example: ellipse(120, 120, 90, 90);. You create a rectangle with rect(<x>, <y>, <width>, <height>); and a triangle with triangle(<x1>, <y1>, <x2>, <y2>, <x3>, <y3>);.
+How it works together: At the start, setup() creates an 800 × 800 pixel canvas once. After that, draw() is repeated over and over. First, background(230, 245, 255); colors the background light blue. Then the program draws a yellow sun, two white clouds, a green ground and a red house with a brown roof.
+Important tips: In ellipse() the first two values set the x- and y-position and the last two values set the width and height. In triangle() you set three corner points. fill() must come before each shape. Shapes drawn later appear in front of shapes drawn earlier.
+`,
+  "1.3.2": `
+Tools: In this task we use functions and methods.
+Usage: You write a rectangle like this: rect(<x-position>, <y-position>, <width>, <height>);. Example: rect(280, 370, 260, 220);. You create an ellipse with ellipse(<x>, <y>, <width>, <height>); and a triangle with triangle(<x1>, <y1>, <x2>, <y2>, <x3>, <y3>);.
+How it works together: At the start, setup() creates an 800 × 800 pixel canvas once. After that, draw() is repeated over and over. First, background(180, 225, 255); colors the background light blue. Then the program draws a green ground, a yellow sun and a red house with a brown roof, a door and two light blue windows.
+Important tips: In rect() the first two values set the x- and y-position and the last two values set the width and height. fill() must come before each shape. Equal sizes and matching x-positions make sure that the windows are evenly spaced. Shapes drawn later appear in front of shapes drawn earlier.
+`,
+  "1.3.3": `
+Tools: In this task we use functions and methods.
+Usage: You write a rectangle like this: rect(<x-position>, <y-position>, <width>, <height>);. Example: rect(260, 390, 300, 200);. You create an ellipse with ellipse(<x>, <y>, <width>, <height>); and a triangle with triangle(<x1>, <y1>, <x2>, <y2>, <x3>, <y3>);.
+How it works together: At the start, setup() creates an 800 × 800 pixel canvas once. After that, draw() is repeated over and over. First, background(165, 220, 255); colors the background light blue. Then the program draws a green ground, a yellow sun, two white clouds, a big red house and a small yellow house with roofs, doors and windows.
+Important tips: In rect() the first two values set the x- and y-position and the last two values set the width and height. In ellipse() the first two values give the center. fill() must come before each shape. Shapes drawn later appear in front of shapes drawn earlier.
+`,
+  "1.4.1": `
+Tools: In this task we use functions, variables and methods.
+Usage: You write a variable like this: let <variable name> = <value of the variable>;. Example: let x = 300;. You write an ellipse with ellipse(<x-position>, <y-position>, <width>, <height>);. With x - 20 and x + 20 you can change positions relative to the variable.
+How it works together: At the start, setup() creates an 800 × 800 pixel canvas once. After that, draw() is repeated over and over. First, background(40, 60, 110); colors the background dark blue. Then the program draws a light ground and a snowman made of three white ellipses. The variable x sets his horizontal position. After that, the eyes and an orange nose are drawn relative to x.
+Important tips: Here the variable x stores the horizontal position of the snowman. In ellipse() the first two values give the center and the last two values give the width and height. With x - 20 and x + 20 you move shapes to the left or right of the base position. If x changes, all parts that depend on it move together.
+`,
+  "1.4.2": `
+Tools: In this task we use functions, variables and methods.
+Usage: You write a variable like this: let <variable name> = <value of the variable>;. Examples: let x = 400; and let y = 520;. With x - 20, x + 20 or y - 160 you can change positions relative to these variables.
+How it works together: At the start, setup() creates an 800 × 800 pixel canvas once. After that, draw() is repeated over and over. First, background(40, 60, 110); colors the background dark blue. Then the program draws the moon, the ground and a snowman. The variables x and y set his base position. Head, body, eyes, buttons, hat and nose are placed relative to these two variables.
+Important tips: The variable x sets the horizontal and y the vertical base position of the snowman. In ellipse() the first two values give the center and the last two values give the width and height. With expressions like x - 20, x + 20 or y - 295 you move single parts relative to the base position. If you change x or y, all parts that depend on them move together.
+`,
+  "1.4.3": `
+Tools: In this task we use functions, variables and methods.
+Usage: You write a variable like this: let <variable name> = <value of the variable>;. Examples: let x = 400;, let y = 540; and let groesse = 200;. With expressions like groesse * 0.75 or y - groesse * 1.3 you can calculate size and position relative to the variable.
+How it works together: At the start, setup() creates an 800 × 800 pixel canvas once. After that, draw() is repeated over and over. First, background(40, 60, 110); colors the background dark blue. Then the program draws the moon, the ground and a snowman. The variables x and y set his base position, while groesse controls the size of his parts and the space between them.
+Important tips: The variables x and y set the base position and groesse ("groesse" is German for "size") is used as a shared size value. In ellipse() the first two values give the center and the last two values give the width and height. With calculations like groesse * 0.75, parts get smaller in proportion to the base size. If you change groesse, all sizes and positions that depend on it change together.
+`,
+  "1.5.1": `
+Tools: In this task we use functions and methods.
+Usage: With noStroke(); you remove the outline of the shapes drawn after it. You write an ellipse like this: ellipse(<x-position>, <y-position>, <width>, <height>);. Example: ellipse(400, 400, 420, 420);. With fill(<red>, <green>, <blue>); you set the fill color first.
+How it works together: At the start, setup() creates an 800 × 800 pixel canvas once. After that, draw() is repeated over and over. First, background(255, 230, 150); colors the background light yellow. Then the program draws a face, two white eyes, two blue irises and two black pupils.
+Important tips: In ellipse() the first two values set the center and the last two values set the width and height. fill() must come before each ellipse so that it gets the color you want. noStroke() removes the outlines. Ellipses drawn later appear in front of ellipses drawn earlier.
+`,
+  "1.5.2": `
+Tools: In this task we use functions and methods.
+Usage: With noStroke(); you remove the outline of the shapes. You write an ellipse like this: ellipse(<x-position>, <y-position>, <width>, <height>);. Example: ellipse(400, 400, 420, 420);. You create a triangle with triangle(<x1>, <y1>, <x2>, <y2>, <x3>, <y3>);.
+How it works together: At the start, setup() creates an 800 × 800 pixel canvas once. After that, draw() is repeated over and over. First, background(255, 230, 150); colors the background light yellow. Then the program draws the ears and the face, and after that the eyes, irises, pupils, cheeks, nose and mouth.
+Important tips: In ellipse() the first two values set the center and the last two values set the width and height. In triangle() you set three corner points. fill() must come before each shape. Shapes drawn later appear in front of shapes drawn earlier, so the ears are drawn before the face.
+`,
+  "1.5.3": `
+Tools: In this task we use functions, variables and methods.
+Usage: You write a variable like this: let <variable name> = <value of the variable>;. Examples: let x = 400; and let y = 430;. With expressions like x - 80, x + 80 or y - 50 you place shapes relative to these variables.
+How it works together: At the start, setup() creates an 800 × 800 pixel canvas once. After that, draw() is repeated over and over. First, background(120, 200, 255); colors the background light blue. Then the program draws a green ground and a face with hair, ears, eyes, cheeks, nose, mouth and a party hat. The variables x and y set the base position of the face.
+Important tips: The variable x sets the horizontal and y the vertical base position. In ellipse() the first two values give the center and the last two values give the width and height. With calculations like x - 200 or y - 370 you move single parts relative to the base position. If you change x or y, all face parts that depend on them move together.
+`,
+  "2.1.1": `
+Tools: In this task we use functions, a variable and methods.
+Usage: You write a variable like this: let <variable name> = <value of the variable>;. Example: let x = 120;. With x = x + 2; you increase the stored value by 2 in every round.
+How it works together: At the start, setup() creates an 800 × 800 pixel canvas once. After that, draw() is repeated over and over. First, the program draws a light blue background and a green ground. Then the yellow circle is drawn at the x-position stored in the variable x. After that, x = x + 2; increases the position, so the circle moves to the right.
+Important tips: The variable x sets the horizontal position of the circle. In ellipse() the first two values give the center and the last two values give the width and height. Because draw() is repeated all the time, x = x + 2; keeps changing the position. A bigger added value makes the circle move to the right faster.
+`,
+  "2.1.2": `
+Tools: In this task we use functions, variables and methods.
+Usage: You write a variable like this: let <variable name> = <value of the variable>;. Examples: let cloudX = 0; and let speed = 3;. With cloudX = cloudX + speed; you increase the x-position of the cloud by the value of the speed in every round.
+How it works together: At the start, setup() creates an 800 × 800 pixel canvas once. After that, draw() is repeated over and over. First, background(165, 220, 255); colors the background light blue. Then the program draws a cloud made of three white ellipses and a green ground below it. After that, cloudX = cloudX + speed; changes the position, so the cloud moves to the right.
+Important tips: The variable cloudX sets the horizontal position of the cloud and speed sets how fast it moves. The expressions cloudX + 55 and cloudX + 110 keep the three ellipses at a fixed distance from each other. Because draw() is repeated all the time, the whole cloud moves together. A bigger value for speed makes it move to the right faster.
+`,
+  "2.1.3": `
+Tools: In this task we use functions, variables and methods.
+Usage: You write a variable like this: let <variable name> = <value of the variable>;. Examples: let balloonY = 800; and let speedY = 2.5;. With balloonY = balloonY - speedY; you decrease the y-position of the balloon by the value of the speed in every round.
+How it works together: At the start, setup() creates an 800 × 800 pixel canvas once. After that, draw() is repeated over and over. First, the program draws a light blue background and a green ground. Then the balloon, the string and the basket are drawn. After that, balloonY = balloonY - speedY; changes the position, so the whole balloon rises up.
+Important tips: The variable balloonY sets the vertical position and speedY sets the speed. Smaller y-values are higher up on the canvas. The expressions balloonY + 55 and balloonY + 95 keep the string and the basket in place relative to the balloon. stroke(80); turns on the outline for the string, while noStroke(); removes it again for the shapes.
+`,
+  "2.2.1": `
+Tools: In this task we use functions, local variables, methods and random values.
+Usage: You write a local variable inside a function, for example let rot = random(0, 255);. With random(<minimum>, <maximum>); you create a random value in every round. Example: random(10, 40) gives a random size between 10 and 40.
+How it works together: At the start, setup() creates an 800 × 800 pixel canvas once, colors the background dark and removes the outlines. After that, draw() is repeated over and over. In every round, new random values for red, green and blue are created. Then the program draws an ellipse with a random size and color at a random position.
+Important tips: The variables rot, gruen and blau (German for red, green and blue) only work inside draw(), because they are created there. random(800) creates a random position between 0 and 800. Because background() is only in setup(), the canvas is not cleared in every round and the ellipses stay visible.
+`,
+  "2.2.2": `
+Tools: In this task we use functions, variables, methods and random values.
+Usage: You write a variable without a starting value like this, for example: let x1;. Later you give it a random value with x1 = random(100, 700);. With commands like x1 = x1 + 3; or x2 = x2 - 3; you change its position in every round.
+How it works together: At the start, setup() creates an 800 × 800 pixel canvas once and sets random x- and y-positions for all three dots. After that, draw() is repeated over and over. The program draws a red, a green and a blue dot. Then their positions change, so the dots move diagonally in different directions.
+Important tips: The variables x1, y1, x2, y2, x3 and y3 store the positions of the three dots. A plus value moves a dot to the right or down, a minus value moves it to the left or up. Because background() is only in setup(), the canvas is not cleared and the moving dots leave visible trails.
+`,
+  "2.2.3": `
+Tools: In this task we use functions, local variables, methods, mouse positions and random values.
+Usage: You use the current mouse position with mouseX and mouseY. With mouseX + random(-30, 30) and mouseY + random(-30, 30) you spread the ellipses randomly around the mouse pointer. random(10, 50) creates a random width and height between 10 and 50.
+How it works together: At the start, setup() creates an 800 × 800 pixel canvas once, colors the background white and removes the outlines. After that, draw() is repeated over and over. In every round, new random values for red, green and blue are created. Then the program draws an ellipse with a random color and size near the mouse pointer.
+Important tips: mouseX gives the horizontal and mouseY the vertical mouse position. Random values between −30 and 30 move each ellipse a little bit around the mouse pointer. Because background() is only in setup(), the canvas is not cleared in every round and the ellipses form a colorful trail when you move the mouse.
+`,
+  "2.3.1": `
+Tools: In this task we use functions, a variable and methods.
+Usage: You write a variable like this: let <variable name> = <value of the variable>;. Example: let x = 0;. With x = x + 3; you increase the stored value by 3 in every round. You create a triangle with triangle(<x1>, <y1>, <x2>, <y2>, <x3>, <y3>);.
+How it works together: At the start, setup() creates an 800 × 800 pixel canvas once. After that, draw() is repeated over and over. First, the program draws a blue sky and darker water. Then an orange ellipse and a triangle appear, which together form a boat. After that, x = x + 3; increases the position, so the boat moves to the right.
+Important tips: The variable x sets the horizontal position of the whole boat. The expressions x - 55 and x - 105 place the triangle relative to the ellipse. If you change x, both shapes move together. Because background() is in draw(), the canvas is drawn again in every round and no trails appear.
+`,
+  "2.3.2": `
+Tools: In this task we use functions, variables, methods and random values.
+Usage: You store the positions of the fish with let fish1X = 0; and let fish2X = 800;. With fish1X = fish1X + 3; you move the first fish to the right and with fish2X = fish2X - 2; the second fish to the left. You create a random bubble size with let blase = random(5, 20); ("blase" is German for "bubble").
+How it works together: At the start, setup() creates an 800 × 800 pixel canvas once and removes the outlines. After that, draw() is repeated over and over. First, the program draws the water and the sea floor. Then two fish with eyes appear, which move in opposite directions. In every round, a bubble with a random size is also drawn at a random position.
+Important tips: fish1X and fish2X set the horizontal positions of the two fish. Expressions like fish1X - 55 or fish2X + 55 keep the tail and the eye in place relative to each body. A plus value moves to the right, a minus value to the left. Because background() is in draw(), the canvas is drawn again all the time and no trails appear.
+`,
+  "2.3.3": `
+Tools: In this task we use functions, variables, methods and random values.
+Usage: You write variables without a starting value, for example as let y1; or let speed1;. In setup() you give them random values with y1 = random(100, 550); and speed1 = random(1, 6);. You set the color of a fish with three color variables, for example fill(rot1, gruen1, blau1);.
+How it works together: At the start, setup() creates an 800 × 800 pixel canvas once and sets a random height, speed and color for each fish. After that, draw() is repeated over and over. The program draws the water, the sea floor, three fish in different colors and a random bubble. Then speed1, speed2 and speed3 increase the x-positions, so the fish swim to the right at different speeds.
+Important tips: x1, x2 and x3 store the horizontal positions, while y1, y2 and y3 set the heights. The variables speed1, speed2 and speed3 control the different speeds. Expressions like x1 - 55 and y1 - 35 keep the tail in place relative to the body. The random values are set only once in setup() and stay the same while the fish move.
+`,
+  "2.4.1": `
+Tools: In this task we use functions, local variables, methods and random values.
+Usage: With frameRate(<number>); you set how often draw() is repeated per second. Example: frameRate(10);. You store random sizes in local variables, for example let groesse1 = random(10, 70);. With groesse1 * 2 you draw a shape twice as big as the stored value.
+How it works together: At the start, setup() creates an 800 × 800 pixel canvas once, removes the outlines and sets ten repetitions per second. After that, draw() is repeated over and over. First, the program draws the sky, the ground and three stems. Then three colorful blossoms appear, each with a random size and a yellow center.
+Important tips: groesse1, groesse2 and groesse3 ("groesse" is German for "size") get new random values in every round. With groesse * 2 the outer blossoms are twice as wide as the yellow center. This keeps both parts in proportion to each other. Because background() is in draw(), the old sizes are cleared and you can see the blossoms change their size.
+`,
+  "2.4.2": `
+Tools: In this task we use functions, local variables, methods and random values.
+Usage: You store a random height, for example, with let hoehe1 = random(10, 70); ("hoehe" is German for "height"). With hoehe1 * 8 you make the random value bigger for the height of the bar. You calculate the y-position with 650 - hoehe1 * 8, so that every bar ends on the same base line, even if the heights are different.
+How it works together: At the start, setup() creates an 800 × 800 pixel canvas once, removes the outlines and sets ten repetitions per second. After that, draw() is repeated over and over. In every round, the program creates five new random heights and draws five bars in different colors. This way, their heights keep changing.
+Important tips: In rect() the first two values set the x- and y-position and the last two values set the width and height. Because rectangles are drawn from top to bottom, the y-position must get smaller when the height gets bigger. That is why the same calculated height is used in 650 - hoehe1 * 8 and hoehe1 * 8. This keeps all bars on one line at the bottom.
+`,
+  "2.4.3": `
+Tools: In this task we use functions, a local variable, methods and random values.
+Usage: You store a random cloud position with let wolkeX = random(80, 580); ("wolke" is German for "cloud"). With wolkeX + random(-60, 200) you spread raindrops around the cloud. A drop is made with rect(<x-position>, <y-position>, 4, <height>);, where random(10, 70) sets its random length.
+How it works together: At the start, setup() creates an 800 × 800 pixel canvas once, removes the outlines and sets five repetitions per second. After that, draw() is repeated over and over. In every round, the cloud gets a new random x-position. Then the program draws the sky, the ground, five randomly placed raindrops and a cloud made of three ellipses.
+Important tips: wolkeX sets the horizontal base position of the whole cloud. The expressions wolkeX + 70 and wolkeX + 140 keep the three ellipses together at fixed distances. In rect() the first two values set the position and the last two values set the width and height. Because wolkeX is calculated again in draw(), the cloud jumps to a different place in every round.
+`,
+  "2.5.1": `
+Tools: In this task we use functions, variables, methods and random values.
+Usage: You write variables without a starting value, for example as let speedX; or let rot;. In setup() you give them random values with speedX = random(-3, 3); and rot = random(0, 255);. With x = x + speedX; and y = y + speedY; you change the position in every round.
+How it works together: At the start, setup() creates an 800 × 800 pixel canvas once and sets random speeds and a random color. After that, draw() is repeated over and over. First, the program colors the background dark and draws a colorful ellipse at the position x and y. Then speedX and speedY change the position, so the ellipse moves in a random direction.
+Important tips: x sets the horizontal and y the vertical position. Positive values for speedX move the ellipse to the right, negative values to the left. Positive values for speedY move it down, negative values up. Because the speed and the color are set only once in setup(), they stay the same while the ellipse moves.
+`,
+  "2.5.2": `
+Tools: In this task we use functions, variables, methods and random values.
+Usage: For each dot you store an x- and a y-position, for example with let x1 = 400; and let y1 = 400;. In setup() you give the speeds random values with sx1 = random(-5, 5); and sy1 = random(-5, 5);. You set the color with three color variables, for example fill(rot1, gruen1, blau1);.
+How it works together: At the start, setup() creates an 800 × 800 pixel canvas once, draws the dark background and sets a random speed and color for each dot. After that, draw() is repeated over and over. The program draws three colorful dots and then changes their x- and y-positions, so they move from the same starting point in different directions.
+Important tips: x1, y1 to x3, y3 store the positions of the three dots. sx changes the horizontal and sy the vertical position. Positive values move to the right or down, negative values to the left or up. Because background() is only in setup(), the canvas is not cleared and the dots leave colorful trails.
+`,
+  "2.5.3": `
+Tools: In this task we use functions, variables, methods, parameters, mouse events and random values.
+Usage: You write your own function with parameters, for example as function neueKreise(startX, startY) { ... } ("neueKreise" is German for "new circles"). With neueKreise(400, 400); you pass fixed starting values. In mousePressed(), neueKreise(mouseX, mouseY); calls the function with the current mouse position.
+How it works together: At the start, setup() creates an 800 × 800 pixel canvas once, shows a hint text and calls neueKreise(400, 400);. The function sets shared starting positions and random speeds, colors and sizes for three circles. draw() keeps drawing and moving the circles. When you click the mouse, mousePressed() starts three new circles at the position you clicked.
+Important tips: startX and startY are parameters and take the values that are passed in when the function is called. mouseX and mouseY give the current mouse position. The variables for position, speed, color and size belong together. Because background() is only in setup(), the moving circles and the small random dots stay visible as trails.
+`,
+  "3.1.1": `
+Tools: In this task we use functions, methods, a condition and the mouse position.
+Usage: You write a condition like this: if (<condition>) { <commands>; }. Example: if (mouseX > 400) { fill(60, 120, 230); }. The operator > means "greater than".
+How it works together: At the start, setup() creates an 800 × 800 pixel canvas once. After that, draw() is repeated over and over. First, the program colors the background gray and sets red as the circle color. If the mouse is to the right of x = 400, the if statement changes the color to blue. After that, circle() draws the circle in the middle.
+Important tips: mouseX holds the horizontal position of the mouse. The condition is only true if mouseX is greater than 400. fill() must come before circle() so that the chosen color is used. Because there is no else, the circle stays red on the left side of the middle.
+`,
+  "3.1.2": `
+Tools: In this task we use functions, methods, a condition and the mouse position.
+Usage: You write a condition like this: if (<condition>) { <commands>; }. Example: if (mouseY > 400) { background(255, 235, 120); fill(40, 170, 80); }. The operator > means "greater than".
+How it works together: At the start, setup() creates an 800 × 800 pixel canvas once. After that, draw() is repeated over and over. First, the program colors the background light gray and sets red as the circle color. If the mouse is below y = 400, the if statement changes the background to light yellow and the circle color to green. After that, circle() draws the circle in the middle.
+Important tips: mouseY holds the vertical position of the mouse. The y-values get bigger from top to bottom, so mouseY > 400 is in the lower half of the canvas. The two commands inside the curly brackets run together. Because there is no else, the background and the circle stay light gray and red in the upper half.
+`,
+  "3.1.3": `
+Tools: In this task we use functions, methods, an if/else condition and the mouse position.
+Usage: You write a choice between two cases like this: if (<condition>) { <commands>; } else { <other commands>; }. Example: if (mouseX > 400) { ... } else { ... }. The first block runs when the condition is true, the else block runs in all other cases.
+How it works together: At the start, setup() creates an 800 × 800 pixel canvas once. After that, draw() is repeated over and over. If the mouse is to the right of x = 400, the program draws a blue background, white letters and the text "Rechte Seite" ("Right side"). Otherwise, it draws an orange background, dark letters and the text "Linke Seite" ("Left side"). At the end, circle() draws the circle with the fill color that was set last.
+Important tips: mouseX holds the horizontal mouse position. If mouseX > 400, the if block runs, otherwise the else block runs. Only one of the two blocks runs at a time. Because fill() comes before text() and circle(), the text and the circle have the same color in each branch of the program.
+`,
+  "3.2.1": `
+Tools: In this task we use functions, methods, an if/else condition and the mouse click.
+Usage: You check the state of the mouse button with mouseIsPressed. You write a choice between two cases like this: if (mouseIsPressed) { <commands>; } else { <other commands>; }. If the mouse button is pressed, the if block runs, otherwise the else block runs.
+How it works together: At the start, setup() creates an 800 × 800 pixel canvas once. After that, draw() is repeated over and over. First, the program colors the background dark. While the mouse button is pressed, the if statement sets yellow as the circle color. Without a mouse click, the else block chooses gray. After that, circle() draws the circle in the middle.
+Important tips: mouseIsPressed is true as long as a mouse button is pressed, and false otherwise. Only one of the two blocks runs at a time. fill() must come before circle() so that the circle gets the chosen color. When you let go of the mouse button, the circle turns gray again.
+`,
+  "3.2.2": `
+Tools: In this task we use functions, methods, an if/else-if/else condition and the mouse position.
+Usage: You write several cases like this: if (<condition>) { ... } else if (<another condition>) { ... } else { ... }. Example: if (mouseX < 200) { ... } else if (mouseX < 400) { ... }. The operator < means "less than".
+How it works together: At the start, setup() creates an 800 × 800 pixel canvas once. After that, draw() is repeated over and over. First, the program colors the background dark. Then it checks the horizontal mouse position and chooses red, yellow, green or blue depending on the area. After that, circle() draws the circle in the middle with the chosen color.
+Important tips: The conditions are checked from top to bottom. As soon as one condition is true, the other conditions are skipped. So red is used for x-values below 200, yellow from 200 to below 400, green from 400 to below 600 and blue from 600 on. That is why the limits must be in increasing order.
+`,
+  "3.2.3": `
+Tools: In this task we use functions, methods, conditions, the mouse position, the mouse click and a logical operator.
+Usage: You connect two conditions with &&. Example: if (mouseIsPressed && mouseX < 400) { ... }. The operator && means "and": the mouse button must be pressed and the mouse must be to the left of x = 400.
+How it works together: At the start, setup() creates an 800 × 800 pixel canvas once. After that, draw() is repeated over and over. The program checks the mouse click and the mouse position. With a mouse click, the circle turns yellow on the left and pink on the right; without a mouse click, it turns blue on the left and green on the right. In the two click cases, the background changes too.
+Important tips: The conditions are checked from top to bottom. The most exact condition, with mouse click and left side, must come first. As soon as one condition is true, the other conditions are skipped. mouseIsPressed checks the mouse click and mouseX < 400 checks the left half of the canvas.
+`,
+  "3.3.1": `
+Tools: In this task we use functions, local variables, methods and random values.
+Usage: You write a local variable with a random value, for example as let r = random(0, 255);. With random(<minimum>, <maximum>); you create a random value. The variables x, y and d store the random position and the diameter of the circle.
+How it works together: At the start, setup() creates an 800 × 800 pixel canvas once and colors the background dark. After that, draw() is repeated over and over. In every round, new random values for color, position and size are created. Then circle(x, y, d); draws a new circle on the canvas.
+Important tips: random(0, 255) creates random RGB color values. random(0, 800) spreads the circles over the whole canvas. The variable d sets the diameter. Because background() is only in setup(), the canvas is not cleared in every round and the circles stay visible.
+`,
+  "3.3.2": `
+Tools: In this task we use functions, variables, methods, a mouse event, random values and a math operator.
+Usage: You store the position and the color with let flowerX = 400;, let flowerY = 430; and let flowerColor = 0;. In mousePressed(), the flower gets a new position with random(). With flowerColor = (flowerColor + 60) % 255; you increase the color value and keep it between 0 and 254.
+How it works together: At the start, setup() creates an 800 × 800 pixel canvas once. After that, draw() is repeated over and over. The program draws the sky, the ground, the stem and a flower at the position flowerX and flowerY. When you click the mouse, mousePressed() puts the flower at a random place and changes its color.
+Important tips: flowerX sets the horizontal and flowerY the vertical base position. Expressions like flowerX - 45 or flowerY - 125 keep the petals and the stem together. The operator % gives back the remainder of a division and here it stops the color value from growing bigger and bigger. Because all parts of the flower use the same base variables, they move together.
+`,
+  "3.3.3": `
+Tools: In this task we use functions, variables, methods, conditions, mouse events and logical operators.
+Usage: You store a true/false value, for example with let sichtbar = true; ("sichtbar" is German for "visible"). You calculate the distance between the mouse click and the flower with dist(mouseX, mouseY, flowerX, flowerY - 90);. The hit condition if (sichtbar && abstand < 48) { ... } checks if the flower is visible and the click is close enough ("abstand" is German for "distance"). !sichtbar means "not visible".
+How it works together: At the start, setup() creates an 800 × 800 pixel canvas once. After that, draw() draws the sky, the ground, the score and – as long as sichtbar is true – the flower. When you hit the flower, mousePressed() adds points, hides the flower and starts the pause. During the pause, pause counts down; after that, the flower appears at a new random position.
+Important tips: sichtbar controls whether the flower is drawn. pause stores the waiting time as a number of rounds of draw(). dist() gives back the distance between two points. max(0, punkte - 1) takes away one point ("punkte" is German for "points") when you miss, but it stops the score from going below zero. The more exact hit condition must be completely true before points are given.
+`,
+  "3.4.1": `
+Tools: In this task we use functions, local variables, methods, the mouse position and the frame counter.
+Usage: You write a wave movement like this: sin(frameCount * <speed>) * <swing>. Example: let zielX = 400 + sin(frameCount * 0.03) * 170;. For the y-position, cos() is used. You calculate the distance with dist(<x1>, <y1>, <x2>, <y2>), here between the mouse and the target. nfc(abstand, 0) shows it without decimal places.
+How it works together: At the start, setup() creates an 800 × 800 pixel canvas once. After that, draw() is repeated over and over. The program draws a dark blue background and calculates the new target position and the distance to the mouse. Then it shows the distance as text, the moving yellow target and a small light blue circle at the mouse position.
+Important tips: frameCount counts the frames that have been drawn. sin() and cos() give values between −1 and 1. The numbers 170 and 120 set how far the target swings around the center at 400; 0.03 and 0.04 set how fast it moves. In dist(), each pair of values belongs to one point. "Abstand: " + nfc(abstand, 0) joins the text with the formatted number ("Abstand" is German for "distance").
+`,
+  "3.4.2": `
+Tools: In this task we use functions, local variables, methods, an if/else condition, the mouse position and the frame counter.
+Usage: You write a moving target position like this: let zielX = <center> + sin(frameCount * <speed>) * <swing>;. Example: let zielX = 400 + sin(frameCount * 0.025) * 210;. With dist(mouseX, mouseY, zielX, zielY) you calculate the distance. You write the choice as if (<condition>) { ... } else { ... }, here with abstand < 80 ("ziel" is German for "target", "abstand" for "distance").
+How it works together: At the start, setup() creates an 800 × 800 pixel canvas once. After that, draw() is repeated over and over. The program draws a green background and calculates the moving target position and the distance to the mouse. If the mouse is closer than 80 pixels to the target, a brown background, a bigger yellow circle and "Schatz gefunden!" ("Treasure found!") appear. Otherwise, the target stays smaller. At the end, the program draws a small red circle at the mouse position.
+Important tips: frameCount counts the frames that have been drawn; sin() and cos() create the wave movement. 210 and 140 set how far it swings, 0.025 and 0.03 set how fast it moves. In dist(), each pair of values gives one center point. abstand < 80 checks how close the mouse is, not a mouse click. At exactly 80 pixels, the else block runs. The hit limit does not depend on the size of the drawn circle.
+`,
+  "3.4.3": `
+Tools: In this task we use functions, local variables, methods, an if/else-if/else condition, the mouse position and the frame counter.
+Usage: You write a moving position like this: let kernX = <center> + sin(frameCount * <speed>) * <swing>;. Example: let kernX = 400 + sin(frameCount * 0.02) * 170;. With dist(mouseX, mouseY, kernX, kernY) you calculate the distance. You check several areas with if (<condition>) { ... } else if (<another condition>) { ... } else { ... }.
+How it works together: At the start, setup() creates an 800 × 800 pixel canvas once. After that, draw() is repeated over and over. The program draws a dark background and calculates the moving core position ("kern" is German for "core") and the distance to the mouse. Below 90 pixels, a big red circle with "ZU NAH!" ("TOO CLOSE!") appears, from 90 to below 220 pixels a yellow circle, and from 220 pixels on a small blue circle. At the end, it draws a white circle at the mouse position.
+Important tips: sin() and cos() create the wave movement together with frameCount. 170 and 130 set how far it swings, 0.02 and 0.018 set how fast it moves. In dist(), each pair of values gives the position of one point. The conditions are checked from top to bottom; that is why abstand < 90 must come before abstand < 220. Only the first matching block runs. The limits check the distance to the center, not a mouse click.
+`,
+  "3.5.1": `
+Tools: In this task we use functions, variables, methods, conditions, a mouse event and a logical operator.
+Usage: You write a variable like this: let <variable name> = <value of the variable>;. Example: let speed = 4;. With zielX = zielX + speed; you move the target. You connect two conditions with if (<condition> || <another condition>) { ... }, here zielX > 760 || zielX < 40. speed = -speed; turns the direction around.
+How it works together: At the start, setup() creates an 800 × 800 pixel canvas once. After that, draw() is repeated over and over. The program draws the dark background, changes the target position and checks the limits on the left and right. Then it shows the orange circle, the score and the hint text. When you click the mouse, mousePressed() uses dist() to calculate the distance to the target. If it is less than 45 pixels, ten points are added.
+Important tips: || means "or": one of the two limit conditions must be true. A positive speed moves to the right, a negative one to the left. In circle() the first two values give the center and the third value gives the diameter. The diameter 90 gives a radius of 45; exactly 45 pixels does not count as a hit here. nfc(punkte, 0) shows the score without decimal places. The limits 40 and 760 are for the center, not the edge of the circle.
+`,
+  "3.5.2": `
+Tools: In this task we use functions, global and local variables, methods, a condition, a mouse event and random values.
+Usage: You write a variable like this: let <variable name> = <value of the variable>;. Example: let punkte = 0;. You calculate the moving position with let drawX = zielX + sin(frameCount * 0.08) * 18; and in the same way with cos() for drawY. In function mousePressed() { ... } you check a click with if (abstand < 40) { ... }.
+How it works together: At the start, setup() creates an 800 × 800 pixel canvas once. After that, draw() is repeated over and over. The program draws the dark background, the orange target and the score. The target moves in a small circle around its base position. When you click the mouse, mousePressed() calculates the current target position and the distance to the mouse. If you hit the target, ten points are added and the target gets a new random base position.
+Important tips: zielX and zielY store the base position; drawX and drawY store the moving position. The local variables are created separately in both functions, so the movement formula must be the same in both. In dist(), each pair of values belongs to one point. The circle diameter 80 gives a hit radius of 40; exactly 40 pixels does not count. nfc(punkte, 0) shows the points without decimal places. Missed clicks change nothing.
+`,
+  "3.5.3": `
+Tools: In this task we use functions, variables, methods, conditions, a mouse event, random values and logical operators.
+Usage: You connect two conditions like this: if (<condition> || <another condition>) { ... }. Example: if (ziel1X > 765 || ziel1X < 35) { v1X = -v1X; }. You store a hit check with let hit1 = dist(mouseX, mouseY, ziel1X, ziel1Y) < 35;. return; ends the current function call.
+How it works together: At the start, setup() creates an 800 × 800 pixel canvas once. After that, draw() is repeated over and over. First, it checks for a win or a loss, then it moves two targets, turns their direction around at the limits and shows the score. A hit gives twelve points and moves the target that was hit to a random place. A missed click counts as a failed try and takes away six points. After twelve hits, "GEWONNEN!" ("YOU WON!") appears, after eight missed clicks "GAME OVER".
+Important tips: || means "or", >= means "greater than or equal to". v1X = -v1X turns the horizontal direction around; it works the same way for the y-speed. Diameter 70 gives a hit radius of 35; exactly 35 pixels does not count. max(0, punkte - 6) prevents negative points, nfc(punkte, 0) shows them without decimal places. After the game is over, return stops more movement and click checks, but it does not stop draw() from repeating. If a click hits both targets at the same time, it counts once and both targets are moved. The extra characters after the last closing bracket of the function do not belong to a standalone sketch and must be removed there.
+`,
+};

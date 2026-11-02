@@ -19,27 +19,24 @@
     <!-- IDE pull test succes -->
   </head>
   <body>
-    <button type="button" class="theme-toggle" onclick="toggleTheme()" title="Zwischen hellem und dunklem Design wechseln">☀ Hell</button>
-    <!-- Modal: Notizfeld für $ Button -->
-    <div
-      id="coin-modal"
-      class="coin-modal-overlay"
-      onclick="if (event.target === this) closeCoinModal();"
-    >
-      <div class="coin-modal-box">
-        <h3 class="coin-modal-title">Arbeitsauftrag</h3>
-        <button
-          class="coin-modal-close"
-          type="button"
-          onclick="closeCoinModal()"
-        >
-          ✖
-        </button>
-        <textarea
-          id="coin-modal-text"
-          class="coin-modal-textarea"
-          placeholder="Notizen hier eingeben..."
-        ></textarea>
+    <!-- Einstellungen (Zahnrad oben rechts): Sprache und helles/dunkles Design -->
+    <div class="settings">
+      <button type="button" class="settings-button" onclick="toggleSettings()" title="Einstellungen" aria-label="Einstellungen">
+        <svg viewBox="0 0 24 24" width="24" height="24" aria-hidden="true">
+          <path fill="currentColor" d="M19.14 12.94c.04-.3.06-.61.06-.94 0-.32-.02-.64-.07-.94l2.03-1.58c.18-.14.23-.41.12-.61l-1.92-3.32c-.12-.22-.37-.29-.59-.22l-2.39.96c-.5-.38-1.03-.7-1.62-.94l-.36-2.54c-.04-.24-.24-.41-.48-.41h-3.84c-.24 0-.43.17-.47.41l-.36 2.54c-.59.24-1.13.57-1.62.94l-2.39-.96c-.22-.08-.47 0-.59.22L2.74 8.87c-.12.21-.08.47.12.61l2.03 1.58c-.05.3-.09.63-.09.94s.02.64.07.94l-2.03 1.58c-.18.14-.23.41-.12.61l1.92 3.32c.12.22.37.29.59.22l2.39-.96c.5.38 1.03.7 1.62.94l.36 2.54c.05.24.24.41.48.41h3.84c.24 0 .44-.17.47-.41l.36-2.54c.59-.24 1.13-.56 1.62-.94l2.39.96c.22.08.47 0 .59-.22l1.92-3.32c.12-.22.07-.47-.12-.61l-2.01-1.58zM12 15.6c-1.98 0-3.6-1.62-3.6-3.6s1.62-3.6 3.6-3.6 3.6 1.62 3.6 3.6-1.62 3.6-3.6 3.6z" />
+        </svg>
+      </button>
+      <div class="settings-menu" hidden>
+        <div class="settings-label">Sprache</div>
+        <div class="settings-options">
+          <button type="button" class="settings-option" data-lang="de" onclick="setLanguage('de')">Deutsch</button>
+          <button type="button" class="settings-option" data-lang="en" onclick="setLanguage('en')">English</button>
+        </div>
+        <div class="settings-label">Design</div>
+        <div class="settings-options">
+          <button type="button" class="settings-option" data-theme="dark" onclick="setTheme('dark')">🌙 Dunkel</button>
+          <button type="button" class="settings-option" data-theme="light" onclick="setTheme('light')">☀ Hell</button>
+        </div>
       </div>
     </div>
     <script src="levelcodecache.js"></script>
@@ -686,60 +683,53 @@
         <section class="panel editor-panel">
           <div class="panel-title">Dein Code</div>
           <div class="editor-shell">
-            <!-- Hohe, schmale Ellipse mit temporaeren Platzhalter-Icons -->
-            <div class="tool-ellipse" aria-label="Temporare Icons">
-              <pre id="output"></pre>
-              <button type="button" class="tool-icon" title="Arbeitsauftrag" onclick="printCurrentLevel()">&gt;-</button>
-              <button
-                type="button"
-                class="tool-icon"
-                title="KI"
-                onclick="toggleKiPanel()"
-              >
-                KI
-              </button>
-              <a
-                class="tool-icon p5-help-button"
-                title="p5 Referenz"
-                href="https://p5js.org/reference/"
-                target="_blank"
-                rel="noopener noreferrer"
-                >P5</a
-              >
-              <div class="p5-hover-hint" role="note">
-                p5 library: Such dort was du brauchst.
-                <a
-                  href="https://p5js.org/reference/"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  >Zur p5 Referenz</a
-                >
-              </div>
-              <details class="it-help-wrap">
-                <summary class="tool-icon it-help-button" title="IT-Hilfe: Erklärung zum Level">
-                  IT
-                </summary>
-                <div class="it-help-panel" role="note">
-                  <div class="it-help-content"></div>
-                </div>
-              </details>
-              <button type="button" class="tool-icon" title="Hilfe (kommt bald)">?</button>
+            <!-- Werkzeugleiste: jedes Icon oeffnet rechts daneben ein Fenster (alle gleich gross wie die IT-Hilfe) -->
+            <div class="tool-ellipse" aria-label="Werkzeuge">
+              <button type="button" class="tool-icon" data-panel="task" title="Arbeitsauftrag" onclick="toggleToolPanel('task')">&gt;-</button>
+              <button type="button" class="tool-icon" data-panel="ki" title="KI" onclick="toggleToolPanel('ki')">KI</button>
+              <button type="button" class="tool-icon" data-panel="p5" title="p5 Referenz" onclick="toggleToolPanel('p5')">P5</button>
+              <button type="button" class="tool-icon" data-panel="it" title="IT-Hilfe: Erklärung zum Level" onclick="toggleToolPanel('it')">IT</button>
             </div>
-            <section class="ki-panel" aria-label="KI-Chat">
-              <input
-                type="text"
-                id="eingabe"
-                placeholder="Schreibe eine Nachricht..."
-              />
-              <textarea
-                id="outputKI"
-                rows="10"
-                cols="50"
-                spellcheck="false"
-                readonly
-              ></textarea>
+            <section class="tool-panel" data-panel="task" aria-label="Arbeitsauftrag">
+              <div class="tool-panel-head">
+                <h3 class="tool-panel-title">Arbeitsauftrag</h3>
+                <button type="button" class="tool-panel-close" title="Schließen" onclick="closeToolPanels()">✖</button>
+              </div>
+              <div class="tool-panel-content task-content"></div>
+            </section>
+            <section class="tool-panel ki-panel" data-panel="ki" aria-label="KI-Chat">
+              <div class="tool-panel-head">
+                <h3 class="tool-panel-title">KI-Chat</h3>
+                <button type="button" class="tool-panel-close" title="Schließen" onclick="closeToolPanels()">✖</button>
+              </div>
               <div id="status"></div>
-              <button onclick="senden()">Senden</button>
+              <textarea id="outputKI" rows="10" cols="50" spellcheck="false" readonly></textarea>
+              <div class="ki-input-row">
+                <input
+                  type="text"
+                  id="eingabe"
+                  placeholder="Schreibe eine Nachricht..."
+                  onkeydown="if (event.key === 'Enter' && !event.isComposing) senden()"
+                />
+                <button onclick="senden()">Senden</button>
+              </div>
+            </section>
+            <section class="tool-panel" data-panel="p5" aria-label="p5 Referenz">
+              <div class="tool-panel-head">
+                <h3 class="tool-panel-title">p5 Referenz</h3>
+                <button type="button" class="tool-panel-close" title="Schließen" onclick="closeToolPanels()">✖</button>
+              </div>
+              <div class="tool-panel-content">
+                <p>In der p5-Referenz findest du alle Befehle von p5.js mit Erklärungen und Beispielen. Such dort, was du brauchst.</p>
+                <a class="p5-reference-link" href="https://p5js.org/reference/" target="_blank" rel="noopener noreferrer">Zur p5 Referenz ↗</a>
+              </div>
+            </section>
+            <section class="tool-panel" data-panel="it" aria-label="IT-Hilfe">
+              <div class="tool-panel-head">
+                <h3 class="tool-panel-title">IT-Hilfe</h3>
+                <button type="button" class="tool-panel-close" title="Schließen" onclick="closeToolPanels()">✖</button>
+              </div>
+              <div class="tool-panel-content it-help-content"></div>
             </section>
             <!-- Eigene Spalte fÃ¼r Zeilennummern -->
             <div id="lineNumbers" class="line-numbers" aria-hidden="true"></div>
@@ -822,60 +812,53 @@ function draw() {
         <!-- Code-Eingabe -->
         <section class="panel editor-panel">
           <div class="editor-shell">
-            <!-- Hohe, schmale Ellipse mit temporaeren Platzhalter-Icons -->
-            <div class="tool-ellipse" aria-label="Temporare Icons">
-              <pre id="output"></pre>
-              <button type="button" class="tool-icon" title="Arbeitsauftrag" onclick="printCurrentLevel()">&gt;-</button>
-              <button
-                type="button"
-                class="tool-icon"
-                title="KI"
-                onclick="toggleKiPanel()"
-              >
-                KI
-              </button>
-              <a
-                class="tool-icon p5-help-button"
-                title="p5 Referenz"
-                href="https://p5js.org/reference/"
-                target="_blank"
-                rel="noopener noreferrer"
-                >P5</a
-              >
-              <div class="p5-hover-hint" role="note">
-                p5 library: Such dort was du brauchst.
-                <a
-                  href="https://p5js.org/reference/"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  >Zur p5 Referenz</a
-                >
-              </div>
-              <details class="it-help-wrap">
-                <summary class="tool-icon it-help-button" title="IT-Hilfe: Erklärung zum Level">
-                  IT
-                </summary>
-                <div class="it-help-panel" role="note">
-                  <div class="it-help-content"></div>
-                </div>
-              </details>
-              <button type="button" class="tool-icon" title="Hilfe (kommt bald)">?</button>
+            <!-- Werkzeugleiste: jedes Icon oeffnet rechts daneben ein Fenster (alle gleich gross wie die IT-Hilfe) -->
+            <div class="tool-ellipse" aria-label="Werkzeuge">
+              <button type="button" class="tool-icon" data-panel="task" title="Arbeitsauftrag" onclick="toggleToolPanel('task')">&gt;-</button>
+              <button type="button" class="tool-icon" data-panel="ki" title="KI" onclick="toggleToolPanel('ki')">KI</button>
+              <button type="button" class="tool-icon" data-panel="p5" title="p5 Referenz" onclick="toggleToolPanel('p5')">P5</button>
+              <button type="button" class="tool-icon" data-panel="it" title="IT-Hilfe: Erklärung zum Level" onclick="toggleToolPanel('it')">IT</button>
             </div>
-            <section class="ki-panel" aria-label="KI-Chat">
-              <input
-                type="text"
-                id="eingabe"
-                placeholder="Schreibe eine Nachricht..."
-              />
-              <textarea
-                id="outputKI"
-                rows="10"
-                cols="50"
-                spellcheck="false"
-                readonly
-              ></textarea>
+            <section class="tool-panel" data-panel="task" aria-label="Arbeitsauftrag">
+              <div class="tool-panel-head">
+                <h3 class="tool-panel-title">Arbeitsauftrag</h3>
+                <button type="button" class="tool-panel-close" title="Schließen" onclick="closeToolPanels()">✖</button>
+              </div>
+              <div class="tool-panel-content task-content"></div>
+            </section>
+            <section class="tool-panel ki-panel" data-panel="ki" aria-label="KI-Chat">
+              <div class="tool-panel-head">
+                <h3 class="tool-panel-title">KI-Chat</h3>
+                <button type="button" class="tool-panel-close" title="Schließen" onclick="closeToolPanels()">✖</button>
+              </div>
               <div id="status"></div>
-              <button onclick="senden()">Senden</button>
+              <textarea id="outputKI" rows="10" cols="50" spellcheck="false" readonly></textarea>
+              <div class="ki-input-row">
+                <input
+                  type="text"
+                  id="eingabe"
+                  placeholder="Schreibe eine Nachricht..."
+                  onkeydown="if (event.key === 'Enter' && !event.isComposing) senden()"
+                />
+                <button onclick="senden()">Senden</button>
+              </div>
+            </section>
+            <section class="tool-panel" data-panel="p5" aria-label="p5 Referenz">
+              <div class="tool-panel-head">
+                <h3 class="tool-panel-title">p5 Referenz</h3>
+                <button type="button" class="tool-panel-close" title="Schließen" onclick="closeToolPanels()">✖</button>
+              </div>
+              <div class="tool-panel-content">
+                <p>In der p5-Referenz findest du alle Befehle von p5.js mit Erklärungen und Beispielen. Such dort, was du brauchst.</p>
+                <a class="p5-reference-link" href="https://p5js.org/reference/" target="_blank" rel="noopener noreferrer">Zur p5 Referenz ↗</a>
+              </div>
+            </section>
+            <section class="tool-panel" data-panel="it" aria-label="IT-Hilfe">
+              <div class="tool-panel-head">
+                <h3 class="tool-panel-title">IT-Hilfe</h3>
+                <button type="button" class="tool-panel-close" title="Schließen" onclick="closeToolPanels()">✖</button>
+              </div>
+              <div class="tool-panel-content it-help-content"></div>
             </section>
             <!-- Eigene Spalte fÃ¼r Zeilennummern -->
             <div id="lineNumbers" class="line-numbers" aria-hidden="true"></div>

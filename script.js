@@ -6,13 +6,9 @@ let defaultCode = `function setup() {
   function draw() {
   background(220);
 }`;
+// Arbeitsauftrag im Fenster neben der Werkzeugleiste zeigen
 function printCurrentLevel() {
-  document.getElementById('coin-modal').style.display = 'flex';
-  loadCodeTaskForCurrentLevel();
-}
-
-function closeCoinModal() {
-  document.getElementById('coin-modal').style.display = 'none';
+  openToolPanel("task");
 }
 
 const DEFAULT_LEVEL_CODE = `function setup() {
@@ -194,40 +190,43 @@ function loadEditorForCurrentLevel() {
 }
 
 // IT-Hilfe (technicalexplanation.js) fuer das aktuelle Level ins IT-Fenster schreiben.
-// Jede Zeile "Ueberschrift: Text" wird zu Ueberschrift + Absatz, Code wird hervorgehoben.
 function loadItHelpForCurrentLevel() {
   const match = (currentLevel || "").match(/^m(\d+)t(\d+)_(\d+)$/i);
-  const text = match ? technicalExplanation[`${match[1]}.${match[2]}.${match[3]}`] : null;
+  const key = match ? `${match[1]}.${match[2]}.${match[3]}` : null;
+  const explanations = getLanguage() === "en" ? technicalExplanationEn : technicalExplanation;
+  const text = key ? explanations[key] : null;
 
   document.querySelectorAll(".it-help-content").forEach((box) => {
-    box.textContent = "";
-    if (!text) {
-      box.textContent = "Für dieses Level gibt es noch keine IT-Hilfe.";
+    renderHelpText(box, text || t("Für dieses Level gibt es noch keine IT-Hilfe."));
+  });
+}
+
+// Text in ein Fenster schreiben (IT-Hilfe, Arbeitsauftrag).
+// Jede Zeile "Ueberschrift: Text" wird zu Ueberschrift + Absatz, Code wird hervorgehoben.
+function renderHelpText(box, text) {
+  box.textContent = "";
+  text.trim().split("\n").forEach((rawLine) => {
+    const line = rawLine.trim();
+    if (!line) {
       return;
     }
-    text.trim().split("\n").forEach((rawLine) => {
-      const line = rawLine.trim();
-      if (!line) {
+    const parts = line.match(/^([^:]+):\s*(.*)$/);
+    if (parts) {
+      const heading = document.createElement("h4");
+      heading.textContent = parts[1];
+      box.appendChild(heading);
+    }
+    const paragraph = document.createElement("p");
+    const body = parts ? parts[2] : line;
+    body.split(/([A-Za-z]+\([^()]*\);?|let \w+ = [^;]+;)/).forEach((piece, i) => {
+      if (!piece) {
         return;
       }
-      const parts = line.match(/^([^:]+):\s*(.*)$/);
-      if (parts) {
-        const heading = document.createElement("h4");
-        heading.textContent = parts[1];
-        box.appendChild(heading);
-      }
-      const paragraph = document.createElement("p");
-      const body = parts ? parts[2] : line;
-      body.split(/([A-Za-z]+\([^()]*\);?|let \w+ = [^;]+;)/).forEach((piece, i) => {
-        if (!piece) {
-          return;
-        }
-        const node = document.createElement(i % 2 === 1 ? "code" : "span");
-        node.textContent = piece;
-        paragraph.appendChild(node);
-      });
-      box.appendChild(paragraph);
+      const node = document.createElement(i % 2 === 1 ? "code" : "span");
+      node.textContent = piece;
+      paragraph.appendChild(node);
     });
+    box.appendChild(paragraph);
   });
 }
 
@@ -273,16 +272,31 @@ function extractTaskText(taskSource) {
   return lines.join("\n");
 }
 
+// Arbeitsauftrag ins Aufgaben-Fenster schreiben: Modul/Thema/Level als eine Kopfzeile, der Rest wie die IT-Hilfe
 function loadCodeTaskForCurrentLevel() {
-  const taskTextarea = document.getElementById("coin-modal-text");
-
   const codeTask = levelCodeCache[currentLevel];
-  const taskText = extractTaskText(codeTask);
-  const fallbackText = "// Noch keine Aufgabenstellung fuer dieses Level verfuegbar.";
+  const taskText = (getLanguage() === "en" && levelTaskEn[currentLevel]) || extractTaskText(codeTask);
+  const metaParts = [];
+  const bodyLines = [];
+  taskText.split("\n").forEach((line) => {
+    const parts = line.match(/^(Modul|Module|Thema|Topic|Level|Boss-Level|Boss level):\s*(.*)$/);
+    // Boss-Zeile weglassen: die Level-Zeile sagt schon "3 - BOSS-LEVEL"
+    if (!parts) {
+      bodyLines.push(line);
+    } else if (!/^Boss/.test(parts[1])) {
+      metaParts.push(`${parts[1]} ${parts[2]}`);
+    }
+  });
 
-  if (taskTextarea) {
-    taskTextarea.value = taskText || fallbackText;
-  }
+  document.querySelectorAll(".task-content").forEach((box) => {
+    renderHelpText(box, bodyLines.join("\n") || t("Für dieses Level gibt es noch keinen Arbeitsauftrag."));
+    if (metaParts.length) {
+      const meta = document.createElement("p");
+      meta.className = "task-meta";
+      meta.textContent = metaParts.join(" · ");
+      box.prepend(meta);
+    }
+  });
 
   return codeTask;
 }
@@ -302,7 +316,7 @@ function loadSolutionForCurrentLevel() {
   const solutionTextarea = document.getElementById("solutionCode");
   if (!solutionTextarea) return;
   const solution = getSolutionForLevel(currentLevel);
-  solutionTextarea.value = solution || "// Noch keine Loesung fuer dieses Level verfuegbar.";
+  solutionTextarea.value = solution || t("// Noch keine Loesung fuer dieses Level verfuegbar.");
   return solution
 }
 
@@ -316,10 +330,10 @@ function toggleSolution() {
   if (!content) return;
   const isHidden = content.hasAttribute("hidden");
   if (isHidden) {
-    const eingabe = prompt("Code eingeben, um die Lösung zu sehen:");
+    const eingabe = prompt(t("Code eingeben, um die Lösung zu sehen:"));
     if (eingabe === null) return;
     if (eingabe.trim() !== LOESUNG_CODE) {
-      alert("Falscher Code lol.");
+      alert(t("Falscher Code lol."));
       return;
     }
     loadSolutionForCurrentLevel();
@@ -342,9 +356,9 @@ function buildCodePrefix(consoleId) {
   // Fehler im Code rot in der Konsole anzeigen (jeden Fehler nur einmal, auch wenn draw() ihn wiederholt)
   const shownErrors = new Set();
   const errorNames = {
-    SyntaxError: "Tippfehler im Code (z. B. Klammer, Komma oder Semikolon)",
-    ReferenceError: "Unbekannter Name (Tippfehler oder Variable nicht erstellt?)",
-    TypeError: "Falsche Verwendung (z. B. etwas aufgerufen, das keine Funktion ist)",
+    SyntaxError: ${JSON.stringify(t("Tippfehler im Code (z. B. Klammer, Komma oder Semikolon)"))},
+    ReferenceError: ${JSON.stringify(t("Unbekannter Name (Tippfehler oder Variable nicht erstellt?)"))},
+    TypeError: ${JSON.stringify(t("Falsche Verwendung (z. B. etwas aufgerufen, das keine Funktion ist)"))},
   };
   function showError(error, message, filename, lineno) {
     const stackLine = error && error.stack && error.stack.match(/about:srcdoc:(\\d+)/);
@@ -352,7 +366,7 @@ function buildCodePrefix(consoleId) {
     const fromUserCode = stackLine || !filename || filename === "about:srcdoc";
     line = fromUserCode && line ? line - window.__lineOffset : 0;
     const name = (error && error.name) || (String(message).match(/(\\w+Error)/) || [])[1];
-    const text = (line > 0 ? "Fehler in Zeile " + line : "Fehler") + ": " +
+    const text = (line > 0 ? ${JSON.stringify(t("Fehler in Zeile"))} + " " + line : ${JSON.stringify(t("Fehler"))}) + ": " +
       (errorNames[name] ? errorNames[name] + " - " : "") +
       String(message).replace(/^Uncaught /, "");
     if (shownErrors.has(text)) return;
@@ -394,43 +408,254 @@ function preview() {
   runCommon("code", "preview", "consoleOutput", levelSolutionCache[currentLevel]);
 }
 
-// Zwischen dunklem (Standard) und hellem Design wechseln; Auswahl wird gespeichert
-function updateThemeButton() {
-  const isLight = document.documentElement.classList.contains("light");
-  document.querySelectorAll(".theme-toggle").forEach((button) => {
-    button.textContent = isLight ? "🌙 Dunkel" : "☀ Hell";
+// ===== Einstellungen: Sprache (Deutsch/English) und Design (dunkel/hell), beides wird gespeichert =====
+
+// Englische Texte fuer die Oberflaeche. Schluessel = deutscher Text, wie er im HTML oder Code steht.
+const TRANSLATIONS_EN = {
+  "App für Informatik": "Computer Science App",
+  "Einstellungen": "Settings",
+  "Sprache": "Language",
+  "Design": "Theme",
+  "🌙 Dunkel": "🌙 Dark",
+  "☀ Hell": "☀ Light",
+  "Schritt 1 von 4: Wähle ein Modul aus.": "Step 1 of 4: Choose a module.",
+  "Schritt 2: Klicke auf ein Thema. Schritt 3: Wähle eines der Level 1–3, die daneben erscheinen.":
+    "Step 2: Click a topic. Step 3: Choose one of the levels 1–3 that appear next to it.",
+  "Schritt 4: Lies den Arbeitsauftrag (>-), schreibe deinen Code und drücke Run.":
+    "Step 4: Read the task (>-), write your code and press Run.",
+  "Modul": "Module",
+  "Modul 1": "Module 1",
+  "Modul 2": "Module 2",
+  "Modul 3": "Module 3",
+  "Farben und Formen": "Colors and shapes",
+  "statisch": "static",
+  "Animationen": "animations",
+  "mit Bedingungen": "with conditions",
+  "Tool teached: Parameter": "Tool taught: parameters",
+  "Tool teached: Variablen": "Tool taught: variables",
+  "Tool teached: If statements": "Tool taught: if statements",
+  "← Zurück": "← Back",
+  "Zur Übersicht": "To the overview",
+  // Modul 1: Themen und Mini-Level
+  "Erste": "First",
+  "Schritte": "steps",
+  "RGB-Farben": "RGB colors",
+  "Häuser": "Houses",
+  "Variablen": "Variables",
+  "Gesicht": "Face",
+  "Mischen": "Mixing",
+  "Nacht": "Night",
+  "Haus": "House",
+  "Fenster": "Windows",
+  "2 Häuser": "2 houses",
+  "x und y": "x and y",
+  "Größe": "Size",
+  "Augen": "Eyes",
+  "Mund": "Mouth",
+  // Modul 2
+  "Bewegung": "Movement",
+  "Zufall": "Random",
+  "Fische": "Fish",
+  "Zufalls-": "Random",
+  "Größen": "sizes",
+  "Kreis-Chaos": "Circle chaos",
+  "Sonne": "Sun",
+  "Wolke": "Cloud",
+  "Ballon": "Balloon",
+  "Konfetti": "Confetti",
+  "Malen": "Painting",
+  "1 Fisch": "1 fish",
+  "2 Fische": "2 fish",
+  "Schwarm": "Swarm",
+  "Blumen": "Flowers",
+  "Musik": "Music",
+  "Regen": "Rain",
+  "1 Kreis": "1 circle",
+  "3 Kreise": "3 circles",
+  // Modul 3
+  "Bedingungen": "Conditions",
+  "mit if": "with if",
+  "if mit": "if with",
+  "der Maus": "the mouse",
+  "Klick &": "Click &",
+  "Zufall &": "Random &",
+  "Treffer": "hits",
+  "Abstand": "Distance",
+  "Klickspiel": "Click game",
+  "Seiten": "Sides",
+  "Klick": "Click",
+  "Zonen": "Zones",
+  "Blume": "Flower",
+  "Punkte": "Points",
+  "Schatz": "Treasure",
+  "Zu nah": "Too close",
+  "Ziel": "Target",
+  "Springt": "Jumps",
+  // Code-Seite
+  "Vorheriges Level": "Previous level",
+  "Naechstes Level": "Next level",
+  "Zurück": "Back",
+  "Zurück zur Modul-Übersicht": "Back to the module overview",
+  "Dein Code": "Your code",
+  "Werkzeuge": "Tools",
+  "Arbeitsauftrag": "Task",
+  "KI": "AI",
+  "KI-Chat": "AI chat",
+  "p5 Referenz": "p5 reference",
+  "IT-Hilfe": "IT help",
+  "IT-Hilfe: Erklärung zum Level": "IT help: explanation for this level",
+  "Schließen": "Close",
+  "In der p5-Referenz findest du alle Befehle von p5.js mit Erklärungen und Beispielen. Such dort, was du brauchst.":
+    "The p5 reference lists every p5.js command with explanations and examples. Look up what you need there.",
+  "Zur p5 Referenz ↗": "Open the p5 reference ↗",
+  "Schreibe eine Nachricht...": "Write a message...",
+  "Senden": "Send",
+  "Vorschau": "Preview",
+  "Deinen Code ausführen": "Run your code",
+  "Zeigt, wie das Ergebnis aussehen soll": "Shows what the result should look like",
+  "Lösung anzeigen": "Show solution",
+  "Lösung anzeigen (Code nötig)": "Show solution (code required)",
+  "Ergebnis (Run = dein Code, Vorschau = Ziel)": "Result (Run = your code, Preview = goal)",
+  "Konsole (Ausgaben von console.log und Fehler im Code)": "Console (console.log output and errors in your code)",
+  // Texte, die der Code erzeugt
+  "Für dieses Level gibt es noch keine IT-Hilfe.": "There is no IT help for this level yet.",
+  "Für dieses Level gibt es noch keinen Arbeitsauftrag.": "There is no task for this level yet.",
+  "// Noch keine Loesung fuer dieses Level verfuegbar.": "// No solution available for this level yet.",
+  "Code eingeben, um die Lösung zu sehen:": "Enter the code to see the solution:",
+  "Falscher Code lol.": "Wrong code lol.",
+  "Du: ": "You: ",
+  "Nachricht gesendet. KI antwortet...": "Message sent. The AI is answering...",
+  "Antwort erhalten.": "Answer received.",
+  "Fehler beim Senden an die KI.": "Error while sending to the AI.",
+  "Fehler in Zeile": "Error in line",
+  "Fehler": "Error",
+  "Tippfehler im Code (z. B. Klammer, Komma oder Semikolon)": "Typo in the code (e.g. bracket, comma or semicolon)",
+  "Unbekannter Name (Tippfehler oder Variable nicht erstellt?)": "Unknown name (typo or variable not created?)",
+  "Falsche Verwendung (z. B. etwas aufgerufen, das keine Funktion ist)": "Wrong use (e.g. calling something that is not a function)",
+};
+
+function getLanguage() {
+  return localStorage.getItem("lang") === "en" ? "en" : "de";
+}
+
+// Deutschen Text in die gewaehlte Sprache uebersetzen (ohne Eintrag bleibt er deutsch)
+function t(text) {
+  return getLanguage() === "en" ? TRANSLATIONS_EN[text] || text : text;
+}
+
+// Alle festen Texte der Seite umschalten. Der deutsche Originaltext wird beim ersten Mal gemerkt.
+const originalTexts = new Map();
+function applyLanguage() {
+  const english = getLanguage() === "en";
+  document.documentElement.lang = english ? "en" : "de";
+  document.title = english ? TRANSLATIONS_EN["App für Informatik"] : "App für Informatik";
+
+  const walker = document.createTreeWalker(document.body, NodeFilter.SHOW_TEXT, {
+    acceptNode: (node) =>
+      node.parentElement.closest("script, style, textarea, .it-help-content, .task-content, #consoleOutput, #status")
+        ? NodeFilter.FILTER_REJECT
+        : NodeFilter.FILTER_ACCEPT,
+  });
+  for (let node = walker.nextNode(); node; node = walker.nextNode()) {
+    if (!originalTexts.has(node)) originalTexts.set(node, node.nodeValue);
+    const original = originalTexts.get(node);
+    const key = original.replace(/\s+/g, " ").trim();
+    const translated = english && TRANSLATIONS_EN[key];
+    node.nodeValue = translated ? original.match(/^\s*/)[0] + translated + original.match(/\s*$/)[0] : original;
+  }
+
+  document.querySelectorAll("[title], [placeholder], [aria-label]").forEach((element) => {
+    ["title", "placeholder", "aria-label"].forEach((attribute) => {
+      if (!element.hasAttribute(attribute)) return;
+      const store = `de${attribute}`;
+      if (!originalTexts.has(element)) originalTexts.set(element, {});
+      const originals = originalTexts.get(element);
+      if (!(store in originals)) originals[store] = element.getAttribute(attribute);
+      const original = originals[store];
+      element.setAttribute(attribute, (english && TRANSLATIONS_EN[original]) || original);
+    });
+  });
+
+  // Fenster mit Texten aus den Level-Dateien neu fuellen
+  loadCodeTaskForCurrentLevel();
+  loadItHelpForCurrentLevel();
+}
+
+function setLanguage(language) {
+  localStorage.setItem("lang", language);
+  applyLanguage();
+  updateSettingsMenu();
+}
+
+function setTheme(theme) {
+  document.documentElement.classList.toggle("light", theme === "light");
+  localStorage.setItem("theme", theme);
+  updateSettingsMenu();
+}
+
+// Aktive Auswahl im Einstellungs-Menue markieren
+function updateSettingsMenu() {
+  const theme = document.documentElement.classList.contains("light") ? "light" : "dark";
+  document.querySelectorAll(".settings-option").forEach((option) => {
+    const active = option.dataset.lang ? option.dataset.lang === getLanguage() : option.dataset.theme === theme;
+    option.classList.toggle("is-active", active);
   });
 }
 
-function toggleTheme() {
-  const isLight = document.documentElement.classList.toggle("light");
-  localStorage.setItem("theme", isLight ? "light" : "dark");
-  updateThemeButton();
+function toggleSettings() {
+  const menu = document.querySelector(".settings-menu");
+  menu.hidden = !menu.hidden;
 }
 
-window.addEventListener("DOMContentLoaded", updateThemeButton);
-
-// IT-Hilfe und KI-Chat schliessen, wenn man ausserhalb klickt (z. B. auf Run oder in den Code)
-document.addEventListener("click", function (event) {
-  document.querySelectorAll(".it-help-wrap[open]").forEach((wrap) => {
-    if (!wrap.contains(event.target)) {
-      wrap.open = false;
-    }
-  });
-  document.querySelectorAll(".ki-panel.is-open").forEach((panel) => {
-    if (!panel.contains(event.target) && !event.target.closest('[onclick="toggleKiPanel()"]')) {
-      panel.classList.remove("is-open");
-    }
-  });
+window.addEventListener("DOMContentLoaded", function () {
+  applyLanguage();
+  updateSettingsMenu();
 });
 
-function toggleKiPanel() {
-  const panel = document.querySelector(".ki-panel");
-  if (!panel) {
-    return;
+// ===== Fenster neben der Werkzeugleiste (Arbeitsauftrag, KI, P5, IT): immer nur eines offen =====
+let toolPanelJustOpened = false;
+
+function openToolPanel(name) {
+  closeToolPanels();
+  if (name === "task") loadCodeTaskForCurrentLevel();
+  document.querySelectorAll(`.tool-panel[data-panel="${name}"], .tool-icon[data-panel="${name}"]`).forEach((element) => {
+    element.classList.add("is-open");
+  });
+  if (name === "ki") {
+    const input = document.querySelector('#codeui .tool-panel[data-panel="ki"] input');
+    if (input) input.focus();
   }
-  panel.classList.toggle("is-open");
+  // Der Klick, der das Fenster geoeffnet hat, soll es nicht gleich wieder schliessen (siehe unten)
+  toolPanelJustOpened = true;
+  setTimeout(() => {
+    toolPanelJustOpened = false;
+  });
 }
+
+function closeToolPanels() {
+  document.querySelectorAll(".tool-panel.is-open, .tool-icon.is-open").forEach((element) => {
+    element.classList.remove("is-open");
+  });
+}
+
+function toggleToolPanel(name) {
+  if (document.querySelector(`.tool-panel[data-panel="${name}"].is-open`)) {
+    closeToolPanels();
+  } else {
+    openToolPanel(name);
+  }
+}
+
+// Fenster und Einstellungen schliessen, wenn man ausserhalb klickt (z. B. auf Run oder in den Code)
+document.addEventListener("click", function (event) {
+  if (!toolPanelJustOpened && !event.target.closest(".tool-panel")) {
+    closeToolPanels();
+  }
+  const menu = document.querySelector(".settings-menu");
+  if (menu && !event.target.closest(".settings")) {
+    menu.hidden = true;
+  }
+});
 
 function runCommon(codeId, previewId, consoleId, codeOverride = null) {
   const codeElement = document.getElementById(codeId);
@@ -510,22 +735,22 @@ function senden() {
 
   const ausgabe = document.getElementById("outputKI");
 
-  ausgabe.value += (ausgabe.value ? "\n" : "") + "Du: " + nachricht;
+  ausgabe.value += (ausgabe.value ? "\n" : "") + t("Du: ") + nachricht;
 console.log("Nachricht an Backend gesendet:", nachricht);
   if (statusEl) {
-    statusEl.textContent = "Nachricht gesendet. KI antwortet...";
+    statusEl.textContent = t("Nachricht gesendet. KI antwortet...");
   }
 
   testBackend(nachricht)
     .then(() => {
       if (statusEl) {
-        statusEl.textContent = "Antwort erhalten.";
+        statusEl.textContent = t("Antwort erhalten.");
       }
     })
     .catch((error) => {
       console.error("Fehler beim Backend-Aufruf:", error);
       if (statusEl) {
-        statusEl.textContent = "Fehler beim Senden an die KI.";
+        statusEl.textContent = t("Fehler beim Senden an die KI.");
       }
     });
 
