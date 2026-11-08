@@ -1322,6 +1322,30 @@ html.light .settings-option.is-active { border-color: #3f7ecf; background: #3f7e
   padding: 12px 0;
 }
 
+/* Logo-Platzhalter oben links (spaeter durch ein Bild ersetzen) */
+.start-logo-box {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 6px 12px;
+  border: 2px dashed #4a525e;
+  border-radius: 10px;
+  line-height: 1.2;
+  white-space: nowrap;
+}
+
+.start-logo-box-name {
+  font-size: 18px;
+  font-weight: 800;
+  color: #e6e9ee;
+}
+
+.start-logo-box-note {
+  font-size: 10px;
+  color: #9aa4b1;
+}
+
 .start-logo {
   font-size: 26px;
   font-weight: 800;
@@ -1414,26 +1438,14 @@ html.light .settings-option.is-active { border-color: #3f7ecf; background: #3f7e
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  min-height: 720px;
-  padding: 60px 20px 250px;
+  min-height: 560px;
+  padding: 60px 20px;
   box-sizing: border-box;
   text-align: center;
   background: radial-gradient(circle at 25% 25%, #2f6b4a, transparent 55%),
     radial-gradient(circle at 80% 70%, #1d4f6b, transparent 50%), #15191e;
   background-size: cover;
   background-position: center;
-}
-
-/* Hinweis, solange noch kein Bild eingetragen ist */
-.start-hero-placeholder {
-  position: absolute;
-  left: 20px;
-  top: 20px;
-  padding: 6px 12px;
-  border: 2px dashed rgba(255, 255, 255, 0.35);
-  border-radius: 10px;
-  color: rgba(255, 255, 255, 0.6);
-  font-size: 14px;
 }
 
 .start-title {
@@ -1492,46 +1504,6 @@ html.light .settings-option.is-active { border-color: #3f7ecf; background: #3f7e
   font-size: 22px;
 }
 
-/* Logo-Platzhalter rechts im Startbild */
-.start-badges {
-  position: absolute;
-  top: 70px;
-  right: max(16px, calc(50% - 600px));
-  display: flex;
-  flex-direction: column;
-  gap: 14px;
-}
-
-.start-badge,
-.start-banner {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border: 2px dashed rgba(255, 255, 255, 0.45);
-  background: rgba(255, 255, 255, 0.08);
-  color: rgba(255, 255, 255, 0.75);
-  font-size: 13px;
-  text-align: center;
-}
-
-.start-badge {
-  width: 120px;
-  height: 76px;
-  border-radius: 8px;
-}
-
-/* Banner-Platzhalter unten im Startbild */
-.start-banner {
-  position: absolute;
-  left: 50%;
-  bottom: 36px;
-  transform: translateX(-50%);
-  width: min(800px, calc(100% - 40px));
-  height: 150px;
-  border-radius: 6px;
-  font-size: 16px;
-}
-
 .start-section {
   width: min(1000px, 92vw);
   margin: 0 auto;
@@ -1544,19 +1516,6 @@ html.light .settings-option.is-active { border-color: #3f7ecf; background: #3f7e
   margin: 0 0 22px;
   font-size: 30px;
   color: #7fd39f;
-}
-
-/* Platzhalter: hier kommt spaeter ein Bild hin */
-.image-placeholder {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  height: 150px;
-  margin-bottom: 12px;
-  border: 2px dashed #4a525e;
-  border-radius: 12px;
-  color: #7d8590;
-  font-size: 15px;
 }
 
 .start-text {
@@ -1617,13 +1576,7 @@ html.light .settings-option.is-active { border-color: #3f7ecf; background: #3f7e
   color: #d7dce3;
 }
 
-/* Schmale Bildschirme: Logos ausblenden (sonst ueber dem Titel), Menue umbrechen */
-@media (max-width: 1200px) {
-  .start-badges {
-    display: none;
-  }
-}
-
+/* Schmale Bildschirme: Menue umbrechen */
 @media (max-width: 900px) {
   .start-header-inner {
     flex-wrap: wrap;
@@ -1633,6 +1586,9 @@ html.light .settings-option.is-active { border-color: #3f7ecf; background: #3f7e
 }
 
 html.light .start-header { background: #ffffff; border-bottom-color: #e3e5ee; }
+html.light .start-logo-box { border-color: #b8c5d8; }
+html.light .start-logo-box-name { color: #1f3550; }
+html.light .start-logo-box-note { color: #60738a; }
 html.light .start-logo,
 html.light .start-section-title,
 html.light .start-feature h3 { color: #1d4f8d; }
@@ -1647,7 +1603,6 @@ html.light .start-text { color: #1f3550; }
 html.light .start-feature { border-color: #e3e5ee; background: #ffffff; }
 html.light .start-feature p { color: #2a4867; }
 html.light .start-grade { background: #3f7ecf; }
-html.light .image-placeholder { border-color: #b8c5d8; color: #60738a; }
 
 /* Modul-Uebersicht: nur die drei Module, mittig und so gross wie vorher */
 #overview svg {

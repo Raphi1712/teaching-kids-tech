@@ -6,7 +6,6 @@ const TRANSLATIONS_EN = {
   "🌙 Dunkel": "🌙 Dark",
   "☀ Hell": "☀ Light",
   // Titelseite
-  "Platz für ein Bild": "Space for an image",
   "Informatikunterricht hängt oft von den finanziellen Möglichkeiten der Familien und der Ausstattung der Schulen ab. Klassischer Unterricht kann zudem nicht immer auf die individuellen Lernbedürfnisse aller Kinder eingehen. Eine altersgerechte Lern-App, die Gamification nutzt, kann einen flexiblen und motivierenden Zugang zur Informatik schaffen und bestehende Bildungsangebote sinnvoll ergänzen.":
     "Computer science education often depends on what families can afford and how well schools are equipped. Traditional lessons also cannot always meet the individual learning needs of every child. An age-appropriate learning app that uses gamification can open up a flexible and motivating way into computer science and be a meaningful addition to existing education.",
   "Für alle zugänglich": "Open to everyone",
@@ -15,8 +14,8 @@ const TRANSLATIONS_EN = {
   "Jedes Kind lernt Level für Level so schnell, wie es für sich passt.": "Every child learns level by level, as fast as suits them.",
   "Spielerisch lernen": "Learn through play",
   "Themen, Level und Boss-Level machen Lust auf die nächste Aufgabe.": "Topics, levels and boss levels make you want to take on the next task.",
-  "Für Schüler": "For students",
-  "Platz für ein Hintergrundbild": "Space for a background image",
+  "Für Schulen": "For schools",
+  "Für Schulen: Unsere Module": "For schools: our modules",
   "Jetzt starten": "Get started",
   "Jetzt starten →": "Get started →",
   "Warum diese App?": "Why this app?",
@@ -26,9 +25,6 @@ const TRANSLATIONS_EN = {
   "Modul 2 – 8.–10. Klasse": "Module 2 – grades 8–10",
   "Modul 3 – 10.–12. Klasse": "Module 3 – grades 10–12",
   "Über das Projekt": "About the project",
-  "Platz für ein Logo": "Space for a logo",
-  "Platz für ein Banner": "Space for a banner",
-  "Für Schüler: Wähle dein Modul": "For students: choose your module",
   "6.–8. Klasse": "Grades 6–8",
   "8.–10. Klasse": "Grades 8–10",
   "10.–12. Klasse": "Grades 10–12",
