@@ -6,7 +6,6 @@ const TRANSLATIONS_EN = {
   "🌙 Dunkel": "🌙 Dark",
   "☀ Hell": "☀ Light",
   // Titelseite
-  "Informatik für alle": "Computer science for everyone",
   "Platz für ein Bild": "Space for an image",
   "Informatikunterricht hängt oft von den finanziellen Möglichkeiten der Familien und der Ausstattung der Schulen ab. Klassischer Unterricht kann zudem nicht immer auf die individuellen Lernbedürfnisse aller Kinder eingehen. Eine altersgerechte Lern-App, die Gamification nutzt, kann einen flexiblen und motivierenden Zugang zur Informatik schaffen und bestehende Bildungsangebote sinnvoll ergänzen.":
     "Computer science education often depends on what families can afford and how well schools are equipped. Traditional lessons also cannot always meet the individual learning needs of every child. An age-appropriate learning app that uses gamification can open up a flexible and motivating way into computer science and be a meaningful addition to existing education.",
