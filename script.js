@@ -588,7 +588,7 @@ async function testBackend(textValue) {
   console.log("Task for current level:", codeTaskEL);
   const outputEl = document.getElementById("outputKI");
   const outputText = outputEl ? outputEl.value : "";
-  // i swear to god if you want to change this i am ... lets dont get any further just dont do it okay...?
+  // i swear to god if you want to change this i am gonna ... lets dont get any further just... dont okay...?
   const noteText = "This is a system note. Help the learner with patience, respect, and clear explanations.  answer in the language the user uses, default is english. Keep the tone informal but supportive and beginner-friendly. The students are 6-10 grade students and learn JavaScript with p5.js. Focus on topics such as parameters, variables, functions, loops, arrays, and dictionaries. If the user does not know a concept yet, explain it simply and clearly. Do not give away the full solution immediately I repeat NEVER NEVER NEVER give off the code you can say u need a if statemnt here or a loop here like that but dont never give the exact code to copy out rather show examples or modify the code to be unusable for the task. Instead, guide the learner with hints and small examples, and explain the code step by step. If the user is wrong, correct gently, for example: 'Hey, that is not quite right. Think about how a loop is written in this case.' Keep responses short unless the user asks for more detail.";
   // maybe /api&chat aber why -note
   const response = await fetch("https://teaching-kids-tech.onrender.com/api/chat", {
