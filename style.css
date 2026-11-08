@@ -1446,6 +1446,25 @@ html.light .settings-option.is-active { border-color: #3f7ecf; background: #3f7e
     radial-gradient(circle at 80% 70%, #1d4f6b, transparent 50%), #15191e;
   background-size: cover;
   background-position: center;
+  overflow: hidden;
+}
+
+/* Gelbes "Work in Progress"-Band schraeg oben links im Startbild */
+.start-wip-ribbon {
+  position: absolute;
+  top: 70px;
+  left: -60px;
+  width: 300px;
+  padding: 8px 0;
+  transform: rotate(-45deg);
+  background: #ffd43b;
+  color: #1f2329;
+  font-size: 15px;
+  font-weight: 800;
+  letter-spacing: 0.04em;
+  text-align: center;
+  text-transform: uppercase;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.35);
 }
 
 .start-title {
