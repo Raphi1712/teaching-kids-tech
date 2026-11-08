@@ -6,6 +6,15 @@ let defaultCode = `function setup() {
   function draw() {
   background(220);
 }`;
+// Titelseite: sanft zu einem Abschnitt scrollen (ohne #-Adresse, die wuerde die Seite wechseln)
+function scrollToStartInfo() {
+  document.getElementById("start-info").scrollIntoView({ behavior: "smooth" });
+}
+
+function scrollToStartAbout() {
+  document.getElementById("start-about").scrollIntoView({ behavior: "smooth" });
+}
+
 // Arbeitsauftrag im Fenster neben der Werkzeugleiste zeigen
 function printCurrentLevel() {
   openToolPanel("task");

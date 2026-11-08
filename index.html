@@ -51,33 +51,91 @@
 
     <!-- Titelseite: erscheint ohne #-Adresse, "Weiter" fuehrt zur Modul-Uebersicht -->
     <section class="page" id="start">
-      <div class="start-card">
+      <!-- Kopfzeile: Name links, Menue in der Mitte, umrandeter Knopf rechts -->
+      <header class="start-header">
+        <div class="start-header-inner">
+          <span class="start-logo">Informatik für alle</span>
+          <nav class="start-nav">
+            <div class="start-nav-item">
+              <button type="button" class="start-nav-link">Module ▾</button>
+              <div class="start-dropdown">
+                <a href="#modul1">Modul 1 – 6.–8. Klasse</a>
+                <a href="#modul2">Modul 2 – 8.–10. Klasse</a>
+                <a href="#modul3">Modul 3 – 10.–12. Klasse</a>
+              </div>
+            </div>
+            <button type="button" class="start-nav-link" onclick="scrollToStartInfo()">Für Schüler</button>
+            <button type="button" class="start-nav-link" onclick="scrollToStartAbout()">Über das Projekt</button>
+          </nav>
+          <a class="start-header-button" href="#overview">Jetzt starten</a>
+        </div>
+      </header>
+
+      <!-- Grosses Startbild. Hintergrundbild spaeter in style.css bei .start-hero eintragen (background-image). -->
+      <div class="start-hero">
+        <span class="start-hero-placeholder">Platz für ein Hintergrundbild</span>
         <h1 class="start-title">Informatik für alle</h1>
-        <p class="start-subtitle">Programmieren lernen mit p5.js – spielerisch, Schritt für Schritt</p>
-        <!-- Platzhalter: hier spaeter ein grosses Bild einfuegen -->
-        <div class="image-placeholder start-hero-image">Platz für ein Bild</div>
+        <p class="start-subtitle">Programmieren lernen – spielerisch, Schritt für Schritt</p>
+        <div class="start-hero-buttons">
+          <a class="start-btn" href="#overview">Jetzt starten</a>
+          <button type="button" class="start-btn" onclick="scrollToStartInfo()">Für Schüler</button>
+        </div>
+        <!-- Platz fuer Logos (z. B. Schule, Partner, Auszeichnungen) -->
+        <div class="start-badges">
+          <div class="start-badge">Platz für ein Logo</div>
+          <div class="start-badge">Platz für ein Logo</div>
+          <div class="start-badge">Platz für ein Logo</div>
+        </div>
+        <!-- Platz fuer ein Banner (z. B. Aktion oder Ankuendigung) -->
+        <div class="start-banner">Platz für ein Banner</div>
+      </div>
+
+      <!-- Fuer Schueler: die drei Module mit Klassenstufe -->
+      <div class="start-section" id="start-info">
+        <h2 class="start-section-title">Für Schüler: Wähle dein Modul</h2>
+        <div class="start-features">
+          <a class="start-feature start-module-card" href="#modul1">
+            <div class="image-placeholder">Platz für ein Bild</div>
+            <span class="start-grade">6.–8. Klasse</span>
+            <h3>Modul 1</h3>
+            <p>Farben und Formen – statisch</p>
+          </a>
+          <a class="start-feature start-module-card" href="#modul2">
+            <div class="image-placeholder">Platz für ein Bild</div>
+            <span class="start-grade">8.–10. Klasse</span>
+            <h3>Modul 2</h3>
+            <p>Farben und Formen – Animationen</p>
+          </a>
+          <a class="start-feature start-module-card" href="#modul3">
+            <div class="image-placeholder">Platz für ein Bild</div>
+            <span class="start-grade">10.–12. Klasse</span>
+            <h3>Modul 3</h3>
+            <p>Farben und Formen – mit Bedingungen</p>
+          </a>
+        </div>
+      </div>
+
+      <!-- Ueber das Projekt -->
+      <div class="start-section" id="start-about">
+        <h2 class="start-section-title">Warum diese App?</h2>
         <p class="start-text">
           Informatikunterricht hängt oft von den finanziellen Möglichkeiten der Familien und der Ausstattung der Schulen ab. Klassischer Unterricht kann zudem nicht immer auf die individuellen Lernbedürfnisse aller Kinder eingehen. Eine altersgerechte Lern-App, die Gamification nutzt, kann einen flexiblen und motivierenden Zugang zur Informatik schaffen und bestehende Bildungsangebote sinnvoll ergänzen.
         </p>
         <div class="start-features">
           <div class="start-feature">
-            <!-- Platzhalter fuer ein Bild/Icon -->
-            <div class="image-placeholder">Platz für ein Bild</div>
-            <h2>Für alle zugänglich</h2>
+            <h3>Für alle zugänglich</h3>
             <p>Läuft im Browser – ohne teure Ausstattung oder Installation.</p>
           </div>
           <div class="start-feature">
-            <div class="image-placeholder">Platz für ein Bild</div>
-            <h2>In deinem Tempo</h2>
+            <h3>In deinem Tempo</h3>
             <p>Jedes Kind lernt Level für Level so schnell, wie es für sich passt.</p>
           </div>
           <div class="start-feature">
-            <div class="image-placeholder">Platz für ein Bild</div>
-            <h2>Spielerisch lernen</h2>
+            <h3>Spielerisch lernen</h3>
             <p>Themen, Level und Boss-Level machen Lust auf die nächste Aufgabe.</p>
           </div>
         </div>
-        <a class="start-next" href="#overview">Weiter →</a>
+        <a class="start-btn start-btn-primary start-btn-large" href="#overview">Jetzt starten →</a>
       </div>
     </section>
 
