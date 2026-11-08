@@ -568,6 +568,7 @@ body {
 
 .editor-shell {
   display: flex;
+  flex: 1 1 auto;
   position: relative;
   min-height: 420px;
   padding-left: 74px;
@@ -799,11 +800,11 @@ button:active {
   box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
 }
 
+/* quadratisch und so breit wie die Ergebnis-Spalte; die Zeichenflaeche wird darin passend verkleinert */
 #preview {
   display: block;
-  width: 800px;
-  max-width: 800px;
-  height: 800px;
+  width: 100%;
+  aspect-ratio: 1;
   margin: 0;
   border: 2px solid #3d444f;
   border-radius: 10px;
@@ -811,19 +812,6 @@ button:active {
   box-sizing: border-box;
 }
 
-@media (max-width: 900px) {
-  #preview {
-    width: 100%;
-    max-width: 100%;
-    height: 560px;
-  }
-
-  .preview-panel {
-    width: 100%;
-    min-width: 0;
-    flex-basis: 100%;
-  }
-}
 .bottom-bar {
   position: fixed;
   bottom: 0;
@@ -951,28 +939,51 @@ body {
   background: #23803a;
 }
 
+/* Code-Seite: zwei Spalten, der Code etwas breiter (55 %) als das Ergebnis (45 %).
+   Links der Code und darunter die Konsole, rechts das Ergebnis ueber die ganze Hoehe. */
+.layout {
+  grid-template-columns: minmax(0, 11fr) minmax(0, 9fr);
+  /* zusaetzliche Hoehe bekommt der Code, die Konsole bleibt unten buendig mit dem Ergebnis */
+  grid-template-rows: minmax(0, 1fr) auto;
+}
+
 .editor-panel {
-  flex: 1 1 420px;
-  min-width: 420px;
+  grid-column: 1;
+  grid-row: 1;
+  min-width: 0;
 }
 
 .preview-panel {
-  flex: 0 0 830px;
-  min-width: 830px;
-  width: 830px;
-  margin-left: auto;
+  grid-column: 2;
+  grid-row: 1 / span 2;
+  min-width: 0;
 }
 
 .console-panel {
-  flex: 0 0 830px;
-  width: 830px;
-  min-width: 830px;
-  /* Immer in eigener Zeile unter dem Ergebnis, auch auf sehr breiten Bildschirmen */
-  margin-left: calc(100% - 830px);
+  grid-column: 1;
+  grid-row: 2;
+  min-width: 0;
   height: 100px;
   background: #000;
   color: #00ff88;
   overflow-y: auto;
+}
+
+/* Schmale Bildschirme: alles untereinander (Code, Ergebnis, Konsole) */
+@media (max-width: 900px) {
+  .layout {
+    grid-template-columns: minmax(0, 1fr);
+    grid-template-rows: auto;
+  }
+
+  .preview-panel {
+    grid-column: 1;
+    grid-row: 2;
+  }
+
+  .console-panel {
+    grid-row: 3;
+  }
 }
 
 .console-title {
@@ -1162,7 +1173,7 @@ body:not(:has(#codeui:target)):not(:has(#codeuiOwnlevel:target)) .bottom-bar {
 
 body:has(#codeui:target) .layout,
 body:has(#codeuiOwnlevel:target) .layout {
-  display: flex;
+  display: grid;
 }
 
 body:has(#codeui:target) .bottom-bar,

@@ -562,6 +562,8 @@ function runCommon(codeId, previewId, consoleId, codeOverride = null) {
   const beforeCode = `
     <html>
     <head>
+      <!-- Zeichenflaeche genau so breit wie das Ergebnis-Fenster anzeigen (p5 rechnet mouseX/mouseY passend um) -->
+      <style>body { margin: 0; } canvas { display: block; width: 100% !important; height: auto !important; }</style>
       <script src="min.js"><\/script>
       <script>
    ${codePrefix}
