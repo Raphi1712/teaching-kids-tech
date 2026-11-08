@@ -49,6 +49,38 @@
     <script src="script.js"></script>
     <!-- p5.js Bibliothek fÃ¼r Canvas/Rendering -->
 
+    <!-- Titelseite: erscheint ohne #-Adresse, "Weiter" fuehrt zur Modul-Uebersicht -->
+    <section class="page" id="start">
+      <div class="start-card">
+        <h1 class="start-title">Informatik für alle</h1>
+        <p class="start-subtitle">Programmieren lernen mit p5.js – spielerisch, Schritt für Schritt</p>
+        <!-- Platzhalter: hier spaeter ein grosses Bild einfuegen -->
+        <div class="image-placeholder start-hero-image">Platz für ein Bild</div>
+        <p class="start-text">
+          Informatikunterricht hängt oft von den finanziellen Möglichkeiten der Familien und der Ausstattung der Schulen ab. Klassischer Unterricht kann zudem nicht immer auf die individuellen Lernbedürfnisse aller Kinder eingehen. Eine altersgerechte Lern-App, die Gamification nutzt, kann einen flexiblen und motivierenden Zugang zur Informatik schaffen und bestehende Bildungsangebote sinnvoll ergänzen.
+        </p>
+        <div class="start-features">
+          <div class="start-feature">
+            <!-- Platzhalter fuer ein Bild/Icon -->
+            <div class="image-placeholder">Platz für ein Bild</div>
+            <h2>Für alle zugänglich</h2>
+            <p>Läuft im Browser – ohne teure Ausstattung oder Installation.</p>
+          </div>
+          <div class="start-feature">
+            <div class="image-placeholder">Platz für ein Bild</div>
+            <h2>In deinem Tempo</h2>
+            <p>Jedes Kind lernt Level für Level so schnell, wie es für sich passt.</p>
+          </div>
+          <div class="start-feature">
+            <div class="image-placeholder">Platz für ein Bild</div>
+            <h2>Spielerisch lernen</h2>
+            <p>Themen, Level und Boss-Level machen Lust auf die nächste Aufgabe.</p>
+          </div>
+        </div>
+        <a class="start-next" href="#overview">Weiter →</a>
+      </div>
+    </section>
+
     <!-- Ãœbersicht: Einstieg mit den 3 Hauptmodulen -->
     <section class="page" id="overview">
       <p class="step-hint">Schritt 1 von 4: Wähle ein Modul aus.</p>
@@ -57,7 +89,8 @@
         <!-- <a class="action-btn" href="#level-erstellen">Level erstellen</a> -->
       </div>
       <!-- Mindmap-Container der Startseite -->
-      <svg viewBox="0 0 700 510">
+      <!-- viewBox nur so gross wie die drei Module, damit sie mittig stehen -->
+      <svg viewBox="0 0 420 150">
         <!-- Zeile 1: Modul 1â€“5 -->
         <a href="#modul1" class="overview-module">
           <circle class="circle difficulty-easy" cx="70" cy="90" r="50" />

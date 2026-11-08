@@ -23,8 +23,12 @@ body {
   padding: 20px 0;
   box-sizing: border-box;
 }
-#overview {
+/* Titelseite ist der Einstieg (ohne #-Adresse); sobald eine Seite gewaehlt ist, verschwindet sie */
+#start {
   display: flex;
+}
+body:has(:target) #start {
+  display: none;
 }
 #overview:target {
   display: flex;
@@ -1292,3 +1296,104 @@ html.light .settings-option {
 html.light .settings-menu { border-color: #c8d8ee; background: #ffffff; box-shadow: 0 10px 30px rgba(26, 76, 140, 0.18); }
 html.light .settings-label { color: #1d4f8d; }
 html.light .settings-option.is-active { border-color: #3f7ecf; background: #3f7ecf; color: #ffffff; }
+
+/* ===== Titelseite ===== */
+.start-card {
+  width: min(960px, 92vw);
+  text-align: center;
+}
+
+.start-title {
+  margin: 0 0 6px;
+  font-size: 44px;
+  color: #7fd39f;
+}
+
+.start-subtitle {
+  margin: 0 0 22px;
+  font-size: 20px;
+  color: #b8c0cb;
+}
+
+/* Platzhalter: hier kommt spaeter ein Bild hin */
+.image-placeholder {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 140px;
+  border: 2px dashed #4a525e;
+  border-radius: 14px;
+  color: #7d8590;
+  font-size: 15px;
+}
+
+.start-hero-image {
+  height: 260px;
+}
+
+.start-text {
+  max-width: 760px;
+  margin: 24px auto;
+  font-size: 18px;
+  line-height: 1.7;
+  color: #e6e9ee;
+}
+
+.start-features {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 16px;
+  text-align: left;
+}
+
+.start-feature {
+  padding: 14px;
+  border: 1px solid #3d444f;
+  border-radius: 14px;
+  background: #2a2f37;
+}
+
+.start-feature h2 {
+  margin: 12px 0 4px;
+  font-size: 18px;
+  color: #7fd39f;
+}
+
+.start-feature p {
+  margin: 0;
+  font-size: 15px;
+  line-height: 1.5;
+  color: #d7dce3;
+}
+
+.start-next {
+  display: inline-block;
+  margin-top: 26px;
+  padding: 14px 34px;
+  border-radius: 12px;
+  background: linear-gradient(135deg, #2f9e5b, #1f7a45);
+  color: #ffffff;
+  font-size: 22px;
+  font-weight: 700;
+  text-decoration: none;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.25);
+}
+
+.start-next:hover {
+  filter: brightness(1.08);
+}
+
+html.light .start-title,
+html.light .start-feature h2 { color: #1d4f8d; }
+html.light .start-subtitle { color: #4d657f; }
+html.light .start-text { color: #1f3550; }
+html.light .start-feature { border-color: #e3e5ee; background: #ffffff; }
+html.light .start-feature p { color: #2a4867; }
+html.light .image-placeholder { border-color: #b8c5d8; color: #60738a; }
+
+/* Modul-Uebersicht: nur die drei Module, mittig und so gross wie vorher */
+#overview svg {
+  width: 660px;
+  max-width: 95vw;
+  height: auto;
+}

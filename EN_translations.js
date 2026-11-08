@@ -5,6 +5,19 @@ const TRANSLATIONS_EN = {
   "Design": "Theme",
   "🌙 Dunkel": "🌙 Dark",
   "☀ Hell": "☀ Light",
+  // Titelseite
+  "Informatik für alle": "Computer science for everyone",
+  "Programmieren lernen mit p5.js – spielerisch, Schritt für Schritt": "Learn to code with p5.js – playfully, step by step",
+  "Platz für ein Bild": "Space for an image",
+  "Informatikunterricht hängt oft von den finanziellen Möglichkeiten der Familien und der Ausstattung der Schulen ab. Klassischer Unterricht kann zudem nicht immer auf die individuellen Lernbedürfnisse aller Kinder eingehen. Eine altersgerechte Lern-App, die Gamification nutzt, kann einen flexiblen und motivierenden Zugang zur Informatik schaffen und bestehende Bildungsangebote sinnvoll ergänzen.":
+    "Computer science education often depends on what families can afford and how well schools are equipped. Traditional lessons also cannot always meet the individual learning needs of every child. An age-appropriate learning app that uses gamification can open up a flexible and motivating way into computer science and be a meaningful addition to existing education.",
+  "Für alle zugänglich": "Open to everyone",
+  "Läuft im Browser – ohne teure Ausstattung oder Installation.": "Runs in the browser – no expensive equipment or installation needed.",
+  "In deinem Tempo": "At your own pace",
+  "Jedes Kind lernt Level für Level so schnell, wie es für sich passt.": "Every child learns level by level, as fast as suits them.",
+  "Spielerisch lernen": "Learn through play",
+  "Themen, Level und Boss-Level machen Lust auf die nächste Aufgabe.": "Topics, levels and boss levels make you want to take on the next task.",
+  "Weiter →": "Continue →",
   "Schritt 1 von 4: Wähle ein Modul aus.": "Step 1 of 4: Choose a module.",
   "Schritt 2: Klicke auf ein Thema. Schritt 3: Wähle eines der Level 1–3, die daneben erscheinen.":
     "Step 2: Click a topic. Step 3: Choose one of the levels 1–3 that appear next to it.",
