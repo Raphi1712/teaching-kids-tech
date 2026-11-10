@@ -192,6 +192,27 @@ svg {
   fill: #2d9b52;
 }
 
+/* Hover-Hintergrund: Ausschnitt aus dem besten Sketch des Moduls / Themas */
+.hover-sketch {
+  clip-path: circle(50%);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.2s;
+}
+a:hover > .hover-sketch {
+  opacity: 1;
+  filter: brightness(0.8);
+}
+a:hover > .hover-sketch ~ .label {
+  paint-order: stroke;
+  stroke: rgba(0, 0, 0, 0.85);
+  stroke-width: 4px;
+  stroke-linejoin: round;
+}
+a:hover > .hover-sketch ~ .label .theme-number {
+  opacity: 1;
+}
+
 .circle-mini {
   fill: #dff5d9;
   stroke: #5c9d67;

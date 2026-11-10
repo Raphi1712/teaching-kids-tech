@@ -34,8 +34,9 @@ const TRANSLATIONS_EN = {
   "Schritt 1 von 4: Wähle ein Modul aus.": "Step 1 of 4: Choose a module.",
   "Schritt 2: Klicke auf ein Thema. Schritt 3: Wähle eines der Level 1–3, die daneben erscheinen.":
     "Step 2: Click a topic. Step 3: Choose one of the levels 1–3 that appear next to it.",
-  "Schritt 4: Lies den Arbeitsauftrag (>-), schreibe deinen Code und drücke Run.":
-    "Step 4: Read the task (>-), write your code and press Run.",
+  "Schritt 4: Lies den Arbeitsauftrag (A), schreibe deinen Code und drücke Run.":
+    "Step 4: Read the task (A), write your code and press Run.",
+  "Kommt bald": "Coming soon",
   "Modul": "Module",
   "Modul 1": "Module 1",
   "Modul 2": "Module 2",
