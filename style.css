@@ -246,6 +246,14 @@ svg {
   font-weight: 600;
 }
 
+/* Uebersicht: das Werkzeug (Tool), das ein Modul beibringt, steht ueber dem Kreis */
+.module-tool {
+  fill: #7fd39f;
+  font-size: 12px;
+  font-weight: 700;
+  text-anchor: middle;
+}
+
 /* Was man lernt: kurzer Text ueber den Themen und neben den Mini-Themen der Modul-Seiten.
    Der Rand in Hintergrundfarbe haelt den Text auch ueber Linien lesbar. */
 .learn-label {
@@ -1196,6 +1204,7 @@ html.light { color-scheme: light; }
 html.light body { background: #f6f7fb; color: #000; }
 html.light .overview-title,
 html.light .overview-sub { fill: #000000; }
+html.light .module-tool { fill: #1d6b3f; }
 html.light .learn-label { fill: #2f4464; stroke: #f6f7fb; }
 html.light .learn-mini { fill: #1d6b3f; }
 html.light .level-card { background: white; }

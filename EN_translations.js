@@ -44,6 +44,7 @@ const TRANSLATIONS_EN = {
   "statisch": "static",
   "Animationen": "animations",
   "mit Bedingungen": "with conditions",
+  "Parameter": "Parameters",
   "← Zurück": "← Back",
   // Modul-Seiten: was man in Themen und Mini-Themen lernt
   "Zeichenfläche & Formen": "Canvas & shapes",
