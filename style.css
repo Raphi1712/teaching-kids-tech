@@ -246,19 +246,22 @@ svg {
   font-weight: 600;
 }
 
-.module-tooltip {
-  display: none;
-  fill: #e6e9ee;
-  font-size: 12px;
+/* Was man lernt: kurzer Text ueber den Themen und neben den Mini-Themen der Modul-Seiten.
+   Der Rand in Hintergrundfarbe haelt den Text auch ueber Linien lesbar. */
+.learn-label {
+  fill: #b8c0cb;
+  font-size: 9px;
   font-weight: 700;
   text-anchor: middle;
-  dominant-baseline: middle;
-  pointer-events: none;
+  paint-order: stroke;
+  stroke: #1f2329;
+  stroke-width: 3px;
+  stroke-linejoin: round;
 }
 
-.overview-module:hover .module-tooltip,
-.overview-module:focus .module-tooltip {
-  display: block;
+.learn-mini {
+  font-size: 7.5px;
+  fill: #9fd8b4;
 }
 
 .overview-module[href="#modul1"] .circle {
@@ -1193,7 +1196,8 @@ html.light { color-scheme: light; }
 html.light body { background: #f6f7fb; color: #000; }
 html.light .overview-title,
 html.light .overview-sub { fill: #000000; }
-html.light .module-tooltip { fill: #000000; }
+html.light .learn-label { fill: #2f4464; stroke: #f6f7fb; }
+html.light .learn-mini { fill: #1d6b3f; }
 html.light .level-card { background: white; }
 html.light .level-card h2 { color: #1f3550; }
 html.light .level-form label { color: #27405f; }

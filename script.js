@@ -40,6 +40,7 @@ function toggleMiniTheme(themeId) {
     }
   }
 
+  updateTopicLearnLabels();
   loadEditorForCurrentLevel();
 
   // Beim Oeffnen eines Mini-Levels (z. B. m1t2_3) den Arbeitsauftrag automatisch zeigen
@@ -62,7 +63,18 @@ function backToModule() {
       group.style.display = 'inline';
     }
   }
+  updateTopicLearnLabels();
   window.location.hash = `modul${match[2]}`;
+}
+
+// "Was man lernt"-Text ueber einem Thema verstecken, solange seine Mini-Themen offen sind
+// (dort stehen dann die Texte der Mini-Themen, und ein Mini-Kreis liegt genau an dieser Stelle)
+function updateTopicLearnLabels() {
+  document.querySelectorAll(".learn-topic").forEach((label) => {
+    const firstMini = document.getElementById(`${label.dataset.topic}_1`);
+    const open = firstMini && window.getComputedStyle(firstMini).display !== "none";
+    label.style.display = open ? "none" : "";
+  });
 }
 
 function getLevelFromUrl() {

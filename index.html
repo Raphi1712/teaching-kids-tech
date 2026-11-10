@@ -152,9 +152,6 @@
             Farben und Formen
           </text>
           <text class="label overview-sub" x="70" y="112">statisch</text>
-          <text class="module-tooltip" x="70" y="20">
-            Tool teached: Parameter
-          </text>
         </a>
         <a href="#modul2" class="overview-module">
           <circle class="circle difficulty-easy" cx="210" cy="90" r="50" />
@@ -163,9 +160,6 @@
             Farben und Formen
           </text>
           <text class="label overview-sub" x="210" y="112">Animationen</text>
-          <text class="module-tooltip" x="210" y="20">
-            Tool teached: Variablen
-          </text>
         </a>
         <a href="#modul3" class="overview-module">
           <circle class="circle difficulty-easy" cx="350" cy="90" r="50" />
@@ -175,9 +169,6 @@
           </text>
           <text class="label overview-sub" x="350" y="112">
             mit Bedingungen
-          </text>
-          <text class="module-tooltip" x="350" y="20">
-            Tool teached: If statements
           </text>
         </a>
         <!--
@@ -251,7 +242,7 @@
       <!-- Navigation zurÃ¼ck zur Ãœbersicht -->
 
       <!-- Mindmap fÃ¼r Modul 1 -->
-      <svg viewBox="0 0 700 500">
+      <svg viewBox="0 -16 700 516">
         <!-- Linien vom Modul-Zentrum zu den Themen -->
         <line class="line" x1="350" y1="250" x2="350" y2="80" />
         <line class="line" x1="350" y1="250" x2="512" y2="152" />
@@ -280,22 +271,27 @@
         <!-- 5 Hauptthemen von Modul 1 -->
         <a href="#modul1" onclick="toggleMiniTheme('m1t1')">
           <circle class="circle-sub" cx="350" cy="80" r="45" />
+          <text class="learn-label learn-topic" data-topic="m1t1" x="350" y="29">Zeichenfläche &amp; Formen</text>
           <text class="label" x="350" y="80"><tspan x="350" dy="-1.1em">Erste</tspan><tspan x="350" dy="1.2em">Schritte</tspan><tspan class="theme-number" x="350" dy="1.25em">1</tspan></text>
         </a>
         <a href="#modul1" onclick="toggleMiniTheme('m1t2')">
           <circle class="circle-sub" cx="512" cy="152" r="45" />
+          <text class="learn-label learn-topic" data-topic="m1t2" x="512" y="101">Farben mit RGB</text>
           <text class="label" x="512" y="152"><tspan x="512" dy="-0.5em">RGB-Farben</tspan><tspan class="theme-number" x="512" dy="1.25em">2</tspan></text>
         </a>
         <a href="#modul1" onclick="toggleMiniTheme('m1t3')">
           <circle class="circle-sub" cx="450" cy="412" r="45" />
+          <text class="learn-label learn-topic" data-topic="m1t3" x="486" y="361">Formen zu Bildern</text>
           <text class="label" x="450" y="412"><tspan x="450" dy="-0.5em">Häuser</tspan><tspan class="theme-number" x="450" dy="1.25em">3</tspan></text>
         </a>
         <a href="#modul1" onclick="toggleMiniTheme('m1t4')">
           <circle class="circle-sub" cx="250" cy="412" r="45" />
+          <text class="learn-label learn-topic" data-topic="m1t4" x="214" y="361">Werte in Variablen</text>
           <text class="label" x="250" y="412"><tspan x="250" dy="-0.5em">Variablen</tspan><tspan class="theme-number" x="250" dy="1.25em">4</tspan></text>
         </a>
         <a href="#modul1" onclick="toggleMiniTheme('m1t5')">
           <circle class="circle-sub" cx="188" cy="152" r="45" />
+          <text class="learn-label learn-topic" data-topic="m1t5" x="188" y="101">Alles aus Modul 1</text>
           <text class="label" x="188" y="152"><tspan x="188" dy="-1.1em">Gesicht</tspan><tspan x="188" dy="1.2em">(Boss)</tspan><tspan class="theme-number" x="188" dy="1.25em">5</tspan></text>
         </a>
 
@@ -304,6 +300,7 @@
           <g class="mini-group" id="m1t1_1">
             <line class="mini-line" x1="350" y1="80" x2="350" y2="26" />
             <circle class="circle-mini" cx="350" cy="26" r="24" />
+            <text class="learn-label learn-mini" x="350" y="-2">Fläche anlegen</text>
             <text class="label" x="350" y="26"><tspan x="350" dy="-0.45em">Start</tspan><tspan class="mini-number" x="350" dy="1.15em">1</tspan></text>
           </g>
         </a>
@@ -311,6 +308,7 @@
           <g class="mini-group" id="m1t1_2">
             <line class="mini-line" x1="350" y1="80" x2="305" y2="110" />
             <circle class="circle-mini" cx="305" cy="110" r="24" />
+            <text class="learn-label learn-mini" x="305" y="144">Ellipse zeichnen</text>
             <text class="label" x="305" y="110"><tspan x="305" dy="-0.45em">Ellipse</tspan><tspan class="mini-number" x="305" dy="1.15em">2</tspan></text>
           </g>
         </a>
@@ -318,6 +316,7 @@
           <g class="mini-group" id="m1t1_3">
             <line class="mini-line" x1="350" y1="80" x2="395" y2="110" />
             <circle class="circle-mini" cx="395" cy="110" r="24" />
+            <text class="learn-label learn-mini" x="395" y="144">Text schreiben</text>
             <text class="label" x="395" y="110"><tspan x="395" dy="-0.45em">Text</tspan><tspan class="mini-number" x="395" dy="1.15em">3</tspan></text>
           </g>
         </a>
@@ -325,6 +324,7 @@
           <g class="mini-group" id="m1t2_1">
             <line class="mini-line" x1="512" y1="152" x2="580" y2="120" />
             <circle class="circle-mini" cx="580" cy="120" r="24" />
+            <text class="learn-label learn-mini" x="580" y="92">RGB kennenlernen</text>
             <text class="label" x="580" y="120"><tspan x="580" dy="-0.45em">RGB</tspan><tspan class="mini-number" x="580" dy="1.15em">1</tspan></text>
           </g>
         </a>
@@ -332,6 +332,7 @@
           <g class="mini-group" id="m1t2_2">
             <line class="mini-line" x1="512" y1="152" x2="580" y2="184" />
             <circle class="circle-mini" cx="580" cy="184" r="24" />
+            <text class="learn-label learn-mini" x="580" y="218">Farben mischen</text>
             <text class="label" x="580" y="184"><tspan x="580" dy="-0.45em">Mischen</tspan><tspan class="mini-number" x="580" dy="1.15em">2</tspan></text>
           </g>
         </a>
@@ -339,6 +340,7 @@
           <g class="mini-group" id="m1t2_3">
             <line class="mini-line" x1="512" y1="152" x2="512" y2="220" />
             <circle class="circle-mini" cx="512" cy="220" r="24" />
+            <text class="learn-label learn-mini" x="512" y="254">Werte prüfen</text>
             <text class="label" x="512" y="220"><tspan x="512" dy="-0.45em">Nacht</tspan><tspan class="mini-number" x="512" dy="1.15em">3</tspan></text>
           </g>
         </a>
@@ -346,6 +348,7 @@
           <g class="mini-group" id="m1t3_1">
             <line class="mini-line" x1="450" y1="412" x2="390" y2="450" />
             <circle class="circle-mini" cx="390" cy="450" r="24" />
+            <text class="learn-label learn-mini" x="390" y="484">Rechteck, Dreieck</text>
             <text class="label" x="390" y="450"><tspan x="390" dy="-0.45em">Haus</tspan><tspan class="mini-number" x="390" dy="1.15em">1</tspan></text>
           </g>
         </a>
@@ -353,6 +356,7 @@
           <g class="mini-group" id="m1t3_2">
             <line class="mini-line" x1="450" y1="412" x2="510" y2="450" />
             <circle class="circle-mini" cx="510" cy="450" r="24" />
+            <text class="learn-label learn-mini" x="510" y="484">Reihenfolge zählt</text>
             <text class="label" x="510" y="450"><tspan x="510" dy="-0.45em">Fenster</tspan><tspan class="mini-number" x="510" dy="1.15em">2</tspan></text>
           </g>
         </a>
@@ -360,6 +364,7 @@
           <g class="mini-group" id="m1t3_3">
             <line class="mini-line" x1="450" y1="412" x2="450" y2="340" />
             <circle class="circle-mini" cx="450" cy="340" r="24" />
+            <text class="learn-label learn-mini" x="450" y="312">Szene bauen</text>
             <text class="label" x="450" y="340"><tspan x="450" dy="-0.45em">2 Häuser</tspan><tspan class="mini-number" x="450" dy="1.15em">3</tspan></text>
           </g>
         </a>
@@ -367,6 +372,7 @@
           <g class="mini-group" id="m1t4_1">
             <line class="mini-line" x1="250" y1="412" x2="190" y2="450" />
             <circle class="circle-mini" cx="190" cy="450" r="24" />
+            <text class="learn-label learn-mini" x="190" y="484">Erste Variable</text>
             <text class="label" x="190" y="450"><tspan x="190" dy="-0.45em">x</tspan><tspan class="mini-number" x="190" dy="1.15em">1</tspan></text>
           </g>
         </a>
@@ -374,6 +380,7 @@
           <g class="mini-group" id="m1t4_2">
             <line class="mini-line" x1="250" y1="412" x2="310" y2="450" />
             <circle class="circle-mini" cx="310" cy="450" r="24" />
+            <text class="learn-label learn-mini" x="310" y="484">Zwei Variablen</text>
             <text class="label" x="310" y="450"><tspan x="310" dy="-0.45em">x und y</tspan><tspan class="mini-number" x="310" dy="1.15em">2</tspan></text>
           </g>
         </a>
@@ -381,6 +388,7 @@
           <g class="mini-group" id="m1t4_3">
             <line class="mini-line" x1="250" y1="412" x2="250" y2="340" />
             <circle class="circle-mini" cx="250" cy="340" r="24" />
+            <text class="learn-label learn-mini" x="250" y="312">Größe berechnen</text>
             <text class="label" x="250" y="340"><tspan x="250" dy="-0.45em">Größe</tspan><tspan class="mini-number" x="250" dy="1.15em">3</tspan></text>
           </g>
         </a>
@@ -388,6 +396,7 @@
           <g class="mini-group" id="m1t5_1">
             <line class="mini-line" x1="188" y1="152" x2="120" y2="120" />
             <circle class="circle-mini" cx="120" cy="120" r="24" />
+            <text class="learn-label learn-mini" x="120" y="92">Formen kombinieren</text>
             <text class="label" x="120" y="120"><tspan x="120" dy="-0.45em">Augen</tspan><tspan class="mini-number" x="120" dy="1.15em">1</tspan></text>
           </g>
         </a>
@@ -395,6 +404,7 @@
           <g class="mini-group" id="m1t5_2">
             <line class="mini-line" x1="188" y1="152" x2="120" y2="184" />
             <circle class="circle-mini" cx="120" cy="184" r="24" />
+            <text class="learn-label learn-mini" x="120" y="218">Gesicht erweitern</text>
             <text class="label" x="120" y="184"><tspan x="120" dy="-0.45em">Mund</tspan><tspan class="mini-number" x="120" dy="1.15em">2</tspan></text>
           </g>
         </a>
@@ -402,6 +412,7 @@
           <g class="mini-group" id="m1t5_3">
             <line class="mini-line" x1="188" y1="152" x2="188" y2="220" />
             <circle class="circle-mini" cx="188" cy="220" r="24" />
+            <text class="learn-label learn-mini" x="188" y="254">Alles anwenden</text>
             <text class="label" x="188" y="220"><tspan x="188" dy="-0.45em">Boss</tspan><tspan class="mini-number" x="188" dy="1.15em">3</tspan></text>
           </g>
         </a>
@@ -414,7 +425,7 @@
       <!-- Navigation zurück zur Übersicht -->
 
       <!-- Mindmap für Modul 2 -->
-      <svg viewBox="0 0 700 500">
+      <svg viewBox="0 -16 700 516">
         <!-- Linien vom Modul-Zentrum zu den Themen -->
         <line class="line" x1="350" y1="250" x2="350" y2="80" />
         <line class="line" x1="350" y1="250" x2="512" y2="152" />
@@ -443,22 +454,27 @@
         <!-- 5 Hauptthemen von Modul 2 -->
         <a href="#modul2" onclick="toggleMiniTheme('m2t1')">
           <circle class="circle-sub" cx="350" cy="80" r="45" />
+          <text class="learn-label learn-topic" data-topic="m2t1" x="350" y="29">Dinge bewegen lassen</text>
           <text class="label" x="350" y="80"><tspan x="350" dy="-0.5em">Bewegung</tspan><tspan class="theme-number" x="350" dy="1.25em">1</tspan></text>
         </a>
         <a href="#modul2" onclick="toggleMiniTheme('m2t2')">
           <circle class="circle-sub" cx="512" cy="152" r="45" />
+          <text class="learn-label learn-topic" data-topic="m2t2" x="512" y="101">Zufall mit random()</text>
           <text class="label" x="512" y="152"><tspan x="512" dy="-0.5em">Zufall</tspan><tspan class="theme-number" x="512" dy="1.25em">2</tspan></text>
         </a>
         <a href="#modul2" onclick="toggleMiniTheme('m2t3')">
           <circle class="circle-sub" cx="450" cy="412" r="45" />
+          <text class="learn-label learn-topic" data-topic="m2t3" x="486" y="361">Ganze Figuren bewegen</text>
           <text class="label" x="450" y="412"><tspan x="450" dy="-0.5em">Fische</tspan><tspan class="theme-number" x="450" dy="1.25em">3</tspan></text>
         </a>
         <a href="#modul2" onclick="toggleMiniTheme('m2t4')">
           <circle class="circle-sub" cx="250" cy="412" r="45" />
+          <text class="learn-label learn-topic" data-topic="m2t4" x="214" y="361">Zufällige Größen nutzen</text>
           <text class="label" x="250" y="412"><tspan x="250" dy="-1.1em">Zufalls-</tspan><tspan x="250" dy="1.2em">Größen</tspan><tspan class="theme-number" x="250" dy="1.25em">4</tspan></text>
         </a>
         <a href="#modul2" onclick="toggleMiniTheme('m2t5')">
           <circle class="circle-sub" cx="188" cy="152" r="45" />
+          <text class="learn-label learn-topic" data-topic="m2t5" x="188" y="101">Alles aus Modul 2</text>
           <text class="label" x="188" y="152"><tspan x="188" dy="-1.1em">Kreis-Chaos</tspan><tspan x="188" dy="1.2em">(Boss)</tspan><tspan class="theme-number" x="188" dy="1.25em">5</tspan></text>
         </a>
 
@@ -467,6 +483,7 @@
           <g class="mini-group" id="m2t1_1">
             <line class="mini-line" x1="350" y1="80" x2="350" y2="26" />
             <circle class="circle-mini" cx="350" cy="26" r="24" />
+            <text class="learn-label learn-mini" x="350" y="-2">x erhöhen</text>
             <text class="label" x="350" y="26"><tspan x="350" dy="-0.45em">Sonne</tspan><tspan class="mini-number" x="350" dy="1.15em">1</tspan></text>
           </g>
         </a>
@@ -474,6 +491,7 @@
           <g class="mini-group" id="m2t1_2">
             <line class="mini-line" x1="350" y1="80" x2="305" y2="110" />
             <circle class="circle-mini" cx="305" cy="110" r="24" />
+            <text class="learn-label learn-mini" x="305" y="144">Tempo-Variable</text>
             <text class="label" x="305" y="110"><tspan x="305" dy="-0.45em">Wolke</tspan><tspan class="mini-number" x="305" dy="1.15em">2</tspan></text>
           </g>
         </a>
@@ -481,6 +499,7 @@
           <g class="mini-group" id="m2t1_3">
             <line class="mini-line" x1="350" y1="80" x2="395" y2="110" />
             <circle class="circle-mini" cx="395" cy="110" r="24" />
+            <text class="learn-label learn-mini" x="395" y="144">Nach oben</text>
             <text class="label" x="395" y="110"><tspan x="395" dy="-0.45em">Ballon</tspan><tspan class="mini-number" x="395" dy="1.15em">3</tspan></text>
           </g>
         </a>
@@ -488,6 +507,7 @@
           <g class="mini-group" id="m2t2_1">
             <line class="mini-line" x1="512" y1="152" x2="580" y2="120" />
             <circle class="circle-mini" cx="580" cy="120" r="24" />
+            <text class="learn-label learn-mini" x="580" y="92">Zufällige Farben</text>
             <text class="label" x="580" y="120"><tspan x="580" dy="-0.45em">Konfetti</tspan><tspan class="mini-number" x="580" dy="1.15em">1</tspan></text>
           </g>
         </a>
@@ -495,6 +515,7 @@
           <g class="mini-group" id="m2t2_2">
             <line class="mini-line" x1="512" y1="152" x2="580" y2="184" />
             <circle class="circle-mini" cx="580" cy="184" r="24" />
+            <text class="learn-label learn-mini" x="580" y="218">Diagonal bewegen</text>
             <text class="label" x="580" y="184"><tspan x="580" dy="-0.45em">Diagonal</tspan><tspan class="mini-number" x="580" dy="1.15em">2</tspan></text>
           </g>
         </a>
@@ -502,6 +523,7 @@
           <g class="mini-group" id="m2t2_3">
             <line class="mini-line" x1="512" y1="152" x2="512" y2="220" />
             <circle class="circle-mini" cx="512" cy="220" r="24" />
+            <text class="learn-label learn-mini" x="512" y="254">Maus nutzen</text>
             <text class="label" x="512" y="220"><tspan x="512" dy="-0.45em">Malen</tspan><tspan class="mini-number" x="512" dy="1.15em">3</tspan></text>
           </g>
         </a>
@@ -509,6 +531,7 @@
           <g class="mini-group" id="m2t3_1">
             <line class="mini-line" x1="450" y1="412" x2="390" y2="450" />
             <circle class="circle-mini" cx="390" cy="450" r="24" />
+            <text class="learn-label learn-mini" x="390" y="484">Fisch schwimmt</text>
             <text class="label" x="390" y="450"><tspan x="390" dy="-0.45em">1 Fisch</tspan><tspan class="mini-number" x="390" dy="1.15em">1</tspan></text>
           </g>
         </a>
@@ -516,6 +539,7 @@
           <g class="mini-group" id="m2t3_2">
             <line class="mini-line" x1="450" y1="412" x2="510" y2="450" />
             <circle class="circle-mini" cx="510" cy="450" r="24" />
+            <text class="learn-label learn-mini" x="510" y="484">Beide Richtungen</text>
             <text class="label" x="510" y="450"><tspan x="510" dy="-0.45em">2 Fische</tspan><tspan class="mini-number" x="510" dy="1.15em">2</tspan></text>
           </g>
         </a>
@@ -523,6 +547,7 @@
           <g class="mini-group" id="m2t3_3">
             <line class="mini-line" x1="450" y1="412" x2="450" y2="340" />
             <circle class="circle-mini" cx="450" cy="340" r="24" />
+            <text class="learn-label learn-mini" x="450" y="312">Zufällige Fische</text>
             <text class="label" x="450" y="340"><tspan x="450" dy="-0.45em">Schwarm</tspan><tspan class="mini-number" x="450" dy="1.15em">3</tspan></text>
           </g>
         </a>
@@ -530,6 +555,7 @@
           <g class="mini-group" id="m2t4_1">
             <line class="mini-line" x1="250" y1="412" x2="190" y2="450" />
             <circle class="circle-mini" cx="190" cy="450" r="24" />
+            <text class="learn-label learn-mini" x="190" y="484">Größen wackeln</text>
             <text class="label" x="190" y="450"><tspan x="190" dy="-0.45em">Blumen</tspan><tspan class="mini-number" x="190" dy="1.15em">1</tspan></text>
           </g>
         </a>
@@ -537,6 +563,7 @@
           <g class="mini-group" id="m2t4_2">
             <line class="mini-line" x1="250" y1="412" x2="310" y2="450" />
             <circle class="circle-mini" cx="310" cy="450" r="24" />
+            <text class="learn-label learn-mini" x="310" y="484">Balken springen</text>
             <text class="label" x="310" y="450"><tspan x="310" dy="-0.45em">Musik</tspan><tspan class="mini-number" x="310" dy="1.15em">2</tspan></text>
           </g>
         </a>
@@ -544,6 +571,7 @@
           <g class="mini-group" id="m2t4_3">
             <line class="mini-line" x1="250" y1="412" x2="250" y2="340" />
             <circle class="circle-mini" cx="250" cy="340" r="24" />
+            <text class="learn-label learn-mini" x="250" y="312">Zufällige Tropfen</text>
             <text class="label" x="250" y="340"><tspan x="250" dy="-0.45em">Regen</tspan><tspan class="mini-number" x="250" dy="1.15em">3</tspan></text>
           </g>
         </a>
@@ -551,6 +579,7 @@
           <g class="mini-group" id="m2t5_1">
             <line class="mini-line" x1="188" y1="152" x2="120" y2="120" />
             <circle class="circle-mini" cx="120" cy="120" r="24" />
+            <text class="learn-label learn-mini" x="120" y="92">Zufällige Richtung</text>
             <text class="label" x="120" y="120"><tspan x="120" dy="-0.45em">1 Kreis</tspan><tspan class="mini-number" x="120" dy="1.15em">1</tspan></text>
           </g>
         </a>
@@ -558,6 +587,7 @@
           <g class="mini-group" id="m2t5_2">
             <line class="mini-line" x1="188" y1="152" x2="120" y2="184" />
             <circle class="circle-mini" cx="120" cy="184" r="24" />
+            <text class="learn-label learn-mini" x="120" y="218">Bunte Spuren</text>
             <text class="label" x="120" y="184"><tspan x="120" dy="-0.45em">3 Kreise</tspan><tspan class="mini-number" x="120" dy="1.15em">2</tspan></text>
           </g>
         </a>
@@ -565,6 +595,7 @@
           <g class="mini-group" id="m2t5_3">
             <line class="mini-line" x1="188" y1="152" x2="188" y2="220" />
             <circle class="circle-mini" cx="188" cy="220" r="24" />
+            <text class="learn-label learn-mini" x="188" y="254">Alles anwenden</text>
             <text class="label" x="188" y="220"><tspan x="188" dy="-0.45em">Boss</tspan><tspan class="mini-number" x="188" dy="1.15em">3</tspan></text>
           </g>
         </a>
@@ -577,7 +608,7 @@
       <!-- Navigation zurück zur Übersicht -->
 
       <!-- Mindmap für Modul 3 -->
-      <svg viewBox="0 0 700 500">
+      <svg viewBox="0 -16 700 516">
         <!-- Linien vom Modul-Zentrum zu den Themen -->
         <line class="line" x1="350" y1="250" x2="350" y2="80" />
         <line class="line" x1="350" y1="250" x2="512" y2="152" />
@@ -606,22 +637,27 @@
         <!-- 5 Hauptthemen von Modul 3 -->
         <a href="#modul3" onclick="toggleMiniTheme('m3t1')">
           <circle class="circle-sub" cx="350" cy="80" r="45" />
+          <text class="learn-label learn-topic" data-topic="m3t1" x="350" y="29">Entscheiden mit if</text>
           <text class="label" x="350" y="80"><tspan x="350" dy="-1.1em">if mit</tspan><tspan x="350" dy="1.2em">der Maus</tspan><tspan class="theme-number" x="350" dy="1.25em">1</tspan></text>
         </a>
         <a href="#modul3" onclick="toggleMiniTheme('m3t2')">
           <circle class="circle-sub" cx="512" cy="152" r="45" />
+          <text class="learn-label learn-topic" data-topic="m3t2" x="512" y="101">Klicks und Zonen</text>
           <text class="label" x="512" y="152"><tspan x="512" dy="-1.1em">Klick &amp;</tspan><tspan x="512" dy="1.2em">else if</tspan><tspan class="theme-number" x="512" dy="1.25em">2</tspan></text>
         </a>
         <a href="#modul3" onclick="toggleMiniTheme('m3t3')">
           <circle class="circle-sub" cx="450" cy="412" r="45" />
+          <text class="learn-label learn-topic" data-topic="m3t3" x="486" y="361">Zufall und Treffer</text>
           <text class="label" x="450" y="412"><tspan x="450" dy="-1.1em">Zufall &amp;</tspan><tspan x="450" dy="1.2em">Treffer</tspan><tspan class="theme-number" x="450" dy="1.25em">3</tspan></text>
         </a>
         <a href="#modul3" onclick="toggleMiniTheme('m3t4')">
           <circle class="circle-sub" cx="250" cy="412" r="45" />
+          <text class="learn-label learn-topic" data-topic="m3t4" x="214" y="361">Abstände mit dist()</text>
           <text class="label" x="250" y="412"><tspan x="250" dy="-1.1em">Abstand</tspan><tspan x="250" dy="1.2em">dist()</tspan><tspan class="theme-number" x="250" dy="1.25em">4</tspan></text>
         </a>
         <a href="#modul3" onclick="toggleMiniTheme('m3t5')">
           <circle class="circle-sub" cx="188" cy="152" r="45" />
+          <text class="learn-label learn-topic" data-topic="m3t5" x="188" y="101">Alles aus Modul 3</text>
           <text class="label" x="188" y="152"><tspan x="188" dy="-1.1em">Klickspiel</tspan><tspan x="188" dy="1.2em">(Boss)</tspan><tspan class="theme-number" x="188" dy="1.25em">5</tspan></text>
         </a>
         <!-- Mini-Themen von Modul 3 (fÃ¼hren zu Codeansichten) -->
@@ -629,6 +665,7 @@
           <g class="mini-group" id="m3t1_1">
             <line class="mini-line" x1="350" y1="80" x2="350" y2="26" />
             <circle class="circle-mini" cx="350" cy="26" r="24" />
+            <text class="learn-label learn-mini" x="350" y="-2">mouseX prüfen</text>
             <text class="label" x="350" y="26"><tspan x="350" dy="-0.45em">mouseX</tspan><tspan class="mini-number" x="350" dy="1.15em">1</tspan></text>
           </g>
         </a>
@@ -636,6 +673,7 @@
           <g class="mini-group" id="m3t1_2">
             <line class="mini-line" x1="350" y1="80" x2="305" y2="110" />
             <circle class="circle-mini" cx="305" cy="110" r="24" />
+            <text class="learn-label learn-mini" x="305" y="144">mouseY prüfen</text>
             <text class="label" x="305" y="110"><tspan x="305" dy="-0.45em">mouseY</tspan><tspan class="mini-number" x="305" dy="1.15em">2</tspan></text>
           </g>
         </a>
@@ -643,6 +681,7 @@
           <g class="mini-group" id="m3t1_3">
             <line class="mini-line" x1="350" y1="80" x2="395" y2="110" />
             <circle class="circle-mini" cx="395" cy="110" r="24" />
+            <text class="learn-label learn-mini" x="395" y="144">else nutzen</text>
             <text class="label" x="395" y="110"><tspan x="395" dy="-0.45em">Seiten</tspan><tspan class="mini-number" x="395" dy="1.15em">3</tspan></text>
           </g>
         </a>
@@ -650,6 +689,7 @@
           <g class="mini-group" id="m3t2_1">
             <line class="mini-line" x1="512" y1="152" x2="580" y2="120" />
             <circle class="circle-mini" cx="580" cy="120" r="24" />
+            <text class="learn-label learn-mini" x="580" y="92">Klick erkennen</text>
             <text class="label" x="580" y="120"><tspan x="580" dy="-0.45em">Klick</tspan><tspan class="mini-number" x="580" dy="1.15em">1</tspan></text>
           </g>
         </a>
@@ -657,6 +697,7 @@
           <g class="mini-group" id="m3t2_2">
             <line class="mini-line" x1="512" y1="152" x2="580" y2="184" />
             <circle class="circle-mini" cx="580" cy="184" r="24" />
+            <text class="learn-label learn-mini" x="580" y="218">Vier Zonen</text>
             <text class="label" x="580" y="184"><tspan x="580" dy="-0.45em">Zonen</tspan><tspan class="mini-number" x="580" dy="1.15em">2</tspan></text>
           </g>
         </a>
@@ -664,6 +705,7 @@
           <g class="mini-group" id="m3t2_3">
             <line class="mini-line" x1="512" y1="152" x2="512" y2="220" />
             <circle class="circle-mini" cx="512" cy="220" r="24" />
+            <text class="learn-label learn-mini" x="512" y="254">Mit &amp;&amp; verknüpfen</text>
             <text class="label" x="512" y="220"><tspan x="512" dy="-0.45em">&amp;&amp;</tspan><tspan class="mini-number" x="512" dy="1.15em">3</tspan></text>
           </g>
         </a>
@@ -671,6 +713,7 @@
           <g class="mini-group" id="m3t3_1">
             <line class="mini-line" x1="450" y1="412" x2="390" y2="450" />
             <circle class="circle-mini" cx="390" cy="450" r="24" />
+            <text class="learn-label learn-mini" x="390" y="484">Zufällige Kreise</text>
             <text class="label" x="390" y="450"><tspan x="390" dy="-0.45em">Zufall</tspan><tspan class="mini-number" x="390" dy="1.15em">1</tspan></text>
           </g>
         </a>
@@ -678,6 +721,7 @@
           <g class="mini-group" id="m3t3_2">
             <line class="mini-line" x1="450" y1="412" x2="510" y2="450" />
             <circle class="circle-mini" cx="510" cy="450" r="24" />
+            <text class="learn-label learn-mini" x="510" y="484">Springen lassen</text>
             <text class="label" x="510" y="450"><tspan x="510" dy="-0.45em">Blume</tspan><tspan class="mini-number" x="510" dy="1.15em">2</tspan></text>
           </g>
         </a>
@@ -685,6 +729,7 @@
           <g class="mini-group" id="m3t3_3">
             <line class="mini-line" x1="450" y1="412" x2="450" y2="340" />
             <circle class="circle-mini" cx="450" cy="340" r="24" />
+            <text class="learn-label learn-mini" x="450" y="312">Punkte zählen</text>
             <text class="label" x="450" y="340"><tspan x="450" dy="-0.45em">Punkte</tspan><tspan class="mini-number" x="450" dy="1.15em">3</tspan></text>
           </g>
         </a>
@@ -692,6 +737,7 @@
           <g class="mini-group" id="m3t4_1">
             <line class="mini-line" x1="250" y1="412" x2="190" y2="450" />
             <circle class="circle-mini" cx="190" cy="450" r="24" />
+            <text class="learn-label learn-mini" x="190" y="484">Abstand messen</text>
             <text class="label" x="190" y="450"><tspan x="190" dy="-0.45em">dist()</tspan><tspan class="mini-number" x="190" dy="1.15em">1</tspan></text>
           </g>
         </a>
@@ -699,6 +745,7 @@
           <g class="mini-group" id="m3t4_2">
             <line class="mini-line" x1="250" y1="412" x2="310" y2="450" />
             <circle class="circle-mini" cx="310" cy="450" r="24" />
+            <text class="learn-label learn-mini" x="310" y="484">Schatz suchen</text>
             <text class="label" x="310" y="450"><tspan x="310" dy="-0.45em">Schatz</tspan><tspan class="mini-number" x="310" dy="1.15em">2</tspan></text>
           </g>
         </a>
@@ -706,6 +753,7 @@
           <g class="mini-group" id="m3t4_3">
             <line class="mini-line" x1="250" y1="412" x2="250" y2="340" />
             <circle class="circle-mini" cx="250" cy="340" r="24" />
+            <text class="learn-label learn-mini" x="250" y="312">Mehrere Stufen</text>
             <text class="label" x="250" y="340"><tspan x="250" dy="-0.45em">Zu nah</tspan><tspan class="mini-number" x="250" dy="1.15em">3</tspan></text>
           </g>
         </a>
@@ -713,6 +761,7 @@
           <g class="mini-group" id="m3t5_1">
             <line class="mini-line" x1="188" y1="152" x2="120" y2="120" />
             <circle class="circle-mini" cx="120" cy="120" r="24" />
+            <text class="learn-label learn-mini" x="120" y="92">Ziel treffen</text>
             <text class="label" x="120" y="120"><tspan x="120" dy="-0.45em">Ziel</tspan><tspan class="mini-number" x="120" dy="1.15em">1</tspan></text>
           </g>
         </a>
@@ -720,6 +769,7 @@
           <g class="mini-group" id="m3t5_2">
             <line class="mini-line" x1="188" y1="152" x2="120" y2="184" />
             <circle class="circle-mini" cx="120" cy="184" r="24" />
+            <text class="learn-label learn-mini" x="120" y="218">Ziel springt</text>
             <text class="label" x="120" y="184"><tspan x="120" dy="-0.45em">Springt</tspan><tspan class="mini-number" x="120" dy="1.15em">2</tspan></text>
           </g>
         </a>
@@ -727,6 +777,7 @@
           <g class="mini-group" id="m3t5_3">
             <line class="mini-line" x1="188" y1="152" x2="188" y2="220" />
             <circle class="circle-mini" cx="188" cy="220" r="24" />
+            <text class="learn-label learn-mini" x="188" y="254">Alles anwenden</text>
             <text class="label" x="188" y="220"><tspan x="188" dy="-0.45em">Boss</tspan><tspan class="mini-number" x="188" dy="1.15em">3</tspan></text>
           </g>
         </a>
