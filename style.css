@@ -202,6 +202,8 @@ svg {
   stroke: #5c9d67;
   stroke-width: 2;
   stroke-dasharray: 4 4;
+  /* Linie startet in der Themen-Mitte: Klicks dort sollen das Thema treffen, nicht ein Mini-Level */
+  pointer-events: none;
 }
 
 .mini-group {

@@ -30,6 +30,11 @@ function draw() {
 function toggleMiniTheme(themeId) {
   updateCurrentLevel(themeId);
 
+  // Immer nur ein Thema offen: beim Klick auf ein Thema die Mini-Themen der anderen schliessen
+  if (!/_\d+$/.test(themeId)) {
+    closeMiniThemes(themeId);
+  }
+
   for (let i = 1; i <= 3; i++) {
     const id = `${themeId}_${i}`;
     const group = document.getElementById(id);
@@ -65,6 +70,16 @@ function backToModule() {
   }
   updateTopicLearnLabels();
   window.location.hash = `modul${match[2]}`;
+}
+
+// Alle offenen Mini-Themen schliessen (ausser denen von keepTopic, z. B. "m1t2")
+function closeMiniThemes(keepTopic = null) {
+  document.querySelectorAll(".mini-group").forEach((group) => {
+    if (!keepTopic || !group.id.startsWith(`${keepTopic}_`)) {
+      group.style.display = "none";
+    }
+  });
+  updateTopicLearnLabels();
 }
 
 // "Was man lernt"-Text ueber einem Thema verstecken, solange seine Mini-Themen offen sind
@@ -554,6 +569,10 @@ document.addEventListener("click", function (event) {
   const menu = document.querySelector(".settings-menu");
   if (menu && !event.target.closest(".settings")) {
     menu.hidden = true;
+  }
+  // Modul-Seite: Klick daneben (nicht auf ein Thema oder Mini-Thema) schliesst die Mini-Themen
+  if (event.target.closest('.page[id^="modul"]') && !event.target.closest('a[onclick*="toggleMiniTheme"]')) {
+    closeMiniThemes();
   }
 });
 
