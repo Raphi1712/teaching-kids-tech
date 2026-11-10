@@ -46,6 +46,9 @@ function toggleMiniTheme(themeId) {
   }
 
   updateTopicLearnLabels();
+  if (!/_\d+$/.test(themeId)) {
+    physikMinisFallen(themeId);
+  }
   loadEditorForCurrentLevel();
 
   // Beim Oeffnen eines Mini-Levels (z. B. m1t2_3) den Arbeitsauftrag automatisch zeigen
@@ -71,6 +74,159 @@ function backToModule() {
   updateTopicLearnLabels();
   window.location.hash = `modul${match[2]}`;
 }
+
+// ---- Schwerkraft auf den Modul-Seiten ----
+// Beim Oeffnen einer Modul-Seite fallen die Themen von oben herein und huepfen auf ihren Platz,
+// beim Oeffnen eines Themas fallen seine Mini-Themen herunter. Der Mauszeiger zieht Kreise leicht an.
+const physik = { koerper: [], laeuft: false, maus: null, zuletzt: 0 };
+const PHYSIK_AUS = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+function physikAufbauen() {
+  document.querySelectorAll('.page[id^="modul"] svg').forEach((svg) => {
+    const alle = [];
+    const neu = (teile, kreis, gruppe) => ({
+      svg, teile, gruppe, linien: [],
+      x: +kreis.getAttribute("cx"), y: +kreis.getAttribute("cy"),
+      ox: 0, oy: 0, vx: 0, vy: 0, fallen: false, warten: 0,
+    });
+    const linie = (l, ax, ay) => [l, ax, ay, +l.getAttribute(ax), +l.getAttribute(ay)];
+
+    svg.querySelectorAll(':scope > a[onclick*="toggleMiniTheme"] > .circle-sub').forEach((kreis) => {
+      const thema = neu([kreis.parentNode], kreis, null);
+      svg.querySelectorAll(":scope > line.line").forEach((l) => {
+        if (+l.getAttribute("x2") === thema.x && +l.getAttribute("y2") === thema.y) thema.linien.push(linie(l, "x2", "y2"));
+      });
+      alle.push(thema);
+    });
+    svg.querySelectorAll(".mini-group").forEach((gruppe) => {
+      const l = gruppe.querySelector(".mini-line");
+      const mini = neu([...gruppe.children].filter((c) => c !== l), gruppe.querySelector(".circle-mini"), gruppe);
+      if (l) {
+        mini.linien.push(linie(l, "x2", "y2"));
+        // Der Anfang der Mini-Linie haengt am Thema und wandert mit ihm
+        const thema = alle.find((k) => !k.gruppe && k.x === +l.getAttribute("x1") && k.y === +l.getAttribute("y1"));
+        if (thema) thema.linien.push(linie(l, "x1", "y1"));
+      }
+      alle.push(mini);
+    });
+    svg.physikKoerper = alle;
+
+    svg.addEventListener("mousemove", (event) => {
+      const ctm = svg.getScreenCTM();
+      if (!ctm) return;
+      const p = new DOMPoint(event.clientX, event.clientY).matrixTransform(ctm.inverse());
+      physik.maus = { x: p.x, y: p.y };
+      physikStarten();
+    });
+    svg.addEventListener("mouseleave", () => {
+      physik.maus = null;
+      physikStarten();
+    });
+  });
+}
+
+function physikZeichnen(k) {
+  const unsichtbar = k.warten > 0 ? "0" : "";
+  k.teile.forEach((t) => {
+    t.setAttribute("transform", `translate(${k.ox.toFixed(2)} ${k.oy.toFixed(2)})`);
+    t.style.opacity = unsichtbar;
+  });
+  k.linien.forEach(([l, ax, ay, bx, by]) => {
+    l.setAttribute(ax, bx + k.ox);
+    l.setAttribute(ay, by + k.oy);
+    if (ax === "x2") l.style.opacity = unsichtbar;
+  });
+}
+
+// Kreise aus `hoehe` Einheiten ueber ihrem Platz nacheinander fallen lassen
+function physikFallen(liste, hoehe, abstand) {
+  if (PHYSIK_AUS) return;
+  liste.forEach((k, i) => {
+    Object.assign(k, { ox: 0, oy: -hoehe(k), vx: 0, vy: 0, fallen: true, warten: i * abstand + 0.01 });
+    physikZeichnen(k);
+  });
+  physikStarten();
+}
+
+function physikMinisFallen(themaId) {
+  const minis = physik.koerper.filter(
+    (k) => k.gruppe && k.gruppe.id.startsWith(`${themaId}_`) && getComputedStyle(k.gruppe).display !== "none"
+  );
+  physikFallen(minis, () => 110, 5);
+}
+
+// Modul-Seite geoeffnet: ihre Kreise werden aktiv, Themen (und offene Mini-Themen) fallen herein
+function physikSeiteGeoeffnet() {
+  const seite = document.getElementById(window.location.hash.slice(1));
+  const svg = seite && /^modul\d+$/.test(seite.id) ? seite.querySelector("svg") : null;
+  physik.koerper = (svg && svg.physikKoerper) || [];
+  physik.maus = null;
+  const offen = physik.koerper.filter((k) => !k.gruppe || getComputedStyle(k.gruppe).display !== "none");
+  physikFallen(offen, (k) => k.y + 140, 6);
+}
+
+function physikStarten() {
+  if (physik.laeuft || PHYSIK_AUS) return;
+  physik.laeuft = true;
+  physik.zuletzt = performance.now();
+  requestAnimationFrame(physikSchritt);
+}
+
+function physikSchritt(zeit) {
+  const dt = Math.min(3, Math.max(0.2, (zeit - physik.zuletzt) / 16.7));
+  physik.zuletzt = zeit;
+  let unruhig = false;
+
+  for (const k of physik.koerper) {
+    if (k.warten > 0) {
+      k.warten -= dt;
+      unruhig = true;
+    } else if (k.fallen) {
+      // Schwerkraft: nach unten beschleunigen, unten abprallen und dabei Schwung verlieren
+      k.vy += 1.1 * dt;
+      k.oy += k.vy * dt;
+      if (k.oy >= 0) {
+        k.oy = 0;
+        k.vy *= -0.45;
+        if (Math.abs(k.vy) < 1.5) {
+          k.vy = 0;
+          k.fallen = false;
+        }
+      }
+      unruhig = true;
+    } else {
+      // Feder zurueck zum Platz; in der Naehe der Maus wird der Platz ein Stueck zur Maus gezogen
+      let zx = 0, zy = 0;
+      if (physik.maus) {
+        const dx = physik.maus.x - k.x, dy = physik.maus.y - k.y, d = Math.hypot(dx, dy);
+        if (d < 160) {
+          zx = dx * 0.22 * (1 - d / 160);
+          zy = dy * 0.22 * (1 - d / 160);
+        }
+      }
+      k.vx += ((zx - k.ox) * 0.12 - k.vx * 0.25) * dt;
+      k.vy += ((zy - k.oy) * 0.12 - k.vy * 0.25) * dt;
+      k.ox += k.vx * dt;
+      k.oy += k.vy * dt;
+      if (Math.abs(zx - k.ox) + Math.abs(zy - k.oy) + Math.abs(k.vx) + Math.abs(k.vy) > 0.05) {
+        unruhig = true;
+      }
+    }
+    physikZeichnen(k);
+  }
+
+  if (unruhig) {
+    requestAnimationFrame(physikSchritt);
+  } else {
+    physik.laeuft = false;
+  }
+}
+
+window.addEventListener("DOMContentLoaded", () => {
+  physikAufbauen();
+  physikSeiteGeoeffnet();
+});
+window.addEventListener("hashchange", physikSeiteGeoeffnet);
 
 // Alle offenen Mini-Themen schliessen (ausser denen von keepTopic, z. B. "m1t2")
 function closeMiniThemes(keepTopic = null) {
