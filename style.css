@@ -254,21 +254,6 @@ a:hover > .hover-sketch ~ .label .theme-number {
   pointer-events: none;
 }
 
-.overview-title,
-.overview-sub {
-  fill: #ffffff;
-}
-
-.overview-title {
-  font-size: 12px;
-  font-weight: 700;
-}
-
-.overview-sub {
-  font-size: 10px;
-  font-weight: 600;
-}
-
 /* Uebersicht: das Werkzeug (Tool), das ein Modul beibringt, steht ueber dem Kreis */
 .module-tool {
   fill: #7fd39f;
@@ -1225,8 +1210,6 @@ body:has(#codeuiOwnlevel:target) .bottom-bar {
    Umschalten ueber die Einstellungen (Zahnrad oben rechts, setTheme in script.js). */
 html.light { color-scheme: light; }
 html.light body { background: #f6f7fb; color: #000; }
-html.light .overview-title,
-html.light .overview-sub { fill: #000000; }
 html.light .module-tool { fill: #1d6b3f; }
 html.light .learn-label { fill: #2f4464; stroke: #f6f7fb; }
 html.light .learn-mini { fill: #1d6b3f; }
@@ -1272,6 +1255,15 @@ html.light .nachricht { background-color: #f0f0f0; }
   top: 12px;
   right: 12px;
   z-index: 1000;
+}
+
+/* Home-Knopf unter dem Zahnrad: zurueck zur Titelseite (auf der Titelseite selbst unnoetig) */
+.home-button {
+  margin-top: 8px;
+  text-decoration: none;
+}
+body:not(:has(:target)) .home-button {
+  display: none;
 }
 
 .settings-button {
