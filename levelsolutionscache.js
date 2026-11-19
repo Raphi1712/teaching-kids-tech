@@ -1134,5 +1134,823 @@ function mousePressed() {
     fehlversuche = fehlversuche + 1;
     punkte = max(0, punkte - 6);
   }
-}`
+}`,
+  // === MODUL 4 ===
+  "m4t1_1": `let x = 400;
+function setup() {
+  createCanvas(800, 800);
+}
+function draw() {
+  background(30, 30, 60);
+  if (keyIsDown(LEFT_ARROW)) {
+    x = x - 5;
+  }
+  if (keyIsDown(RIGHT_ARROW)) {
+    x = x + 5;
+  }
+  noStroke();
+  fill(255, 200, 0);
+  ellipse(x, 400, 100, 100);
+  fill(255);
+  textSize(26);
+  text("Pfeiltasten: links und rechts", 20, 40);
+}
+`,
+  "m4t1_2": `let x = 400;
+let y = 400;
+function setup() {
+  createCanvas(800, 800);
+}
+function draw() {
+  background(30, 30, 60);
+  if (keyIsDown(LEFT_ARROW)) {
+    x = x - 5;
+  }
+  if (keyIsDown(RIGHT_ARROW)) {
+    x = x + 5;
+  }
+  if (keyIsDown(UP_ARROW)) {
+    y = y - 5;
+  }
+  if (keyIsDown(DOWN_ARROW)) {
+    y = y + 5;
+  }
+  // Der Kreis bleibt im Bild
+  if (x < 50) {
+    x = 50;
+  }
+  if (x > 750) {
+    x = 750;
+  }
+  if (y < 50) {
+    y = 50;
+  }
+  if (y > 750) {
+    y = 750;
+  }
+  noStroke();
+  fill(0, 200, 255);
+  ellipse(x, y, 100, 100);
+  fill(255);
+  textSize(26);
+  text("Pfeiltasten: alle Richtungen", 20, 40);
+}
+`,
+  "m4t1_3": `let x = 400;
+let y = 400;
+let rot = 255;
+let gruen = 255;
+let blau = 255;
+function setup() {
+  createCanvas(800, 800);
+  background(20, 20, 30);
+  fill(255);
+  textSize(24);
+  text("Pfeile = malen, r / g / b / z = Farbe, Leertaste = loeschen", 20, 40);
+}
+function draw() {
+  if (keyIsDown(LEFT_ARROW)) {
+    x = x - 4;
+  }
+  if (keyIsDown(RIGHT_ARROW)) {
+    x = x + 4;
+  }
+  if (keyIsDown(UP_ARROW)) {
+    y = y - 4;
+  }
+  if (keyIsDown(DOWN_ARROW)) {
+    y = y + 4;
+  }
+  noStroke();
+  fill(rot, gruen, blau);
+  ellipse(x, y, 40, 40);
+}
+function keyPressed() {
+  if (key == "r") {
+    rot = 255;
+    gruen = 50;
+    blau = 50;
+  } else if (key == "g") {
+    rot = 50;
+    gruen = 220;
+    blau = 80;
+  } else if (key == "b") {
+    rot = 60;
+    gruen = 120;
+    blau = 255;
+  } else if (key == "z") {
+    rot = random(0, 255);
+    gruen = random(0, 255);
+    blau = random(0, 255);
+  } else if (key == " ") {
+    background(20, 20, 30);
+  }
+}
+`,
+  "m4t2_1": `let raketeY = 620;
+let gestartet = false;
+function setup() {
+  createCanvas(800, 800);
+}
+function draw() {
+  background(10, 10, 40);
+  noStroke();
+  // Startrampe
+  fill(90, 90, 100);
+  rect(300, 680, 200, 30);
+  if (gestartet) {
+    raketeY = raketeY - 4;
+    let gruen = random(80, 220);
+    fill(255, gruen, 0);
+    ellipse(400, raketeY + 75, 30, random(30, 70));
+  }
+  // Rakete
+  fill(230, 230, 240);
+  rect(380, raketeY - 40, 40, 100);
+  fill(220, 40, 40);
+  triangle(380, raketeY - 40, 420, raketeY - 40, 400, raketeY - 90);
+  triangle(380, raketeY + 60, 380, raketeY + 20, 355, raketeY + 60);
+  triangle(420, raketeY + 60, 420, raketeY + 20, 445, raketeY + 60);
+  if (gestartet == false) {
+    fill(255);
+    textSize(30);
+    text("Druecke die Leertaste!", 250, 100);
+  }
+}
+function keyPressed() {
+  if (key == " ") {
+    gestartet = true;
+  }
+}
+`,
+  "m4t2_2": `let raketeX = 400;
+let raketeY = 620;
+let gestartet = false;
+function setup() {
+  createCanvas(800, 800);
+}
+function draw() {
+  background(10, 10, 40);
+  noStroke();
+  fill(255);
+  ellipse(120, 150, 5, 5);
+  ellipse(650, 90, 5, 5);
+  ellipse(500, 400, 5, 5);
+  ellipse(220, 600, 5, 5);
+  if (gestartet) {
+    raketeY = raketeY - 4;
+    if (keyIsDown(LEFT_ARROW)) {
+      raketeX = raketeX - 6;
+    }
+    if (keyIsDown(RIGHT_ARROW)) {
+      raketeX = raketeX + 6;
+    }
+    let gruen = random(80, 220);
+    fill(255, gruen, 0);
+    ellipse(raketeX, raketeY + 75, 30, random(30, 70));
+  }
+  // Oben raus = unten wieder rein
+  if (raketeY < -100) {
+    raketeY = 900;
+  }
+  fill(230, 230, 240);
+  rect(raketeX - 20, raketeY - 40, 40, 100);
+  fill(220, 40, 40);
+  triangle(raketeX - 20, raketeY - 40, raketeX + 20, raketeY - 40, raketeX, raketeY - 90);
+  triangle(raketeX - 20, raketeY + 60, raketeX - 20, raketeY + 20, raketeX - 45, raketeY + 60);
+  triangle(raketeX + 20, raketeY + 60, raketeX + 20, raketeY + 20, raketeX + 45, raketeY + 60);
+}
+function keyPressed() {
+  if (key == " ") {
+    gestartet = true;
+  }
+}
+`,
+  "m4t2_3": `let raketeX = 400;
+let raketeY = 500;
+let tempo = 0;
+let gestartet = false;
+let stern1X = 120;
+let stern1Y = 100;
+let stern2X = 500;
+let stern2Y = 350;
+let stern3X = 700;
+let stern3Y = 600;
+function setup() {
+  createCanvas(800, 800);
+}
+function draw() {
+  background(10, 10, 40);
+  // Die Rakete bleibt stehen, die Sterne rauschen vorbei - so sieht es nach Fliegen aus
+  stern1Y = stern1Y + tempo * 2;
+  stern2Y = stern2Y + tempo * 2;
+  stern3Y = stern3Y + tempo * 2;
+  if (stern1Y > 800) {
+    stern1Y = 0;
+    stern1X = random(0, 800);
+  }
+  if (stern2Y > 800) {
+    stern2Y = 0;
+    stern2X = random(0, 800);
+  }
+  if (stern3Y > 800) {
+    stern3Y = 0;
+    stern3X = random(0, 800);
+  }
+  if (tempo > 12) {
+    // Lichtgeschwindigkeit: aus den Sternen werden lange Striche
+    stroke(255);
+    strokeWeight(4);
+    line(stern1X, stern1Y, stern1X, stern1Y - tempo * 5);
+    line(stern2X, stern2Y, stern2X, stern2Y - tempo * 5);
+    line(stern3X, stern3Y, stern3X, stern3Y - tempo * 5);
+  } else {
+    noStroke();
+    fill(255);
+    ellipse(stern1X, stern1Y, 6, 6);
+    ellipse(stern2X, stern2Y, 6, 6);
+    ellipse(stern3X, stern3Y, 6, 6);
+  }
+  noStroke();
+  if (gestartet) {
+    if (keyIsDown(UP_ARROW) && tempo < 25) {
+      tempo = tempo + 0.2;
+    } else if (tempo > 3) {
+      tempo = tempo - 0.1;
+    }
+    if (keyIsDown(LEFT_ARROW)) {
+      raketeX = raketeX - 6;
+    }
+    if (keyIsDown(RIGHT_ARROW)) {
+      raketeX = raketeX + 6;
+    }
+    let gruen = random(80, 220);
+    fill(255, gruen, 0);
+    ellipse(raketeX, raketeY + 75, 30, tempo * 6 + random(20, 40));
+  }
+  fill(230, 230, 240);
+  rect(raketeX - 20, raketeY - 40, 40, 100);
+  fill(220, 40, 40);
+  triangle(raketeX - 20, raketeY - 40, raketeX + 20, raketeY - 40, raketeX, raketeY - 90);
+  triangle(raketeX - 20, raketeY + 60, raketeX - 20, raketeY + 20, raketeX - 45, raketeY + 60);
+  triangle(raketeX + 20, raketeY + 60, raketeX + 20, raketeY + 20, raketeX + 45, raketeY + 60);
+  fill(255);
+  textSize(28);
+  text("Tempo: " + int(tempo), 20, 40);
+  if (tempo > 12) {
+    fill(255, 230, 0);
+    text("LICHTGESCHWINDIGKEIT!", 330, 40);
+  }
+  if (gestartet == false) {
+    text("Leertaste = Start, Pfeil hoch = Turbo", 160, 760);
+  }
+}
+function keyPressed() {
+  if (key == " ") {
+    gestartet = true;
+    tempo = 3;
+  }
+}
+`,
+  "m4t3_1": `let x = 400;
+let y = 400;
+let speedX = 0;
+let speedY = 0;
+let rot = 255;
+let gruen = 255;
+let blau = 255;
+function setup() {
+  createCanvas(800, 800);
+}
+function draw() {
+  background(20, 20, 35);
+  x = x + speedX;
+  y = y + speedY;
+  noStroke();
+  fill(rot, gruen, blau);
+  ellipse(x, y, 70, 70);
+  fill(255);
+  textSize(26);
+  text("Druecke irgendeine Taste!", 20, 40);
+}
+function keyPressed() {
+  // Neuer Schuss aus der Mitte: zufaellige Richtung und Farbe
+  x = 400;
+  y = 400;
+  speedX = random(-8, 8);
+  speedY = random(-8, 8);
+  rot = random(0, 255);
+  gruen = random(0, 255);
+  blau = random(0, 255);
+}
+`,
+  "m4t3_2": `let x1 = 400;
+let y1 = 400;
+let speedX1 = 0;
+let speedY1 = 0;
+let gruen1 = 100;
+let x2 = 400;
+let y2 = 400;
+let speedX2 = 0;
+let speedY2 = 0;
+let blau2 = 100;
+let x3 = 400;
+let y3 = 400;
+let speedX3 = 0;
+let speedY3 = 0;
+let rot3 = 100;
+function setup() {
+  createCanvas(800, 800);
+}
+function draw() {
+  background(20, 20, 35);
+  x1 = x1 + speedX1;
+  y1 = y1 + speedY1;
+  x2 = x2 + speedX2;
+  y2 = y2 + speedY2;
+  x3 = x3 + speedX3;
+  y3 = y3 + speedY3;
+  // An den Raendern abprallen
+  if (x1 < 35 || x1 > 765) {
+    speedX1 = -speedX1;
+  }
+  if (y1 < 35 || y1 > 765) {
+    speedY1 = -speedY1;
+  }
+  if (x2 < 35 || x2 > 765) {
+    speedX2 = -speedX2;
+  }
+  if (y2 < 35 || y2 > 765) {
+    speedY2 = -speedY2;
+  }
+  if (x3 < 35 || x3 > 765) {
+    speedX3 = -speedX3;
+  }
+  if (y3 < 35 || y3 > 765) {
+    speedY3 = -speedY3;
+  }
+  noStroke();
+  fill(255, gruen1, 60);
+  ellipse(x1, y1, 70, 70);
+  fill(60, 160, blau2);
+  ellipse(x2, y2, 70, 70);
+  fill(rot3, 80, 255);
+  ellipse(x3, y3, 70, 70);
+  fill(255);
+  textSize(26);
+  text("Tasten a, s und d", 20, 40);
+}
+function keyPressed() {
+  if (key == "a") {
+    x1 = 400;
+    y1 = 400;
+    speedX1 = random(-8, 8);
+    speedY1 = random(-8, 8);
+    gruen1 = random(0, 255);
+  } else if (key == "s") {
+    x2 = 400;
+    y2 = 400;
+    speedX2 = random(-8, 8);
+    speedY2 = random(-8, 8);
+    blau2 = random(0, 255);
+  } else if (key == "d") {
+    x3 = 400;
+    y3 = 400;
+    speedX3 = random(-8, 8);
+    speedY3 = random(-8, 8);
+    rot3 = random(0, 255);
+  }
+}
+`,
+  "m4t3_3": `let tempo = 1;
+let x1 = 200;
+let y1 = 200;
+let speedX1 = 5;
+let speedY1 = 3;
+let gruen1 = 100;
+let x2 = 600;
+let y2 = 300;
+let speedX2 = -4;
+let speedY2 = 6;
+let blau2 = 100;
+let x3 = 400;
+let y3 = 600;
+let speedX3 = 3;
+let speedY3 = -5;
+let rot3 = 100;
+function setup() {
+  createCanvas(800, 800);
+}
+function draw() {
+  background(20, 20, 35);
+  // tempo ist 1 (fliegen) oder 0 (eingefroren)
+  x1 = x1 + speedX1 * tempo;
+  y1 = y1 + speedY1 * tempo;
+  x2 = x2 + speedX2 * tempo;
+  y2 = y2 + speedY2 * tempo;
+  x3 = x3 + speedX3 * tempo;
+  y3 = y3 + speedY3 * tempo;
+  if (x1 < 35 || x1 > 765) {
+    speedX1 = -speedX1;
+  }
+  if (y1 < 35 || y1 > 765) {
+    speedY1 = -speedY1;
+  }
+  if (x2 < 35 || x2 > 765) {
+    speedX2 = -speedX2;
+  }
+  if (y2 < 35 || y2 > 765) {
+    speedY2 = -speedY2;
+  }
+  if (x3 < 35 || x3 > 765) {
+    speedX3 = -speedX3;
+  }
+  if (y3 < 35 || y3 > 765) {
+    speedY3 = -speedY3;
+  }
+  noStroke();
+  fill(255, gruen1, 60);
+  ellipse(x1, y1, 70, 70);
+  fill(60, 160, blau2);
+  ellipse(x2, y2, 70, 70);
+  fill(rot3, 80, 255);
+  ellipse(x3, y3, 70, 70);
+  fill(255);
+  textSize(26);
+  text("Leertaste = Chaos, f = einfrieren", 20, 40);
+  if (tempo == 0) {
+    text("EINGEFROREN", 300, 400);
+  }
+}
+function keyPressed() {
+  if (key == " ") {
+    // Chaos: alle Kreise bekommen neue Richtungen und Farben
+    speedX1 = random(-10, 10);
+    speedY1 = random(-10, 10);
+    speedX2 = random(-10, 10);
+    speedY2 = random(-10, 10);
+    speedX3 = random(-10, 10);
+    speedY3 = random(-10, 10);
+    gruen1 = random(0, 255);
+    blau2 = random(0, 255);
+    rot3 = random(0, 255);
+  } else if (key == "f" && tempo == 1) {
+    tempo = 0;
+  } else if (key == "f") {
+    tempo = 1;
+  }
+}
+`,
+  "m4t4_1": `let buchstabe = "?";
+let rot = 255;
+let gruen = 255;
+let blau = 255;
+function setup() {
+  createCanvas(800, 800);
+}
+function draw() {
+  background(25, 25, 45);
+  noStroke();
+  fill(rot, gruen, blau);
+  textAlign(CENTER, CENTER);
+  textSize(400);
+  text(buchstabe, 400, 420);
+  fill(255);
+  textSize(26);
+  text("Tippe einen Buchstaben!", 400, 40);
+}
+function keyPressed() {
+  // key ist die Taste, die gerade gedrueckt wurde
+  buchstabe = key;
+  rot = random(0, 255);
+  gruen = random(0, 255);
+  blau = random(0, 255);
+}
+`,
+  "m4t4_2": `function setup() {
+  createCanvas(800, 800);
+  background(25, 25, 45);
+  fill(255);
+  textSize(24);
+  text("Tippe wild drauflos! Leertaste = neues Bild", 20, 40);
+}
+function draw() {
+  // Hier passiert nichts: gemalt wird nur bei einem Tastendruck
+}
+function keyPressed() {
+  if (key == " ") {
+    background(25, 25, 45);
+  } else if (key.length == 1) {
+    let rot = random(0, 255);
+    let gruen = random(0, 255);
+    let blau = random(0, 255);
+    noStroke();
+    fill(rot, gruen, blau);
+    textSize(random(40, 200));
+    text(key, random(0, 700), random(100, 780));
+  }
+}
+`,
+  "m4t4_3": `let wort = "";
+let offen = false;
+let falsch = 0;
+function setup() {
+  createCanvas(800, 800);
+}
+function draw() {
+  background(40, 45, 60);
+  noStroke();
+  if (offen) {
+    // Schatz: Goldmuenzen funkeln an zufaelligen Stellen
+    let gruen = random(180, 230);
+    fill(255, gruen, 0);
+    ellipse(random(250, 550), random(250, 550), 60, 40);
+    ellipse(random(250, 550), random(250, 550), 60, 40);
+    ellipse(random(250, 550), random(250, 550), 60, 40);
+    fill(255);
+    textSize(60);
+    text("GEOEFFNET!", 230, 150);
+  } else {
+    // Tresortuer mit Drehrad
+    fill(120, 125, 140);
+    rect(200, 200, 400, 400, 20);
+    fill(80, 85, 95);
+    ellipse(400, 400, 160, 160);
+    fill(200);
+    rect(390, 330, 20, 140);
+    fill(255);
+    textSize(24);
+    text("Tippe das Geheimwort und druecke Enter (Tipp: sesam)", 70, 150);
+  }
+  // Display: rot, solange falsch noch herunterzaehlt
+  if (falsch > 0) {
+    fill(200, 30, 30);
+    falsch = falsch - 1;
+  } else {
+    fill(20, 60, 20);
+  }
+  rect(200, 640, 400, 80);
+  fill(120, 255, 120);
+  textSize(48);
+  text(wort, 220, 698);
+}
+function keyPressed() {
+  if (keyCode == ENTER && wort == "sesam") {
+    offen = true;
+    wort = "";
+  } else if (keyCode == ENTER) {
+    falsch = 40;
+    wort = "";
+  } else if (keyCode == BACKSPACE) {
+    wort = "";
+  } else if (key.length == 1) {
+    wort = wort + key;
+  }
+}
+`,
+  "m4t5_1": `let raketeX = 400;
+let x1 = 150;
+let y1 = 150;
+let speedX1 = 4;
+let speedY1 = 3;
+let x2 = 650;
+let y2 = 250;
+let speedX2 = -3;
+let speedY2 = 4;
+let x3 = 400;
+let y3 = 400;
+let speedX3 = 5;
+let speedY3 = -3;
+function setup() {
+  createCanvas(800, 800);
+}
+function draw() {
+  background(10, 10, 40);
+  noStroke();
+  // Rakete mit den Pfeiltasten steuern (bleibt im Bild)
+  if (keyIsDown(LEFT_ARROW) && raketeX > 50) {
+    raketeX = raketeX - 7;
+  }
+  if (keyIsDown(RIGHT_ARROW) && raketeX < 750) {
+    raketeX = raketeX + 7;
+  }
+  // Drei bunte Kreise fliegen im oberen Teil herum
+  x1 = x1 + speedX1;
+  y1 = y1 + speedY1;
+  x2 = x2 + speedX2;
+  y2 = y2 + speedY2;
+  x3 = x3 + speedX3;
+  y3 = y3 + speedY3;
+  if (x1 < 40 || x1 > 760) {
+    speedX1 = -speedX1;
+  }
+  if (y1 < 40 || y1 > 520) {
+    speedY1 = -speedY1;
+  }
+  if (x2 < 40 || x2 > 760) {
+    speedX2 = -speedX2;
+  }
+  if (y2 < 40 || y2 > 520) {
+    speedY2 = -speedY2;
+  }
+  if (x3 < 40 || x3 > 760) {
+    speedX3 = -speedX3;
+  }
+  if (y3 < 40 || y3 > 520) {
+    speedY3 = -speedY3;
+  }
+  fill(255, 90, 160);
+  ellipse(x1, y1, 80, 80);
+  fill(80, 220, 255);
+  ellipse(x2, y2, 80, 80);
+  fill(255, 220, 60);
+  ellipse(x3, y3, 80, 80);
+  // Rakete
+  fill(230, 230, 240);
+  rect(raketeX - 20, 640, 40, 100);
+  fill(220, 40, 40);
+  triangle(raketeX - 20, 640, raketeX + 20, 640, raketeX, 590);
+  triangle(raketeX - 20, 740, raketeX - 20, 700, raketeX - 45, 740);
+  triangle(raketeX + 20, 740, raketeX + 20, 700, raketeX + 45, 740);
+}
+`,
+  "m4t5_2": `let raketeX = 400;
+let x1 = 150;
+let y1 = 150;
+let speedX1 = 4;
+let speedY1 = 3;
+let x2 = 650;
+let y2 = 250;
+let speedX2 = -3;
+let speedY2 = 4;
+let x3 = 400;
+let y3 = 400;
+let speedX3 = 5;
+let speedY3 = -3;
+function setup() {
+  createCanvas(800, 800);
+}
+function draw() {
+  background(10, 10, 40);
+  noStroke();
+  // Rakete mit den Pfeiltasten steuern (bleibt im Bild)
+  if (keyIsDown(LEFT_ARROW) && raketeX > 50) {
+    raketeX = raketeX - 7;
+  }
+  if (keyIsDown(RIGHT_ARROW) && raketeX < 750) {
+    raketeX = raketeX + 7;
+  }
+  // Drei bunte Kreise fliegen im oberen Teil herum
+  x1 = x1 + speedX1;
+  y1 = y1 + speedY1;
+  x2 = x2 + speedX2;
+  y2 = y2 + speedY2;
+  x3 = x3 + speedX3;
+  y3 = y3 + speedY3;
+  if (x1 < 40 || x1 > 760) {
+    speedX1 = -speedX1;
+  }
+  if (y1 < 40 || y1 > 520) {
+    speedY1 = -speedY1;
+  }
+  if (x2 < 40 || x2 > 760) {
+    speedX2 = -speedX2;
+  }
+  if (y2 < 40 || y2 > 520) {
+    speedY2 = -speedY2;
+  }
+  if (x3 < 40 || x3 > 760) {
+    speedX3 = -speedX3;
+  }
+  if (y3 < 40 || y3 > 520) {
+    speedY3 = -speedY3;
+  }
+  fill(255, 90, 160);
+  ellipse(x1, y1, 80, 80);
+  fill(80, 220, 255);
+  ellipse(x2, y2, 80, 80);
+  fill(255, 220, 60);
+  ellipse(x3, y3, 80, 80);
+  // Laser: solange die Leertaste (Tastencode 32) gedrueckt ist
+  if (keyIsDown(32)) {
+    stroke(255, 40, 90);
+    strokeWeight(8);
+    line(raketeX, 590, raketeX, 0);
+    noStroke();
+  }
+  // Rakete
+  fill(230, 230, 240);
+  rect(raketeX - 20, 640, 40, 100);
+  fill(220, 40, 40);
+  triangle(raketeX - 20, 640, raketeX + 20, 640, raketeX, 590);
+  triangle(raketeX - 20, 740, raketeX - 20, 700, raketeX - 45, 740);
+  triangle(raketeX + 20, 740, raketeX + 20, 700, raketeX + 45, 740);
+}
+`,
+  "m4t5_3": `let raketeX = 400;
+let tempo = 7;
+let treffer = 0;
+let farbe1 = 160;
+let farbe2 = 220;
+let farbe3 = 60;
+let x1 = 150;
+let y1 = 150;
+let speedX1 = 4;
+let speedY1 = 3;
+let x2 = 650;
+let y2 = 250;
+let speedX2 = -3;
+let speedY2 = 4;
+let x3 = 400;
+let y3 = 400;
+let speedX3 = 5;
+let speedY3 = -3;
+function setup() {
+  createCanvas(800, 800);
+}
+function draw() {
+  background(10, 10, 40);
+  noStroke();
+  // Turbo: Pfeil nach oben macht die Rakete schneller
+  if (keyIsDown(UP_ARROW)) {
+    tempo = 14;
+  } else {
+    tempo = 7;
+  }
+  if (keyIsDown(LEFT_ARROW) && raketeX > 50) {
+    raketeX = raketeX - tempo;
+  }
+  if (keyIsDown(RIGHT_ARROW) && raketeX < 750) {
+    raketeX = raketeX + tempo;
+  }
+  // Drei bunte Kreise fliegen im oberen Teil herum
+  x1 = x1 + speedX1;
+  y1 = y1 + speedY1;
+  x2 = x2 + speedX2;
+  y2 = y2 + speedY2;
+  x3 = x3 + speedX3;
+  y3 = y3 + speedY3;
+  if (x1 < 40 || x1 > 760) {
+    speedX1 = -speedX1;
+  }
+  if (y1 < 40 || y1 > 520) {
+    speedY1 = -speedY1;
+  }
+  if (x2 < 40 || x2 > 760) {
+    speedX2 = -speedX2;
+  }
+  if (y2 < 40 || y2 > 520) {
+    speedY2 = -speedY2;
+  }
+  if (x3 < 40 || x3 > 760) {
+    speedX3 = -speedX3;
+  }
+  if (y3 < 40 || y3 > 520) {
+    speedY3 = -speedY3;
+  }
+  fill(255, 90, farbe1);
+  ellipse(x1, y1, 80, 80);
+  fill(80, farbe2, 255);
+  ellipse(x2, y2, 80, 80);
+  fill(255, 220, farbe3);
+  ellipse(x3, y3, 80, 80);
+  // Laser: solange die Leertaste (Tastencode 32) gedrueckt ist
+  let laser = keyIsDown(32);
+  if (laser) {
+    stroke(255, 40, 90);
+    strokeWeight(8);
+    line(raketeX, 590, raketeX, 0);
+    noStroke();
+  }
+  // Treffer: Laser an und Kreis genau ueber der Rakete
+  if (laser && x1 > raketeX - 40 && x1 < raketeX + 40) {
+    treffer = treffer + 1;
+    x1 = random(60, 740);
+    y1 = random(60, 300);
+    farbe1 = random(0, 255);
+  }
+  if (laser && x2 > raketeX - 40 && x2 < raketeX + 40) {
+    treffer = treffer + 1;
+    x2 = random(60, 740);
+    y2 = random(60, 300);
+    farbe2 = random(0, 255);
+  }
+  if (laser && x3 > raketeX - 40 && x3 < raketeX + 40) {
+    treffer = treffer + 1;
+    x3 = random(60, 740);
+    y3 = random(60, 300);
+    farbe3 = random(0, 255);
+  }
+  // Rakete
+  fill(230, 230, 240);
+  rect(raketeX - 20, 640, 40, 100);
+  fill(220, 40, 40);
+  triangle(raketeX - 20, 640, raketeX + 20, 640, raketeX, 590);
+  triangle(raketeX - 20, 740, raketeX - 20, 700, raketeX - 45, 740);
+  triangle(raketeX + 20, 740, raketeX + 20, 700, raketeX + 45, 740);
+  fill(255);
+  textSize(30);
+  text("Getroffen: " + treffer, 20, 40);
+}
+`
 };

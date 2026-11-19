@@ -72,6 +72,7 @@
                 <a href="#modul1">Modul 1 – 5. Klasse (10–11 Jahre)</a>
                 <a href="#modul2">Modul 2 – 5. Klasse (11 Jahre)</a>
                 <a href="#modul3">Modul 3 – 6. Klasse (11–12 Jahre)</a>
+                <a href="#modul4">Modul 4 – 6. Klasse (11–12 Jahre)</a>
               </div>
             </div>
             <button type="button" class="start-nav-link" onclick="scrollToStartInfo()">Für Schulen</button>
@@ -112,6 +113,11 @@
             <h3>Modul 3</h3>
             <p>Farben und Formen – mit Bedingungen</p>
           </a>
+          <a class="start-feature start-module-card" href="#modul4">
+            <span class="start-grade">6. Klasse · 11–12 Jahre</span>
+            <h3>Modul 4</h3>
+            <p>Steuern mit der Tastatur</p>
+          </a>
         </div>
       </div>
 
@@ -147,8 +153,8 @@
         <!-- <a class="action-btn" href="#level-erstellen">Level erstellen</a> -->
       </div>
       <!-- Mindmap-Container der Startseite -->
-      <!-- viewBox nur so gross wie die drei Module, damit sie mittig stehen -->
-      <svg viewBox="0 0 420 150">
+      <!-- viewBox nur so gross wie die vier Module, damit sie mittig stehen -->
+      <svg viewBox="0 0 560 150">
         <!-- Zeile 1: Modul 1â€“5 -->
         <a href="#modul1" class="overview-module">
           <circle class="circle difficulty-easy" cx="70" cy="90" r="50" />
@@ -168,12 +174,13 @@
           <text class="module-tool" x="350" y="28">If statements</text>
           <text class="label" x="350" y="90"><tspan x="350" dy="-1.75em">Farben und</tspan><tspan x="350" dy="1.2em">Formen</tspan><tspan x="350" dy="1.2em">mit if</tspan><tspan class="theme-number" x="350" dy="1.25em">Modul 3</tspan></text>
         </a>
-        <!--
-        <a href="#modul4">
+        <a href="#modul4" class="overview-module">
           <circle class="circle difficulty-easy" cx="490" cy="90" r="50" />
-          <text class="label" x="490" y="83">Modul 4</text>
-          <text class="label" x="490" y="100">Kommt bald</text>
+          <image class="hover-sketch" href="images/hover-m4.jpg" x="441" y="41" width="98" height="98" />
+          <text class="module-tool" x="490" y="28">Tastatur</text>
+          <text class="label" x="490" y="90"><tspan x="490" dy="-1.75em">Steuern</tspan><tspan x="490" dy="1.2em">mit der</tspan><tspan x="490" dy="1.2em">Tastatur</tspan><tspan class="theme-number" x="490" dy="1.25em">Modul 4</tspan></text>
         </a>
+        <!--
         <a href="#modul5">
           <circle class="circle difficulty-easy" cx="630" cy="90" r="50" />
           <text class="label" x="630" y="83">Modul 5</text>
@@ -1072,12 +1079,18 @@ function draw() {
     <!-- Mindmap: modul4 -->
     <section class="page" id="modul4">
       <p class="step-hint">Schritt 2: Klicke auf ein Thema. Schritt 3: Wähle eines der Level 1–3, die daneben erscheinen.</p>
-      <svg viewBox="0 0 700 500">
+      <!-- Navigation zurück zur Übersicht -->
+
+      <!-- Mindmap für Modul 4 -->
+      <svg viewBox="0 -16 700 516">
+        <!-- Linien vom Modul-Zentrum zu den Themen -->
         <line class="line" x1="350" y1="250" x2="350" y2="80" />
         <line class="line" x1="350" y1="250" x2="512" y2="152" />
         <line class="line" x1="350" y1="250" x2="450" y2="412" />
         <line class="line" x1="350" y1="250" x2="250" y2="412" />
         <line class="line" x1="350" y1="250" x2="188" y2="152" />
+
+        <!-- Zentrum des Moduls -->
         <a
           href="#overview"
           class="module-center-link"
@@ -1086,135 +1099,165 @@ function draw() {
           \r\n
           <circle class="circle-center" cx="350" cy="250" r="60" />
           \r\n
-          <text class="label" x="350" y="243">Modul</text>
+          <text class="label" x="350" y="238">Modul 4</text>
           \r\n
-          <text class="label" x="350" y="258">4</text>
-          <text class="label center-back" x="350" y="280">← Zurück</text>
+          <text class="label" x="350" y="255">Steuern mit</text>
+          \r\n
+          <text class="label" x="350" y="270">der Tastatur</text>
+          <text class="label center-back" x="350" y="292">← Zurück</text>
           \r\n
         </a>
+
+        <!-- 5 Hauptthemen von Modul 4 -->
         <a href="#modul4" onclick="toggleMiniTheme('m4t1')">
           <circle class="circle-sub" cx="350" cy="80" r="45" />
-          <text class="label" x="350" y="80">Thema 1</text>
+          <image class="hover-sketch" href="images/hover-m4t1.jpg" x="306" y="36" width="88" height="88" />
+          <text class="learn-label learn-topic" data-topic="m4t1" x="350" y="29">Steuern mit Tasten</text>
+          <text class="label" x="350" y="80"><tspan x="350" dy="-1.1em">Pfeil-</tspan><tspan x="350" dy="1.2em">tasten</tspan><tspan class="theme-number" x="350" dy="1.25em">1</tspan></text>
         </a>
         <a href="#modul4" onclick="toggleMiniTheme('m4t2')">
           <circle class="circle-sub" cx="512" cy="152" r="45" />
-          <text class="label" x="512" y="152">Thema 2</text>
+          <image class="hover-sketch" href="images/hover-m4t2.jpg" x="468" y="108" width="88" height="88" />
+          <text class="learn-label learn-topic" data-topic="m4t2" x="512" y="101">Starten und lenken</text>
+          <text class="label" x="512" y="152"><tspan x="512" dy="-1.1em">Raketen-</tspan><tspan x="512" dy="1.2em">start</tspan><tspan class="theme-number" x="512" dy="1.25em">2</tspan></text>
         </a>
         <a href="#modul4" onclick="toggleMiniTheme('m4t3')">
           <circle class="circle-sub" cx="450" cy="412" r="45" />
-          <text class="label" x="450" y="412">Thema 3</text>
+          <image class="hover-sketch" href="images/hover-m4t3.jpg" x="406" y="368" width="88" height="88" />
+          <text class="learn-label learn-topic" data-topic="m4t3" x="486" y="361">Tasten lösen aus</text>
+          <text class="label" x="450" y="412"><tspan x="450" dy="-1.1em">Fliegende</tspan><tspan x="450" dy="1.2em">Kreise</tspan><tspan class="theme-number" x="450" dy="1.25em">3</tspan></text>
         </a>
         <a href="#modul4" onclick="toggleMiniTheme('m4t4')">
           <circle class="circle-sub" cx="250" cy="412" r="45" />
-          <text class="label" x="250" y="412">Thema 4</text>
+          <image class="hover-sketch" href="images/hover-m4t4.jpg" x="206" y="368" width="88" height="88" />
+          <text class="learn-label learn-topic" data-topic="m4t4" x="214" y="361">Mit Buchstaben arbeiten</text>
+          <text class="label" x="250" y="412"><tspan x="250" dy="-0.5em">Buchstaben</tspan><tspan class="theme-number" x="250" dy="1.25em">4</tspan></text>
         </a>
         <a href="#modul4" onclick="toggleMiniTheme('m4t5')">
           <circle class="circle-sub" cx="188" cy="152" r="45" />
-          <text class="label" x="188" y="152">Thema 5</text>
+          <image class="hover-sketch" href="images/hover-m4t5.jpg" x="144" y="108" width="88" height="88" />
+          <text class="learn-label learn-topic" data-topic="m4t5" x="188" y="101">Alles aus Modul 4</text>
+          <text class="label" x="188" y="152"><tspan x="188" dy="-1.1em">Weltraum</tspan><tspan x="188" dy="1.2em">(Boss)</tspan><tspan class="theme-number" x="188" dy="1.25em">5</tspan></text>
         </a>
+        <!-- Mini-Themen von Modul 4 (fÃ¼hren zu Codeansichten) -->
         <a href="#codeui" onclick="toggleMiniTheme('m4t1_1')">
           <g class="mini-group" id="m4t1_1">
             <line class="mini-line" x1="350" y1="80" x2="350" y2="26" />
             <circle class="circle-mini" cx="350" cy="26" r="24" />
-            <text class="label" x="350" y="26">Mini 1</text>
+            <text class="learn-label learn-mini" x="350" y="-2">Links &amp; rechts</text>
+            <text class="label" x="350" y="26"><tspan x="350" dy="-0.45em">Links</tspan><tspan class="mini-number" x="350" dy="1.15em">1</tspan></text>
           </g>
         </a>
         <a href="#codeui" onclick="toggleMiniTheme('m4t1_2')">
           <g class="mini-group" id="m4t1_2">
             <line class="mini-line" x1="350" y1="80" x2="305" y2="110" />
             <circle class="circle-mini" cx="305" cy="110" r="24" />
-            <text class="label" x="305" y="110">Mini 2</text>
+            <text class="learn-label learn-mini" x="305" y="144">Alle Richtungen</text>
+            <text class="label" x="305" y="110"><tspan x="305" dy="-0.45em">Alle</tspan><tspan class="mini-number" x="305" dy="1.15em">2</tspan></text>
           </g>
         </a>
         <a href="#codeui" onclick="toggleMiniTheme('m4t1_3')">
           <g class="mini-group" id="m4t1_3">
             <line class="mini-line" x1="350" y1="80" x2="395" y2="110" />
             <circle class="circle-mini" cx="395" cy="110" r="24" />
-            <text class="label" x="395" y="110">Mini 3</text>
+            <text class="learn-label learn-mini" x="395" y="144">Mit Tasten malen</text>
+            <text class="label" x="395" y="110"><tspan x="395" dy="-0.45em">Malen</tspan><tspan class="mini-number" x="395" dy="1.15em">3</tspan></text>
           </g>
         </a>
         <a href="#codeui" onclick="toggleMiniTheme('m4t2_1')">
           <g class="mini-group" id="m4t2_1">
             <line class="mini-line" x1="512" y1="152" x2="580" y2="120" />
             <circle class="circle-mini" cx="580" cy="120" r="24" />
-            <text class="label" x="580" y="120">Mini 1</text>
+            <text class="learn-label learn-mini" x="580" y="92">Leertaste zündet</text>
+            <text class="label" x="580" y="120"><tspan x="580" dy="-0.45em">Zünden</tspan><tspan class="mini-number" x="580" dy="1.15em">1</tspan></text>
           </g>
         </a>
         <a href="#codeui" onclick="toggleMiniTheme('m4t2_2')">
           <g class="mini-group" id="m4t2_2">
             <line class="mini-line" x1="512" y1="152" x2="580" y2="184" />
             <circle class="circle-mini" cx="580" cy="184" r="24" />
-            <text class="label" x="580" y="184">Mini 2</text>
+            <text class="learn-label learn-mini" x="580" y="218">Pfeile lenken</text>
+            <text class="label" x="580" y="184"><tspan x="580" dy="-0.45em">Lenken</tspan><tspan class="mini-number" x="580" dy="1.15em">2</tspan></text>
           </g>
         </a>
         <a href="#codeui" onclick="toggleMiniTheme('m4t2_3')">
           <g class="mini-group" id="m4t2_3">
             <line class="mini-line" x1="512" y1="152" x2="512" y2="220" />
             <circle class="circle-mini" cx="512" cy="220" r="24" />
-            <text class="label" x="512" y="220">Mini 3</text>
+            <text class="learn-label learn-mini" x="512" y="254">Turbo &amp; Sterne</text>
+            <text class="label" x="512" y="220"><tspan x="512" dy="-0.45em">Turbo</tspan><tspan class="mini-number" x="512" dy="1.15em">3</tspan></text>
           </g>
         </a>
         <a href="#codeui" onclick="toggleMiniTheme('m4t3_1')">
           <g class="mini-group" id="m4t3_1">
             <line class="mini-line" x1="450" y1="412" x2="390" y2="450" />
             <circle class="circle-mini" cx="390" cy="450" r="24" />
-            <text class="label" x="390" y="450">Mini 1</text>
+            <text class="learn-label learn-mini" x="390" y="484">Kreis abschießen</text>
+            <text class="label" x="390" y="450"><tspan x="390" dy="-0.45em">Schuss</tspan><tspan class="mini-number" x="390" dy="1.15em">1</tspan></text>
           </g>
         </a>
         <a href="#codeui" onclick="toggleMiniTheme('m4t3_2')">
           <g class="mini-group" id="m4t3_2">
             <line class="mini-line" x1="450" y1="412" x2="510" y2="450" />
             <circle class="circle-mini" cx="510" cy="450" r="24" />
-            <text class="label" x="510" y="450">Mini 2</text>
+            <text class="learn-label learn-mini" x="510" y="484">Drei Tasten</text>
+            <text class="label" x="510" y="450"><tspan x="510" dy="-0.45em">a s d</tspan><tspan class="mini-number" x="510" dy="1.15em">2</tspan></text>
           </g>
         </a>
         <a href="#codeui" onclick="toggleMiniTheme('m4t3_3')">
           <g class="mini-group" id="m4t3_3">
             <line class="mini-line" x1="450" y1="412" x2="450" y2="340" />
             <circle class="circle-mini" cx="450" cy="340" r="24" />
-            <text class="label" x="450" y="340">Mini 3</text>
+            <text class="learn-label learn-mini" x="450" y="312">Chaos-Taste</text>
+            <text class="label" x="450" y="340"><tspan x="450" dy="-0.45em">Chaos</tspan><tspan class="mini-number" x="450" dy="1.15em">3</tspan></text>
           </g>
         </a>
         <a href="#codeui" onclick="toggleMiniTheme('m4t4_1')">
           <g class="mini-group" id="m4t4_1">
             <line class="mini-line" x1="250" y1="412" x2="190" y2="450" />
             <circle class="circle-mini" cx="190" cy="450" r="24" />
-            <text class="label" x="190" y="450">Mini 1</text>
+            <text class="learn-label learn-mini" x="190" y="484">Taste zeigen</text>
+            <text class="label" x="190" y="450"><tspan x="190" dy="-0.45em">key</tspan><tspan class="mini-number" x="190" dy="1.15em">1</tspan></text>
           </g>
         </a>
         <a href="#codeui" onclick="toggleMiniTheme('m4t4_2')">
           <g class="mini-group" id="m4t4_2">
             <line class="mini-line" x1="250" y1="412" x2="310" y2="450" />
             <circle class="circle-mini" cx="310" cy="450" r="24" />
-            <text class="label" x="310" y="450">Mini 2</text>
+            <text class="learn-label learn-mini" x="310" y="484">Bunte Collage</text>
+            <text class="label" x="310" y="450"><tspan x="310" dy="-0.45em">Collage</tspan><tspan class="mini-number" x="310" dy="1.15em">2</tspan></text>
           </g>
         </a>
         <a href="#codeui" onclick="toggleMiniTheme('m4t4_3')">
           <g class="mini-group" id="m4t4_3">
             <line class="mini-line" x1="250" y1="412" x2="250" y2="340" />
             <circle class="circle-mini" cx="250" cy="340" r="24" />
-            <text class="label" x="250" y="340">Mini 3</text>
+            <text class="learn-label learn-mini" x="250" y="312">Tresor knacken</text>
+            <text class="label" x="250" y="340"><tspan x="250" dy="-0.45em">Tresor</tspan><tspan class="mini-number" x="250" dy="1.15em">3</tspan></text>
           </g>
         </a>
         <a href="#codeui" onclick="toggleMiniTheme('m4t5_1')">
           <g class="mini-group" id="m4t5_1">
             <line class="mini-line" x1="188" y1="152" x2="120" y2="120" />
             <circle class="circle-mini" cx="120" cy="120" r="24" />
-            <text class="label" x="120" y="120">Mini 1</text>
+            <text class="learn-label learn-mini" x="120" y="92">Rakete &amp; Kreise</text>
+            <text class="label" x="120" y="120"><tspan x="120" dy="-0.45em">Flug</tspan><tspan class="mini-number" x="120" dy="1.15em">1</tspan></text>
           </g>
         </a>
         <a href="#codeui" onclick="toggleMiniTheme('m4t5_2')">
           <g class="mini-group" id="m4t5_2">
             <line class="mini-line" x1="188" y1="152" x2="120" y2="184" />
             <circle class="circle-mini" cx="120" cy="184" r="24" />
-            <text class="label" x="120" y="184">Mini 2</text>
+            <text class="learn-label learn-mini" x="120" y="218">Laser schießen</text>
+            <text class="label" x="120" y="184"><tspan x="120" dy="-0.45em">Laser</tspan><tspan class="mini-number" x="120" dy="1.15em">2</tspan></text>
           </g>
         </a>
         <a href="#codeui" onclick="toggleMiniTheme('m4t5_3')">
           <g class="mini-group" id="m4t5_3">
             <line class="mini-line" x1="188" y1="152" x2="188" y2="220" />
             <circle class="circle-mini" cx="188" cy="220" r="24" />
-            <text class="label" x="188" y="220">Mini 3</text>
+            <text class="learn-label learn-mini" x="188" y="254">Alles anwenden</text>
+            <text class="label" x="188" y="220"><tspan x="188" dy="-0.45em">Boss</tspan><tspan class="mini-number" x="188" dy="1.15em">3</tspan></text>
           </g>
         </a>
       </svg>

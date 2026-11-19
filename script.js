@@ -577,6 +577,26 @@ function buildCodePrefix(consoleId) {
     const error = event.reason;
     showError(error, error && error.name ? error.name + ": " + error.message : error, "", 0);
   });
+
+  // Knoepfe, Regler und Eingabefelder: position(x, y) in Koordinaten der Zeichenflaeche,
+  // obwohl die Zeichenflaeche verkleinert angezeigt wird
+  const placedElements = [];
+  const originalPosition = p5.Element.prototype.position;
+  p5.Element.prototype.position = function (x, y, positionType) {
+    if (typeof x !== "number" || this.elt.tagName === "CANVAS") {
+      return originalPosition.apply(this, arguments);
+    }
+    this.canvasPosition = [x, y, positionType];
+    if (!placedElements.includes(this)) placedElements.push(this);
+    const canvas = document.querySelector("canvas");
+    const scale = canvas && window.width ? canvas.getBoundingClientRect().width / window.width : 1;
+    return originalPosition.call(this, x * scale, y * scale, positionType);
+  };
+  window.addEventListener("resize", function () {
+    placedElements.forEach(function (element) {
+      element.position.apply(element, element.canvasPosition);
+    });
+  });
 })();`;
 }
 window.addEventListener("DOMContentLoaded", function () {
@@ -765,6 +785,10 @@ function runCommon(codeId, previewId, consoleId, codeOverride = null) {
     </body>
     </html>
   `;
+  // Ergebnis-Fenster aktivieren, damit die Tastatur (keyIsDown, keyPressed) sofort wirkt
+  frame.onload = function () {
+    frame.contentWindow.focus();
+  };
 
 
 }

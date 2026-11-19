@@ -269,6 +269,96 @@ Verwendung: Zwei Bedingungen verbindest du so: if (<Bedingung> || <weitere Bedin
 Zusammenspiel: Beim Start erstellt setup() einmal eine 800 × 800 Pixel große Zeichenfläche. Danach wird draw() fortlaufend wiederholt. Es prüft zuerst Sieg und Niederlage, bewegt dann zwei Ziele, kehrt ihre Richtung an den Grenzen um und zeigt den Spielstand. Ein Treffer bringt zwölf Punkte und versetzt das getroffene Ziel zufällig. Ein Fehlklick zählt einen Fehlversuch und zieht sechs Punkte ab. Nach zwölf Treffern erscheint „GEWONNEN!“, nach acht Fehlklicks „GAME OVER“.
 Wichtige Tipps: || bedeutet „oder“, >= „größer oder gleich“. v1X = -v1X kehrt die horizontale Richtung um; bei der y-Geschwindigkeit funktioniert es genauso. Durchmesser 70 ergibt Trefferradius 35; genau 35 Pixel zählen nicht. max(0, punkte - 6) verhindert negative Punkte, nfc(punkte, 0) zeigt sie ohne Nachkommastellen. return verhindert nach Spielende weitere Bewegung und Klickauswertung, beendet aber nicht die Wiederholung von draw(). Treffen beide Ziele gleichzeitig, zählt der Klick einmal und beide werden versetzt. Die zusätzlichen Zeichen nach der letzten Funktionsklammer gehören nicht zum eigenständigen Sketch und müssen dort entfernt werden.
 `,
+  "4.1.1": `
+Werkzeuge: In diesem Auftrag verwenden wir Funktionen, eine Variable, Bedingungen und die Tastatur.
+Verwendung: Eine gedrückte Taste prüfst du so: if (keyIsDown(<Taste>)) { ... }. Beispiel: if (keyIsDown(LEFT_ARROW)) { x = x - 5; }. Die Pfeiltasten heißen LEFT_ARROW, RIGHT_ARROW, UP_ARROW und DOWN_ARROW.
+Zusammenspiel: Beim Start erstellt setup() einmal eine 800 × 800 Pixel große Zeichenfläche. Danach wird draw() fortlaufend wiederholt. Das Programm zeichnet einen dunklen Hintergrund, prüft die Pfeiltasten links und rechts und verändert x. Danach zeichnet es den gelben Kreis an der Stelle x und den Hinweistext.
+Wichtige Tipps: keyIsDown() ist so lange wahr, wie die Taste gedrückt ist - darum fährt der Kreis weiter, solange du drückst. Mit einer größeren Zahl als 5 wird er schneller. Die Tasten wirken nur, wenn das Ergebnis-Fenster aktiv ist; nach Run passiert das automatisch, sonst klicke einmal hinein.
+`,
+  "4.1.2": `
+Werkzeuge: In diesem Auftrag verwenden wir Funktionen, Variablen, Bedingungen und die Tastatur.
+Verwendung: Für hoch und runter schreibst du if (keyIsDown(UP_ARROW)) { y = y - 5; } und if (keyIsDown(DOWN_ARROW)) { y = y + 5; }. Eine Grenze setzt du so: if (x < 50) { x = 50; }.
+Zusammenspiel: Beim Start erstellt setup() einmal eine 800 × 800 Pixel große Zeichenfläche. Danach wird draw() fortlaufend wiederholt. Das Programm prüft alle vier Pfeiltasten und verändert x und y. Danach prüfen vier ifs, ob der Kreis über den Rand hinaus will, und setzen ihn zurück. Zum Schluss werden der blaue Kreis und der Text gezeichnet.
+Wichtige Tipps: Nach oben heißt kleineres y, weil y = 0 der obere Rand ist. Der Kreis hat den Durchmesser 100, also den Radius 50 - darum liegen die Grenzen bei 50 und 750 und nicht bei 0 und 800. Mehrere ifs hintereinander werden alle geprüft, so kann der Kreis auch schräg fahren.
+`,
+  "4.1.3": `
+Werkzeuge: In diesem Auftrag verwenden wir Funktionen, Variablen, Bedingungen, die Tastatur und ein Tastaturereignis.
+Verwendung: Einen einzelnen Tastendruck behandelst du in function keyPressed() { ... }. Welche Taste es war, steht in key: if (key == "r") { rot = 255; }. Weitere Tasten prüfst du mit else if (key == "g") { ... }.
+Zusammenspiel: Beim Start erstellt setup() einmal eine 800 × 800 Pixel große Zeichenfläche. Danach wird draw() fortlaufend wiederholt. setup() malt den Hintergrund nur einmal, darum bleibt alles Gezeichnete liegen. draw() bewegt den Pinsel mit den Pfeiltasten und malt bei jedem Durchlauf eine Ellipse in der aktuellen Farbe. Bei jedem Tastendruck läuft keyPressed(): r, g und b setzen feste Farben, z eine Zufallsfarbe, und die Leertaste malt den Hintergrund neu.
+Wichtige Tipps: keyIsDown() ist für Tasten, die man festhält (Bewegung), keyPressed() für einzelne Drücke (Farbwechsel). Bei key kommt es auf Groß- und Kleinschreibung an: "R" ist nicht "r". Die Leertaste schreibst du als " " - ein Leerzeichen zwischen den Anführungszeichen.
+`,
+  "4.2.1": `
+Werkzeuge: In diesem Auftrag verwenden wir Funktionen, Variablen, true/false-Werte, Bedingungen, Zufallswerte und ein Tastaturereignis.
+Verwendung: Eine Ja/Nein-Variable schreibst du so: let gestartet = false;. In keyPressed() setzt du sie mit if (key == " ") { gestartet = true; } um. In draw() prüfst du if (gestartet) { ... }.
+Zusammenspiel: Beim Start erstellt setup() einmal eine 800 × 800 Pixel große Zeichenfläche. Danach wird draw() fortlaufend wiederholt. Das Programm zeichnet Weltraum und Startrampe. Ist gestartet wahr, wird raketeY kleiner und eine flackernde Flamme erscheint unter der Rakete. Dann wird die Rakete aus Rechteck und Dreiecken gezeichnet. Solange gestartet noch falsch ist, steht oben der Hinweis.
+Wichtige Tipps: if (gestartet) bedeutet dasselbe wie if (gestartet == true). Die Flamme flackert, weil random() bei jedem Bild eine neue Höhe und ein neues Gelb-Orange liefert. Alle Teile der Rakete hängen an raketeY - darum fliegt die ganze Rakete mit.
+`,
+  "4.2.2": `
+Werkzeuge: In diesem Auftrag verwenden wir Funktionen, Variablen, true/false-Werte, Bedingungen, die Tastatur und Zufallswerte.
+Verwendung: Während des Flugs lenkst du mit if (keyIsDown(LEFT_ARROW)) { raketeX = raketeX - 6; }. Damit die Rakete wiederkommt, schreibst du if (raketeY < -100) { raketeY = 900; }.
+Zusammenspiel: Beim Start erstellt setup() einmal eine 800 × 800 Pixel große Zeichenfläche. Danach wird draw() fortlaufend wiederholt. Das Programm zeichnet Weltraum und Sterne. Nach dem Start steigt die Rakete, die Pfeiltasten verändern raketeX, und die Flamme flackert. Ist die Rakete oben ganz verschwunden, springt sie nach unten unter den Rand und fliegt wieder herein.
+Wichtige Tipps: Alle Formen der Rakete benutzen jetzt raketeX statt fester Zahlen - sonst würde nur ein Teil mitlenken. -100 und 900 liegen außerhalb des Bildes, so sieht man den Sprung nicht. Das Lenken steht im if (gestartet), damit man vor dem Start nicht lenken kann.
+`,
+  "4.2.3": `
+Werkzeuge: In diesem Auftrag verwenden wir Funktionen, Variablen, true/false-Werte, Bedingungen mit else if, die Tastatur, Zufallswerte und Linien.
+Verwendung: Den Turbo schreibst du so: if (keyIsDown(UP_ARROW) && tempo < 25) { tempo = tempo + 0.2; } else if (tempo > 3) { tempo = tempo - 0.1; }. Ein Stern fällt mit stern1Y = stern1Y + tempo * 2; und startet mit if (stern1Y > 800) { stern1Y = 0; } neu.
+Zusammenspiel: Beim Start erstellt setup() einmal eine 800 × 800 Pixel große Zeichenfläche. Danach wird draw() fortlaufend wiederholt. Die Rakete bleibt auf ihrer Höhe. Stattdessen bewegen sich drei Sterne nach unten, umso schneller, je größer tempo ist. Unten angekommen, starten sie oben an einer zufälligen Stelle. Über 12 werden sie als lange Linien gezeichnet. Pfeil hoch erhöht tempo, sonst sinkt es langsam auf 3. Die Flamme wird mit tempo länger.
+Wichtige Tipps: So funktionieren viele echte Spiele: Nicht der Spieler bewegt sich, sondern die Welt um ihn herum. int(tempo) zeigt das Tempo ohne Nachkommastellen. tempo < 25 begrenzt die Höchstgeschwindigkeit. stroke() und strokeWeight() färben die Linien; danach schaltet noStroke() den Rand für die Rakete wieder aus.
+`,
+  "4.3.1": `
+Werkzeuge: In diesem Auftrag verwenden wir Funktionen, Variablen, Zufallswerte und ein Tastaturereignis.
+Verwendung: Bei jedem Tastendruck schreibst du in keyPressed() neue Werte: speedX = random(-8, 8); speedY = random(-8, 8);. Die Farbe wählst du genauso, z. B. rot = random(0, 255);.
+Zusammenspiel: Beim Start erstellt setup() einmal eine 800 × 800 Pixel große Zeichenfläche. Danach wird draw() fortlaufend wiederholt. draw() bewegt den Kreis um speedX und speedY weiter und zeichnet ihn in seiner Farbe. Am Anfang sind beide Geschwindigkeiten 0, der Kreis steht. Jede Taste ruft keyPressed() auf: Der Kreis springt in die Mitte und bekommt eine zufällige Richtung und Farbe.
+Wichtige Tipps: Hier wird key nicht geprüft - jede Taste löst dasselbe aus. Negative speedX bedeuten nach links, negative speedY nach oben. Der Kreis prallt noch nicht ab und fliegt aus dem Bild; mit dem nächsten Tastendruck kommt er zurück.
+`,
+  "4.3.2": `
+Werkzeuge: In diesem Auftrag verwenden wir Funktionen, viele Variablen, Bedingungen mit else if und ||, Zufallswerte und ein Tastaturereignis.
+Verwendung: Jeder Kreis bekommt eigene Variablen, z. B. x1, y1, speedX1, speedY1. Abprallen schreibst du so: if (x1 < 35 || x1 > 765) { speedX1 = -speedX1; }. In keyPressed() startet if (key == "a") { ... } else if (key == "s") { ... } den passenden Kreis.
+Zusammenspiel: Beim Start erstellt setup() einmal eine 800 × 800 Pixel große Zeichenfläche. Danach wird draw() fortlaufend wiederholt. draw() bewegt alle drei Kreise und dreht ihre Richtung um, wenn sie einen Rand berühren. Dann zeichnet es sie in ihren Farben. a, s und d starten jeweils einen Kreis neu aus der Mitte mit zufälliger Richtung und Farbe.
+Wichtige Tipps: || bedeutet "oder": Der Kreis prallt ab, wenn er links ODER rechts zu weit ist. speedX1 = -speedX1 macht aus 5 eine -5 und umgekehrt. Jeder Kreis hat nur eine zufällige Farbvariable, die anderen zwei Werte bleiben fest - so behält er seinen Farbton.
+`,
+  "4.3.3": `
+Werkzeuge: In diesem Auftrag verwenden wir Funktionen, viele Variablen, Bedingungen mit else if, || und &&, Zufallswerte und ein Tastaturereignis.
+Verwendung: Einfrieren klappt mit einer Zahl: x1 = x1 + speedX1 * tempo;. Mit if (key == "f" && tempo == 1) { tempo = 0; } else if (key == "f") { tempo = 1; } schaltest du um.
+Zusammenspiel: Beim Start erstellt setup() einmal eine 800 × 800 Pixel große Zeichenfläche. Danach wird draw() fortlaufend wiederholt. Die drei Kreise fliegen von Anfang an und prallen an den Rändern ab. Die Leertaste gibt allen neue Zufallsrichtungen und -farben. f wechselt tempo zwischen 1 und 0. Bei 0 bleibt alles stehen und "EINGEFROREN" erscheint.
+Wichtige Tipps: Etwas mal 0 ist 0 - darum bewegt sich bei tempo = 0 nichts. Die Reihenfolge der else-if-Teile ist wichtig: Zuerst wird f bei tempo 1 geprüft, sonst würde f sofort wieder auftauen. Die Startgeschwindigkeiten sind feste Zahlen, weil random() erst in setup() und draw() benutzt werden darf.
+`,
+  "4.4.1": `
+Werkzeuge: In diesem Auftrag verwenden wir Funktionen, Variablen, Text, Zufallswerte und ein Tastaturereignis.
+Verwendung: Die gedrückte Taste merkst du dir in keyPressed() mit buchstabe = key;. Zentrierten Text schreibst du so: textAlign(CENTER, CENTER); textSize(400); text(buchstabe, 400, 420);.
+Zusammenspiel: Beim Start erstellt setup() einmal eine 800 × 800 Pixel große Zeichenfläche. Danach wird draw() fortlaufend wiederholt. draw() zeichnet den Hintergrund und den gemerkten Buchstaben riesig in der Mitte, darüber den Hinweis. Jeder Tastendruck speichert in keyPressed() die neue Taste und würfelt eine neue Farbe.
+Wichtige Tipps: key ist Text, z. B. "a", "K" oder "7". Am Anfang steht in buchstabe ein Fragezeichen. textAlign(CENTER, CENTER) sorgt dafür, dass x und y die Mitte des Textes angeben und nicht die linke untere Ecke. Sondertasten wie Shift erscheinen als ganzes Wort.
+`,
+  "4.4.2": `
+Werkzeuge: In diesem Auftrag verwenden wir Funktionen, lokale Variablen, Bedingungen mit else if, Text, Zufallswerte und ein Tastaturereignis.
+Verwendung: Gemalt wird direkt in keyPressed(): text(key, random(0, 700), random(100, 780));. Mit if (key == " ") { background(25, 25, 45); } else if (key.length == 1) { ... } unterscheidest du Leertaste und Buchstaben.
+Zusammenspiel: Beim Start erstellt setup() einmal eine 800 × 800 Pixel große Zeichenfläche. Danach wird draw() fortlaufend wiederholt. setup() malt den Hintergrund und den Hinweis einmal. draw() ist leer. Bei jedem Tastendruck malt keyPressed() den Buchstaben an eine zufällige Stelle, in zufälliger Größe und Farbe. Die Leertaste malt den Hintergrund neu.
+Wichtige Tipps: Weil draw() den Hintergrund nicht neu malt, bleibt jeder Buchstabe stehen. key.length ist die Anzahl der Zeichen: Ein Buchstabe hat 1, "Shift" hat 5 - so landen keine ganzen Wörter im Bild. Die Leertaste muss vor key.length == 1 geprüft werden, denn " " hat auch die Länge 1.
+`,
+  "4.4.3": `
+Werkzeuge: In diesem Auftrag verwenden wir Funktionen, Variablen, Text zusammensetzen, Bedingungen mit else if und &&, Zufallswerte und ein Tastaturereignis.
+Verwendung: Einen Buchstaben hängst du so an: wort = wort + key;. Das Wort prüfst du mit if (keyCode == ENTER && wort == "sesam") { offen = true; }. Ein leeres Wort ist wort = "";.
+Zusammenspiel: Beim Start erstellt setup() einmal eine 800 × 800 Pixel große Zeichenfläche. Danach wird draw() fortlaufend wiederholt. draw() zeichnet den geschlossenen Tresor oder - wenn offen wahr ist - funkelnde Goldmünzen und "GEOEFFNET!". Darunter zeigt das Display das bisher getippte Wort. Enter prüft das Wort: Richtig öffnet den Tresor, falsch setzt falsch auf 40, und das Display leuchtet 40 Bilder lang rot. Backspace löscht das Wort.
+Wichtige Tipps: keyCode ist die Nummer der Taste; ENTER und BACKSPACE sind feste Namen dafür. == prüft, ob zwei Texte gleich sind, auch bei Groß- und Kleinschreibung: "Sesam" ist nicht "sesam". falsch = falsch - 1 in draw() zählt bei jedem Bild herunter, so verschwindet das Rot von allein.
+`,
+  "4.5.1": `
+Werkzeuge: In diesem Auftrag verwenden wir Funktionen, viele Variablen, Bedingungen mit && und || und die Tastatur.
+Verwendung: Steuern und Grenze kombinierst du so: if (keyIsDown(LEFT_ARROW) && raketeX > 50) { raketeX = raketeX - 7; }. Die Kreise prallen mit if (y1 < 40 || y1 > 520) { speedY1 = -speedY1; } im oberen Teil ab.
+Zusammenspiel: Beim Start erstellt setup() einmal eine 800 × 800 Pixel große Zeichenfläche. Danach wird draw() fortlaufend wiederholt. Das Programm bewegt die Rakete mit den Pfeiltasten am unteren Rand, bewegt drei Kreise und lässt sie an den Rändern und bei y = 520 abprallen. Dann zeichnet es die Kreise und die Rakete.
+Wichtige Tipps: && bedeutet "und": Die Rakete fährt nur nach links, wenn die Taste gedrückt ist UND sie noch nicht am Rand ist. Die Kreise bleiben über 520, damit sie die Rakete nicht berühren. Die Rakete hat eine feste Höhe, nur raketeX ändert sich.
+`,
+  "4.5.2": `
+Werkzeuge: In diesem Auftrag verwenden wir Funktionen, viele Variablen, Bedingungen mit && und ||, die Tastatur und Linien.
+Verwendung: Den Laser zeichnest du so: if (keyIsDown(32)) { stroke(255, 40, 90); strokeWeight(8); line(raketeX, 590, raketeX, 0); noStroke(); }.
+Zusammenspiel: Beim Start erstellt setup() einmal eine 800 × 800 Pixel große Zeichenfläche. Danach wird draw() fortlaufend wiederholt. Alles aus Level 1 läuft weiter. Zusätzlich zeichnet das Programm einen roten Strahl von der Raketenspitze bis zum oberen Rand, solange die Leertaste gedrückt ist.
+Wichtige Tipps: 32 ist der Tastencode der Leertaste. Der Laser wird vor der Rakete gezeichnet, damit er hinter ihr verschwindet. Nach dem Laser schaltet noStroke() den Rand wieder aus, sonst bekäme die Rakete einen roten Rand.
+`,
+  "4.5.3": `
+Werkzeuge: In diesem Auftrag verwenden wir Funktionen, lokale und globale Variablen, Bedingungen mit else, && und ||, die Tastatur, Zufallswerte und Linien.
+Verwendung: Den Laser-Zustand speicherst du mit let laser = keyIsDown(32);. Ein Treffer ist if (laser && x1 > raketeX - 40 && x1 < raketeX + 40) { treffer = treffer + 1; x1 = random(60, 740); }. Den Turbo schreibst du mit if (keyIsDown(UP_ARROW)) { tempo = 14; } else { tempo = 7; }.
+Zusammenspiel: Beim Start erstellt setup() einmal eine 800 × 800 Pixel große Zeichenfläche. Danach wird draw() fortlaufend wiederholt. Pfeil hoch setzt das Tempo der Rakete auf 14, sonst 7. Die Rakete und drei Kreise bewegen sich wie in Level 1. Bei gedrückter Leertaste erscheint der Laser. Fliegt ein Kreis genau über der Rakete, während der Laser an ist, springt er an eine zufällige Stelle, bekommt eine neue Farbe, und treffer zählt hoch. Oben links steht "Getroffen:" mit der Zahl.
+Wichtige Tipps: Der Kreis hat den Radius 40 - darum zählt alles zwischen raketeX - 40 und raketeX + 40 als Treffer. Drei Bedingungen mit && müssen alle stimmen. Es gibt kein Verlieren: Das Spiel zählt nur, wie viele Kreise du triffst.
+`
 };
 
 // Englische IT-Hilfe (Sprache "English" in den Einstellungen)
@@ -542,5 +632,95 @@ Tools: In this task we use functions, variables, methods, conditions, a mouse ev
 Usage: You connect two conditions like this: if (<condition> || <another condition>) { ... }. Example: if (ziel1X > 765 || ziel1X < 35) { v1X = -v1X; }. You store a hit check with let hit1 = dist(mouseX, mouseY, ziel1X, ziel1Y) < 35;. return; ends the current function call.
 How it works together: At the start, setup() creates an 800 × 800 pixel canvas once. After that, draw() is repeated over and over. First, it checks for a win or a loss, then it moves two targets, turns their direction around at the limits and shows the score. A hit gives twelve points and moves the target that was hit to a random place. A missed click counts as a failed try and takes away six points. After twelve hits, "GEWONNEN!" ("YOU WON!") appears, after eight missed clicks "GAME OVER".
 Important tips: || means "or", >= means "greater than or equal to". v1X = -v1X turns the horizontal direction around; it works the same way for the y-speed. Diameter 70 gives a hit radius of 35; exactly 35 pixels does not count. max(0, punkte - 6) prevents negative points, nfc(punkte, 0) shows them without decimal places. After the game is over, return stops more movement and click checks, but it does not stop draw() from repeating. If a click hits both targets at the same time, it counts once and both targets are moved. The extra characters after the last closing bracket of the function do not belong to a standalone sketch and must be removed there.
+`,
+  "4.1.1": `
+Tools: In this task we use functions, a variable, conditions and the keyboard.
+Usage: You check a pressed key like this: if (keyIsDown(<key>)) { ... }. Example: if (keyIsDown(LEFT_ARROW)) { x = x - 5; }. The arrow keys are called LEFT_ARROW, RIGHT_ARROW, UP_ARROW and DOWN_ARROW.
+How it works together: At the start, setup() creates an 800 × 800 pixel canvas once. After that, draw() is repeated over and over. The program draws a dark background, checks the left and right arrow keys and changes x. Then it draws the yellow circle at position x and the hint text.
+Important tips: keyIsDown() is true as long as the key is held down - that is why the circle keeps moving while you press it. With a bigger number than 5, it gets faster. The keys only work when the result window is active; after Run this happens automatically, otherwise click into it once.
+`,
+  "4.1.2": `
+Tools: In this task we use functions, variables, conditions and the keyboard.
+Usage: For up and down you write if (keyIsDown(UP_ARROW)) { y = y - 5; } and if (keyIsDown(DOWN_ARROW)) { y = y + 5; }. You set a limit like this: if (x < 50) { x = 50; }.
+How it works together: At the start, setup() creates an 800 × 800 pixel canvas once. After that, draw() is repeated over and over. The program checks all four arrow keys and changes x and y. Then four ifs check whether the circle wants to go past the edge and put it back. At the end, the blue circle and the text are drawn.
+Important tips: Up means a smaller y, because y = 0 is the top edge. The circle has a diameter of 100, so its radius is 50 - that is why the limits are at 50 and 750 and not at 0 and 800. Several ifs one after the other are all checked, so the circle can also move diagonally.
+`,
+  "4.1.3": `
+Tools: In this task we use functions, variables, conditions, the keyboard and a keyboard event.
+Usage: You handle a single key press in function keyPressed() { ... }. Which key it was is stored in key; for example, if (key == "r") { rot = 255; } sets the variable rot ("red") to 255. You check more keys with else if (key == "g") { ... }.
+How it works together: At the start, setup() creates an 800 × 800 pixel canvas once. After that, draw() is repeated over and over. setup() paints the background only once, so everything that is drawn stays on the canvas. draw() moves the brush with the arrow keys and paints an ellipse in the current color in every round. With every key press, keyPressed() runs: r, g and b set fixed colors, z a random color, and the space bar paints the background again.
+Important tips: keyIsDown() is for keys you hold down, like for movement, keyPressed() is for single presses, like for changing the color. For key, upper and lower case matter: "R" is not "r". You write the space bar as " " - a space between the quotation marks.
+`,
+  "4.2.1": `
+Tools: In this task we use functions, variables, true/false values, conditions, random values and a keyboard event.
+Usage: You write a yes/no variable such as gestartet ("started") like this: let gestartet = false;. In keyPressed() you switch it with if (key == " ") { gestartet = true; }. In draw() you check if (gestartet) { ... }.
+How it works together: At the start, setup() creates an 800 × 800 pixel canvas once. After that, draw() is repeated over and over. The program draws space and the launch pad. If gestartet is true, raketeY ("rocket y") gets smaller and a flickering flame appears below the rocket. Then the rocket is drawn from a rectangle and triangles. As long as gestartet is still false, the hint is shown at the top.
+Important tips: if (gestartet) means the same as if (gestartet == true). The flame flickers because random() gives a new height and a new yellow-orange in every frame. All parts of the rocket depend on raketeY - that is why the whole rocket flies along.
+`,
+  "4.2.2": `
+Tools: In this task we use functions, variables, true/false values, conditions, the keyboard and random values.
+Usage: During the flight you steer raketeX ("rocket x") with if (keyIsDown(LEFT_ARROW)) { raketeX = raketeX - 6; }. So that the rocket comes back, you write if (raketeY < -100) { raketeY = 900; }.
+How it works together: At the start, setup() creates an 800 × 800 pixel canvas once. After that, draw() is repeated over and over. The program draws space and stars. After the start, the rocket rises, the arrow keys change raketeX, and the flame flickers. When the rocket has completely disappeared at the top, it jumps down below the edge and flies in again.
+Important tips: All shapes of the rocket now use raketeX instead of fixed numbers - otherwise only a part of it would steer along. -100 and 900 are outside the picture, so you do not see the jump. The steering is inside if (gestartet) ("started"), so you cannot steer before the start.
+`,
+  "4.2.3": `
+Tools: In this task we use functions, variables, true/false values, conditions with else if, the keyboard, random values and lines.
+Usage: You write the turbo like this: if (keyIsDown(UP_ARROW) && tempo < 25) { tempo = tempo + 0.2; } else if (tempo > 3) { tempo = tempo - 0.1; }. A star with the height stern1Y ("star 1 y") falls with stern1Y = stern1Y + tempo * 2; and starts again with if (stern1Y > 800) { stern1Y = 0; }.
+How it works together: At the start, setup() creates an 800 × 800 pixel canvas once. After that, draw() is repeated over and over. The rocket stays at its height. Instead, three stars move down, and the bigger tempo is, the faster they move. When they reach the bottom, they start again at the top at a random place. Above 12, they are drawn as long lines. Arrow up increases tempo, otherwise it slowly sinks back to 3. The flame gets longer with tempo.
+Important tips: Many real games work like this: the player does not move, but the world around them does. int(tempo) shows the speed without decimal places. tempo < 25 limits the top speed. stroke() and strokeWeight() color the lines; after that, noStroke() turns the outline off again for the rocket.
+`,
+  "4.3.1": `
+Tools: In this task we use functions, variables, random values and a keyboard event.
+Usage: With every key press you write new values in keyPressed(): speedX = random(-8, 8); speedY = random(-8, 8);. You choose the color the same way, e.g. for rot ("red"): rot = random(0, 255);.
+How it works together: At the start, setup() creates an 800 × 800 pixel canvas once. After that, draw() is repeated over and over. draw() moves the circle further by speedX and speedY and draws it in its color. At the beginning, both speeds are 0, so the circle stands still. Every key calls keyPressed(): the circle jumps to the center and gets a random direction and color.
+Important tips: Here key is not checked - every key does the same thing. A negative speedX means to the left, a negative speedY means up. The circle does not bounce yet and flies out of the picture; with the next key press it comes back.
+`,
+  "4.3.2": `
+Tools: In this task we use functions, many variables, conditions with else if and ||, random values and a keyboard event.
+Usage: Each circle gets its own variables, e.g. x1, y1, speedX1, speedY1. You write bouncing like this: if (x1 < 35 || x1 > 765) { speedX1 = -speedX1; }. In keyPressed(), if (key == "a") { ... } else if (key == "s") { ... } starts the matching circle.
+How it works together: At the start, setup() creates an 800 × 800 pixel canvas once. After that, draw() is repeated over and over. draw() moves all three circles and turns their direction around when they touch an edge. Then it draws them in their colors. a, s and d each restart one circle from the center with a random direction and color.
+Important tips: || means "or": the circle bounces when it is too far to the left OR to the right. speedX1 = -speedX1 turns 5 into -5 and the other way around. Each circle has only one random color variable, the other two values stay fixed - so it keeps its shade of color.
+`,
+  "4.3.3": `
+Tools: In this task we use functions, many variables, conditions with else if, || and &&, random values and a keyboard event.
+Usage: Freezing works with a number: x1 = x1 + speedX1 * tempo;. With if (key == "f" && tempo == 1) { tempo = 0; } else if (key == "f") { tempo = 1; } you switch back and forth.
+How it works together: At the start, setup() creates an 800 × 800 pixel canvas once. After that, draw() is repeated over and over. The three circles fly from the beginning and bounce off the edges. The space bar gives all of them new random directions and colors. f switches tempo between 1 and 0. At 0, everything stops and "EINGEFROREN" ("FROZEN") appears.
+Important tips: Anything times 0 is 0 - that is why nothing moves when tempo = 0. The order of the else-if parts is important: f with tempo 1 is checked first, otherwise f would unfreeze everything right away. The start speeds are fixed numbers because random() may only be used in setup() and draw().
+`,
+  "4.4.1": `
+Tools: In this task we use functions, variables, text, random values and a keyboard event.
+Usage: You remember the pressed key in the variable buchstabe ("letter") in keyPressed() with buchstabe = key;. You write centered text like this: textAlign(CENTER, CENTER); textSize(400); text(buchstabe, 400, 420);.
+How it works together: At the start, setup() creates an 800 × 800 pixel canvas once. After that, draw() is repeated over and over. draw() draws the background and the remembered letter huge in the center, with the hint above it. Every key press stores the new key in keyPressed() and picks a new random color.
+Important tips: key is text, e.g. "a", "K" or "7". At the beginning, buchstabe holds a question mark. textAlign(CENTER, CENTER) makes x and y give the center of the text and not the bottom left corner. Special keys like Shift appear as a whole word.
+`,
+  "4.4.2": `
+Tools: In this task we use functions, local variables, conditions with else if, text, random values and a keyboard event.
+Usage: The painting happens directly in keyPressed(): text(key, random(0, 700), random(100, 780));. With if (key == " ") { background(25, 25, 45); } else if (key.length == 1) { ... } you tell the space bar and letters apart.
+How it works together: At the start, setup() creates an 800 × 800 pixel canvas once. After that, draw() is repeated over and over. setup() paints the background and the hint once. draw() is empty. With every key press, keyPressed() paints the letter at a random place, in a random size and color. The space bar paints the background again.
+Important tips: Because draw() does not paint the background again, every letter stays. key.length is the number of characters: a letter has 1, "Shift" has 5 - so no whole words end up in the picture. The space bar must be checked before key.length == 1, because " " also has the length 1.
+`,
+  "4.4.3": `
+Tools: In this task we use functions, variables, joining text, conditions with else if and &&, random values and a keyboard event.
+Usage: You add a letter to wort ("word") like this: wort = wort + key;. You check the word and set offen ("open") with if (keyCode == ENTER && wort == "sesam") { offen = true; }. An empty word is wort = "";.
+How it works together: At the start, setup() creates an 800 × 800 pixel canvas once. After that, draw() is repeated over and over. draw() draws the closed safe or - if offen is true - sparkling gold coins and "GEOEFFNET!" ("OPENED!"). Below that, the display shows the word typed so far. Enter checks the word: the right word opens the safe, a wrong word sets falsch ("wrong") to 40, and the display glows red for 40 frames. Backspace deletes the word.
+Important tips: keyCode is the number of the key; ENTER and BACKSPACE are fixed names for it. == checks whether two texts are the same, including upper and lower case: "Sesam" is not "sesam". falsch = falsch - 1 in draw() counts down in every frame, so the red disappears by itself.
+`,
+  "4.5.1": `
+Tools: In this task we use functions, many variables, conditions with && and || and the keyboard.
+Usage: You combine steering and a limit for raketeX ("rocket x") like this: if (keyIsDown(LEFT_ARROW) && raketeX > 50) { raketeX = raketeX - 7; }. The circles bounce in the upper part with if (y1 < 40 || y1 > 520) { speedY1 = -speedY1; }.
+How it works together: At the start, setup() creates an 800 × 800 pixel canvas once. After that, draw() is repeated over and over. The program moves the rocket along the bottom edge with the arrow keys, moves three circles and lets them bounce off the edges and at y = 520. Then it draws the circles and the rocket.
+Important tips: && means "and": the rocket only moves to the left if the key is pressed AND it is not at the edge yet. The circles stay above y = 520 so that they do not touch the rocket. The rocket has a fixed height, only raketeX changes.
+`,
+  "4.5.2": `
+Tools: In this task we use functions, many variables, conditions with && and ||, the keyboard and lines.
+Usage: You draw the laser at raketeX ("rocket x") like this: if (keyIsDown(32)) { stroke(255, 40, 90); strokeWeight(8); line(raketeX, 590, raketeX, 0); noStroke(); }.
+How it works together: At the start, setup() creates an 800 × 800 pixel canvas once. After that, draw() is repeated over and over. Everything from Level 1 keeps running. In addition, the program draws a red beam from the tip of the rocket up to the top edge as long as the space bar is held down.
+Important tips: 32 is the key code of the space bar. The laser is drawn before the rocket so that it disappears behind it. After the laser, noStroke() turns the outline off again, otherwise the rocket would get a red outline.
+`,
+  "4.5.3": `
+Tools: In this task we use functions, local and global variables, conditions with else, && and ||, the keyboard, random values and lines.
+Usage: You store the laser state with let laser = keyIsDown(32);. A hit near raketeX ("rocket x") is counted in treffer ("hits") like this: if (laser && x1 > raketeX - 40 && x1 < raketeX + 40) { treffer = treffer + 1; x1 = random(60, 740); }. You write the turbo with if (keyIsDown(UP_ARROW)) { tempo = 14; } else { tempo = 7; }.
+How it works together: At the start, setup() creates an 800 × 800 pixel canvas once. After that, draw() is repeated over and over. Arrow up sets the speed of the rocket to 14, otherwise 7. The rocket and three circles move like in Level 1. While the space bar is held down, the laser appears. If a circle flies exactly above the rocket while the laser is on, it jumps to a random place, gets a new color, and treffer counts up. At the top left, "Getroffen:" ("Hits:") is shown with the number.
+Important tips: The circle has a radius of 40 - that is why everything between raketeX - 40 and raketeX + 40 counts as a hit. Three conditions with && must all be true. There is no losing: the game only counts how many circles you hit.
 `,
 };

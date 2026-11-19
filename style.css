@@ -1666,7 +1666,7 @@ html.light .start-grade { background: #3f7ecf; }
 
 /* Modul-Uebersicht: nur die drei Module, mittig und so gross wie vorher */
 #overview svg {
-  width: 660px;
+  width: 880px;
   max-width: 95vw;
   height: auto;
 }
