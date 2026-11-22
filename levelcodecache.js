@@ -615,7 +615,7 @@
   Thema:          1 - Mit Tasten malen
   Level:          3
   Boss-Level:     Nein
-  Lernziel:       keyPressed() wird bei jedem Tastendruck einmal aufgerufen. key ist die gedrückte Taste: if (key == "r") { ... }. Weil background() nur in setup() steht, bleibt jede Ellipse liegen - du malst.
+  Lernziel:       keyPressed() wird bei jedem Tastendruck einmal aufgerufen. key ist die gedrückte Taste: if (key == "r") { ... }. Weil background() nur in setup() steht, bleibt jede Ellipse liegen - du malst. Die Hinweis-Leiste oben wird in draw() jedes Mal neu gezeichnet, darum bleibt sie auch nach dem Löschen sichtbar.
   Arbeitsauftrag:  Rekreire, was du in der Vorschau siehst. Male mit den Pfeiltasten und wechsle die Farbe mit r, g, b und z. Die Leertaste löscht das Bild.
   Benoetiges Vorwissen: Level m4t1_1, m4t1_2 (keyIsDown, Ränder)
   =============================================
@@ -651,8 +651,8 @@
   Thema:          2 - Raketenstart: Turbo
   Level:          3
   Boss-Level:     Nein
-  Lernziel:       Ein Trick wie in echten Spielen: Die Rakete bleibt stehen und die Sterne rauschen vorbei. Pfeil hoch erhöht tempo, beim Loslassen bremst die Rakete langsam ab. Ab tempo 12 werden die Sterne zu Strichen.
-  Arbeitsauftrag:  Rekreire, was du in der Vorschau siehst. Starte mit der Leertaste und halte Pfeil hoch gedrückt, bis du Lichtgeschwindigkeit erreichst.
+  Lernziel:       Ein Trick wie in echten Spielen: Die Rakete bleibt stehen und die Welt zieht vorbei. Planeten ziehen langsamer vorbei als Sterne, weil sie weiter weg sind. Pfeil hoch erhöht tempo, beim Loslassen bremst die Rakete langsam ab. Ab tempo 12 werden die Sterne zu Strichen.
+  Arbeitsauftrag:  Rekreire, was du in der Vorschau siehst. Starte mit der Leertaste und halte Pfeil hoch gedrückt.
   Benoetiges Vorwissen: Level m4t2_1, m4t2_2 (Zündung, Lenken)
   =============================================
  
@@ -660,36 +660,36 @@
   "m4t3_1": ` 
   =============================================
   Modul:          4
-  Thema:          3 - Fliegende Kreise: ein Schuss
+  Thema:          3 - Fliegende Kreise: Abschuss
   Level:          1
   Boss-Level:     Nein
-  Lernziel:       keyPressed() reagiert auf jede Taste. Bei jedem Druck startet der Kreis wieder in der Mitte und bekommt mit random() eine neue Richtung (speedX, speedY) und eine neue Farbe.
-  Arbeitsauftrag:  Rekreire, was du in der Vorschau siehst. Drücke immer wieder irgendeine Taste.
-  Benoetiges Vorwissen: Thema 1 (keyPressed), Modul 2 (Bewegung mit speed)
+  Lernziel:       Die Leertaste schießt drei Kreise gleichzeitig aus der Mitte ab. Jeder Kreis hat eigene Variablen (x1, y1, speedX1, speedY1, ...) und bekommt mit random() eine eigene Richtung und Farbe. Mit || prallen die Kreise an allen Rändern ab.
+  Arbeitsauftrag:  Rekreire, was du in der Vorschau siehst. Drücke mehrmals die Leertaste.
+  Benoetiges Vorwissen: Thema 1 (keyPressed, key), Modul 2 und 3 (speed, ||)
   =============================================
  
 `,
   "m4t3_2": ` 
   =============================================
   Modul:          4
-  Thema:          3 - Fliegende Kreise: drei Tasten
+  Thema:          3 - Fliegende Kreise: eigene Startplätze
   Level:          2
   Boss-Level:     Nein
-  Lernziel:       Jede Taste hat ihren eigenen Kreis mit eigenen Variablen: a startet Kreis 1, s Kreis 2 und d Kreis 3 (else if). Mit || prallen die Kreise an allen Rändern ab.
+  Lernziel:       Jede Taste hat ihren eigenen Kreis und Startplatz: a schießt den linken Kreis ab, s den mittleren und d den rechten (else if). Die Buchstaben auf den Kreisen und Startplätzen zeigen, welche Taste was macht. textAlign(CENTER, CENTER) setzt einen Buchstaben genau in die Mitte des Kreises.
   Arbeitsauftrag:  Rekreire, was du in der Vorschau siehst. Drücke a, s und d.
-  Benoetiges Vorwissen: Level m4t3_1 (ein Schuss), Modul 3 (||)
+  Benoetiges Vorwissen: Level m4t3_1 (Abschuss)
   =============================================
  
 `,
   "m4t3_3": ` 
   =============================================
   Modul:          4
-  Thema:          3 - Fliegende Kreise: Chaos-Taste
+  Thema:          3 - Chaos-Maschine
   Level:          3
   Boss-Level:     Nein
-  Lernziel:       Die Leertaste würfelt alle Richtungen und Farben neu. f schaltet tempo zwischen 1 (fliegen) und 0 (eingefroren) um, denn x1 = x1 + speedX1 * tempo bewegt sich bei tempo 0 nicht.
-  Arbeitsauftrag:  Rekreire, was du in der Vorschau siehst. Drücke die Leertaste für Chaos und f zum Einfrieren und Weiterfliegen.
-  Benoetiges Vorwissen: Level m4t3_1, m4t3_2 (Schuss, drei Kreise)
+  Lernziel:       Jedes Bild malt eine neue Form in Zufallsfarbe an eine zufällige Stelle. Die Tasten 1, 2 und 3 wählen die Form (form = 1, 2 oder 3). Die Leertaste schaltet das Chaos an und aus (chaos = true / false): Dann kommen viele große Formen dazu. background() mit einer vierten Zahl ist halb durchsichtig - alte Formen verblassen langsam.
+  Arbeitsauftrag:  Rekreire, was du in der Vorschau siehst. Wechsle mit 1, 2 und 3 die Form und schalte mit der Leertaste das Chaos an.
+  Benoetiges Vorwissen: Level m4t3_1, m4t3_2 (Abschuss, Startplätze)
   =============================================
  
 `,
@@ -720,11 +720,11 @@
   "m4t4_3": ` 
   =============================================
   Modul:          4
-  Thema:          4 - Tresor knacken
+  Thema:          4 - Passwort raten
   Level:          3
   Boss-Level:     Nein
-  Lernziel:       Texte kann man zusammensetzen: wort = wort + key hängt jeden Buchstaben an. Mit Enter (keyCode == ENTER) und && prüfst du, ob das Wort stimmt. falsch zählt herunter, solange das Display rot leuchtet.
-  Arbeitsauftrag:  Rekreire, was du in der Vorschau siehst. Tippe zuerst ein falsches Wort und drücke Enter, dann das Geheimwort sesam.
+  Lernziel:       createInput() erstellt ein Eingabefeld, feld.value() liest den Text darin. Mit Enter (keyCode == ENTER) prüfst du den Tipp: richtig, zu kurz, zu lang oder falsch. tipp.length ist die Anzahl der Buchstaben, versuche zählt jeden Tipp mit.
+  Arbeitsauftrag:  Rekreire, was du in der Vorschau siehst. Klicke ins Eingabefeld, rate das Passwort und drücke Enter.
   Benoetiges Vorwissen: Level m4t4_1, m4t4_2 (key, key.length)
   =============================================
  
@@ -735,9 +735,9 @@
   Thema:          5 - Weltraum-Flug (Boss-Vorstufe 1)
   Level:          1
   Boss-Level:     Nein
-  Lernziel:       Die Rakete fährt mit den Pfeiltasten unten hin und her. Mit && bleibt sie im Bild: keyIsDown(LEFT_ARROW) && raketeX > 50. Drei Kreise fliegen im oberen Teil und prallen ab.
-  Arbeitsauftrag:  Rekreire, was du in der Vorschau siehst. Steuere die Rakete mit den Pfeiltasten.
-  Benoetiges Vorwissen: Thema 1 bis 3 (Pfeiltasten, Rakete, fliegende Kreise)
+  Lernziel:       Ein Ziel fliegt oben hin und her. Steuere die Rakete mit den Pfeiltasten darunter. Mit && prüfst du, ob die Rakete genau unter dem Ziel ist (raketeX > zielX - 50 && raketeX < zielX + 50) - dann leuchtet es gelb.
+  Arbeitsauftrag:  Rekreire, was du in der Vorschau siehst. Bring die Rakete unter das Ziel und bleib dran.
+  Benoetiges Vorwissen: Thema 1 und 2 (Pfeiltasten, Rakete)
   =============================================
  
 `,
@@ -747,9 +747,9 @@
   Thema:          5 - Weltraum-Flug (Boss-Vorstufe 2)
   Level:          2
   Boss-Level:     Nein
-  Lernziel:       keyIsDown(32) ist wahr, solange die Leertaste gedrückt ist (32 ist ihr Tastencode). Dann zeichnet line() einen Laserstrahl von der Raketenspitze nach oben.
-  Arbeitsauftrag:  Rekreire, was du in der Vorschau siehst. Fahre hin und her und halte die Leertaste gedrückt.
-  Benoetiges Vorwissen: Level m4t5_1 (Rakete und Kreise)
+  Lernziel:       Die Leertaste schaltet den Laser an und aus (laser = true / false). Solange der Laser an ist und die Rakete unter dem Ziel bleibt, steigt ladung. Sonst sinkt sie langsam. Bei 300 (5 Sekunden) ist das Ziel getroffen und springt weg. Der Balken oben zeigt die Ladung.
+  Arbeitsauftrag:  Rekreire, was du in der Vorschau siehst. Schalte den Laser an und halte ihn 5 Sekunden auf dem Ziel.
+  Benoetiges Vorwissen: Level m4t5_1 (Ziel)
   =============================================
  
 `,
@@ -759,8 +759,8 @@
   Thema:          5 - Weltraum-Flug
   Level:          3 - BOSS-LEVEL
   Boss-Level:     JA
-  Lernziel:       Alles aus Modul 4 kombinieren: Pfeiltasten, Turbo, Laser und Treffer. Ein Kreis ist getroffen, wenn der Laser an ist UND der Kreis genau über der Rakete fliegt (&&). Dann springt er an eine neue Stelle und treffer zählt hoch.
-  Arbeitsauftrag:  Rekreire, was du in der Vorschau siehst. Triff so viele Kreise wie möglich - Pfeil hoch ist der Turbo.
+  Lernziel:       Alles aus Modul 4: Pfeiltasten, Turbo, Laser und Ladung. Nach jedem Treffer wird das Ziel kleiner und schneller, und manchmal dreht es von allein um (random(0, 100) < 1). treffer zählt mit.
+  Arbeitsauftrag:  Rekreire, was du in der Vorschau siehst. Wie viele Treffer schaffst du? Pfeil hoch ist der Turbo.
   Benoetiges Vorwissen: Alles aus Modul 4
   =============================================
  
@@ -1102,7 +1102,7 @@ Prior knowledge: Level m4t1_1 (keyIsDown)`,
 Topic: 1 - Painting with keys
 Level: 3
 Boss level: No
-Learning goal: keyPressed() is called once with every key press. key is the key that was pressed: if (key == "r") { ... }. Because background() is only in setup(), every ellipse stays on the canvas - you are painting.
+Learning goal: keyPressed() is called once with every key press. key is the key that was pressed: if (key == "r") { ... }. Because background() is only in setup(), every ellipse stays on the canvas - you are painting. The hint bar at the top is drawn again in draw() every time, so it stays visible even after clearing.
 Task: Recreate what you see in the preview. Paint with the arrow keys and change the color with r, g, b and z. The space bar clears the picture.
 Prior knowledge: Levels m4t1_1, m4t1_2 (keyIsDown, edges)`,
   "m4t2_1": `Module: 4
@@ -1123,30 +1123,30 @@ Prior knowledge: Level m4t2_1 (true / false, ignition)`,
 Topic: 2 - Rocket launch: turbo
 Level: 3
 Boss level: No
-Learning goal: A trick like in real games: the rocket stays where it is and the stars rush past. The up arrow increases tempo ("speed"), and when you let go the rocket slowly slows down. From tempo 12 on the stars turn into lines.
-Task: Recreate what you see in the preview. Launch with the space bar and hold the up arrow until you reach light speed ("LICHTGESCHWINDIGKEIT!").
+Learning goal: A trick like in real games: the rocket stays where it is and the world moves past. Planets move past more slowly than stars because they are farther away. The up arrow increases tempo ("speed"), and when you let go the rocket slowly slows down. From tempo 12 on the stars turn into lines.
+Task: Recreate what you see in the preview. Launch with the space bar and hold the up arrow.
 Prior knowledge: Levels m4t2_1, m4t2_2 (ignition, steering)`,
   "m4t3_1": `Module: 4
-Topic: 3 - Flying circles: one shot
+Topic: 3 - Flying circles: launch
 Level: 1
 Boss level: No
-Learning goal: keyPressed() reacts to every key. With every press the circle starts in the middle again and gets a new direction (speedX, speedY) and a new color from random().
-Task: Recreate what you see in the preview. Press any key again and again.
-Prior knowledge: Topic 1 (keyPressed), module 2 (movement with speed)`,
+Learning goal: The space bar shoots three circles out of the middle at the same time. Each circle has its own variables (x1, y1, speedX1, speedY1, ...) and gets its own direction and color from random(). With || the circles bounce off all edges.
+Task: Recreate what you see in the preview. Press the space bar several times.
+Prior knowledge: Topic 1 (keyPressed, key), modules 2 and 3 (speed, ||)`,
   "m4t3_2": `Module: 4
-Topic: 3 - Flying circles: three keys
+Topic: 3 - Flying circles: own launch pads
 Level: 2
 Boss level: No
-Learning goal: Every key has its own circle with its own variables: a starts circle 1, s circle 2 and d circle 3 (else if). With || the circles bounce off all the edges.
+Learning goal: Each key has its own circle and launch pad: a shoots the left circle, s the middle one and d the right one (else if). The letters on the circles and launch pads show which key does what. textAlign(CENTER, CENTER) puts a letter exactly in the middle of the circle.
 Task: Recreate what you see in the preview. Press a, s and d.
-Prior knowledge: Level m4t3_1 (one shot), module 3 (||)`,
+Prior knowledge: Level m4t3_1 (launch)`,
   "m4t3_3": `Module: 4
-Topic: 3 - Flying circles: chaos key
+Topic: 3 - Chaos machine
 Level: 3
 Boss level: No
-Learning goal: The space bar rolls new directions and colors for all circles. f switches tempo ("speed") between 1 (flying) and 0 (frozen, "EINGEFROREN"), because x1 = x1 + speedX1 * tempo does not move when tempo is 0.
-Task: Recreate what you see in the preview. Press the space bar for chaos and f to freeze and fly on again.
-Prior knowledge: Levels m4t3_1, m4t3_2 (shot, three circles)`,
+Learning goal: Every frame paints a new shape in a random color at a random place. The keys 1, 2 and 3 choose the shape (form = 1, 2 or 3). The space bar turns the chaos on and off (chaos = true / false): then many big shapes are added. background() with a fourth number is half transparent - old shapes slowly fade away.
+Task: Recreate what you see in the preview. Change the shape with 1, 2 and 3 and turn on the chaos with the space bar.
+Prior knowledge: Levels m4t3_1, m4t3_2 (launch, launch pads)`,
   "m4t4_1": `Module: 4
 Topic: 4 - Letters: show the key
 Level: 1
@@ -1162,31 +1162,31 @@ Learning goal: The drawing happens directly in keyPressed() and only once per ke
 Task: Recreate what you see in the preview. Type wildly and make a colorful collage. The space bar starts a new picture.
 Prior knowledge: Level m4t4_1 (key, text)`,
   "m4t4_3": `Module: 4
-Topic: 4 - Crack the safe
+Topic: 4 - Guess the password
 Level: 3
 Boss level: No
-Learning goal: You can put texts together: wort = wort + key adds every letter to the end (wort = "word"). With Enter (keyCode == ENTER) and && you check whether the word is correct. falsch ("wrong") counts down while the display glows red.
-Task: Recreate what you see in the preview. First type a wrong word and press Enter, then the secret word sesam ("sesame", as in "open sesame").
+Learning goal: createInput() creates an input field, feld.value() reads the text in it (feld = "field"). With Enter (keyCode == ENTER) you check the guess (tipp): correct, too short, too long or wrong. tipp.length is the number of letters, and versuche ("tries") counts every guess.
+Task: Recreate what you see in the preview. Click into the input field, guess the password and press Enter.
 Prior knowledge: Levels m4t4_1, m4t4_2 (key, key.length)`,
   "m4t5_1": `Module: 4
 Topic: 5 - Space flight (boss warm-up 1)
 Level: 1
 Boss level: No
-Learning goal: The rocket moves back and forth at the bottom with the arrow keys. With && it stays on the canvas: keyIsDown(LEFT_ARROW) && raketeX > 50 (raketeX = "rocket x"). Three circles fly in the upper part and bounce off.
-Task: Recreate what you see in the preview. Steer the rocket with the arrow keys.
-Prior knowledge: Topics 1 to 3 (arrow keys, rocket, flying circles)`,
+Learning goal: A target flies back and forth at the top. Steer the rocket under it with the arrow keys. With && you check whether the rocket is exactly under the target (raketeX > zielX - 50 && raketeX < zielX + 50, raketeX = "rocket x", zielX = "target x") - then it lights up yellow.
+Task: Recreate what you see in the preview. Bring the rocket under the target and stay there.
+Prior knowledge: Topics 1 and 2 (arrow keys, rocket)`,
   "m4t5_2": `Module: 4
 Topic: 5 - Space flight (boss warm-up 2)
 Level: 2
 Boss level: No
-Learning goal: keyIsDown(32) is true as long as the space bar is held down (32 is its key code). Then line() draws a laser beam upwards from the tip of the rocket.
-Task: Recreate what you see in the preview. Move back and forth and hold the space bar down.
-Prior knowledge: Level m4t5_1 (rocket and circles)`,
+Learning goal: The space bar turns the laser on and off (laser = true / false). As long as the laser is on and the rocket stays under the target, ladung ("charge") goes up. Otherwise it slowly goes down. At 300 (5 seconds) the target is hit and jumps away. The bar at the top shows the charge.
+Task: Recreate what you see in the preview. Turn on the laser and keep it on the target for 5 seconds.
+Prior knowledge: Level m4t5_1 (target)`,
   "m4t5_3": `Module: 4
 Topic: 5 - Space flight
 Level: 3 - BOSS LEVEL
 Boss level: YES
-Learning goal: Combine everything from module 4: arrow keys, turbo, laser and hits. A circle is hit when the laser is on AND the circle is flying exactly above the rocket (&&). Then it jumps to a new place and treffer ("hits") counts up.
-Task: Recreate what you see in the preview. Hit as many circles as you can - the up arrow is the turbo.
+Learning goal: Everything from module 4: arrow keys, turbo, laser and charge. After every hit the target gets smaller and faster, and sometimes it turns around on its own (random(0, 100) < 1). treffer ("hits") counts along.
+Task: Recreate what you see in the preview. How many hits can you get? The up arrow is the turbo.
 Prior knowledge: Everything from module 4`
 };
