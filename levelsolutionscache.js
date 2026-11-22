@@ -1677,111 +1677,134 @@ function keyPressed() {
   }
 }
 `,
-  "m4t4_1": `let buchstabe = "?";
-let rot = 255;
-let gruen = 255;
-let blau = 255;
+  "m4t4_1": `let x = 400;
+let y = 400;
 function setup() {
   createCanvas(800, 800);
 }
 function draw() {
-  background(25, 25, 45);
+  background(25, 30, 45);
+  // keyIsDown mit dem Tastencode: W = 87, A = 65, S = 83, D = 68
+  if (keyIsDown(87) && y > 40) {
+    y = y - 5;
+  }
+  if (keyIsDown(83) && y < 760) {
+    y = y + 5;
+  }
+  if (keyIsDown(65) && x > 40) {
+    x = x - 5;
+  }
+  if (keyIsDown(68) && x < 760) {
+    x = x + 5;
+  }
   noStroke();
-  fill(rot, gruen, blau);
-  textAlign(CENTER, CENTER);
-  textSize(400);
-  text(buchstabe, 400, 420);
-  fill(255);
-  textSize(26);
-  text("Tippe einen Buchstaben!", 400, 40);
-}
-function keyPressed() {
-  // key ist die Taste, die gerade gedrueckt wurde
-  buchstabe = key;
-  rot = random(0, 255);
-  gruen = random(0, 255);
-  blau = random(0, 255);
-}
-`,
-  "m4t4_2": `function setup() {
-  createCanvas(800, 800);
-  background(25, 25, 45);
+  fill(80, 200, 255);
+  ellipse(x, y, 80, 80);
   fill(255);
   textSize(24);
-  text("Tippe wild drauflos! Leertaste = neues Bild", 20, 40);
-}
-function draw() {
-  // Hier passiert nichts: gemalt wird nur bei einem Tastendruck
-}
-function keyPressed() {
-  if (key == " ") {
-    background(25, 25, 45);
-  } else if (key.length == 1) {
-    let rot = random(0, 255);
-    let gruen = random(0, 255);
-    let blau = random(0, 255);
-    noStroke();
-    fill(rot, gruen, blau);
-    textSize(random(40, 200));
-    text(key, random(0, 700), random(100, 780));
-  }
+  text("W A S D: steuern", 20, 40);
 }
 `,
-  "m4t4_3": `let feld;
-let geheim = "giraffe";
-let antwort = "Klicke ins Feld, tippe deinen Tipp und druecke Enter.";
-let versuche = 0;
-let geschafft = false;
+  "m4t4_2": `let x1 = 200;
+let y1 = 400;
+let x2 = 600;
+let y2 = 400;
 function setup() {
   createCanvas(800, 800);
-  // Eingabefeld: hier tippst du deinen Tipp hinein
-  feld = createInput("");
-  feld.position(250, 540);
-  feld.size(300);
 }
 function draw() {
-  if (geschafft) {
-    background(30, 110, 60);
-  } else {
-    background(40, 45, 60);
+  background(25, 30, 45);
+  // Spieler 1: W A S D
+  if (keyIsDown(87) && y1 > 40) {
+    y1 = y1 - 5;
   }
-  // Schloss: Buegel und Koerper. Ist es geschafft, geht der Buegel nach oben auf.
-  let buegelY = 330;
-  if (geschafft) {
-    buegelY = 280;
+  if (keyIsDown(83) && y1 < 760) {
+    y1 = y1 + 5;
   }
-  noFill();
-  stroke(200, 200, 210);
-  strokeWeight(18);
-  ellipse(400, buegelY, 110, 140);
+  if (keyIsDown(65) && x1 > 40) {
+    x1 = x1 - 5;
+  }
+  if (keyIsDown(68) && x1 < 760) {
+    x1 = x1 + 5;
+  }
+  // Spieler 2: Pfeiltasten
+  if (keyIsDown(UP_ARROW) && y2 > 40) {
+    y2 = y2 - 5;
+  }
+  if (keyIsDown(DOWN_ARROW) && y2 < 760) {
+    y2 = y2 + 5;
+  }
+  if (keyIsDown(LEFT_ARROW) && x2 > 40) {
+    x2 = x2 - 5;
+  }
+  if (keyIsDown(RIGHT_ARROW) && x2 < 760) {
+    x2 = x2 + 5;
+  }
   noStroke();
-  fill(230, 180, 40);
-  rect(320, 330, 160, 130, 12);
-  fill(60, 50, 20);
-  ellipse(400, 385, 26, 26);
-  rect(394, 390, 12, 35);
+  fill(80, 200, 255);
+  ellipse(x1, y1, 80, 80);
+  fill(255, 160, 60);
+  ellipse(x2, y2, 80, 80);
   fill(255);
-  textSize(26);
-  text("Rate das Passwort!", 30, 90);
-  text("Tipp: ein Tier mit langem Hals (klein geschrieben)", 30, 130);
-  text(antwort, 30, 640);
-  text("Versuche: " + versuche, 30, 690);
+  textSize(24);
+  text("Spieler 1: W A S D", 20, 40);
+  text("Spieler 2: Pfeiltasten", 520, 40);
 }
-function keyPressed() {
-  let tipp = feld.value();
-  if (keyCode == ENTER) {
-    versuche = versuche + 1;
+`,
+  "m4t4_3": `let x1 = 150;
+let y1 = 400;
+let x2 = 650;
+let y2 = 400;
+let gefangen = 0;
+function setup() {
+  createCanvas(800, 800);
+}
+function draw() {
+  background(25, 30, 45);
+  // Spieler 1 faengt (W A S D) und ist etwas schneller
+  if (keyIsDown(87) && y1 > 40) {
+    y1 = y1 - 6;
   }
-  if (keyCode == ENTER && tipp == geheim) {
-    geschafft = true;
-    antwort = "Richtig! Das Schloss ist offen.";
-  } else if (keyCode == ENTER && tipp.length < geheim.length) {
-    antwort = "Zu kurz - das Passwort hat mehr Buchstaben.";
-  } else if (keyCode == ENTER && tipp.length > geheim.length) {
-    antwort = "Zu lang - das Passwort hat weniger Buchstaben.";
-  } else if (keyCode == ENTER) {
-    antwort = "Richtige Laenge, aber falsch.";
+  if (keyIsDown(83) && y1 < 760) {
+    y1 = y1 + 6;
   }
+  if (keyIsDown(65) && x1 > 40) {
+    x1 = x1 - 6;
+  }
+  if (keyIsDown(68) && x1 < 760) {
+    x1 = x1 + 6;
+  }
+  // Spieler 2 laeuft weg (Pfeiltasten)
+  if (keyIsDown(UP_ARROW) && y2 > 40) {
+    y2 = y2 - 5;
+  }
+  if (keyIsDown(DOWN_ARROW) && y2 < 760) {
+    y2 = y2 + 5;
+  }
+  if (keyIsDown(LEFT_ARROW) && x2 > 40) {
+    x2 = x2 - 5;
+  }
+  if (keyIsDown(RIGHT_ARROW) && x2 < 760) {
+    x2 = x2 + 5;
+  }
+  // Gefangen: die Kreise beruehren sich, beide starten wieder an ihrem Platz
+  if (dist(x1, y1, x2, y2) < 80) {
+    gefangen = gefangen + 1;
+    x1 = 150;
+    y1 = 400;
+    x2 = 650;
+    y2 = 400;
+  }
+  noStroke();
+  fill(240, 70, 70);
+  ellipse(x1, y1, 80, 80);
+  fill(255, 200, 60);
+  ellipse(x2, y2, 80, 80);
+  fill(255);
+  textSize(24);
+  text("Faenger: W A S D", 20, 40);
+  text("Laeufer: Pfeiltasten", 540, 40);
+  text("Gefangen: " + gefangen, 330, 780);
 }
 `,
   "m4t5_1": `let raketeX = 400;

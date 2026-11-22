@@ -696,36 +696,36 @@
   "m4t4_1": ` 
   =============================================
   Modul:          4
-  Thema:          4 - Buchstaben: Taste zeigen
+  Thema:          4 - Zwei Spieler: W A S D
   Level:          1
   Boss-Level:     Nein
-  Lernziel:       key enthält die zuletzt gedrückte Taste als Text. text(buchstabe, 400, 420) zeigt ihn riesig an, textAlign(CENTER, CENTER) setzt ihn genau in die Mitte.
-  Arbeitsauftrag:  Rekreire, was du in der Vorschau siehst. Tippe verschiedene Buchstaben und Zahlen.
-  Benoetiges Vorwissen: Thema 1 (keyPressed, key)
+  Lernziel:       Nicht nur die Pfeiltasten: Jede Taste hat einen Tastencode. keyIsDown(87) ist W, 65 ist A, 83 ist S und 68 ist D. Mit && bleibt der Kreis im Bild: keyIsDown(87) && y > 40.
+  Arbeitsauftrag:  Rekreire, was du in der Vorschau siehst. Steuere den Kreis mit W, A, S und D.
+  Benoetiges Vorwissen: Thema 1 (keyIsDown, Ränder)
   =============================================
  
 `,
   "m4t4_2": ` 
   =============================================
   Modul:          4
-  Thema:          4 - Buchstaben-Collage
+  Thema:          4 - Zwei Spieler an einer Tastatur
   Level:          2
   Boss-Level:     Nein
-  Lernziel:       Gezeichnet wird direkt in keyPressed() und nur einmal pro Tastendruck - darum bleiben alle Buchstaben stehen. key.length == 1 prüft, ob es ein echtes Zeichen ist (und nicht z. B. Shift).
-  Arbeitsauftrag:  Rekreire, was du in der Vorschau siehst. Tippe wild drauflos und mach eine bunte Collage. Mit der Leertaste beginnst du neu.
-  Benoetiges Vorwissen: Level m4t4_1 (key, text)
+  Lernziel:       Zwei Kreise mit eigenen Variablen: Spieler 1 steuert mit W A S D (x1, y1), Spieler 2 mit den Pfeiltasten (x2, y2). keyIsDown() erkennt mehrere Tasten gleichzeitig, darum können beide zugleich fahren.
+  Arbeitsauftrag:  Rekreire, was du in der Vorschau siehst. Spielt zu zweit: einer mit W A S D, einer mit den Pfeiltasten.
+  Benoetiges Vorwissen: Level m4t4_1 (W A S D)
   =============================================
  
 `,
   "m4t4_3": ` 
   =============================================
   Modul:          4
-  Thema:          4 - Passwort raten
+  Thema:          4 - Zwei Spieler: Fangen
   Level:          3
   Boss-Level:     Nein
-  Lernziel:       createInput() erstellt ein Eingabefeld, feld.value() liest den Text darin. Mit Enter (keyCode == ENTER) prüfst du den Tipp: richtig, zu kurz, zu lang oder falsch. tipp.length ist die Anzahl der Buchstaben, versuche zählt jeden Tipp mit.
-  Arbeitsauftrag:  Rekreire, was du in der Vorschau siehst. Klicke ins Eingabefeld, rate das Passwort und drücke Enter.
-  Benoetiges Vorwissen: Level m4t4_1, m4t4_2 (key, key.length)
+  Lernziel:       Ein Fangspiel: Der Fänger (W A S D) ist etwas schneller als der Läufer (Pfeiltasten). dist(x1, y1, x2, y2) < 80 bedeutet, dass sich die Kreise berühren - dann zählt gefangen hoch und beide starten wieder an ihrem Platz.
+  Arbeitsauftrag:  Rekreire, was du in der Vorschau siehst. Spielt zu zweit Fangen und tauscht danach die Rollen.
+  Benoetiges Vorwissen: Level m4t4_1, m4t4_2, Modul 3 (dist)
   =============================================
  
 `,
@@ -1148,26 +1148,26 @@ Learning goal: Every frame paints a new shape in a random color at a random plac
 Task: Recreate what you see in the preview. Change the shape with 1, 2 and 3 and turn on the chaos with the space bar.
 Prior knowledge: Levels m4t3_1, m4t3_2 (launch, launch pads)`,
   "m4t4_1": `Module: 4
-Topic: 4 - Letters: show the key
+Topic: 4 - Two players: W A S D
 Level: 1
 Boss level: No
-Learning goal: key contains the last key you pressed as text. text(buchstabe, 400, 420) shows it really big (buchstabe = "letter"), and textAlign(CENTER, CENTER) puts it exactly in the middle.
-Task: Recreate what you see in the preview. Type different letters and numbers.
-Prior knowledge: Topic 1 (keyPressed, key)`,
+Learning goal: Not only the arrow keys: every key has a key code. keyIsDown(87) is W, 65 is A, 83 is S and 68 is D. With && the circle stays on the canvas: keyIsDown(87) && y > 40.
+Task: Recreate what you see in the preview. Steer the circle with W, A, S and D.
+Prior knowledge: Topic 1 (keyIsDown, edges)`,
   "m4t4_2": `Module: 4
-Topic: 4 - Letter collage
+Topic: 4 - Two players on one keyboard
 Level: 2
 Boss level: No
-Learning goal: The drawing happens directly in keyPressed() and only once per key press - that is why all the letters stay on the canvas. key.length == 1 checks whether it is a real character (and not, for example, Shift).
-Task: Recreate what you see in the preview. Type wildly and make a colorful collage. The space bar starts a new picture.
-Prior knowledge: Level m4t4_1 (key, text)`,
+Learning goal: Two circles with their own variables: player 1 steers with W A S D (x1, y1), player 2 with the arrow keys (x2, y2). keyIsDown() detects several keys at the same time, so both can move at once.
+Task: Recreate what you see in the preview. Play together: one with W A S D, one with the arrow keys.
+Prior knowledge: Level m4t4_1 (W A S D)`,
   "m4t4_3": `Module: 4
-Topic: 4 - Guess the password
+Topic: 4 - Two players: tag
 Level: 3
 Boss level: No
-Learning goal: createInput() creates an input field, feld.value() reads the text in it (feld = "field"). With Enter (keyCode == ENTER) you check the guess (tipp): correct, too short, too long or wrong. tipp.length is the number of letters, and versuche ("tries") counts every guess.
-Task: Recreate what you see in the preview. Click into the input field, guess the password and press Enter.
-Prior knowledge: Levels m4t4_1, m4t4_2 (key, key.length)`,
+Learning goal: A game of tag: the catcher (W A S D) is a bit faster than the runner (arrow keys). dist(x1, y1, x2, y2) < 80 means the circles touch - then gefangen ("caught") counts up and both start at their places again.
+Task: Recreate what you see in the preview. Play tag together and then swap roles.
+Prior knowledge: Levels m4t4_1, m4t4_2, module 3 (dist)`,
   "m4t5_1": `Module: 4
 Topic: 5 - Space flight (boss warm-up 1)
 Level: 1

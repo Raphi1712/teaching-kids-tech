@@ -324,22 +324,22 @@ Zusammenspiel: Beim Start erstellt setup() einmal eine 800 × 800 Pixel große Z
 Wichtige Tipps: Die vierte Zahl bei background() ist die Durchsichtigkeit von 0 (unsichtbar) bis 255 (deckend). Mit 25 verschwindet eine Form erst nach vielen Bildern - so entsteht der Verblassen-Effekt. key ist Text: Die Taste 1 ist "1", nicht die Zahl 1. Die lokalen Variablen rot, gruen und blau dürfen in draw() mehrmals neu gewürfelt werden.
 `,
   "4.4.1": `
-Werkzeuge: In diesem Auftrag verwenden wir Funktionen, Variablen, Text, Zufallswerte und ein Tastaturereignis.
-Verwendung: Die gedrückte Taste merkst du dir in keyPressed() mit buchstabe = key;. Zentrierten Text schreibst du so: textAlign(CENTER, CENTER); textSize(400); text(buchstabe, 400, 420);.
-Zusammenspiel: Beim Start erstellt setup() einmal eine 800 × 800 Pixel große Zeichenfläche. Danach wird draw() fortlaufend wiederholt. draw() zeichnet den Hintergrund und den gemerkten Buchstaben riesig in der Mitte, darüber den Hinweis. Jeder Tastendruck speichert in keyPressed() die neue Taste und würfelt eine neue Farbe.
-Wichtige Tipps: key ist Text, z. B. "a", "K" oder "7". Am Anfang steht in buchstabe ein Fragezeichen. textAlign(CENTER, CENTER) sorgt dafür, dass x und y die Mitte des Textes angeben und nicht die linke untere Ecke. Sondertasten wie Shift erscheinen als ganzes Wort.
+Werkzeuge: In diesem Auftrag verwenden wir Funktionen, Variablen, Bedingungen mit && und die Tastatur.
+Verwendung: Eine Taste mit Tastencode prüfst du so: if (keyIsDown(<Tastencode>)) { ... }. Beispiel: if (keyIsDown(87) && y > 40) { y = y - 5; }. W ist 87, A ist 65, S ist 83 und D ist 68.
+Zusammenspiel: Beim Start erstellt setup() einmal eine 800 × 800 Pixel große Zeichenfläche. Danach wird draw() fortlaufend wiederholt. Das Programm prüft die Tasten W, A, S und D und bewegt den Kreis, solange er noch nicht am Rand ist. Danach zeichnet es den blauen Kreis und den Hinweis.
+Wichtige Tipps: Der Tastencode eines Buchstabens ist immer der des Großbuchstabens - 87 gilt für w und W. W A S D liegen wie die Pfeiltasten: W oben, A links, S unten, D rechts. Viele Computerspiele benutzen genau diese Tasten. Der Kreis hat den Radius 40, darum liegen die Grenzen bei 40 und 760.
 `,
   "4.4.2": `
-Werkzeuge: In diesem Auftrag verwenden wir Funktionen, lokale Variablen, Bedingungen mit else if, Text, Zufallswerte und ein Tastaturereignis.
-Verwendung: Gemalt wird direkt in keyPressed(): text(key, random(0, 700), random(100, 780));. Mit if (key == " ") { background(25, 25, 45); } else if (key.length == 1) { ... } unterscheidest du Leertaste und Buchstaben.
-Zusammenspiel: Beim Start erstellt setup() einmal eine 800 × 800 Pixel große Zeichenfläche. Danach wird draw() fortlaufend wiederholt. setup() malt den Hintergrund und den Hinweis einmal. draw() ist leer. Bei jedem Tastendruck malt keyPressed() den Buchstaben an eine zufällige Stelle, in zufälliger Größe und Farbe. Die Leertaste malt den Hintergrund neu.
-Wichtige Tipps: Weil draw() den Hintergrund nicht neu malt, bleibt jeder Buchstabe stehen. key.length ist die Anzahl der Zeichen: Ein Buchstabe hat 1, "Shift" hat 5 - so landen keine ganzen Wörter im Bild. Die Leertaste muss vor key.length == 1 geprüft werden, denn " " hat auch die Länge 1.
+Werkzeuge: In diesem Auftrag verwenden wir Funktionen, Variablen, Bedingungen mit && und die Tastatur.
+Verwendung: Jeder Spieler bekommt eigene Variablen: Spieler 1 benutzt x1 und y1 mit if (keyIsDown(87) && y1 > 40) { y1 = y1 - 5; }, Spieler 2 benutzt x2 und y2 mit if (keyIsDown(UP_ARROW) && y2 > 40) { y2 = y2 - 5; }.
+Zusammenspiel: Beim Start erstellt setup() einmal eine 800 × 800 Pixel große Zeichenfläche. Danach wird draw() fortlaufend wiederholt. Das Programm prüft zuerst die vier Tasten von Spieler 1 und bewegt den blauen Kreis, dann die vier Pfeiltasten von Spieler 2 und bewegt den orangen Kreis. Zum Schluss zeichnet es beide Kreise und oben die Tasten der Spieler.
+Wichtige Tipps: keyIsDown() fragt bei jedem Bild jede Taste einzeln ab - darum können zwei Spieler gleichzeitig drücken. Fährt ein Spieler nicht, sind oft die Variablen vertauscht: x1 und y1 gehören nur zu W A S D, x2 und y2 nur zu den Pfeiltasten. Manche Tastaturen erkennen sehr viele gleichzeitige Tasten nicht - dann kurz loslassen.
 `,
   "4.4.3": `
-Werkzeuge: In diesem Auftrag verwenden wir Funktionen, Variablen, ein Eingabefeld, Text, Bedingungen mit else if und && und ein Tastaturereignis.
-Verwendung: Ein Eingabefeld erstellst du in setup() mit feld = createInput(""); feld.position(250, 540);. Den Text darin liest du mit let tipp = feld.value();. Prüfen: if (keyCode == ENTER && tipp == geheim) { geschafft = true; } else if (keyCode == ENTER && tipp.length < geheim.length) { ... }.
-Zusammenspiel: Beim Start erstellt setup() einmal eine 800 × 800 Pixel große Zeichenfläche. Danach wird draw() fortlaufend wiederholt. setup() erstellt das Eingabefeld unter dem Schloss. draw() malt den Hintergrund (grün, wenn es geschafft ist), das Schloss mit Bügel, den Tipp, die Rückmeldung und die Zahl der Versuche. Bei Enter zählt keyPressed() einen Versuch und prüft den Tipp: richtig öffnet das Schloss, sonst kommt "Zu kurz", "Zu lang" oder "Richtige Länge, aber falsch".
-Wichtige Tipps: Klicke zuerst ins Eingabefeld, sonst landen die Buchstaben nicht darin. tipp.length ist die Anzahl der Buchstaben - so kann das Programm verraten, ob der Tipp zu kurz oder zu lang ist. Die Reihenfolge der Prüfungen ist wichtig: zuerst "richtig", zuletzt "falsch". == achtet auf Groß- und Kleinschreibung, darum steht im Tipp "klein geschrieben". Ist das Schloss offen, rückt buegelY nach oben.
+Werkzeuge: In diesem Auftrag verwenden wir Funktionen, Variablen, Bedingungen mit &&, Abstände und die Tastatur.
+Verwendung: Ob sich die Kreise berühren, prüfst du mit if (dist(x1, y1, x2, y2) < 80) { gefangen = gefangen + 1; }. Danach setzt du beide zurück, z. B. mit x1 = 150; und x2 = 650;.
+Zusammenspiel: Beim Start erstellt setup() einmal eine 800 × 800 Pixel große Zeichenfläche. Danach wird draw() fortlaufend wiederholt. Der rote Fänger fährt mit W A S D und Tempo 6, der gelbe Läufer mit den Pfeiltasten und Tempo 5. Bei jedem Bild misst dist() den Abstand der Mittelpunkte. Ist er kleiner als 80, zählt gefangen hoch und beide springen an ihre Startplätze. Unten steht die Zahl der Fänge.
+Wichtige Tipps: Beide Kreise haben den Radius 40 - sie berühren sich, wenn die Mittelpunkte weniger als 40 + 40 = 80 auseinander sind. Der Fänger ist etwas schneller, sonst könnte der Läufer immer entkommen. Wer es fairer möchte, ändert die Zahlen 6 und 5.
 `,
   "4.5.1": `
 Werkzeuge: In diesem Auftrag verwenden wir Funktionen, Variablen, Bedingungen mit &&, || und else und die Tastatur.
@@ -688,22 +688,22 @@ How it works together: At the start, setup() creates an 800 × 800 pixel canvas 
 Important tips: The fourth number in background() is the transparency from 0 (invisible) to 255 (solid). With 25 a shape only disappears after many frames - that creates the fading effect. key is text: the key 1 is "1", not the number 1. The local variables rot, gruen and blau ("red", "green", "blue") may be picked again several times in draw().
 `,
   "4.4.1": `
-Tools: In this task we use functions, variables, text, random values and a keyboard event.
-Usage: You remember the pressed key in the variable buchstabe ("letter") in keyPressed() with buchstabe = key;. You write centered text like this: textAlign(CENTER, CENTER); textSize(400); text(buchstabe, 400, 420);.
-How it works together: At the start, setup() creates an 800 × 800 pixel canvas once. After that, draw() is repeated over and over. draw() draws the background and the remembered letter huge in the center, with the hint above it. Every key press stores the new key in keyPressed() and picks a new random color.
-Important tips: key is text, e.g. "a", "K" or "7". At the beginning, buchstabe holds a question mark. textAlign(CENTER, CENTER) makes x and y give the center of the text and not the bottom left corner. Special keys like Shift appear as a whole word.
+Tools: In this task we use functions, variables, conditions with && and the keyboard.
+Usage: You check a key by its key code like this: if (keyIsDown(<key code>)) { ... }. Example: if (keyIsDown(87) && y > 40) { y = y - 5; }. W is 87, A is 65, S is 83 and D is 68.
+How it works together: At the start, setup() creates an 800 × 800 pixel canvas once. After that, draw() is repeated over and over. The program checks the keys W, A, S and D and moves the circle as long as it is not at the edge yet. Then it draws the blue circle and the hint.
+Important tips: The key code of a letter is always that of the capital letter - 87 works for w and W. W A S D are arranged like the arrow keys: W at the top, A on the left, S at the bottom, D on the right. Many computer games use exactly these keys. The circle has a radius of 40, which is why the limits are 40 and 760.
 `,
   "4.4.2": `
-Tools: In this task we use functions, local variables, conditions with else if, text, random values and a keyboard event.
-Usage: The painting happens directly in keyPressed(): text(key, random(0, 700), random(100, 780));. With if (key == " ") { background(25, 25, 45); } else if (key.length == 1) { ... } you tell the space bar and letters apart.
-How it works together: At the start, setup() creates an 800 × 800 pixel canvas once. After that, draw() is repeated over and over. setup() paints the background and the hint once. draw() is empty. With every key press, keyPressed() paints the letter at a random place, in a random size and color. The space bar paints the background again.
-Important tips: Because draw() does not paint the background again, every letter stays. key.length is the number of characters: a letter has 1, "Shift" has 5 - so no whole words end up in the picture. The space bar must be checked before key.length == 1, because " " also has the length 1.
+Tools: In this task we use functions, variables, conditions with && and the keyboard.
+Usage: Each player gets their own variables: player 1 uses x1 and y1 with if (keyIsDown(87) && y1 > 40) { y1 = y1 - 5; }, player 2 uses x2 and y2 with if (keyIsDown(UP_ARROW) && y2 > 40) { y2 = y2 - 5; }.
+How it works together: At the start, setup() creates an 800 × 800 pixel canvas once. After that, draw() is repeated over and over. The program first checks the four keys of player 1 and moves the blue circle, then the four arrow keys of player 2 and moves the orange circle. At the end, it draws both circles and the players' keys at the top.
+Important tips: keyIsDown() checks every key separately in every frame - that is why two players can press at the same time. If a player does not move, the variables are often mixed up: x1 and y1 only belong to W A S D, x2 and y2 only to the arrow keys. Some keyboards cannot detect very many keys at once - then let go for a moment.
 `,
   "4.4.3": `
-Tools: In this task we use functions, variables, an input field, text, conditions with else if and && and a keyboard event.
-Usage: You create an input field in setup() with feld = createInput(""); feld.position(250, 540); (feld = "field"). You read the text in it with let tipp = feld.value(); (tipp = "guess"). Checking: if (keyCode == ENTER && tipp == geheim) { geschafft = true; } else if (keyCode == ENTER && tipp.length < geheim.length) { ... } (geheim = "secret", geschafft = "done").
-How it works together: At the start, setup() creates an 800 × 800 pixel canvas once. After that, draw() is repeated over and over. setup() creates the input field below the lock. draw() paints the background (green when it is done), the lock with its shackle, the hint, the answer and the number of tries. When you press Enter, keyPressed() counts a try and checks the guess: the right one opens the lock, otherwise you see "Zu kurz" ("Too short"), "Zu lang" ("Too long") or "Richtige Laenge, aber falsch" ("Right length, but wrong").
-Important tips: Click into the input field first, otherwise the letters do not end up in it. tipp.length is the number of letters - that is how the program can tell whether the guess is too short or too long. The order of the checks matters: "correct" first, "wrong" last. == pays attention to upper and lower case, which is why the hint says "klein geschrieben" ("written in lower case"). When the lock is open, buegelY ("shackle y") moves up.
+Tools: In this task we use functions, variables, conditions with &&, distances and the keyboard.
+Usage: You check whether the circles touch with if (dist(x1, y1, x2, y2) < 80) { gefangen = gefangen + 1; } (gefangen = "caught"). Then you reset both, for example with x1 = 150; and x2 = 650;.
+How it works together: At the start, setup() creates an 800 × 800 pixel canvas once. After that, draw() is repeated over and over. The red catcher moves with W A S D at speed 6, the yellow runner with the arrow keys at speed 5. In every frame, dist() measures the distance between the centers. If it is less than 80, gefangen counts up and both jump back to their starting places. The number of catches is shown at the bottom.
+Important tips: Both circles have a radius of 40 - they touch when their centers are less than 40 + 40 = 80 apart. The catcher is a bit faster, otherwise the runner could always escape. If you want it fairer, change the numbers 6 and 5.
 `,
   "4.5.1": `
 Tools: In this task we use functions, variables, conditions with &&, || and else and the keyboard.
