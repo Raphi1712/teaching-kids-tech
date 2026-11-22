@@ -735,9 +735,9 @@
   Thema:          5 - Weltraum-Flug (Boss-Vorstufe 1)
   Level:          1
   Boss-Level:     Nein
-  Lernziel:       Ein Ziel fliegt oben hin und her. Steuere die Rakete mit den Pfeiltasten darunter. Mit && prüfst du, ob die Rakete genau unter dem Ziel ist (raketeX > zielX - 50 && raketeX < zielX + 50) - dann leuchtet es gelb.
-  Arbeitsauftrag:  Rekreire, was du in der Vorschau siehst. Bring die Rakete unter das Ziel und bleib dran.
-  Benoetiges Vorwissen: Thema 1 und 2 (Pfeiltasten, Rakete)
+  Lernziel:       Zwei Asteroiden fallen von oben. Unten raus starten sie oben an einer zufälligen Stelle neu (a1X = random(50, 750)). Mit dist(raketeX, 690, a1X, a1Y) < 70 prüfst du, ob ein Asteroid die Rakete berührt - dann zählt zusammenstoesse hoch.
+  Arbeitsauftrag:  Rekreire, was du in der Vorschau siehst. Weiche den Asteroiden mit den Pfeiltasten aus.
+  Benoetiges Vorwissen: Thema 1 und 2 (Pfeiltasten, Rakete), Modul 3 (dist)
   =============================================
  
 `,
@@ -747,9 +747,9 @@
   Thema:          5 - Weltraum-Flug (Boss-Vorstufe 2)
   Level:          2
   Boss-Level:     Nein
-  Lernziel:       Die Leertaste schaltet den Laser an und aus (laser = true / false). Solange der Laser an ist und die Rakete unter dem Ziel bleibt, steigt ladung. Sonst sinkt sie langsam. Bei 300 (5 Sekunden) ist das Ziel getroffen und springt weg. Der Balken oben zeigt die Ladung.
-  Arbeitsauftrag:  Rekreire, was du in der Vorschau siehst. Schalte den Laser an und halte ihn 5 Sekunden auf dem Ziel.
-  Benoetiges Vorwissen: Level m4t5_1 (Ziel)
+  Lernziel:       Ein Druck auf die Leertaste feuert einen Laserschuss. Es fliegt immer nur ein Schuss: Ein neuer startet nur, wenn schussAktiv == false ist. Trifft der Schuss einen Asteroiden (dist(...) < 45), gibt es einen Punkt und der Asteroid startet oben neu.
+  Arbeitsauftrag:  Rekreire, was du in der Vorschau siehst. Ziele gut und schieße die Asteroiden ab.
+  Benoetiges Vorwissen: Level m4t5_1 (Asteroiden)
   =============================================
  
 `,
@@ -759,8 +759,8 @@
   Thema:          5 - Weltraum-Flug
   Level:          3 - BOSS-LEVEL
   Boss-Level:     JA
-  Lernziel:       Alles aus Modul 4: Pfeiltasten, Turbo, Laser und Ladung. Nach jedem Treffer wird das Ziel kleiner und schneller, und manchmal dreht es von allein um (random(0, 100) < 1). treffer zählt mit.
-  Arbeitsauftrag:  Rekreire, was du in der Vorschau siehst. Wie viele Treffer schaffst du? Pfeil hoch ist der Turbo.
+  Lernziel:       Alles aus Modul 4: steuern, schießen, Treffer zählen. Alle 5 Punkte steigt die stufe und die Asteroiden fallen schneller (stufe = 1 + int(punkte / 5)). Ein Zusammenstoß kostet 3 Punkte, die Rakete leuchtet kurz rot. Treffer zeigen einen kurzen Ring.
+  Arbeitsauftrag:  Rekreire, was du in der Vorschau siehst. Welche Stufe schaffst du?
   Benoetiges Vorwissen: Alles aus Modul 4
   =============================================
  
@@ -1172,21 +1172,21 @@ Prior knowledge: Levels m4t4_1, m4t4_2, module 3 (dist)`,
 Topic: 5 - Space flight (boss warm-up 1)
 Level: 1
 Boss level: No
-Learning goal: A target flies back and forth at the top. Steer the rocket under it with the arrow keys. With && you check whether the rocket is exactly under the target (raketeX > zielX - 50 && raketeX < zielX + 50, raketeX = "rocket x", zielX = "target x") - then it lights up yellow.
-Task: Recreate what you see in the preview. Bring the rocket under the target and stay there.
-Prior knowledge: Topics 1 and 2 (arrow keys, rocket)`,
+Learning goal: Two asteroids fall from the top. When they leave the bottom, they start again at a random place at the top (a1X = random(50, 750)). With dist(raketeX, 690, a1X, a1Y) < 70 you check whether an asteroid touches the rocket (raketeX = "rocket x") - then zusammenstoesse ("collisions") counts up.
+Task: Recreate what you see in the preview. Dodge the asteroids with the arrow keys.
+Prior knowledge: Topics 1 and 2 (arrow keys, rocket), module 3 (dist)`,
   "m4t5_2": `Module: 4
 Topic: 5 - Space flight (boss warm-up 2)
 Level: 2
 Boss level: No
-Learning goal: The space bar turns the laser on and off (laser = true / false). As long as the laser is on and the rocket stays under the target, ladung ("charge") goes up. Otherwise it slowly goes down. At 300 (5 seconds) the target is hit and jumps away. The bar at the top shows the charge.
-Task: Recreate what you see in the preview. Turn on the laser and keep it on the target for 5 seconds.
-Prior knowledge: Level m4t5_1 (target)`,
+Learning goal: One press of the space bar fires a laser shot. Only one shot flies at a time: a new one only starts when schussAktiv == false ("shot active"). If the shot hits an asteroid (dist(...) < 45), you get a point and the asteroid starts again at the top.
+Task: Recreate what you see in the preview. Aim well and shoot the asteroids.
+Prior knowledge: Level m4t5_1 (asteroids)`,
   "m4t5_3": `Module: 4
 Topic: 5 - Space flight
 Level: 3 - BOSS LEVEL
 Boss level: YES
-Learning goal: Everything from module 4: arrow keys, turbo, laser and charge. After every hit the target gets smaller and faster, and sometimes it turns around on its own (random(0, 100) < 1). treffer ("hits") counts along.
-Task: Recreate what you see in the preview. How many hits can you get? The up arrow is the turbo.
+Learning goal: Everything from module 4: steering, shooting, counting hits. Every 5 points the stufe ("level") goes up and the asteroids fall faster (stufe = 1 + int(punkte / 5), punkte = "points"). A collision costs 3 points and the rocket glows red for a moment. Hits show a short ring.
+Task: Recreate what you see in the preview. Which level can you reach?
 Prior knowledge: Everything from module 4`
 };

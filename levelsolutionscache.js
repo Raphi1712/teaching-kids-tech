@@ -1808,8 +1808,13 @@ function draw() {
 }
 `,
   "m4t5_1": `let raketeX = 400;
-let zielX = 400;
-let zielSpeed = 3;
+let a1X = 200;
+let a1Y = -50;
+let a1Speed = 3;
+let a2X = 600;
+let a2Y = -350;
+let a2Speed = 4;
+let zusammenstoesse = 0;
 function setup() {
   createCanvas(800, 800);
 }
@@ -1818,23 +1823,43 @@ function draw() {
   noStroke();
   // Rakete mit den Pfeiltasten steuern (bleibt im Bild)
   if (keyIsDown(LEFT_ARROW) && raketeX > 50) {
-    raketeX = raketeX - 6;
+    raketeX = raketeX - 7;
   }
   if (keyIsDown(RIGHT_ARROW) && raketeX < 750) {
-    raketeX = raketeX + 6;
+    raketeX = raketeX + 7;
   }
-  // Das Ziel fliegt oben hin und her
-  zielX = zielX + zielSpeed;
-  if (zielX < 60 || zielX > 740) {
-    zielSpeed = -zielSpeed;
+  // Asteroiden fallen nach unten
+  a1Y = a1Y + a1Speed;
+  a2Y = a2Y + a2Speed;
+  // Unten raus: oben an einer zufaelligen Stelle neu starten
+  if (a1Y > 850) {
+    a1Y = -50;
+    a1X = random(50, 750);
   }
-  // Ist die Rakete genau unter dem Ziel, leuchtet es gelb
-  if (raketeX > zielX - 50 && raketeX < zielX + 50) {
-    fill(255, 220, 60);
-  } else {
-    fill(120, 120, 170);
+  if (a2Y > 850) {
+    a2Y = -50;
+    a2X = random(50, 750);
   }
-  ellipse(zielX, 150, 100, 100);
+  // Zusammenstoss: Asteroid beruehrt die Rakete
+  if (dist(raketeX, 690, a1X, a1Y) < 70) {
+    zusammenstoesse = zusammenstoesse + 1;
+    a1Y = -50;
+    a1X = random(50, 750);
+  }
+  if (dist(raketeX, 690, a2X, a2Y) < 70) {
+    zusammenstoesse = zusammenstoesse + 1;
+    a2Y = -50;
+    a2X = random(50, 750);
+  }
+  // Asteroiden mit Kratern
+  fill(130, 110, 95);
+  ellipse(a1X, a1Y, 80, 80);
+  ellipse(a2X, a2Y, 80, 80);
+  fill(100, 85, 75);
+  ellipse(a1X - 15, a1Y - 10, 20, 20);
+  ellipse(a1X + 18, a1Y + 12, 14, 14);
+  ellipse(a2X - 15, a2Y - 10, 20, 20);
+  ellipse(a2X + 18, a2Y + 12, 14, 14);
   // Rakete
   fill(230, 230, 240);
   rect(raketeX - 20, 640, 40, 100);
@@ -1844,165 +1869,241 @@ function draw() {
   triangle(raketeX + 20, 740, raketeX + 20, 700, raketeX + 45, 740);
   fill(255);
   textSize(24);
-  text("Pfeile: Bring die Rakete unter das Ziel", 20, 40);
+  text("Pfeile: ausweichen", 20, 40);
+  text("Zusammenstoesse: " + zusammenstoesse, 540, 40);
 }
 `,
   "m4t5_2": `let raketeX = 400;
-let zielX = 400;
-let zielSpeed = 3;
-let laser = false;
-let ladung = 0;
+let a1X = 200;
+let a1Y = -50;
+let a1Speed = 3;
+let a2X = 600;
+let a2Y = -350;
+let a2Speed = 4;
+let zusammenstoesse = 0;
+let punkte = 0;
+let schussAktiv = false;
+let schussX = 0;
+let schussY = 0;
 function setup() {
   createCanvas(800, 800);
 }
 function draw() {
   background(10, 10, 40);
   noStroke();
+  // Rakete mit den Pfeiltasten steuern (bleibt im Bild)
   if (keyIsDown(LEFT_ARROW) && raketeX > 50) {
-    raketeX = raketeX - 6;
+    raketeX = raketeX - 7;
   }
   if (keyIsDown(RIGHT_ARROW) && raketeX < 750) {
-    raketeX = raketeX + 6;
+    raketeX = raketeX + 7;
   }
-  zielX = zielX + zielSpeed;
-  if (zielX < 60 || zielX > 740) {
-    zielSpeed = -zielSpeed;
+  // Asteroiden fallen nach unten
+  a1Y = a1Y + a1Speed;
+  a2Y = a2Y + a2Speed;
+  // Unten raus: oben an einer zufaelligen Stelle neu starten
+  if (a1Y > 850) {
+    a1Y = -50;
+    a1X = random(50, 750);
   }
-  let unterZiel = raketeX > zielX - 50 && raketeX < zielX + 50;
-  // Laser an und genau unter dem Ziel: die Ladung steigt. Sonst sinkt sie langsam.
-  if (laser && unterZiel) {
-    ladung = ladung + 1;
-  } else if (ladung > 0) {
-    ladung = ladung - 2;
+  if (a2Y > 850) {
+    a2Y = -50;
+    a2X = random(50, 750);
   }
-  // 300 Bilder sind 5 Sekunden: dann ist das Ziel getroffen und springt weg
-  if (ladung >= 300) {
-    ladung = 0;
-    zielX = random(80, 720);
+  // Zusammenstoss: Asteroid beruehrt die Rakete
+  if (dist(raketeX, 690, a1X, a1Y) < 70) {
+    zusammenstoesse = zusammenstoesse + 1;
+    a1Y = -50;
+    a1X = random(50, 750);
   }
-  if (laser) {
-    stroke(255, 40, 90);
-    strokeWeight(8);
-    line(raketeX, 590, raketeX, 0);
+  if (dist(raketeX, 690, a2X, a2Y) < 70) {
+    zusammenstoesse = zusammenstoesse + 1;
+    a2Y = -50;
+    a2X = random(50, 750);
+  }
+  // Der Schuss fliegt nach oben; oben raus ist er weg
+  if (schussAktiv) {
+    schussY = schussY - 14;
+  }
+  if (schussY < -30) {
+    schussAktiv = false;
+  }
+  // Treffer: Schuss unterwegs und nah genug am Asteroiden
+  if (schussAktiv && dist(schussX, schussY, a1X, a1Y) < 45) {
+    punkte = punkte + 1;
+    schussAktiv = false;
+    a1Y = -50;
+    a1X = random(50, 750);
+  }
+  if (schussAktiv && dist(schussX, schussY, a2X, a2Y) < 45) {
+    punkte = punkte + 1;
+    schussAktiv = false;
+    a2Y = -50;
+    a2X = random(50, 750);
+  }
+  if (schussAktiv) {
+    stroke(255, 60, 90);
+    strokeWeight(6);
+    line(schussX, schussY, schussX, schussY + 30);
     noStroke();
   }
-  if (unterZiel) {
-    fill(255, 220, 60);
-  } else {
-    fill(120, 120, 170);
-  }
-  ellipse(zielX, 150, 100, 100);
+  // Asteroiden mit Kratern
+  fill(130, 110, 95);
+  ellipse(a1X, a1Y, 80, 80);
+  ellipse(a2X, a2Y, 80, 80);
+  fill(100, 85, 75);
+  ellipse(a1X - 15, a1Y - 10, 20, 20);
+  ellipse(a1X + 18, a1Y + 12, 14, 14);
+  ellipse(a2X - 15, a2Y - 10, 20, 20);
+  ellipse(a2X + 18, a2Y + 12, 14, 14);
+  // Rakete
   fill(230, 230, 240);
   rect(raketeX - 20, 640, 40, 100);
   fill(220, 40, 40);
   triangle(raketeX - 20, 640, raketeX + 20, 640, raketeX, 590);
   triangle(raketeX - 20, 740, raketeX - 20, 700, raketeX - 45, 740);
   triangle(raketeX + 20, 740, raketeX + 20, 700, raketeX + 45, 740);
-  // Ladebalken
-  fill(60, 60, 80);
-  rect(200, 60, 400, 20);
-  fill(255, 80, 80);
-  rect(200, 60, ladung / 300 * 400, 20);
   fill(255);
   textSize(24);
-  text("Leertaste: Laser an / aus - 5 Sekunden auf dem Ziel halten", 20, 40);
+  text("Pfeile: steuern    Leertaste: schiessen", 20, 40);
+  text("Punkte: " + punkte, 20, 75);
+  text("Zusammenstoesse: " + zusammenstoesse, 540, 75);
 }
 function keyPressed() {
-  if (key == " " && laser == false) {
-    laser = true;
-  } else if (key == " ") {
-    laser = false;
+  // Nur ein Schuss gleichzeitig: neuer Schuss erst, wenn der alte weg ist
+  if (key == " " && schussAktiv == false) {
+    schussAktiv = true;
+    schussX = raketeX;
+    schussY = 570;
   }
 }
 `,
   "m4t5_3": `let raketeX = 400;
-let raketeTempo = 6;
-let zielX = 400;
-let zielSpeed = 3;
-let zielGroesse = 120;
-let laser = false;
-let ladung = 0;
-let treffer = 0;
-let blitz = 0;
+let a1X = 150;
+let a1Y = -50;
+let a1Speed = 3;
+let a2X = 400;
+let a2Y = -300;
+let a2Speed = 4;
+let punkte = 0;
+let stufe = 1;
+let schussAktiv = false;
+let schussX = 0;
+let schussY = 0;
+let explosionX = 0;
+let explosionY = 0;
+let explosion = 0;
+let getroffen = 0;
 function setup() {
   createCanvas(800, 800);
 }
 function draw() {
   background(10, 10, 40);
   noStroke();
-  // Turbo: Pfeil nach oben macht die Rakete doppelt so schnell
-  if (keyIsDown(UP_ARROW)) {
-    raketeTempo = 12;
-  } else {
-    raketeTempo = 6;
-  }
   if (keyIsDown(LEFT_ARROW) && raketeX > 50) {
-    raketeX = raketeX - raketeTempo;
+    raketeX = raketeX - 7;
   }
   if (keyIsDown(RIGHT_ARROW) && raketeX < 750) {
-    raketeX = raketeX + raketeTempo;
+    raketeX = raketeX + 7;
   }
-  // Das Ziel dreht manchmal ganz von allein um
-  zielX = zielX + zielSpeed;
-  if (zielX < 60 || zielX > 740 || random(0, 100) < 1) {
-    zielSpeed = -zielSpeed;
+  // Alle 5 Punkte eine Stufe hoeher: die Asteroiden werden schneller
+  stufe = 1 + int(punkte / 5);
+  a1Y = a1Y + a1Speed + stufe;
+  a2Y = a2Y + a2Speed + stufe;
+  if (a1Y > 850) {
+    a1Y = -50;
+    a1X = random(50, 750);
   }
-  let unterZiel = raketeX > zielX - zielGroesse / 2 && raketeX < zielX + zielGroesse / 2;
-  if (laser && unterZiel) {
-    ladung = ladung + 1;
-  } else if (ladung > 0) {
-    ladung = ladung - 2;
+  if (a2Y > 850) {
+    a2Y = -50;
+    a2X = random(50, 750);
   }
-  // Treffer: das Ziel springt weg, wird kleiner und schneller
-  if (ladung >= 300) {
-    ladung = 0;
-    treffer = treffer + 1;
-    blitz = 15;
-    zielX = random(80, 720);
-    zielSpeed = zielSpeed * 1.2;
-    zielGroesse = zielGroesse - 10;
+  // Schuss
+  if (schussAktiv) {
+    schussY = schussY - 14;
   }
-  if (zielGroesse < 50) {
-    zielGroesse = 50;
+  if (schussY < -30) {
+    schussAktiv = false;
   }
-  if (laser) {
-    stroke(255, 40, 90);
-    strokeWeight(8);
-    line(raketeX, 590, raketeX, 0);
+  // Treffer: Punkt, kleine Explosion, Asteroid startet oben neu
+  if (schussAktiv && dist(schussX, schussY, a1X, a1Y) < 45) {
+    punkte = punkte + 1;
+    schussAktiv = false;
+    explosionX = a1X;
+    explosionY = a1Y;
+    explosion = 12;
+    a1Y = -50;
+    a1X = random(50, 750);
+  }
+  if (schussAktiv && dist(schussX, schussY, a2X, a2Y) < 45) {
+    punkte = punkte + 1;
+    schussAktiv = false;
+    explosionX = a2X;
+    explosionY = a2Y;
+    explosion = 12;
+    a2Y = -50;
+    a2X = random(50, 750);
+  }
+  // Zusammenstoss: kostet 3 Punkte, die Rakete leuchtet kurz rot
+  if (dist(raketeX, 690, a1X, a1Y) < 70) {
+    punkte = punkte - 3;
+    getroffen = 30;
+    a1Y = -50;
+    a1X = random(50, 750);
+  }
+  if (dist(raketeX, 690, a2X, a2Y) < 70) {
+    punkte = punkte - 3;
+    getroffen = 30;
+    a2Y = -50;
+    a2X = random(50, 750);
+  }
+  if (punkte < 0) {
+    punkte = 0;
+  }
+  if (schussAktiv) {
+    stroke(255, 60, 90);
+    strokeWeight(6);
+    line(schussX, schussY, schussX, schussY + 30);
     noStroke();
   }
-  // Kurzer weisser Blitz nach einem Treffer
-  if (blitz > 0) {
-    fill(255);
-    ellipse(zielX, 150, zielGroesse + blitz * 10, zielGroesse + blitz * 10);
-    blitz = blitz - 1;
+  // Explosion: ein Ring, der waechst und verschwindet
+  if (explosion > 0) {
+    noFill();
+    stroke(255, 200, 60);
+    strokeWeight(4);
+    ellipse(explosionX, explosionY, 100 - explosion * 5, 100 - explosion * 5);
+    noStroke();
+    explosion = explosion - 1;
   }
-  if (unterZiel) {
-    fill(255, 220, 60);
+  fill(130, 110, 95);
+  ellipse(a1X, a1Y, 80, 80);
+  ellipse(a2X, a2Y, 80, 80);
+  fill(100, 85, 75);
+  ellipse(a1X - 15, a1Y - 10, 20, 20);
+  ellipse(a2X - 15, a2Y - 10, 20, 20);
+  // Rakete: nach einem Zusammenstoss kurz rot
+  if (getroffen > 0) {
+    fill(255, 90, 90);
+    getroffen = getroffen - 1;
   } else {
-    fill(120, 120, 170);
+    fill(230, 230, 240);
   }
-  ellipse(zielX, 150, zielGroesse, zielGroesse);
-  fill(230, 230, 240);
   rect(raketeX - 20, 640, 40, 100);
   fill(220, 40, 40);
   triangle(raketeX - 20, 640, raketeX + 20, 640, raketeX, 590);
   triangle(raketeX - 20, 740, raketeX - 20, 700, raketeX - 45, 740);
   triangle(raketeX + 20, 740, raketeX + 20, 700, raketeX + 45, 740);
-  fill(60, 60, 80);
-  rect(200, 60, 400, 20);
-  fill(255, 80, 80);
-  rect(200, 60, ladung / 300 * 400, 20);
   fill(255);
   textSize(24);
-  text("Treffer: " + treffer, 20, 40);
-  text("Leertaste: Laser    Pfeil hoch: Turbo", 330, 40);
+  text("Pfeile: steuern    Leertaste: schiessen", 20, 40);
+  text("Punkte: " + punkte, 20, 75);
+  text("Stufe: " + stufe, 680, 75);
 }
 function keyPressed() {
-  if (key == " " && laser == false) {
-    laser = true;
-  } else if (key == " ") {
-    laser = false;
+  if (key == " " && schussAktiv == false) {
+    schussAktiv = true;
+    schussX = raketeX;
+    schussY = 570;
   }
 }
 `
